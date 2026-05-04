@@ -1,0 +1,20 @@
+{
+	"style": "funkin",
+	"name": "Blazin'",
+	"gf": "nene",
+	"difficulties": [
+		"easy",
+		"normal",
+		"hard"
+	],
+	"opponent": "darnell-blazin",
+	"player": "pico-blazin",
+	"stage": "philly-blazin",
+	"bpm": 180,
+	"artist": "Kawai Sprite",
+	"rating": {
+		"normal": 4,
+		"hard": 5,
+		"easy": 3
+	}
+}

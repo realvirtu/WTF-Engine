@@ -1,0 +1,20 @@
+{
+	"style": "funkin",
+	"name": "Lit Up",
+	"gf": "nene",
+	"difficulties": [
+		"easy",
+		"normal",
+		"hard"
+	],
+	"opponent": "darnell",
+	"player": "pico",
+	"stage": "philly-streets",
+	"bpm": 176,
+	"artist": "Kawai Sprite",
+	"rating": {
+		"normal": 3,
+		"hard": 4,
+		"easy": 2
+	}
+}

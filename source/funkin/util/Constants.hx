@@ -28,7 +28,17 @@ class Constants
 	/**
 	 * This is so that the engine's levels have higher priority over custom levels.
 	 */
-	public static final DEFAULT_LEVELS:Array<String> = ['tutorial', 'week1', 'week2', 'week3', 'week4', 'week5', 'week6', 'week7'];
+	public static final DEFAULT_LEVELS:Array<String> = [
+		'tutorial',
+		'week1',
+		'week2',
+		'week3',
+		'week4',
+		'week5',
+		'week6',
+		'week7',
+		'weekend 1'
+	];
 
 	/**
 	 * This is so that the engine's songs have higher priority over custom songs.

@@ -1,0 +1,18 @@
+{
+	"style": "funkin",
+	"name": "Darnell Erect",
+	"gf": "nene",
+	"difficulties": [
+		"erect",
+		"nightmare"
+	],
+	"opponent": "darnell",
+	"player": "pico",
+	"stage": "philly-streets",
+	"bpm": 155,
+	"artist": "Kawai Sprite",
+	"rating": {
+		"nightmare": 9,
+		"erect": 8
+	}
+}
