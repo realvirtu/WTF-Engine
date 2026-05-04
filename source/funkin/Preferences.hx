@@ -31,7 +31,7 @@ class Preferences
 		Save.instance.options.downscroll = value;
 		Save.instance.flush();
 
-		PlayState.instance?.refresh();
+		PlayState.instance?.updatePreferences();
 
 		return value;
 	}
@@ -63,7 +63,7 @@ class Preferences
 		Save.instance.options.showTimer = value;
 		Save.instance.flush();
 
-		PlayState.instance?.refresh();
+		PlayState.instance?.updatePreferences();
 
 		return value;
 	}
@@ -159,7 +159,7 @@ class Preferences
 	static inline function set_botplay(value:Bool):Bool
 	{
 		botplay = value;
-		PlayState.instance?.refresh();
+		PlayState.instance?.updatePreferences();
 		return value;
 	}
 }

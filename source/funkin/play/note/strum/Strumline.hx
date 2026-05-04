@@ -211,10 +211,8 @@ class Strumline extends FlxGroup
 		});
 	}
 
-	override public function refresh()
+	public function updateScroll()
 	{
-		super.refresh();
-
 		dirty = true;
 
 		strums.forEach(strum ->

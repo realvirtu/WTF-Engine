@@ -51,39 +51,43 @@ class PlayState extends FunkinState
 	public static var difficulty:String;
 	public static var song:Song;
 
-	public var score:Float;
-	public var tallies:Tallies;
-	public var deaths:Int = 0;
-
-	public var camFollow:FlxObject;
-	public var cutscene:BaseCutscene;
-
-	public var stage:Stage;
-	public var style:Style;
-
 	public var songLoaded:Bool;
 	public var songStarted:Bool;
 	public var songEnded:Bool;
 	public var songActive:Bool;
 
+	public var events:Array<EventData>;
+	public var voices:Voices;
+
+	public var tallies:Tallies;
+	public var score:Float;
 	public var health:Float;
 	public var healthLerp:Float;
+	public var deaths:Int = 0;
+
+	public var style:Style;
 
 	public var camHUD:FlxCamera;
 
-	var events:Array<EventData>;
-	var voices:Voices;
+	public var camFollow:FlxObject;
+	public var cutscene:BaseCutscene;
 
-	var opponentStrumline:Strumline;
-	var playerStrumline:Strumline;
-	var healthBar:FunkinBar;
-	var healthBorder:FunkinSprite;
-	var opponentIcon:HealthIcon;
-	var playerIcon:HealthIcon;
-	var scoreText:FunkinText;
-	var timeText:FunkinText;
-	var countdown:Countdown;
-	var popups:Popups;
+	public var opponentStrumline:Strumline;
+	public var playerStrumline:Strumline;
+
+	public var healthBar:FunkinBar;
+	public var healthBorder:FunkinSprite;
+
+	public var opponentIcon:HealthIcon;
+	public var playerIcon:HealthIcon;
+
+	public var scoreText:FunkinText;
+	public var timeText:FunkinText;
+
+	public var countdown:Countdown;
+	public var popups:Popups;
+
+	public var stage:Stage;
 
 	override public function create()
 	{
@@ -170,6 +174,8 @@ class PlayState extends FunkinState
 
 		refresh();
 
+		updatePreferences();
+
 		// Runs the create script event
 		dispatch(new ScriptEvent(Create));
 	}
@@ -238,37 +244,6 @@ class PlayState extends FunkinState
 		// Death :(
 		if (health <= healthBar.min)
 			openSubState(new GameOverSubState());
-	}
-
-	override public function refresh()
-	{
-		super.refresh();
-
-		timeText.y = 35;
-		timeText.visible = Preferences.showTimer;
-
-		healthBorder.y = FlxG.height - healthBorder.height - 60;
-
-		if (Preferences.downscroll)
-		{
-			timeText.y = FlxG.height - timeText.height - timeText.y;
-			healthBorder.y = FlxG.height - healthBorder.height - healthBorder.y;
-		}
-
-		healthBar.x = healthBorder.x + 3.5;
-		healthBar.y = healthBorder.y + 5;
-
-		scoreText.y = healthBorder.y + healthBorder.height + 20;
-
-		if (opponentIcon != null)
-			opponentIcon.y = healthBar.y - opponentIcon.height / 2;
-		if (playerIcon != null)
-			playerIcon.y = healthBar.y - playerIcon.height / 2;
-
-		playerStrumline.isPlayer = !Preferences.botplay;
-
-		opponentStrumline.refresh();
-		playerStrumline.refresh();
 	}
 
 	override function beatHit(beat:Int)
@@ -422,6 +397,35 @@ class PlayState extends FunkinState
 			return;
 
 		openSubState(new PauseSubState());
+	}
+
+	public function updatePreferences()
+	{
+		timeText.y = 35;
+		timeText.visible = Preferences.showTimer;
+
+		healthBorder.y = FlxG.height - healthBorder.height - 60;
+
+		if (Preferences.downscroll)
+		{
+			timeText.y = FlxG.height - timeText.height - timeText.y;
+			healthBorder.y = FlxG.height - healthBorder.height - healthBorder.y;
+		}
+
+		healthBar.x = healthBorder.x + 3.5;
+		healthBar.y = healthBorder.y + 5;
+
+		scoreText.y = healthBorder.y + healthBorder.height + 20;
+
+		if (opponentIcon != null)
+			opponentIcon.y = healthBar.y - opponentIcon.height / 2;
+		if (playerIcon != null)
+			playerIcon.y = healthBar.y - playerIcon.height / 2;
+
+		playerStrumline.isPlayer = !Preferences.botplay;
+
+		opponentStrumline.updateScroll();
+		playerStrumline.updateScroll();
 	}
 
 	function loadCharacters()
