@@ -1,0 +1,30 @@
+{
+    "name": "Darnell",
+    "width": 203,
+    "height": 250,
+    "globalOffset": [0, -350],
+    "cameraOffset": [100, -100],
+    "icon": {},
+    "animations": [
+        {
+            "name": "idle",
+            "frames": [0, 1, 2]
+        },
+        {
+            "name": "left",
+            "frames": [3, 4]
+        },
+        {
+            "name": "right",
+            "frames": [5, 6]
+        },
+        {
+            "name": "up",
+            "frames": [7, 8]
+        },
+        {
+            "name": "down",
+            "frames": [9, 10]
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Nene",
+    "width": 262,
+    "height": 295,
+    "globalOffset": [0, -400],
+    "cameraOffset": [0, -60],
+    "icon": {},
+    "bopEvery": 1,
+    "animations": [
+        {
+            "name": "idle",
+            "frames": [0, 1, 2]
+        }
+    ]
+}

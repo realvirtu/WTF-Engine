@@ -1,0 +1,14 @@
+{
+    "name": "Philly (Blazin)",
+    "zoom": 1,
+    "opponent": {
+        "position": [-250, 350]
+    },
+    "player": {
+        "position": [250, 350]
+    },
+    "gf": {
+        "position": [0, 300]
+    },
+    "props": []
+}
