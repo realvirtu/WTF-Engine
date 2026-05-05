@@ -482,6 +482,8 @@ class PlayState extends FunkinState
 
 		songEnded = true;
 
+		FunkinSound.stopAllSounds(true);
+
 		if (event.cancelled)
 			return;
 
@@ -494,8 +496,6 @@ class PlayState extends FunkinState
 		Playlist.score += score;
 
 		// Exits or switches to the next song
-		FunkinSound.stopAllSounds(true);
-
 		if (Playlist.next())
 			FlxG.resetState();
 		else
@@ -515,8 +515,8 @@ class PlayState extends FunkinState
 		// Flixel's onComplete doesn't work properly
 		if (FunkinSound.music.time >= FunkinSound.music.length)
 		{
-			FunkinSound.music.stop();
 			endSong();
+			return;
 		}
 
 		// Instrumental resync

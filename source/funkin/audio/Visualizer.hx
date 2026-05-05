@@ -10,13 +10,11 @@ class Visualizer
 
 	public var analyzer:SpectralAnalyzer;
 
-	var _levels:Array<Bar>;
+	var _levels:Array<Bar> = [];
 
 	public function new(sound:FlxSound, barCount:Int)
 	{
 		this.barCount;
-
-		_levels = [];
 
 		for (i in 0...barCount)
 			_levels.push({value: 0, peak: 0});
@@ -48,6 +46,6 @@ class Visualizer
 
 	public function getLevels():Array<Bar>
 	{
-		return analyzer.getLevels(_levels);
+		return _levels = analyzer.getLevels(_levels);
 	}
 }
