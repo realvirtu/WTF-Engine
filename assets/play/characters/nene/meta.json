@@ -1,8 +1,8 @@
 {
     "name": "Nene",
-    "width": 262,
-    "height": 295,
-    "globalOffset": [0, -400],
+    "width": 200,
+    "height": 242,
+    "globalOffset": [0, -420],
     "cameraOffset": [0, -60],
     "icon": {},
     "bopEvery": 1,
