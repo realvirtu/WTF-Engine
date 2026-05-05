@@ -97,6 +97,10 @@ class Project extends HXProject
             setHaxedef("POLYMOD_DEBUG");
         setHaxedef("hscriptPos");
 
+        // Does a cool optimization
+        if (!isDebug())
+            setHaxedef("analyzer-optimize");
+
         // This stops Lime's AssetCache class from recompiling every single time
         // I promise you doing this does nothing bad
         setHaxedef("lime_disable_assets_version");
@@ -121,13 +125,18 @@ class Project extends HXProject
     {
         addHaxelib("flixel");
         addHaxelib("flixel-addons");
+        
         addHaxelib("json2object");
+        addHaxelib("hxdiscord_rpc");
+
         addHaxelib("polymod");
         addHaxelib("thx.core");
         addHaxelib("thx.semver");
         addHaxelib("jsonpath");
         addHaxelib("jsonpatch");
-        addHaxelib("hxdiscord_rpc");
+
+        addHaxelib("funkin.vis");
+        addHaxelib("grig.audio");
     }
 
     function setHaxedef(name:String, ?value:String)

@@ -15,6 +15,20 @@
       "url": "https://github.com/FunkinCrew/flixel-addons"
     },
     {
+      "name": "funkin.vis",
+      "type": "git",
+      "dir": null,
+      "ref": "02bada154b474c2554709b9d12aef0cbf0da3ec9",
+      "url": "https://github.com/FunkinCrew/funkVis"
+    },
+    {
+      "name": "grig.audio",
+      "type": "git",
+      "dir": "src",
+      "ref": "6409f3c6d1b4c52176813d3ede86c0d34e8af2c1",
+      "url": "https://github.com/FunkinCrew/grig.audio"
+    },
+    {
       "name": "hxcpp",
       "type": "git",
       "dir": null,
@@ -92,6 +106,12 @@
       "dir": null,
       "ref": "bdb191fe7cf745c02a980749906dbf22719e200b",
       "url": "https://github.com/fponticelli/thx.semver"
+    },
+    {
+      "name": "tink_core",
+      "type": "haxelib",
+      "dir": null,
+      "version": "1.26.0"
     }
   ]
 }

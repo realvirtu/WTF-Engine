@@ -1,11 +1,15 @@
 import flixel.group.FlxGroup;
 import flixel.group.FlxTypedSpriteGroup;
+import funkin.audio.FunkinSound;
+import funkin.audio.Visualizer;
 import funkin.graphics.FunkinSprite;
 
 class ABotSprite extends FlxTypedSpriteGroup
 {
     var abotPath:String;
-    var viz:Array<FunkinSprite>;
+
+    var visualizer:Visualizer;
+    var viz:Array<FunkinSprite> = [];
 
     public function new(abotPath:String)
     {
@@ -21,7 +25,7 @@ class ABotSprite extends FlxTypedSpriteGroup
         eyes.active = false;
         add(eyes);
 
-        viz = [];
+        visualizer = new Visualizer(FunkinSound.music, 6);
 
         // For loops just don't work for some reason
         // Polymod is silly
@@ -33,6 +37,23 @@ class ABotSprite extends FlxTypedSpriteGroup
         buildViz(5);
     }
 
+    override function draw()
+    {
+        super.draw();
+
+        if (visualizer?.analyzer == null)
+            return;
+
+        var levels:Array<Float> = visualizer.analyzer.getLevels();
+
+        for (i => bar in viz)
+        {
+            var frame:Int = Math.round(levels[i].value * 6);
+
+            bar.frameIndex = Math.min(5, frame);
+        }
+    }
+
     function buildViz(index:Int)
     {
         var bar:FunkinSprite = FunkinSprite.create(x + 103 + (40 * index), y + 32, '$abotPath/viz', 1, 25, 98);
@@ -40,7 +61,6 @@ class ABotSprite extends FlxTypedSpriteGroup
         bar.addAnimation("viz", [0, 1, 2, 3, 4, 5], 0);
         bar.playAnimation("viz");
 
-        bar.animation.frameIndex = 5;
         bar.active = false;
 
         viz.push(bar);
