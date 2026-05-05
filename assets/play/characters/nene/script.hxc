@@ -3,6 +3,8 @@ import funkin.play.PlayState;
 
 class NeneCharacter extends Character
 {
+    var abot:ABotSprite;
+
     public function new()
     {
         super("nene");
@@ -12,15 +14,27 @@ class NeneCharacter extends Character
     {
         super.onCreate(event);
 
-        var abot:ABotSprite = new ABotSprite('$charPath/abot');
-
+        abot = new ABotSprite('$charPath/abot');
         abot.scrollFactor.x = scrollFactor.x;
         abot.scrollFactor.y = scrollFactor.y;
         abot.zIndex = zIndex - 1;
-
         abot.setPosition(x - 100, y - 250);
         
         PlayState.instance.stage.add(abot);
         PlayState.instance.stage.refresh();
+    }
+
+    override function onSongStart(event:ScriptEvent)
+    {
+        super.onSongStart(event);
+
+        abot.start();
+    }
+
+    override function onSongEnd(event:ScriptEvent)
+    {
+        super.onSongEnd(event);
+
+        abot.dump();
     }
 }

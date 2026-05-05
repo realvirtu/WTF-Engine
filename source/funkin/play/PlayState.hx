@@ -467,12 +467,12 @@ class PlayState extends FunkinState
 
 	function startSong()
 	{
-		dispatch(new ScriptEvent(SongStart));
-
 		songStarted = true;
 
 		FunkinSound.music.play();
 		voices.play();
+
+		dispatch(new ScriptEvent(SongStart));
 	}
 
 	function endSong()

@@ -10,9 +10,16 @@ class Visualizer
 
 	public var analyzer:SpectralAnalyzer;
 
+	var _levels:Array<Bar>;
+
 	public function new(sound:FlxSound, barCount:Int)
 	{
 		this.barCount;
+
+		_levels = [];
+
+		for (i in 0...barCount)
+			_levels.push({value: 0, peak: 0});
 
 		load(sound);
 	}
@@ -31,5 +38,16 @@ class Visualizer
 		analyzer.maxFreq = 22000;
 		analyzer.minFreq = 10;
 		analyzer.fftN = 256;
+	}
+
+	public function dump()
+	{
+		sound = null;
+		analyzer = null;
+	}
+
+	public function getLevels():Array<Bar>
+	{
+		return analyzer.getLevels(_levels);
 	}
 }

@@ -17,15 +17,9 @@ class ABotSprite extends FlxTypedSpriteGroup
 
         this.abotPath = abotPath;
 
-        var image:FunkinSprite = FunkinSprite.create(x, y, '$abotPath/image');
-        image.active = false;
-        add(image);
-
-        var eyes:FunkinSprite = FunkinSprite.create(x + 25, y + 132, '$abotPath/eyes');
-        eyes.active = false;
-        add(eyes);
-
-        visualizer = new Visualizer(FunkinSound.music, 6);
+        var back:FunkinSprite = FunkinSprite.createSolidColor(x + 100, y + 20, 250, 150, 0xFF121212);
+        back.active = false;
+        add(back);
 
         // For loops just don't work for some reason
         // Polymod is silly
@@ -35,22 +29,41 @@ class ABotSprite extends FlxTypedSpriteGroup
         buildViz(3);
         buildViz(4);
         buildViz(5);
+
+        var image:FunkinSprite = FunkinSprite.create(x, y, '$abotPath/image');
+        image.active = false;
+        add(image);
+
+        var eyes:FunkinSprite = FunkinSprite.create(x + 25, y + 132, '$abotPath/eyes');
+        eyes.active = false;
+        add(eyes);
+    }
+
+    public function start()
+    {
+        visualizer = new Visualizer(FunkinSound.music, 6);
+    }
+
+    public function dump()
+    {
+        visualizer?.dump();
     }
 
     override function draw()
     {
         super.draw();
 
-        if (visualizer?.analyzer == null)
+        if (visualizer == null)
             return;
 
-        var levels:Array<Float> = visualizer.analyzer.getLevels();
+        var levels = visualizer.getLevels();
 
         for (i => bar in viz)
         {
-            var frame:Int = Math.round(levels[i].value * 6);
+            var frame:Int = Math.round(levels[i]?.value * 6);
 
-            bar.frameIndex = Math.min(5, frame);
+            bar.animation.frameIndex = Math.min(4, frame);
+            bar.visible = frame > 0;
         }
     }
 
@@ -58,7 +71,7 @@ class ABotSprite extends FlxTypedSpriteGroup
     {
         var bar:FunkinSprite = FunkinSprite.create(x + 103 + (40 * index), y + 32, '$abotPath/viz', 1, 25, 98);
 
-        bar.addAnimation("viz", [0, 1, 2, 3, 4, 5], 0);
+        bar.addAnimation("viz", [0, 1, 2, 3, 4], 0);
         bar.playAnimation("viz");
 
         bar.active = false;
