@@ -1,0 +1,26 @@
+import funkin.play.character.Character;
+import funkin.play.PlayState;
+
+class NeneCharacter extends Character
+{
+    public function new()
+    {
+        super("nene");
+    }
+
+    override function onCreate(event:ScriptEvent)
+    {
+        super.onCreate(event);
+
+        var abot:ABotSprite = new ABotSprite('$charPath/abot');
+
+        abot.scrollFactor.x = scrollFactor.x;
+        abot.scrollFactor.y = scrollFactor.y;
+        abot.zIndex = zIndex - 1;
+
+        abot.setPosition(x - 100, y - 250);
+        
+        PlayState.instance.stage.add(abot);
+        PlayState.instance.stage.refresh();
+    }
+}

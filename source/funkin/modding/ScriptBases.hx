@@ -87,6 +87,9 @@ class ScriptedFlxSubState extends flixel.FlxSubState implements HScriptedClass {
 class ScriptedFlxTypedGroup extends flixel.group.FlxGroup.FlxTypedGroup<Dynamic> implements HScriptedClass {}
 
 @:hscriptClass
+class ScriptedFlxTypedSpriteGroup extends flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup<Dynamic> implements HScriptedClass {}
+
+@:hscriptClass
 class ScriptedFlxSound extends flixel.sound.FlxSound implements HScriptedClass {}
 
 @:hscriptClass

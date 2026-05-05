@@ -1,0 +1,50 @@
+import flixel.group.FlxGroup;
+import flixel.group.FlxTypedSpriteGroup;
+import funkin.graphics.FunkinSprite;
+
+class ABotSprite extends FlxTypedSpriteGroup
+{
+    var abotPath:String;
+    var viz:Array<FunkinSprite>;
+
+    public function new(abotPath:String)
+    {
+        super();
+
+        this.abotPath = abotPath;
+
+        var image:FunkinSprite = FunkinSprite.create(x, y, '$abotPath/image');
+        image.active = false;
+        add(image);
+
+        var eyes:FunkinSprite = FunkinSprite.create(x + 25, y + 132, '$abotPath/eyes');
+        eyes.active = false;
+        add(eyes);
+
+        viz = [];
+
+        // For loops just don't work for some reason
+        // Polymod is silly
+        buildViz(0);
+        buildViz(1);
+        buildViz(2);
+        buildViz(3);
+        buildViz(4);
+        buildViz(5);
+    }
+
+    function buildViz(index:Int)
+    {
+        var bar:FunkinSprite = FunkinSprite.create(x + 103 + (40 * index), y + 32, '$abotPath/viz', 1, 25, 98);
+
+        bar.addAnimation("viz", [0, 1, 2, 3, 4, 5], 0);
+        bar.playAnimation("viz");
+
+        bar.animation.frameIndex = 5;
+        bar.active = false;
+
+        viz.push(bar);
+
+        add(bar);
+    }
+}
