@@ -13,7 +13,7 @@ class FunkinAction
 
 	var pressed:Bool = false;
 
-	var timestamp(default, null):Int = -1;
+	var timestamp(default, null):Float = -1;
 
 	public function new(keys:Array<FlxKey>, buttons:Array<GamepadButton>)
 	{
@@ -29,17 +29,27 @@ class FunkinAction
 	}
 
 	public function release()
+	{
 		pressed = false;
+	}
 
 	public inline function check():Bool
+	{
 		return pressed;
+	}
 
 	public inline function checkPressed():Bool
-		return FlxG.game.ticks - timestamp <= FlxG.elapsed * Constants.MS_PER_SEC;
+	{
+		return FlxG.game.ticks - timestamp < FlxG.elapsed * Constants.MS_PER_SEC;
+	}
 
 	public inline function hasKey(key:FlxKey):Bool
+	{
 		return keys.contains(key);
+	}
 
 	public inline function hasButton(button:GamepadButton):Bool
+	{
 		return buttons.contains(button);
+	}
 }

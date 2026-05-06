@@ -14,14 +14,15 @@ class FunkinSound
 
 	public static inline function load(id:String, volume:Float = 1, looped:Bool = true, autoDestroy:Bool = true, autoPlay:Bool = true):FlxSound
 	{
-		var sound:FlxSound = FlxG.sound.create(Paths.sound(id));
+		// var sound:FlxSound = FlxG.sound.create(Paths.sound(id));
 
-		sound.setup(volume, looped, autoDestroy);
+		// sound.setup(volume, looped, autoDestroy);
 
-		if (autoPlay)
-			sound.play();
+		// if (autoPlay)
+		// 	sound.play();
 
-		return sound;
+		// return sound;
+		return null;
 	}
 
 	public static inline function playOnce(id:String, volume:Float = 1):FlxSound
@@ -34,9 +35,7 @@ class FunkinSound
 		if (music?.playing && !overrideMusic)
 			return;
 
-		FlxG.sound.playMusic(Paths.sound(id), null, volume, looped);
-
-		music.persist = true;
+		FlxG.sound.playMusic(Paths.sound(id), volume, looped);
 
 		if (!autoPlay)
 			music.stop();
