@@ -40,7 +40,7 @@ class FunkinAction
 
 	public inline function checkPressed():Bool
 	{
-		return FlxG.game.ticks - timestamp < FlxG.elapsed * Constants.MS_PER_SEC;
+		return FlxG.game.ticks - timestamp <= FlxG.elapsed * Constants.MS_PER_SEC + 1;
 	}
 
 	public inline function hasKey(key:FlxKey):Bool
