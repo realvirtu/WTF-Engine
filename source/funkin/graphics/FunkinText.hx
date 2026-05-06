@@ -9,7 +9,7 @@ import flixel.text.FlxBitmapText;
  */
 class FunkinText extends FlxBitmapText
 {
-	static final LETTERS:String = '!"#$%&\'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\\]^_`{|}~';
+	static final LETTERS:String = '!"#$%&\'()*+,-./0123456789:;<=>?@abcdefghijklmnopqrstuvwxyz[\\]^_`{|}~\n';
 	static final FONT_SIZE:FlxPoint = new FlxPoint(26, 34);
 
 	public var size(default, set):Int = 32;
