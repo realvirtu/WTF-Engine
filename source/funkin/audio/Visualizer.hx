@@ -40,8 +40,8 @@ class Visualizer
 
 	public function dump()
 	{
-		sound = null;
 		analyzer = null;
+		sound = null;
 	}
 
 	public function getLevels():Array<Bar>
