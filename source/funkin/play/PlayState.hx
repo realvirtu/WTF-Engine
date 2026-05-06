@@ -312,8 +312,8 @@ class PlayState extends FunkinState
 			songLoaded = true;
 
 			healthLerp = health;
-			tallies = new Tallies();
 
+			tallies = new Tallies();
 			voices = new Voices(song);
 
 			FunkinSound.playMusic(song.instPath, 1, false, false);
@@ -766,7 +766,9 @@ class PlayState extends FunkinState
 			tween.active = false;
 		});
 
-		FlxG.sound.list.forEachAlive(sound -> sound.pause());
+		FlxG.sound.defaultMusicGroup.pause();
+		FlxG.sound.defaultSoundGroup.pause();
+
 		FlxG.camera.active = false;
 	}
 
@@ -788,7 +790,9 @@ class PlayState extends FunkinState
 			tween.active = true;
 		});
 
-		FlxG.sound.list.forEachAlive(sound -> sound.resume());
+		FlxG.sound.defaultMusicGroup.resume();
+		FlxG.sound.defaultSoundGroup.resume();
+
 		FlxG.camera.active = true;
 	}
 

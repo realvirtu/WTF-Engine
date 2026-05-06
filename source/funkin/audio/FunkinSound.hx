@@ -35,12 +35,9 @@ class FunkinSound
 
 	public static function stopAllSounds(stopMusic:Bool = false)
 	{
-		FlxG.sound.list.forEachAlive(sound ->
-		{
-			if (sound == music && !stopMusic)
-				return;
-			sound.stop();
-		});
+		if (stopMusic)
+			music?.stop();
+		FlxG.sound.list.forEachAlive(sound -> sound.stop());
 	}
 
 	@:noCompletion

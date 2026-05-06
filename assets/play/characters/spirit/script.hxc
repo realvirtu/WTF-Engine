@@ -13,7 +13,7 @@ class SpiritCharacter extends Character
     {
         super.onCreate(event);
 
-        var trail:FlxTrail = new FlxTrail(this.superClass, null, 4, 24, 0.3, 0.069);
+        var trail:FlxTrail = new FlxTrail(this.superClass, null, 4, 0.4, 0.3, 0.069);
         trail.zIndex = zIndex - 1;
 
         PlayState.instance.stage.add(trail);
