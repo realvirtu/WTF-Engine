@@ -39,6 +39,9 @@ class InitState extends FlxState
 		FlxG.mouse.visible = false;
 		FlxObject.defaultMoves = false;
 
+		@:privateAccess
+		FlxG.mouse._visibleWhenFocusLost = false;
+
 		#if HAS_DISCORD_RPC
 		DiscordRPC.init();
 		#end

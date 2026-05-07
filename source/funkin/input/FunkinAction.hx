@@ -2,6 +2,7 @@ package funkin.input;
 
 import flixel.input.keyboard.FlxKey;
 import lime.ui.GamepadButton;
+import openfl.Lib;
 
 /**
  * The engine's control action class.
@@ -12,8 +13,7 @@ class FunkinAction
 	var buttons:Array<GamepadButton> = [];
 
 	var pressed:Bool = false;
-
-	var timestamp(default, null):Float = -1;
+	var timestamp:Float = -1;
 
 	public function new(keys:Array<FlxKey>, buttons:Array<GamepadButton>)
 	{
@@ -23,9 +23,10 @@ class FunkinAction
 
 	public function press()
 	{
-		if (!pressed)
-			timestamp = FlxG.game.ticks;
+		if (pressed)
+			return;
 		pressed = true;
+		timestamp = Lib.getTimer() + 1;
 	}
 
 	public function release()
@@ -40,7 +41,7 @@ class FunkinAction
 
 	public inline function checkPressed():Bool
 	{
-		return FlxG.game.ticks - timestamp <= FlxG.elapsed * Constants.MS_PER_SEC + 1;
+		return timestamp >= Lib.getTimer();
 	}
 
 	public inline function hasKey(key:FlxKey):Bool
