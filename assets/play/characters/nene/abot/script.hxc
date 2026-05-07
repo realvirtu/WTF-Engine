@@ -45,8 +45,6 @@ class ABotSprite extends FlxTypedSpriteGroup
             return;
 
         analyzer = new SpectralAnalyzer(FunkinSound.music._channel.__audioSource, 6, 0.1, 40);
-		analyzer.minDb = -65;
-		analyzer.maxDb = -25;
 		analyzer.maxFreq = 22000;
 		analyzer.minFreq = 10;
 		analyzer.fftN = 256;
