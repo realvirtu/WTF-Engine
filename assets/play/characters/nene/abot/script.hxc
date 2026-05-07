@@ -70,8 +70,11 @@ class ABotSprite extends FlxTypedSpriteGroup
     function buildViz(index:Int)
     {
         var bar:FunkinSprite = FunkinSprite.create(x + 103 + (40 * index), y + 32, '$abotPath/viz', 1, 25, 98);
+        
         bar.addAnimation("viz", [0, 1, 2, 3, 4], 0);
         bar.playAnimation("viz");
+
+        bar.visible = false;
         bar.active = false;
         add(bar);
 
