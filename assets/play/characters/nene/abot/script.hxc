@@ -1,14 +1,14 @@
 import flixel.group.FlxGroup;
 import flixel.group.FlxTypedSpriteGroup;
 import funkin.audio.FunkinSound;
-import funkin.audio.Visualizer;
 import funkin.graphics.FunkinSprite;
+import funkin.vis.dsp.SpectralAnalyzer;
 
 class ABotSprite extends FlxTypedSpriteGroup
 {
     var abotPath:String;
 
-    var visualizer:Visualizer;
+    var analyzer:SpectralAnalyzer;
     var viz:Array<FunkinSprite> = [];
 
     public function new(abotPath:String)
@@ -16,8 +16,6 @@ class ABotSprite extends FlxTypedSpriteGroup
         super();
 
         this.abotPath = abotPath;
-
-        visualizer = new Visualizer(FunkinSound.music, 6);
 
         var back:FunkinSprite = FunkinSprite.createSolidColor(x + 100, y + 20, 250, 150, 0xFF121212);
         back.active = false;
@@ -43,22 +41,27 @@ class ABotSprite extends FlxTypedSpriteGroup
 
     public function start()
     {
-        visualizer.start();
+        if (FunkinSound.music._channel == null)
+            return;
+
+        analyzer = new SpectralAnalyzer(FunkinSound.music._channel.__audioSource, 6, 0.1, 40);
+		analyzer.minDb = -65;
+		analyzer.maxDb = -25;
+		analyzer.maxFreq = 22000;
+		analyzer.minFreq = 10;
+		analyzer.fftN = 256;
     }
 
     public function dump()
     {
-        visualizer.dump();
+        analyzer = null;
     }
 
     override function draw()
     {
         super.draw();
 
-        if (visualizer == null)
-            return;
-
-        var levels = visualizer.getLevels();
+        var levels = analyzer?.getLevels() ?? [];
 
         for (i => bar in viz)
         {
@@ -72,14 +75,11 @@ class ABotSprite extends FlxTypedSpriteGroup
     function buildViz(index:Int)
     {
         var bar:FunkinSprite = FunkinSprite.create(x + 103 + (40 * index), y + 32, '$abotPath/viz', 1, 25, 98);
-
         bar.addAnimation("viz", [0, 1, 2, 3, 4], 0);
         bar.playAnimation("viz");
-
         bar.active = false;
+        add(bar);
 
         viz.push(bar);
-
-        add(bar);
     }
 }
