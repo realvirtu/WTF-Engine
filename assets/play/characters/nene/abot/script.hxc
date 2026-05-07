@@ -48,11 +48,8 @@ class ABotSprite extends FlxTypedSpriteGroup
 		analyzer.maxFreq = 22000;
 		analyzer.minFreq = 10;
 		analyzer.fftN = 256;
-    }
 
-    public function dump()
-    {
-        analyzer = null;
+        FunkinSound.music.onComplete = () -> analyzer = null;
     }
 
     override function draw()

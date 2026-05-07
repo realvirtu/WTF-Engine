@@ -30,11 +30,4 @@ class NeneCharacter extends Character
 
         abot.start();
     }
-
-    override function onSongEnd(event:ScriptEvent)
-    {
-        super.onSongEnd(event);
-
-        abot.dump();
-    }
 }
