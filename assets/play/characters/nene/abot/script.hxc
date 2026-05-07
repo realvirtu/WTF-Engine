@@ -21,14 +21,8 @@ class ABotSprite extends FlxTypedSpriteGroup
         back.active = false;
         add(back);
 
-        // For loops just don't work for some reason
-        // Polymod is silly
-        buildViz(0);
-        buildViz(1);
-        buildViz(2);
-        buildViz(3);
-        buildViz(4);
-        buildViz(5);
+        for (i in 0...6)
+            buildViz(i);
 
         var image:FunkinSprite = FunkinSprite.create(x, y, '$abotPath/image');
         image.active = false;

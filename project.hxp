@@ -112,13 +112,17 @@ class Project extends HXProject
 
     function setupMacros()
     {
-        addMacro("addMetadata('@:build(funkin.util.macro.ZIndexMacro.buildFlxBasic())', 'flixel.FlxBasic')");
-        addMacro("addMetadata('@:build(funkin.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')");
+        // Fixes some stupid dumb problems with Polymod
+        // :whatthemad:
+        addHaxeFlag("-dce no");
+
+        addHaxeMacro("addMetadata('@:build(funkin.util.macro.ZIndexMacro.buildFlxBasic())', 'flixel.FlxBasic')");
+        addHaxeMacro("addMetadata('@:build(funkin.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')");
 
         // Includes each and every funkin and flixel package
         // Though we"re excluding ones that require extra dependencies
-        addMacro("include('funkin', true)");
-        addMacro("include('flixel', true, ['flixel.addons.editors.spine.*', 'flixel.addons.nape.*', 'flixel.system.macros.*', 'flixel.addons.tile.FlxRayCastTilemap'])");
+        addHaxeMacro("include('funkin', true)");
+        addHaxeMacro("include('flixel', true, ['flixel.addons.editors.spine.*', 'flixel.addons.nape.*', 'flixel.system.macros.*', 'flixel.addons.tile.FlxRayCastTilemap'])");
     }
 
     function setupHaxelibs()
@@ -149,9 +153,14 @@ class Project extends HXProject
         haxelibs.push(new Haxelib(name));
     }
 
-    function addMacro(name:String)
+    function addHaxeFlag(name:String)
     {
-        haxeflags.push('--macro $name');
+        haxeflags.push(name);
+    }
+
+    function addHaxeMacro(name:String)
+    {
+        addHaxeFlag('--macro $name');
     }
 
     //
