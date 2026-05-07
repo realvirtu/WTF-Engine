@@ -17,6 +17,8 @@ class ABotSprite extends FlxTypedSpriteGroup
 
         this.abotPath = abotPath;
 
+        visualizer = new Visualizer(FunkinSound.music, 6);
+
         var back:FunkinSprite = FunkinSprite.createSolidColor(x + 100, y + 20, 250, 150, 0xFF121212);
         back.active = false;
         add(back);
@@ -41,12 +43,12 @@ class ABotSprite extends FlxTypedSpriteGroup
 
     public function start()
     {
-        visualizer = new Visualizer(FunkinSound.music, 6);
+        visualizer.start();
     }
 
     public function dump()
     {
-        visualizer?.dump();
+        visualizer.dump();
     }
 
     override function draw()

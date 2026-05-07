@@ -14,20 +14,17 @@ class Visualizer
 
 	public function new(sound:FlxSound, barCount:Int)
 	{
+		this.sound = sound;
 		this.barCount;
 
 		for (i in 0...barCount)
 			_levels.push({value: 0, peak: 0});
-
-		load(sound);
 	}
 
-	public function load(sound:FlxSound)
+	public function start()
 	{
 		if (sound == null)
 			return;
-
-		this.sound = sound;
 
 		@:privateAccess
 		analyzer = new SpectralAnalyzer(sound._channel.__audioSource, barCount, 0.1, 40);
@@ -46,6 +43,6 @@ class Visualizer
 
 	public function getLevels():Array<Bar>
 	{
-		return _levels = analyzer.getLevels(_levels);
+		return _levels = analyzer?.getLevels(_levels);
 	}
 }
