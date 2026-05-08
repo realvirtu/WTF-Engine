@@ -11,6 +11,7 @@ Below are steps to compiling WTF Engine. Y'know like the requirements and all th
 5. Run `haxelib --global install hmm` and `haxelib --global run hmm setup`.
 6. Run `hmm install`.
 7. Run `haxelib run lime setup`.
+8. Run `lime rebuild windows`. You may have to run this command again whenever the Lime dependency gets updated.
 
 > [!NOTE]
 > If dependencies need updating, run `hmm install`.
