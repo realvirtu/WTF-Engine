@@ -3,8 +3,9 @@
     "width": 240,
     "height": 244,
     "globalOffset": [0, -350],
-    "cameraOffset": [100, -100],
+    "cameraOffset": [-100, -100],
     "icon": {},
+    "flipX": true,
     "animations": [
         {
             "name": "idle",
