@@ -26,6 +26,26 @@
         {
             "name": "down",
             "frames": [9, 10]
+        },
+        {
+            "name": "left-miss",
+            "frames": [3, 11],
+            "framerate": 20
+        },
+        {
+            "name": "right-miss",
+            "frames": [5, 12],
+            "framerate": 20
+        },
+        {
+            "name": "up-miss",
+            "frames": [7, 13],
+            "framerate": 20
+        },
+        {
+            "name": "down-miss",
+            "frames": [9, 14],
+            "framerate": 20
         }
     ]
 }
