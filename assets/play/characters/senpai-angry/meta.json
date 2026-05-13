@@ -5,7 +5,9 @@
     "scale": 3.5,
     "globalOffset": [115, -335],
     "cameraOffset": [100, -80],
-    "icon": {},
+    "icon": {
+        "scale": 3.5
+    },
     "animations": [
         {
             "name": "idle",

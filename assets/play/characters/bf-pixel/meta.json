@@ -6,7 +6,8 @@
     "globalOffset": [100, -250],
     "cameraOffset": [-100, -100],
     "icon": {
-        "flipX": true
+        "flipX": true,
+        "scale": 3.5
     },
     "flipX": true,
     "animations": [

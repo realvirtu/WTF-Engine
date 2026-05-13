@@ -27,21 +27,17 @@ class HealthIcon extends FunkinSprite
 
 		final image:String = meta.id ?? id;
 		final path:String = 'play/characters/$image/icon';
-		final size:Int = 100;
 
-		// Death icon check
+		// The sprite needs to be loaded in order to get the size
 		loadSprite(path);
+		loadSprite(path, meta.scale, graphic?.height, graphic?.height);
 
-		if (width > size)
-		{
-			loadSprite(path, meta.scale, size, size);
-
-			addAnimation('icon', [0, 1], 0);
-			playAnimation('icon');
-		}
+		addAnimation('icon', [0, 1], 0);
+		playAnimation('icon');
 
 		flipX = meta.flipX != isPlayer;
 		flipY = meta.flipY;
+
 		baseScale = scale.x;
 
 		isDead = false;
@@ -51,7 +47,7 @@ class HealthIcon extends FunkinSprite
 	{
 		super.update(elapsed);
 
-		// Lerps the scale back to its base value
+		// Cool ass lerping >:D
 		scale.x = scale.y = MathUtil.lerp(scale.x, baseScale, 0.15);
 		angle = MathUtil.lerp(angle, 0, 0.15);
 	}
@@ -62,7 +58,7 @@ class HealthIcon extends FunkinSprite
 		if (Conductor.instance.beat % meta.bopEvery != 0)
 			return;
 
-		scale.x = scale.y = baseScale + 0.35;
+		scale.x = scale.y = baseScale * 1.25;
 
 		if (meta.bopAngle != null)
 			angle = meta.bopAngle;
