@@ -11,6 +11,8 @@ import funkin.play.stage.StageProp;
  */
 class Character extends StageProp implements IPlayStateScriptedClass
 {
+	final MAX_SING_TIME:Float = 1;
+
 	public var meta:CharacterData;
 	public var type:CharacterType;
 
@@ -18,7 +20,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	// Why does path HAVE to be an already existing variable?!
 	public var charPath(get, never):String;
 
-	var singTimer:Float = 1;
+	var singTimer:Float;
 
 	public function buildSprite()
 	{
@@ -36,6 +38,8 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 		offset.set(-meta.globalOffset[0] ?? 0, -meta.globalOffset[1] ?? 0);
 
+		singTimer = MAX_SING_TIME;
+
 		bop();
 	}
 
@@ -43,12 +47,12 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.update(elapsed);
 
-		singTimer = Math.min(1, singTimer + elapsed * (Conductor.instance.quaver / 10 / meta.singDuration));
+		singTimer = Math.min(MAX_SING_TIME, singTimer + elapsed * (Conductor.instance.quaver / 10 / meta.singDuration));
 	}
 
 	override public function bop(force:Bool = false)
 	{
-		if (singTimer < 1 && !force)
+		if (singTimer < MAX_SING_TIME && !force)
 			return;
 		super.bop(force);
 	}
@@ -145,5 +149,16 @@ class Character extends StageProp implements IPlayStateScriptedClass
 			return;
 
 		miss(event.direction, event.suffix);
+	}
+
+	override public function onSongRetry(event:ScriptEvent)
+	{
+		super.onSongRetry(event);
+
+		singTimer = MAX_SING_TIME;
+
+		// Force the bopping animation
+		// This is honestly better than staying in a singing animation
+		bop();
 	}
 }
