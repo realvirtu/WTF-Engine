@@ -64,7 +64,7 @@ class DiscordRPC
 
 		// 10% chance of replacing the image icon with :whatthefuck:
 		if (FlxG.random.bool(10))
-			presence.largeImageKey = 'what-the-fuck';
+			presence.largeImageKey = Paths.random('icon', 1, 2);
 		else
 			presence.largeImageKey = '';
 
