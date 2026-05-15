@@ -1,5 +1,7 @@
 import flixel.group.FlxGroup;
 import flixel.group.FlxTypedSpriteGroup;
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxEase;
 import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.vis.dsp.SpectralAnalyzer;
@@ -10,6 +12,9 @@ class ABotSprite extends FlxTypedSpriteGroup
 
     var analyzer:SpectralAnalyzer;
     var viz:Array<FunkinSprite> = [];
+
+    var eyesTween:FlxTween;
+    var eyes:FunkinSprite;
 
     public function new(abotPath:String)
     {
@@ -28,9 +33,11 @@ class ABotSprite extends FlxTypedSpriteGroup
         image.active = false;
         add(image);
 
-        var eyes:FunkinSprite = FunkinSprite.create(x + 25, y + 132, '$abotPath/eyes');
+        eyes = FunkinSprite.create(x + 25, y + 135, '$abotPath/eyes');
         eyes.active = false;
         add(eyes);
+
+        look(true);
     }
 
     public function start()
@@ -44,6 +51,12 @@ class ABotSprite extends FlxTypedSpriteGroup
 		analyzer.fftN = 256;
 
         FunkinSound.music.onComplete = () -> analyzer = null;
+    }
+
+    public function look(player:Bool)
+    {
+        eyesTween?.cancel();
+        eyesTween = FlxTween.tween(eyes.offset, {x: -3 + 5 * (player ? -1 : 1)}, 0.1, {ease: FlxEase.quadOut});
     }
 
     override function draw()

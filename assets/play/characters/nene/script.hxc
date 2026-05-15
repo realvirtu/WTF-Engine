@@ -30,4 +30,21 @@ class NeneCharacter extends Character
 
         abot.start();
     }
+
+    override function onSongRetry(event:ScriptEvent)
+    {
+        super.onSongRetry(event);
+
+        abot.look(true);
+    }
+
+    override function onSongEvent(event:SongEventScriptEvent)
+    {
+        super.onSongEvent(event);
+
+        if (event.kind != "focus-camera")
+            return;
+
+        abot.look(event.value.c == 1);
+    }
 }
