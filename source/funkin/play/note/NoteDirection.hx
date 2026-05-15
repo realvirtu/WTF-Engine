@@ -89,4 +89,9 @@ enum abstract NoteDirection(Int) to Int from Int
 			case RIGHT: controls.NOTE_RIGHT_P;
 		}
 	}
+
+	public static function anyPressed():Bool
+	{
+		return LEFT.pressed || DOWN.pressed || UP.pressed || RIGHT.pressed;
+	}
 }

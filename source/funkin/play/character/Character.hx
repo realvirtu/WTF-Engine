@@ -54,6 +54,11 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		if (singTimer < MAX_SING_TIME && !force)
 			return;
+
+		// Recreates that cool ass sing hold thing that the player can do
+		if (type == Player && NoteDirection.anyPressed() && getCurrentAnimation() != 'idle')
+			return;
+
 		super.bop(force);
 	}
 
