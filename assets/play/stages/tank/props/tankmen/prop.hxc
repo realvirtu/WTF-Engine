@@ -17,11 +17,12 @@ class TankmenProp extends StageProp
         super("tankmen");
 
         this.stage = stage;
+        this.moves = true;
 
         loadSprite('${stage.path}/props/tankmen/image', 1, 224, 267);
 
         addAnimation("run", [0, 1, 2, 3], 12);
-        addAnimation("shot", [4, 5, 6, 7], 20, false);
+        addAnimation("shot", [4], 20, false);
 
         playAnimation("run");
     }
@@ -32,6 +33,13 @@ class TankmenProp extends StageProp
 
         if (running)
             x = endPos + (Conductor.instance.time - time) * 0.5 * (flipX ? -1 : 1);
+        else
+        {
+            angle += elapsed * 500 * (flipX ? -1 : 1);
+
+            if (!isOnScreen())
+                kill();
+        }
 
         if (time <= Conductor.instance.time)
             die();
@@ -45,16 +53,21 @@ class TankmenProp extends StageProp
 
         playAnimation("shot");
 
-        FlxTimer.wait(0.25, () -> {
-            FlxFlicker.flicker(this.superClass, 0.5, 0.04, true, true, _ -> kill());
-        });
+        velocity.x = 400 * (flipX ? 1 : -1);
+        velocity.y = -600;
+
+        acceleration.y = 1000;
     }
 
     override function revive()
     {
         super.revive();
 
+        angle = 0;
         flipX = false;
+
+        velocity.set();
+        acceleration.set();
 
         time = 0;
         endPos = 0;
