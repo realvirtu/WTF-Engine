@@ -1,10 +1,8 @@
 package funkin;
 
+import openfl.system.System;
 import openfl.utils.Assets;
 import polymod.Polymod;
-#if cpp
-import cpp.vm.Gc;
-#end
 
 /**
  * A class for handling sound and image cache.
@@ -23,10 +21,7 @@ class FunkinMemory
 		Assets.cache.clear();
 
 		// Run the garbage collector
-		// Major? Pfff I don't know what that means
-		#if cpp
-		Gc.run(true);
-		#end
+		System.gc();
 
 		trace('Done clearing cache.');
 	}
