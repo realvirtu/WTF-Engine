@@ -16,6 +16,10 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	public var meta:CharacterData;
 	public var type:CharacterType;
 
+	public var bopping(get, never):Bool;
+	public var singing(get, never):Bool;
+	public var missing(get, never):Bool;
+
 	// Flixel is so fucking stupid
 	// Why does path HAVE to be an already existing variable?!
 	public var charPath(get, never):String;
@@ -56,7 +60,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 			return;
 
 		// Recreates that cool ass sing hold thing that the player can do
-		if (type == Player && NoteDirection.anyPressed() && getCurrentAnimation() != 'idle')
+		if (type == Player && NoteDirection.anyPressed() && singing)
 			return;
 
 		super.bop(force);
@@ -104,6 +108,29 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	inline function get_charPath():String
 	{
 		return 'play/characters/$id';
+	}
+
+	@:noCompletion
+	inline function get_bopping():Bool
+	{
+		return getCurrentAnimation() == 'idle';
+	}
+
+	@:noCompletion
+	inline function get_singing():Bool
+	{
+		return [
+			NoteDirection.LEFT.name,
+			NoteDirection.DOWN.name,
+			NoteDirection.UP.name,
+			NoteDirection.RIGHT.name
+		].contains(getCurrentAnimation());
+	}
+
+	@:noCompletion
+	inline function get_missing():Bool
+	{
+		return getCurrentAnimation().endsWith('-miss');
 	}
 
 	override public function onNoteHit(event:NoteScriptEvent)
