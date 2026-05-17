@@ -45,6 +45,8 @@ class Project extends HXProject
 
         sources.push("source");
         icons.push(new Icon("art/icon.png"));
+
+        templatePaths.push("templates");
         
         includeAssets("assets");
 
