@@ -49,14 +49,17 @@ class ABotSprite extends FlxTypedSpriteGroup
 		analyzer.maxFreq = 22000;
 		analyzer.minFreq = 10;
 		analyzer.fftN = 256;
-
-        FunkinSound.music.onComplete = () -> analyzer = null;
     }
 
     public function look(player:Bool)
     {
         eyesTween?.cancel();
         eyesTween = FlxTween.tween(eyes.offset, {x: -3 + 5 * (player ? -1 : 1)}, 0.1, {ease: FlxEase.quadOut});
+    }
+
+    public function dump()
+    {
+        analyzer = null;
     }
 
     override function draw()

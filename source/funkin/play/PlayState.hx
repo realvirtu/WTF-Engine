@@ -106,7 +106,7 @@ class PlayState extends FunkinState
 
 		camFollow = new FlxObject();
 		camFollow.active = false;
-		FlxG.camera.follow(camFollow, LOCKON, 0.03);
+		FlxG.camera.follow(camFollow, LOCKON, 0.035);
 
 		//
 		// HUD
@@ -192,13 +192,19 @@ class PlayState extends FunkinState
 		{
 			if (songLoaded)
 			{
-				conductor.time += elapsed * Constants.MS_PER_SEC;
+				if (songStarted)
+					conductor.time = MathUtil.lerp(conductor.time, FunkinSound.music.time, 0.5);
+				else
+				{
+					conductor.time += elapsed * Constants.MS_PER_SEC;
+
+					if (conductor.time >= 0)
+						startSong();
+				}
+
 				conductor.update();
 
-				if (conductor.time >= 0 && !songStarted)
-					startSong();
-
-				checkSongTime();
+				voices.checkResync(FunkinSound.music.time);
 			}
 
 			opponentStrumline.process();
@@ -292,6 +298,7 @@ class PlayState extends FunkinState
 			voices = new Voices(song);
 
 			FunkinSound.playMusic(song.instPath, 1, false, false);
+			FunkinSound.music.onComplete = endSong;
 		}
 		else
 		{
@@ -507,30 +514,6 @@ class PlayState extends FunkinState
 			// Exits the state
 			exit();
 		}
-	}
-
-	function checkSongTime()
-	{
-		// End the song if it's complete
-		// Flixel's onComplete doesn't work properly
-		if (FunkinSound.music.time >= FunkinSound.music.length)
-		{
-			endSong();
-			return;
-		}
-
-		// Instrumental resync
-		if (Math.abs(conductor.time - FunkinSound.music.time) > Constants.RESYNC_THRESHOLD)
-		{
-			FunkinSound.music.pause();
-			FunkinSound.music.time = conductor.time;
-			FunkinSound.music.resume();
-
-			if (FunkinSound.music.playing)
-				trace('Resynced instrumental.');
-		}
-
-		voices.checkResync(conductor.time);
 	}
 
 	function processEvents()
