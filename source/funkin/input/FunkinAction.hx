@@ -41,7 +41,7 @@ class FunkinAction
 
 	public inline function checkPressed():Bool
 	{
-		return timestamp >= Lib.getTimer();
+		return timestamp >= Std.int(Lib.getTimer());
 	}
 
 	public inline function hasKey(key:FlxKey):Bool
