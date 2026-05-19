@@ -51,7 +51,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.update(elapsed);
 
-		singTimer = Math.min(MAX_SING_TIME, singTimer + elapsed * (Conductor.instance.quaver / 10 / meta.singDuration));
+		singTimer = Math.min(MAX_SING_TIME, singTimer + elapsed * (Conductor.instance.quaver / 5 / meta.singDuration));
 	}
 
 	override public function bop(force:Bool = false)

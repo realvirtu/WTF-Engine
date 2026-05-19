@@ -193,7 +193,7 @@ class PlayState extends FunkinState
 			if (songLoaded)
 			{
 				if (songStarted)
-					conductor.time = MathUtil.lerp(conductor.time, FunkinSound.music.time, 0.5);
+					conductor.time = MathUtil.lerp(conductor.time, FunkinSound.music.time, 0.42);
 				else
 				{
 					conductor.time += elapsed * Constants.MS_PER_SEC;
