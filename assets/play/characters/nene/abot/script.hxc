@@ -22,7 +22,7 @@ class ABotSprite extends FlxTypedSpriteGroup
 
         this.abotPath = abotPath;
 
-        var back:FunkinSprite = FunkinSprite.createSolidColor(x + 100, y + 20, 250, 150, 0xFF121212);
+        var back:FunkinSprite = FunkinSprite.createSolidColor(x + 98, y + 20, 250, 150, 0xFF121212);
         back.active = false;
         add(back);
 
