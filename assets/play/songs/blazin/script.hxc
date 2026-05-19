@@ -1,0 +1,18 @@
+import funkin.play.song.Song;
+import funkin.play.PlayState;
+
+class BlazinSong extends Song
+{
+    public function new()
+    {
+        super("blazin");
+    }
+
+    override function onCreate(event:ScriptEvent)
+    {
+        super.onCreate(event);
+
+        PlayState.instance.opponentStrumline.visible = false;
+        PlayState.instance.playerStrumline.x = FlxG.width / 2;
+    }
+}
