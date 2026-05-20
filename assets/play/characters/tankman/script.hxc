@@ -13,6 +13,16 @@ class TankmanCharacter extends Character
         super("tankman");
     }
 
+    override function bop(force:Bool = false)
+    {
+        // Don't bop during "heh"
+        // "heh" is meant to be for the "pretty-good" animation
+        if (getCurrentAnimation() == "heh")
+            return;
+
+        super.bop(force);
+    }
+
     override function onCreate(event:ScriptEvent)
     {
         super.onCreate(event);
@@ -24,6 +34,10 @@ class TankmanCharacter extends Character
             hehTimer?.cancel();
             hehTimer = FlxTimer.wait(1.15, () -> {
                 playAnimation("pretty-good", true);
+
+                // Give a little extra singing time
+                // It would suck to have immediate bopping
+                singTimer = -1;
             });
         });
     }
@@ -39,9 +53,6 @@ class TankmanCharacter extends Character
             case "pretty-good":
                 // "heh", then "pretty-good"
                 playAnimation("heh", true);
-
-                // Give a little extra singing time
-                singTimer = -1;
         }
     }
 
