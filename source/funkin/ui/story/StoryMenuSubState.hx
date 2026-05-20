@@ -112,6 +112,7 @@ class StoryMenuSubState extends FunkinSubState
 		add(songsText);
 
 		// TODO: Replace this with a much better system
+		// Erect and Nightmare shouldn't be selectable difficulties
 		diffText = new DifficultyText(selectedDiff, ['easy', 'normal', 'hard']);
 		diffText.size = 56;
 		diffText.onChanged.add(changeDiff);
