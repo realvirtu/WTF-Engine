@@ -44,6 +44,8 @@ class StageRegistry extends BaseRegistry<StageData>
 		// SCRIPTED
 		//
 
+		scripted.clear();
+
 		var scripts:Array<String> = ScriptedStage.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted stage(s)...');

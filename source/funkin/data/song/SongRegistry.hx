@@ -30,6 +30,8 @@ class SongRegistry extends BaseRegistry<Song>
 	{
 		super.load();
 
+		diffs = null;
+
 		//
 		// VANILLA
 		//
