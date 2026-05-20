@@ -111,7 +111,8 @@ class StoryMenuSubState extends FunkinSubState
 		songsText.y = blackBottom.y + 50;
 		add(songsText);
 
-		diffText = new DifficultyText(selectedDiff, SongRegistry.instance.getDifficulties());
+		// TODO: Replace this with a much better system
+		diffText = new DifficultyText(selectedDiff, ['easy', 'normal', 'hard']);
 		diffText.size = 56;
 		diffText.onChanged.add(changeDiff);
 		diffText.y = blackBottom.y + 50;
