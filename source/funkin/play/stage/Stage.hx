@@ -182,7 +182,7 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 		// It's done like this because for Spirit, he runs refresh on the stage
 		// Running a refresh means it iterates through Spirit over and over again
 		// Spirit creates an FlxTrail as well, so the loop just never ends
-		var props:Array<FlxBasic> = members.copy().filter(prop -> return Std.isOfType(prop, IScriptedClass));
+		var props:Array<FlxBasic> = members.copy().filter(prop -> prop?.exists && return Std.isOfType(prop, IScriptedClass));
 
 		for (prop in props)
 			ScriptEventDispatcher.dispatch(cast prop, event);
