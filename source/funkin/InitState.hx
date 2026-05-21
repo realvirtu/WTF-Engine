@@ -16,6 +16,7 @@ import funkin.input.Controls;
 import funkin.modding.ModHandler;
 import funkin.modding.module.ModuleHandler;
 import funkin.save.Save;
+import funkin.ui.FunkinScaleMode;
 import funkin.ui.title.TitleState;
 import funkin.util.plugins.ReloadPlugin;
 #if HAS_SCREENSHOTS
@@ -37,6 +38,7 @@ class InitState extends FlxState
 		FlxG.game.focusLostFramerate = 30;
 		FlxG.inputs.resetOnStateSwitch = false;
 		FlxG.mouse.visible = false;
+		FlxG.scaleMode = new FunkinScaleMode();
 		FlxObject.defaultMoves = false;
 
 		@:privateAccess
