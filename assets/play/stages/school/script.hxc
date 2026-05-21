@@ -32,6 +32,9 @@ class SchoolStage extends Stage
 		applyShader();
 	}
 
+	var bgShader:CustomShader;
+	var charShader:CustomShader;
+
 	function makeErectShader()
 	{
 		bgShader = new CustomShader('play/shaders/dropshadow');

@@ -1,6 +1,7 @@
-import flixel.addons.display.FlxRuntimeShader;
+import funkin.graphics.shader.CustomShader;
 import funkin.play.stage.Stage;
 import funkin.util.FileUtil;
+import funkin.play.PlayState;
 
 class SchoolEvilStage extends Stage
 {
@@ -16,13 +17,42 @@ class SchoolEvilStage extends Stage
     {
         super.onCreate(event);
 
-        wiggle = new FlxRuntimeShader(FileUtil.getText(Paths.frag('$path/wiggle')));
+        wiggle = new CustomShader('$path/wiggle');
         wiggle.setFloat("speed", 2);
         wiggle.setFloat("frequency", 10);
         wiggle.setFloat("waveAmplitude", 0.015);
 
+		if (PlayState.song.variation == "erect")
+			makeErectShader();
+		
+		applyShader();
+	}
+
+	var charShader:CustomShader;
+
+	function makeErectShader()
+	{
+		charShader = new CustomShader('play/shaders/dropshadow');
+
+		charShader.setFloat('hue', -25.0);
+		charShader.setFloat('saturation', 0.0);
+		charShader.setFloat('brightness', -50.0);
+		charShader.setFloat('contrast', 0.0);
+	}
+
+	function applyShader()
+	{
         getProp('back').shader = wiggle;
-    }
+        
+    	if (gf != null)
+			gf.shader = charShader;
+
+		if (opponent != null)
+			opponent.shader = charShader;
+
+		if (player != null)
+			player.shader = charShader;
+	}
 
     override function onUpdate(event:UpdateScriptEvent)
     {
