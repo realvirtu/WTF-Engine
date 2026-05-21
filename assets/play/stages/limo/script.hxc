@@ -2,6 +2,8 @@ import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
 import funkin.play.stage.Stage;
 import funkin.play.stage.StageProp;
+import funkin.play.PlayState;
+import funkin.graphics.shader.CustomShader;
 
 class LimoStage extends Stage
 {
@@ -25,7 +27,47 @@ class LimoStage extends Stage
         car = getProp("car");
 
         resetCar();
+
+		if (PlayState.song.variation == "erect")
+			makeErectShader();
+		
+		applyShader();
     }
+
+	var bgShader:CustomShader;
+	var charShader:CustomShader;
+
+	function makeErectShader()
+	{
+		bgShader = new CustomShader('play/shaders/dropshadow');
+		charShader = new CustomShader('play/shaders/dropshadow');
+
+		bgShader.setFloat('hue', -30.0);
+		bgShader.setFloat('saturation', -30.0);
+		bgShader.setFloat('brightness', -50.0);
+		bgShader.setFloat('contrast', 0.0);
+
+		charShader.setFloat('hue', -30.0);
+		charShader.setFloat('saturation', -30.0);
+		charShader.setFloat('brightness', -45.0);
+		charShader.setFloat('contrast', 0.0);
+	}
+
+	function applyShader()
+	{
+		for (prop in members)
+			if (prop != null)
+				prop.shader = bgShader;
+
+		if (gf != null)
+			gf.shader = charShader;
+
+		if (opponent != null)
+			opponent.shader = charShader;
+
+		if (player != null)
+			player.shader = charShader;
+	}
 
     override function onUpdate(event:UpdateScriptEvent)
     {
