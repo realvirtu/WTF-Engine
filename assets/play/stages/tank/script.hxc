@@ -2,6 +2,7 @@ import flixel.math.FlxAngle;
 import funkin.play.stage.StageProp;
 import funkin.play.stage.Stage;
 import funkin.play.PlayState;
+import funkin.graphics.shader.CustomShader;
 
 class TankStage extends Stage
 {
