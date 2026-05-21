@@ -1,19 +1,14 @@
 package funkin.ui;
 
-import flixel.system.scaleModes.RatioScaleMode;
+import flixel.system.scaleModes.BaseScaleMode;
 
 /**
  * The engine's scale mode that keeps the game within its aspect ratio when resized.
  * 
- * This is literally an extension of `RatioScaleMode`, but with fixes.
+ * This is literally just `RatioScaleMode`, but better.
  */
-class FunkinScaleMode extends RatioScaleMode
+class FunkinScaleMode extends BaseScaleMode
 {
-	public function new()
-	{
-		super(false);
-	}
-
 	/**
 	 * TODO: Fix the evil yucky window scaling.
 	 */
