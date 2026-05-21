@@ -1,0 +1,57 @@
+import funkin.graphics.shader.CustomShader;
+import funkin.play.PlayState;
+import funkin.play.song.Song;
+import funkin.play.stage.Stage;
+
+class UghErectSong extends Song
+{
+	override public function new()
+	{
+		super('ugh', 'erect');
+	}
+
+	var bgShader:CustomShader;
+	var charShader:CustomShader;
+
+	override function onCreate(e)
+	{
+		super.onCreate(e);
+
+		bgShader = new CustomShader('play/shaders/dropshadow');
+		charShader = new CustomShader('play/shaders/dropshadow');
+
+		bgShader.setFloat('hue', 18.0);
+		bgShader.setFloat('saturation', -50.0);
+		bgShader.setFloat('brightness', -100.0);
+		bgShader.setFloat('contrast', 0.0);
+
+		charShader.setFloat('hue', -40.0);
+		charShader.setFloat('saturation', -20.0);
+		charShader.setFloat('brightness', -50.0);
+		charShader.setFloat('contrast', 0.0);
+
+		if (PlayState.instance == null)
+			return;
+
+		var stage:Stage = PlayState.instance.stage;
+
+		if (stage == null)
+			return;
+		
+		if (stage.members != null)
+			for (i => prop in stage.members)
+			{
+				if (prop != null)
+					prop.shader = bgShader;
+			}
+
+		if (stage.gf != null)
+			stage.gf.shader = charShader;
+
+		if (stage.opponent != null)
+			stage.opponent.shader = charShader;
+
+		if (stage.player != null)
+			stage.player.shader = charShader;
+	}
+}

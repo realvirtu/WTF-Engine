@@ -26,6 +26,8 @@ class GFTankmanCharacter extends Character
 
         tankmen.bop();
 
+        tankmen.shader = this.shader;
+
         PlayState.instance.stage.add(tankmen);
         PlayState.instance.stage.refresh();
     }
