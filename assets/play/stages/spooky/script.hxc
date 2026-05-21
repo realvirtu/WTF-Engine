@@ -1,5 +1,6 @@
 import funkin.audio.FunkinSound;
 import funkin.play.stage.Stage;
+import funkin.graphics.shader.CustomShader;
 import funkin.play.stage.StageProp;
 import funkin.play.PlayState;
 import flixel.FlxG;
@@ -24,7 +25,47 @@ class SpookyStage extends Stage
 
         window = getProp("window");
         window.alpha = 0;
+
+		if (PlayState.song.variation == "erect")
+			makeErectShader();
+		
+		applyShader();
     }
+
+	var bgShader:CustomShader;
+	var charShader:CustomShader;
+
+	function makeErectShader()
+	{
+		bgShader = new CustomShader('play/shaders/dropshadow');
+		charShader = new CustomShader('play/shaders/dropshadow');
+
+		bgShader.setFloat('hue', 18.0);
+		bgShader.setFloat('saturation', -50.0);
+		bgShader.setFloat('brightness', -15.0);
+		bgShader.setFloat('contrast', 0.0);
+
+		charShader.setFloat('hue', -25.0);
+		charShader.setFloat('saturation', -20.0);
+		charShader.setFloat('brightness', -25.0);
+		charShader.setFloat('contrast', 0.0);
+	}
+
+	function applyShader()
+	{
+		for (prop in members)
+			if (prop != null)
+				prop.shader = bgShader;
+
+		if (gf != null)
+			gf.shader = charShader;
+
+		if (opponent != null)
+			opponent.shader = charShader;
+
+		if (player != null)
+			player.shader = charShader;
+	}
 
     override function onUpdate(event:UpdateScriptEvent)
     {
