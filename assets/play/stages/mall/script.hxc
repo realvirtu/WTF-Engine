@@ -19,8 +19,6 @@ class MallStage extends Stage
 	{
 		super.onCreate(event);
 
-		trace('hi');
-
 		if (PlayState.song.variation == "erect")
 			makeErectShader();
 		
