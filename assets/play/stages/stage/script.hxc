@@ -1,0 +1,59 @@
+import flixel.math.FlxAngle;
+import funkin.graphics.shader.CustomShader;
+import funkin.modding.event.ScriptEvent;
+import funkin.play.PlayState;
+import funkin.play.stage.Stage;
+import funkin.play.stage.StageProp;
+
+class MainStage extends Stage
+{
+	public function new()
+	{
+		super("stage");
+	}
+
+	var bgShader:CustomShader;
+	var charShader:CustomShader;
+
+	override function onCreate(event:ScriptEvent)
+	{
+		super.onCreate(event);
+
+		if (PlayState.song.variation == "erect")
+			makeErectShader();
+		
+		applyShader();
+	}
+
+	function makeErectShader()
+	{
+		bgShader = new CustomShader('play/shaders/dropshadow');
+		charShader = new CustomShader('play/shaders/dropshadow');
+
+		bgShader.setFloat('hue', 18.0);
+		bgShader.setFloat('saturation', -50.0);
+		bgShader.setFloat('brightness', -50.0);
+		bgShader.setFloat('contrast', 0.0);
+
+		charShader.setFloat('hue', -25.0);
+		charShader.setFloat('saturation', -20.0);
+		charShader.setFloat('brightness', -50.0);
+		charShader.setFloat('contrast', 0.0);
+	}
+
+	function applyShader()
+	{
+		for (prop in members)
+			if (prop != null)
+				prop.shader = bgShader;
+
+		if (gf != null)
+			gf.shader = charShader;
+
+		if (opponent != null)
+			opponent.shader = charShader;
+
+		if (player != null)
+			player.shader = charShader;
+	}
+}
