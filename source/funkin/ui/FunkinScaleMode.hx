@@ -17,9 +17,7 @@ class FunkinScaleMode extends BaseScaleMode
 		final ratio:Float = FlxG.width / FlxG.height;
 		final realRatio:Float = width / height;
 
-		var scaleY:Bool = realRatio < ratio;
-
-		if (scaleY)
+		if (realRatio < ratio)
 		{
 			gameSize.x = width;
 			gameSize.y = Math.floor(gameSize.x / ratio);
