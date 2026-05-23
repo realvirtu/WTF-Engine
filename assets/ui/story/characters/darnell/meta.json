@@ -1,8 +1,7 @@
 {
-    "name": "Daddy Dearest",
-    "width": 213,
-    "height": 289,
-    "scale": 0.85,
+    "name": "Darnell",
+    "width": 161,
+    "height": 231,
     "animations": [
         {
             "name": "idle",

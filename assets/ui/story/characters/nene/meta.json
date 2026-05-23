@@ -1,13 +1,13 @@
 {
-    "name": "Girlfriend",
-    "width": 262,
-    "height": 290,
+    "name": "Nene",
+    "width": 321,
+    "height": 303,
     "scale": 0.85,
     "bopEvery": 1,
     "animations": [
         {
             "name": "idle",
-            "frames": [0, 1, 2]
+            "frames": [0, 1, 2, 3]
         }
     ]
 }
