@@ -2,6 +2,7 @@
     "name": "Boyfriend",
     "width": 217,
     "height": 222,
+    "flipX": true,
     "animations": [
         {
             "name": "idle",

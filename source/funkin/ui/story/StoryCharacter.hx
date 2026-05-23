@@ -13,13 +13,17 @@ class StoryCharacter extends FunkinSprite
 	static var parser(default, null) = new JsonParser<StoryCharacterData>();
 
 	public var id:String;
+	public var isPlayer:Bool;
+
 	public var meta:StoryCharacterData;
 
-	public function load(id:String)
+	public function load(id:String, isPlayer:Bool = false)
 	{
 		if (this.id == id)
 			return;
+
 		this.id = id;
+		this.isPlayer = isPlayer;
 
 		meta = null;
 
@@ -45,7 +49,7 @@ class StoryCharacter extends FunkinSprite
 		for (anim in meta.animations)
 			addAnimation(anim.name, anim.frames, anim.framerate, anim.looped);
 
-		flipX = meta.flipX;
+		flipX = meta.flipX != isPlayer;
 		flipY = meta.flipY;
 
 		bop(true);

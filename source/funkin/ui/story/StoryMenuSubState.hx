@@ -208,7 +208,7 @@ class StoryMenuSubState extends FunkinSubState
 		opponent.x = 250 - opponent.width / 2;
 		opponent.y = blackBottom.y - opponent.height - 30;
 
-		player.load(level.player);
+		player.load(level.player, true);
 		player.screenCenter(X);
 		player.y = blackBottom.y - player.height - 30;
 
@@ -253,9 +253,7 @@ class StoryMenuSubState extends FunkinSubState
 		stateMachine.transition(Interacting);
 		titleGroup.title.flicker();
 
-		opponent.playAnimation('confirm');
 		player.playAnimation('confirm');
-		gf.playAnimation('confirm');
 
 		FunkinSound.playOnce('ui/sounds/confirm');
 		FlxTimer.wait(1, () ->

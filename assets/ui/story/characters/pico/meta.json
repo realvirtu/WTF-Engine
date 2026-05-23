@@ -2,6 +2,7 @@
     "name": "Pico",
     "width": 226,
     "height": 225,
+    "flipX": true,
     "animations": [
         {
             "name": "idle",
