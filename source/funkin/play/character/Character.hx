@@ -16,9 +16,9 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	public var meta:CharacterData;
 	public var type:CharacterType;
 
-	public var bopping(get, never):Bool;
-	public var singing(get, never):Bool;
-	public var missing(get, never):Bool;
+	public var isBopping(get, never):Bool;
+	public var isSinging(get, never):Bool;
+	public var isMissing(get, never):Bool;
 
 	// Flixel is so fucking stupid
 	// Why does path HAVE to be an already existing variable?!
@@ -60,7 +60,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 			return;
 
 		// Recreates that cool ass sing hold thing that the player can do
-		if (type == Player && NoteDirection.anyPressed() && singing)
+		if (type == Player && NoteDirection.anyPressed() && isSinging)
 			return;
 
 		super.bop(force);
@@ -111,24 +111,25 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	}
 
 	@:noCompletion
-	inline function get_bopping():Bool
+	inline function get_isBopping():Bool
 	{
 		return getCurrentAnimation() == 'idle';
 	}
 
 	@:noCompletion
-	inline function get_singing():Bool
+	inline function get_isSinging():Bool
 	{
-		return [
-			NoteDirection.LEFT.name,
-			NoteDirection.DOWN.name,
-			NoteDirection.UP.name,
-			NoteDirection.RIGHT.name
-		].contains(getCurrentAnimation());
+		final name:String = getCurrentAnimation();
+
+		return (name.startsWith(NoteDirection.LEFT.name)
+			|| name.startsWith(NoteDirection.DOWN.name)
+			|| name.startsWith(NoteDirection.UP.name)
+			|| name.startsWith(NoteDirection.RIGHT.name))
+			&& !name.endsWith('-miss');
 	}
 
 	@:noCompletion
-	inline function get_missing():Bool
+	inline function get_isMissing():Bool
 	{
 		return getCurrentAnimation().endsWith('-miss');
 	}
