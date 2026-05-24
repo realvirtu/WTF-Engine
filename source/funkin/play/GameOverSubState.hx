@@ -34,7 +34,7 @@ class GameOverSubState extends FunkinSubState
 
 		instance = this;
 
-		var event:ScriptEvent = new ScriptEvent(GameOverStart);
+		var event:ScriptEvent = new ScriptEvent(GAMEOVER_START);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -80,7 +80,7 @@ class GameOverSubState extends FunkinSubState
 
 	function startLoop()
 	{
-		var event:ScriptEvent = new ScriptEvent(GameOverLoop);
+		var event:ScriptEvent = new ScriptEvent(GAMEOVER_LOOP);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -94,7 +94,7 @@ class GameOverSubState extends FunkinSubState
 		if (retrying)
 			return;
 
-		var event:ScriptEvent = new ScriptEvent(GameOverRetry);
+		var event:ScriptEvent = new ScriptEvent(GAMEOVER_RETRY);
 		dispatch(event);
 
 		if (event.cancelled)

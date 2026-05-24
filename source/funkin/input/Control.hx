@@ -5,19 +5,19 @@ package funkin.input;
  */
 enum Control
 {
-	NoteLeft;
-	NoteDown;
-	NoteUp;
-	NoteRight;
-	UILeft;
-	UIDown;
-	UIUp;
-	UIRight;
-	Accept;
-	Back;
-	Pause;
-	Reset;
-	Favorite;
-	SortLeft;
-	SortRight;
+	NOTE_LEFT;
+	NOTE_DOWN;
+	NOTE_UP;
+	NOTE_RIGHT;
+	UI_LEFT;
+	UI_DOWN;
+	UI_UP;
+	UI_RIGHT;
+	ACCEPT;
+	BACK;
+	PAUSE;
+	RESET;
+	FAVORITE;
+	SORT_LEFT;
+	SORT_RIGHT;
 }

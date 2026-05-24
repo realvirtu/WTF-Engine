@@ -36,7 +36,7 @@ class UpdateScriptEvent extends ScriptEvent
 
 	public function new(elapsed:Float)
 	{
-		super(Update);
+		super(UPDATE);
 
 		this.elapsed = elapsed;
 	}
@@ -69,7 +69,7 @@ class SongLoadScriptEvent extends ScriptEvent
 
 	public function new(notes:Array<SongNoteData>, events:Array<EventData>)
 	{
-		super(SongLoad);
+		super(SONG_LOAD);
 
 		this.notes = notes;
 		this.events = events;
@@ -128,7 +128,7 @@ class SongEventScriptEvent extends ScriptEvent
 
 	public function new(kind:String, value:Dynamic)
 	{
-		super(SongEvent);
+		super(SONG_EVENT);
 
 		this.kind = kind;
 		this.value = value;
@@ -149,7 +149,7 @@ class GhostMissScriptEvent extends ScriptEvent
 
 	public function new(direction:NoteDirection)
 	{
-		super(GhostMiss);
+		super(GHOST_MISS);
 
 		this.direction = direction;
 	}

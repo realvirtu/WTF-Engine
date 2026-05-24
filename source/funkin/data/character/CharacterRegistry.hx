@@ -65,7 +65,7 @@ class CharacterRegistry extends BaseRegistry<CharacterData>
 		}
 	}
 
-	public function fetchCharacter(id:String, type:CharacterType = Other):Character
+	public function fetchCharacter(id:String, type:CharacterType = OTHER):Character
 	{
 		if (!exists(id))
 			return null;

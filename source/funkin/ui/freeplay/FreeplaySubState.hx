@@ -133,7 +133,7 @@ class FreeplaySubState extends FunkinSubState
 		exitMovers.add(sortText, null, -sortText.height);
 
 		if (!skipIntro)
-			stateMachine.transition(Transitioning);
+			stateMachine.transition(TRANSITIONING);
 
 		changeDiff(selectedDiff);
 		refresh();
@@ -203,7 +203,7 @@ class FreeplaySubState extends FunkinSubState
 
 		if (!stateMachine.canInteract())
 			return;
-		stateMachine.transition(Interacting);
+		stateMachine.transition(INTERACTING);
 
 		FlxTimer.wait(0.1, () -> stateMachine.reset());
 	}
@@ -217,7 +217,7 @@ class FreeplaySubState extends FunkinSubState
 
 		if (!stateMachine.canInteract())
 			return;
-		stateMachine.transition(Interacting);
+		stateMachine.transition(INTERACTING);
 
 		FlxTimer.wait(0.1, () -> stateMachine.reset());
 	}
@@ -227,7 +227,7 @@ class FreeplaySubState extends FunkinSubState
 		if (!stateMachine.canInteract())
 			return;
 
-		var event:FreeplaySongScriptEvent = new FreeplaySongScriptEvent(FreeplaySongSelected, capsule);
+		var event:FreeplaySongScriptEvent = new FreeplaySongScriptEvent(FREEPLAY_SONG_SELECTED, capsule);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -251,7 +251,7 @@ class FreeplaySubState extends FunkinSubState
 			capsules.selected = capsule.ID;
 		}
 
-		stateMachine.transition(Interacting);
+		stateMachine.transition(INTERACTING);
 
 		capsule.flicker();
 		dj.confirm();
@@ -280,13 +280,13 @@ class FreeplaySubState extends FunkinSubState
 		if (!stateMachine.canInteract() || song == null)
 			return;
 
-		var event:FreeplaySongScriptEvent = new FreeplaySongScriptEvent(FreeplaySongFavorited, capsule);
+		var event:FreeplaySongScriptEvent = new FreeplaySongScriptEvent(FREEPLAY_SONG_FAVORITED, capsule);
 		dispatch(event);
 
 		if (event.cancelled)
 			return;
 
-		stateMachine.transition(Interacting);
+		stateMachine.transition(INTERACTING);
 
 		if (song != null)
 			capsule.favorited = !Save.instance.isSongFavorited(song.id, song.variation);
@@ -320,7 +320,7 @@ class FreeplaySubState extends FunkinSubState
 	{
 		// Intro script event
 		// Skip the intro if cancelled
-		var event:ScriptEvent = new ScriptEvent(FreeplayIntro);
+		var event:ScriptEvent = new ScriptEvent(FREEPLAY_INTRO);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -337,7 +337,7 @@ class FreeplaySubState extends FunkinSubState
 			stateMachine.reset();
 			backcard.show();
 
-			dispatch(new ScriptEvent(FreeplayIntroDone));
+			dispatch(new ScriptEvent(FREEPLAY_INTRO_DONE));
 		}
 	}
 
@@ -348,17 +348,17 @@ class FreeplaySubState extends FunkinSubState
 
 		// Exit script event
 		// Prevent the player from exiting if cancelled
-		var event:ScriptEvent = new ScriptEvent(FreeplayExit);
+		var event:ScriptEvent = new ScriptEvent(FREEPLAY_EXIT);
 		dispatch(event);
 
 		if (event.cancelled)
 			return;
 
-		stateMachine.transition(Transitioning);
+		stateMachine.transition(TRANSITIONING);
 
 		// Outro script event
 		// Skip the outro if cancelled
-		event = new ScriptEvent(FreeplayOutro);
+		event = new ScriptEvent(FREEPLAY_OUTRO);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -372,7 +372,7 @@ class FreeplaySubState extends FunkinSubState
 
 		exitMovers.onOutroDone = () ->
 		{
-			dispatch(new ScriptEvent(FreeplayOutroDone));
+			dispatch(new ScriptEvent(FREEPLAY_OUTRO_DONE));
 			close();
 		}
 

@@ -86,7 +86,7 @@ class OptionsSubState extends FunkinSubState
 	{
 		final bgScale:Float = bg.scale.x;
 
-		stateMachine.transition(Transitioning);
+		stateMachine.transition(TRANSITIONING);
 
 		bg.scale.x = bg.scale.y = 0;
 
@@ -100,7 +100,7 @@ class OptionsSubState extends FunkinSubState
 	{
 		if (!stateMachine.canInteract())
 			return;
-		stateMachine.transition(Transitioning);
+		stateMachine.transition(TRANSITIONING);
 
 		exitMovers.outro();
 		exitMovers.onOutroDone = close;

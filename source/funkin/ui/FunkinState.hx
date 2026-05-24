@@ -33,7 +33,7 @@ class FunkinState extends FlxState
 	{
 		// Don't run the create, update, or destroy events for modules
 		// Modules handle these events on their own
-		if (event.type == Create || event.type == Update || event.type == Destroy)
+		if (event.type == CREATE || event.type == UPDATE || event.type == DESTROY)
 			return;
 
 		ModuleHandler.dispatch(event);
@@ -41,12 +41,12 @@ class FunkinState extends FlxState
 
 	function stepHit(step:Int)
 	{
-		dispatch(new ConductorScriptEvent(StepHit, step, conductor.beat));
+		dispatch(new ConductorScriptEvent(STEP_HIT, step, conductor.beat));
 	}
 
 	function beatHit(beat:Int)
 	{
-		dispatch(new ConductorScriptEvent(BeatHit, conductor.step, beat));
+		dispatch(new ConductorScriptEvent(BEAT_HIT, conductor.step, beat));
 	}
 
 	override public function destroy()

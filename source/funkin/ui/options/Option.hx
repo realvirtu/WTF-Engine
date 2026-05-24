@@ -44,14 +44,14 @@ class Option extends FlxSpriteGroup
 
 		switch (type)
 		{
-			case Checkbox:
+			case CHECKBOX:
 				checkbox = FunkinSprite.create(text.width + 10, 0, 'ui/option/checkbox', 1.25, 72, 61);
 				checkbox.y = (text.height - checkbox.height) / 2;
 				checkbox.active = false;
 				checkbox.addAnimation('checkbox', [0, 1], 0);
 				checkbox.playAnimation('checkbox');
 				add(checkbox);
-			case Numeric:
+			case NUMERIC:
 				arrowLeft = FunkinSprite.create(text.width + 10, 0, 'ui/arrow');
 				arrowLeft.active = false;
 				arrowLeft.y = (text.height - arrowLeft.height) / 2;
@@ -116,11 +116,11 @@ class Option extends FlxSpriteGroup
 		return switch (Type.typeof(value))
 		{
 			case TBool:
-				return Checkbox;
+				return CHECKBOX;
 			case TInt:
-				return Numeric;
+				return NUMERIC;
 			default:
-				return None;
+				return NONE;
 		}
 	}
 }

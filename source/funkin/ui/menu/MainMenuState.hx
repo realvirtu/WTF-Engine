@@ -90,7 +90,7 @@ class MainMenuState extends FunkinState
 	{
 		if (!stateMachine.canInteract())
 			return;
-		stateMachine.transition(Interacting);
+		stateMachine.transition(INTERACTING);
 
 		items.flicker();
 
@@ -106,7 +106,7 @@ class MainMenuState extends FunkinState
 
 	function openFreeplayMenu()
 	{
-		var event:ScriptEvent = new ScriptEvent(FreeplayEnter);
+		var event:ScriptEvent = new ScriptEvent(FREEPLAY_ENTER);
 		dispatch(event);
 
 		if (event.cancelled)

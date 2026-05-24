@@ -5,7 +5,7 @@ package funkin.ui.options;
  */
 enum OptionType
 {
-	Checkbox;
-	Numeric;
-	None;
+	CHECKBOX;
+	NUMERIC;
+	NONE;
 }

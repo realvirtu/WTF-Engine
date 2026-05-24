@@ -90,7 +90,7 @@ class OptionList extends FlxTypedGroup<Option>
 
 	function changeValue(change:Int)
 	{
-		if (busy || option.type != Numeric)
+		if (busy || option.type != NUMERIC)
 			return;
 
 		final lastValue:Float = option.value;
@@ -108,7 +108,7 @@ class OptionList extends FlxTypedGroup<Option>
 	function select()
 	{
 		// Only checkboxes can be selected
-		if (busy || option.type != Checkbox)
+		if (busy || option.type != CHECKBOX)
 			return;
 
 		option.value = !option.value;

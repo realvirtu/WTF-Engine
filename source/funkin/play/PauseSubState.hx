@@ -127,7 +127,7 @@ class PauseSubState extends FunkinSubState
 			switch (item)
 			{
 				case 'resume':
-					var event:ScriptEvent = new ScriptEvent(Resume);
+					var event:ScriptEvent = new ScriptEvent(RESUME);
 					dispatch(event);
 
 					if (!event.cancelled)

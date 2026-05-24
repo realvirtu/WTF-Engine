@@ -5,9 +5,9 @@ package funkin.ui;
  */
 enum State
 {
-	Idle;
-	Transitioning;
-	Interacting;
+	IDLE;
+	TRANSITIONING;
+	INTERACTING;
 }
 
 /**
@@ -15,14 +15,14 @@ enum State
  */
 class StateMachine
 {
-	var currentState(default, null):State = Idle;
-	var previousState(default, null):State = Idle;
+	var currentState(default, null):State = IDLE;
+	var previousState(default, null):State = IDLE;
 
 	public function new() {}
 
 	public function transition(state:State):Bool
 	{
-		// Can't transition if the state isn't Idle
+		// Can't transition if the state isn't IDLE
 		if (!canInteract())
 			return false;
 
@@ -41,7 +41,7 @@ class StateMachine
 	public function reset()
 	{
 		previousState = currentState;
-		currentState = Idle;
+		currentState = IDLE;
 	}
 
 	public function is(state:State):Bool
@@ -51,12 +51,12 @@ class StateMachine
 
 	public function canInteract():Bool
 	{
-		return currentState == Idle;
+		return currentState == IDLE;
 	}
 
 	public function transitioning():Bool
 	{
-		return currentState == Transitioning;
+		return currentState == TRANSITIONING;
 	}
 
 	public function toString():String

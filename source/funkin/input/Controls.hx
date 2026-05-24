@@ -12,21 +12,21 @@ class Controls
 	public static var instance:Controls;
 
 	var actions:Map<Control, FunkinAction> = [
-		NoteLeft => new FunkinAction([A, LEFT], [DPAD_LEFT, X]),
-		NoteDown => new FunkinAction([S, DOWN], [DPAD_DOWN, A]),
-		NoteUp => new FunkinAction([W, UP], [DPAD_UP, Y]),
-		NoteRight => new FunkinAction([D, RIGHT], [DPAD_RIGHT, B]),
-		UILeft => new FunkinAction([A, LEFT], [DPAD_LEFT]),
-		UIDown => new FunkinAction([S, DOWN], [DPAD_DOWN]),
-		UIUp => new FunkinAction([W, UP], [DPAD_UP]),
-		UIRight => new FunkinAction([D, RIGHT], [DPAD_RIGHT]),
-		Accept => new FunkinAction([Z, SPACE, ENTER], [START, A]),
-		Back => new FunkinAction([X, ESCAPE, BACKSPACE], [B]),
-		Pause => new FunkinAction([P, ENTER, ESCAPE], [START]),
-		Reset => new FunkinAction([R], []),
-		Favorite => new FunkinAction([F], [Y]),
-		SortLeft => new FunkinAction([Q], [LEFT_SHOULDER]),
-		SortRight => new FunkinAction([E], [RIGHT_SHOULDER])
+		Control.NOTE_LEFT => new FunkinAction([A, LEFT], [DPAD_LEFT, X]),
+		Control.NOTE_DOWN => new FunkinAction([S, DOWN], [DPAD_DOWN, A]),
+		Control.NOTE_UP => new FunkinAction([W, UP], [DPAD_UP, Y]),
+		Control.NOTE_RIGHT => new FunkinAction([D, RIGHT], [DPAD_RIGHT, B]),
+		Control.UI_LEFT => new FunkinAction([A, LEFT], [DPAD_LEFT]),
+		Control.UI_DOWN => new FunkinAction([S, DOWN], [DPAD_DOWN]),
+		Control.UI_UP => new FunkinAction([W, UP], [DPAD_UP]),
+		Control.UI_RIGHT => new FunkinAction([D, RIGHT], [DPAD_RIGHT]),
+		Control.ACCEPT => new FunkinAction([Z, SPACE, ENTER], [START, A]),
+		Control.BACK => new FunkinAction([X, ESCAPE, BACKSPACE], [B]),
+		Control.PAUSE => new FunkinAction([P, ENTER, ESCAPE], [START]),
+		Control.RESET => new FunkinAction([R], []),
+		Control.FAVORITE => new FunkinAction([F], [Y]),
+		Control.SORT_LEFT => new FunkinAction([Q], [LEFT_SHOULDER]),
+		Control.SORT_RIGHT => new FunkinAction([E], [RIGHT_SHOULDER])
 	];
 
 	public var NOTE_LEFT(get, never):Bool;
@@ -56,139 +56,139 @@ class Controls
 	@:noCompletion
 	inline function get_NOTE_LEFT():Bool
 	{
-		return getAction(NoteLeft).check();
+		return getAction(Control.NOTE_LEFT).check();
 	}
 
 	@:noCompletion
 	inline function get_NOTE_DOWN():Bool
 	{
-		return getAction(NoteDown).check();
+		return getAction(Control.NOTE_DOWN).check();
 	}
 
 	@:noCompletion
 	inline function get_NOTE_UP():Bool
 	{
-		return getAction(NoteUp).check();
+		return getAction(Control.NOTE_UP).check();
 	}
 
 	@:noCompletion
 	inline function get_NOTE_RIGHT():Bool
 	{
-		return getAction(NoteRight).check();
+		return getAction(Control.NOTE_RIGHT).check();
 	}
 
 	@:noCompletion
 	inline function get_NOTE_LEFT_P():Bool
 	{
-		return getAction(NoteLeft).checkPressed();
+		return getAction(Control.NOTE_LEFT).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_NOTE_DOWN_P():Bool
 	{
-		return getAction(NoteDown).checkPressed();
+		return getAction(Control.NOTE_DOWN).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_NOTE_UP_P():Bool
 	{
-		return getAction(NoteUp).checkPressed();
+		return getAction(Control.NOTE_UP).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_NOTE_RIGHT_P():Bool
 	{
-		return getAction(NoteRight).checkPressed();
+		return getAction(Control.NOTE_RIGHT).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_UI_LEFT():Bool
 	{
-		return getAction(UILeft).check();
+		return getAction(Control.UI_LEFT).check();
 	}
 
 	@:noCompletion
 	inline function get_UI_DOWN():Bool
 	{
-		return getAction(UIDown).check();
+		return getAction(Control.UI_DOWN).check();
 	}
 
 	@:noCompletion
 	inline function get_UI_UP():Bool
 	{
-		return getAction(UIUp).check();
+		return getAction(Control.UI_UP).check();
 	}
 
 	@:noCompletion
 	inline function get_UI_RIGHT():Bool
 	{
-		return getAction(UIRight).check();
+		return getAction(Control.UI_RIGHT).check();
 	}
 
 	@:noCompletion
 	inline function get_UI_LEFT_P():Bool
 	{
-		return getAction(UILeft).checkPressed();
+		return getAction(Control.UI_LEFT).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_UI_DOWN_P():Bool
 	{
-		return getAction(UIDown).checkPressed();
+		return getAction(Control.UI_DOWN).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_UI_UP_P():Bool
 	{
-		return getAction(UIUp).checkPressed();
+		return getAction(Control.UI_UP).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_UI_RIGHT_P():Bool
 	{
-		return getAction(UIRight).checkPressed();
+		return getAction(Control.UI_RIGHT).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_ACCEPT():Bool
 	{
-		return getAction(Accept).checkPressed();
+		return getAction(Control.ACCEPT).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_BACK():Bool
 	{
-		return getAction(Back).checkPressed();
+		return getAction(Control.BACK).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_PAUSE():Bool
 	{
-		return getAction(Pause).checkPressed();
+		return getAction(Control.PAUSE).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_RESET():Bool
 	{
-		return getAction(Reset).checkPressed();
+		return getAction(Control.RESET).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_FAVORITE():Bool
 	{
-		return getAction(Favorite).checkPressed();
+		return getAction(Control.FAVORITE).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_SORT_LEFT():Bool
 	{
-		return getAction(SortLeft).checkPressed();
+		return getAction(Control.SORT_LEFT).checkPressed();
 	}
 
 	@:noCompletion
 	inline function get_SORT_RIGHT():Bool
 	{
-		return getAction(SortRight).checkPressed();
+		return getAction(Control.SORT_RIGHT).checkPressed();
 	}
 
 	var gamepadConnected:Bool = false;

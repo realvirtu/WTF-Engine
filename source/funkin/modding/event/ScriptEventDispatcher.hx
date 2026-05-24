@@ -20,11 +20,11 @@ class ScriptEventDispatcher
 
 		switch (event.type)
 		{
-			case Create:
+			case CREATE:
 				target.onCreate(event);
-			case Update:
+			case UPDATE:
 				target.onUpdate(cast event);
-			case Destroy:
+			case DESTROY:
 				target.onDestroy(event);
 			default:
 				// Does literally nothing
@@ -40,15 +40,15 @@ class ScriptEventDispatcher
 
 			switch (event.type)
 			{
-				case NoteHit:
+				case NOTE_HIT:
 					target.onNoteHit(cast event);
-				case NoteMiss:
+				case NOTE_MISS:
 					target.onNoteMiss(cast event);
-				case HoldNoteHold:
+				case HOLD_NOTE_HOLD:
 					target.onHoldNoteHold(cast event);
-				case HoldNoteDrop:
+				case HOLD_NOTE_DROP:
 					target.onHoldNoteDrop(cast event);
-				case GhostMiss:
+				case GHOST_MISS:
 					target.onGhostMiss(cast event);
 				default:
 					// Does literally nothing
@@ -65,9 +65,9 @@ class ScriptEventDispatcher
 
 			switch (event.type)
 			{
-				case StepHit:
+				case STEP_HIT:
 					target.onStepHit(cast event);
-				case BeatHit:
+				case BEAT_HIT:
 					target.onBeatHit(cast event);
 				default:
 					// Does literally nothing
@@ -84,29 +84,29 @@ class ScriptEventDispatcher
 
 			switch (event.type)
 			{
-				case SongLoad:
+				case SONG_LOAD:
 					target.onSongLoaded(cast event);
-				case SongStart:
+				case SONG_START:
 					target.onSongStart(event);
-				case SongEnd:
+				case SONG_END:
 					target.onSongEnd(event);
-				case SongRetry:
+				case SONG_RETRY:
 					target.onSongRetry(event);
-				case SongEvent:
+				case SONG_EVENT:
 					target.onSongEvent(cast event);
-				case CountdownStart:
+				case COUNTDOWN_START:
 					target.onCountdownStart(cast event);
-				case CountdownStep:
+				case COUNTDOWN_STEP:
 					target.onCountdownStep(cast event);
-				case Pause:
+				case PAUSE:
 					target.onPause(event);
-				case Resume:
+				case RESUME:
 					target.onResume(event);
-				case GameOverStart:
+				case GAMEOVER_START:
 					target.onGameOverStart(event);
-				case GameOverLoop:
+				case GAMEOVER_LOOP:
 					target.onGameOverLoop(event);
-				case GameOverRetry:
+				case GAMEOVER_RETRY:
 					target.onGameOverRetry(event);
 				default:
 					// Does literally nothing
@@ -123,21 +123,21 @@ class ScriptEventDispatcher
 
 			switch (event.type)
 			{
-				case FreeplayEnter:
+				case FREEPLAY_ENTER:
 					target.onFreeplayEnter(event);
-				case FreeplayExit:
+				case FREEPLAY_EXIT:
 					target.onFreeplayExit(event);
-				case FreeplayIntro:
+				case FREEPLAY_INTRO:
 					target.onFreeplayIntro(event);
-				case FreeplayOutro:
+				case FREEPLAY_OUTRO:
 					target.onFreeplayOutro(event);
-				case FreeplayIntroDone:
+				case FREEPLAY_INTRO_DONE:
 					target.onFreeplayIntroDone(event);
-				case FreeplayOutroDone:
+				case FREEPLAY_OUTRO_DONE:
 					target.onFreeplayOutroDone(event);
-				case FreeplaySongSelected:
+				case FREEPLAY_SONG_SELECTED:
 					target.onFreeplaySongSelected(cast event);
-				case FreeplaySongFavorited:
+				case FREEPLAY_SONG_FAVORITED:
 					target.onFreeplaySongFavorited(cast event);
 				default:
 					// Does literally nothing

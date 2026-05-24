@@ -177,7 +177,7 @@ class PlayState extends FunkinState
 		updatePreferences();
 
 		// Runs the create script event
-		dispatch(new ScriptEvent(Create));
+		dispatch(new ScriptEvent(CREATE));
 	}
 
 	override public function update(elapsed:Float)
@@ -261,7 +261,7 @@ class PlayState extends FunkinState
 
 		if (countdown.step < 3)
 		{
-			var event:CountdownScriptEvent = new CountdownScriptEvent(CountdownStep, countdown.step + 1);
+			var event:CountdownScriptEvent = new CountdownScriptEvent(COUNTDOWN_STEP, countdown.step + 1);
 			dispatch(event);
 
 			if (!event.cancelled)
@@ -302,7 +302,7 @@ class PlayState extends FunkinState
 		}
 		else
 		{
-			var event:ScriptEvent = new ScriptEvent(SongRetry);
+			var event:ScriptEvent = new ScriptEvent(SONG_RETRY);
 			dispatch(event);
 
 			if (event.cancelled)
@@ -354,7 +354,7 @@ class PlayState extends FunkinState
 
 	public function startCountdown()
 	{
-		var event:CountdownScriptEvent = new CountdownScriptEvent(CountdownStart, -1);
+		var event:CountdownScriptEvent = new CountdownScriptEvent(COUNTDOWN_START, -1);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -397,7 +397,7 @@ class PlayState extends FunkinState
 
 	public function pause()
 	{
-		var event:ScriptEvent = new ScriptEvent(Pause);
+		var event:ScriptEvent = new ScriptEvent(PAUSE);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -479,12 +479,12 @@ class PlayState extends FunkinState
 		FunkinSound.music.play();
 		voices.play();
 
-		dispatch(new ScriptEvent(SongStart));
+		dispatch(new ScriptEvent(SONG_START));
 	}
 
 	function endSong()
 	{
-		var event:ScriptEvent = new ScriptEvent(SongEnd);
+		var event:ScriptEvent = new ScriptEvent(SONG_END);
 		dispatch(event);
 
 		songEnded = true;
@@ -576,7 +576,7 @@ class PlayState extends FunkinState
 			if (!pressed || note == null)
 				continue;
 
-			var event:NoteScriptEvent = new NoteScriptEvent(NoteHit, note);
+			var event:NoteScriptEvent = new NoteScriptEvent(NOTE_HIT, note);
 			dispatch(event);
 
 			if (event.cancelled)
@@ -588,7 +588,7 @@ class PlayState extends FunkinState
 		// Opponent input
 		for (note in opponentStrumline.getMayHitNotes())
 		{
-			var event:NoteScriptEvent = new NoteScriptEvent(NoteHit, note);
+			var event:NoteScriptEvent = new NoteScriptEvent(NOTE_HIT, note);
 			dispatch(event);
 
 			if (event.cancelled)
@@ -640,7 +640,7 @@ class PlayState extends FunkinState
 
 	function playerHoldNoteHit(holdNote:HoldNoteSprite)
 	{
-		var event:HoldNoteScriptEvent = new HoldNoteScriptEvent(HoldNoteHold, holdNote);
+		var event:HoldNoteScriptEvent = new HoldNoteScriptEvent(HOLD_NOTE_HOLD, holdNote);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -654,7 +654,7 @@ class PlayState extends FunkinState
 
 	function playerNoteMiss(note:NoteSprite)
 	{
-		var event:NoteScriptEvent = new NoteScriptEvent(NoteMiss, note);
+		var event:NoteScriptEvent = new NoteScriptEvent(NOTE_MISS, note);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -691,7 +691,7 @@ class PlayState extends FunkinState
 
 	function playerHoldNoteDrop(holdNote:HoldNoteSprite)
 	{
-		var event:HoldNoteScriptEvent = new HoldNoteScriptEvent(HoldNoteDrop, holdNote);
+		var event:HoldNoteScriptEvent = new HoldNoteScriptEvent(HOLD_NOTE_DROP, holdNote);
 		dispatch(event);
 
 		if (event.cancelled)
@@ -711,7 +711,7 @@ class PlayState extends FunkinState
 
 	function opponentHoldNoteHit(holdNote:HoldNoteSprite)
 	{
-		var event:HoldNoteScriptEvent = new HoldNoteScriptEvent(HoldNoteHold, holdNote);
+		var event:HoldNoteScriptEvent = new HoldNoteScriptEvent(HOLD_NOTE_HOLD, holdNote);
 		dispatch(event);
 	}
 
@@ -786,7 +786,7 @@ class PlayState extends FunkinState
 	override public function destroy()
 	{
 		// Runs the destroy script event
-		dispatch(new ScriptEvent(Destroy));
+		dispatch(new ScriptEvent(DESTROY));
 
 		// Not doing this can cause things to crash
 		// Even if it's accessed in a safe way

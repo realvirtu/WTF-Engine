@@ -142,7 +142,7 @@ class StoryMenuSubState extends FunkinSubState
 		titleGroup.forEach(title -> exitMovers.add(title, FlxG.width, FlxG.height));
 
 		if (!skipIntro)
-			stateMachine.transition(Transitioning);
+			stateMachine.transition(TRANSITIONING);
 
 		changeLevel(selectedLevel);
 		refresh();
@@ -233,7 +233,7 @@ class StoryMenuSubState extends FunkinSubState
 
 		if (!stateMachine.canInteract())
 			return;
-		stateMachine.transition(Interacting);
+		stateMachine.transition(INTERACTING);
 
 		FlxTimer.wait(0.1, () -> stateMachine.reset());
 	}
@@ -250,7 +250,7 @@ class StoryMenuSubState extends FunkinSubState
 			return;
 		}
 
-		stateMachine.transition(Interacting);
+		stateMachine.transition(INTERACTING);
 		titleGroup.title.flicker();
 
 		player.playAnimation('confirm');
@@ -273,7 +273,7 @@ class StoryMenuSubState extends FunkinSubState
 
 	function intro()
 	{
-		stateMachine.transition(Transitioning);
+		stateMachine.transition(TRANSITIONING);
 
 		exitMovers.intro();
 		exitMovers.onIntroDone = stateMachine.reset;
@@ -283,7 +283,7 @@ class StoryMenuSubState extends FunkinSubState
 	{
 		if (!stateMachine.canInteract())
 			return;
-		stateMachine.transition(Transitioning);
+		stateMachine.transition(TRANSITIONING);
 
 		exitMovers.outro();
 		exitMovers.onOutroDone = close;

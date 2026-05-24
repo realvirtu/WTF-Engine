@@ -6,42 +6,42 @@ package funkin.modding.event;
 enum ScriptEventType
 {
 	// Basic
-	Create;
-	Update;
-	Destroy;
+	CREATE;
+	UPDATE;
+	DESTROY;
 
 	// Note
-	NoteHit;
-	NoteMiss;
-	HoldNoteHold;
-	HoldNoteDrop;
-	GhostMiss;
+	NOTE_HIT;
+	NOTE_MISS;
+	HOLD_NOTE_HOLD;
+	HOLD_NOTE_DROP;
+	GHOST_MISS;
 
 	// Conductor
-	StepHit;
-	BeatHit;
+	STEP_HIT;
+	BEAT_HIT;
 
 	// PlayState
-	SongLoad;
-	SongStart;
-	SongEnd;
-	SongRetry;
-	SongEvent;
-	CountdownStart;
-	CountdownStep;
-	Pause;
-	Resume;
-	GameOverStart;
-	GameOverLoop;
-	GameOverRetry;
+	SONG_LOAD;
+	SONG_START;
+	SONG_END;
+	SONG_RETRY;
+	SONG_EVENT;
+	COUNTDOWN_START;
+	COUNTDOWN_STEP;
+	PAUSE;
+	RESUME;
+	GAMEOVER_START;
+	GAMEOVER_LOOP;
+	GAMEOVER_RETRY;
 
 	// Freeplay
-	FreeplayEnter;
-	FreeplayExit;
-	FreeplayIntro;
-	FreeplayOutro;
-	FreeplayIntroDone;
-	FreeplayOutroDone;
-	FreeplaySongSelected;
-	FreeplaySongFavorited;
+	FREEPLAY_ENTER;
+	FREEPLAY_EXIT;
+	FREEPLAY_INTRO;
+	FREEPLAY_OUTRO;
+	FREEPLAY_INTRO_DONE;
+	FREEPLAY_OUTRO_DONE;
+	FREEPLAY_SONG_SELECTED;
+	FREEPLAY_SONG_FAVORITED;
 }

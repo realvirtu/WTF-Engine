@@ -37,7 +37,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 		bopEvery = meta.bopEvery;
 
-		flipX = meta.flipX != (type == Player);
+		flipX = meta.flipX != (type == PLAYER);
 		flipY = meta.flipY;
 
 		offset.set(-meta.globalOffset[0] ?? 0, -meta.globalOffset[1] ?? 0);
@@ -60,7 +60,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 			return;
 
 		// Recreates that cool ass sing hold thing that the player can do
-		if (type == Player && NoteDirection.anyPressed() && isSinging)
+		if (type == PLAYER && NoteDirection.anyPressed() && isSinging)
 			return;
 
 		super.bop(force);
@@ -93,7 +93,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		// The god damn errors this would give >:(
 		if (meta.icon == null)
 			return null;
-		return new HealthIcon(id, meta.icon, type == Player);
+		return new HealthIcon(id, meta.icon, type == PLAYER);
 	}
 
 	override public function playAnimation(name:String, force:Bool = false)
@@ -138,7 +138,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.onNoteHit(event);
 
-		if (event.cancelled || !event.playAnimation || type == Player != event.note.isPlayer || type == Other)
+		if (event.cancelled || !event.playAnimation || type == PLAYER != event.note.isPlayer || type == OTHER)
 			return;
 
 		sing(event.note.direction, event.suffix);
@@ -148,7 +148,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.onNoteMiss(event);
 
-		if (event.cancelled || !event.playAnimation || type != Player)
+		if (event.cancelled || !event.playAnimation || type != PLAYER)
 			return;
 
 		miss(event.note.direction, event.suffix);
@@ -158,7 +158,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.onHoldNoteHold(event);
 
-		if (event.cancelled || !event.playAnimation || type == Player != event.holdNote.isPlayer || type == Other)
+		if (event.cancelled || !event.playAnimation || type == PLAYER != event.holdNote.isPlayer || type == OTHER)
 			return;
 
 		resetSingTimer();
@@ -168,7 +168,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.onHoldNoteDrop(event);
 
-		if (event.cancelled || !event.playAnimation || type != Player)
+		if (event.cancelled || !event.playAnimation || type != PLAYER)
 			return;
 
 		miss(event.holdNote.direction, event.suffix);
@@ -178,7 +178,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.onGhostMiss(event);
 
-		if (event.cancelled || !event.playAnimation || type != Player)
+		if (event.cancelled || !event.playAnimation || type != PLAYER)
 			return;
 
 		miss(event.direction, event.suffix);

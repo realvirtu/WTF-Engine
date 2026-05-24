@@ -96,7 +96,7 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 		var scroll:FlxPoint = MathUtil.arrayToPoint(meta?.player?.scroll, 1);
 
 		player?.destroy();
-		player = CharacterRegistry.instance.fetchCharacter(id, Player);
+		player = CharacterRegistry.instance.fetchCharacter(id, PLAYER);
 
 		if (player != null)
 		{
@@ -120,7 +120,7 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 		var scroll:FlxPoint = MathUtil.arrayToPoint(meta?.opponent?.scroll, 1);
 
 		opponent?.destroy();
-		opponent = CharacterRegistry.instance.fetchCharacter(id, Opponent);
+		opponent = CharacterRegistry.instance.fetchCharacter(id, OPPONENT);
 
 		if (opponent != null)
 		{

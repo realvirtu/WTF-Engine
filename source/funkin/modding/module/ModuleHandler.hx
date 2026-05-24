@@ -31,7 +31,7 @@ class ModuleHandler
 		}
 
 		// Runs onCreate() for all modules
-		dispatch(new ScriptEvent(Create));
+		dispatch(new ScriptEvent(CREATE));
 
 		// Adds a callback for when the game updates
 		// This allows modules to update, even when the game isn't paused
@@ -85,7 +85,7 @@ class ModuleHandler
 		// We want to dispatch the onDestroy() event no matter what
 		for (module in modules)
 		{
-			var event:ScriptEvent = new ScriptEvent(Destroy);
+			var event:ScriptEvent = new ScriptEvent(DESTROY);
 			ScriptEventDispatcher.dispatch(module, event);
 		}
 

@@ -6,7 +6,7 @@ package funkin.play.character;
  */
 enum CharacterType
 {
-	Opponent;
-	Player;
-	Other;
+	OPPONENT;
+	PLAYER;
+	OTHER;
 }
