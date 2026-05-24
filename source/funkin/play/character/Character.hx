@@ -11,10 +11,13 @@ import funkin.play.stage.StageProp;
  */
 class Character extends StageProp implements IPlayStateScriptedClass
 {
-	final MAX_SING_TIME:Float = 1;
+	static final MAX_SING_TIME:Float = 1;
 
 	public var meta:CharacterData;
 	public var type:CharacterType;
+
+	public var singDuration:Float;
+	public var singTimer:Float;
 
 	public var isBopping(get, never):Bool;
 	public var isSinging(get, never):Bool;
@@ -23,8 +26,6 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	// Flixel is so fucking stupid
 	// Why does path HAVE to be an already existing variable?!
 	public var charPath(get, never):String;
-
-	var singTimer:Float;
 
 	public function buildSprite()
 	{
@@ -36,6 +37,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		loadAnimations(meta.animations);
 
 		bopEvery = meta.bopEvery;
+		singDuration = meta.singDuration;
 
 		flipX = meta.flipX != (type == PLAYER);
 		flipY = meta.flipY;
@@ -51,7 +53,9 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.update(elapsed);
 
-		singTimer = Math.min(MAX_SING_TIME, singTimer + elapsed * (Conductor.instance.quaver / 5 / meta.singDuration));
+		final singSeconds:Float = MAX_SING_TIME / (Conductor.instance.quaver / Constants.MS_PER_SEC * singDuration);
+
+		singTimer = Math.min(MAX_SING_TIME, singTimer + elapsed * singSeconds);
 	}
 
 	override public function bop(force:Bool = false)
@@ -80,13 +84,6 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		playAnimation('${direction.name}-miss$suffix', true);
 	}
 
-	public function resetSingTimer()
-	{
-		if (getCurrentAnimation() == 'idle')
-			return;
-		singTimer = 0;
-	}
-
 	public function buildHealthIcon():HealthIcon
 	{
 		// Return null if icon data is lacking
@@ -100,8 +97,8 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.playAnimation(name, force);
 
-		// Resets the sing timer
-		resetSingTimer();
+		if (!isBopping)
+			singTimer = 0;
 	}
 
 	@:noCompletion
@@ -161,7 +158,8 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		if (event.cancelled || !event.playAnimation || type == PLAYER != event.holdNote.isPlayer || type == OTHER)
 			return;
 
-		resetSingTimer();
+		if (!isBopping)
+			singTimer = 0;
 	}
 
 	override public function onHoldNoteDrop(event:HoldNoteScriptEvent)
