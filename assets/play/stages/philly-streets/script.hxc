@@ -1,0 +1,9 @@
+import funkin.play.stage.Stage;
+
+class PhillyStreetsStage extends Stage
+{
+    public function new()
+    {
+        super("philly-streets");
+    }
+}
