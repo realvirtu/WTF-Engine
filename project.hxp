@@ -106,7 +106,7 @@ class Project extends HXProject
         setHaxedef("lime_disable_assets_version");
         
         // Makes message reporting nice and pretty
-        // Remove this line if you"re lame
+        // Remove this line if you're lame
         setHaxedef("message.reporting", "pretty");
     }
 
