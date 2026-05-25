@@ -14,6 +14,8 @@ class Voices
 	public var opponentVolume(get, set):Float;
 	public var playerVolume(get, set):Float;
 
+	public var pitch(default, set):Float = 1;
+
 	public function new(song:Song)
 	{
 		opponent = FunkinSound.load(song.opponentPath, 1, false, false, false);
@@ -81,5 +83,16 @@ class Voices
 	inline function get_playerVolume():Float
 	{
 		return player.volume;
+	}
+
+	@:noCompletion
+	inline function set_pitch(value:Float):Float
+	{
+		pitch = value;
+
+		opponent.pitch = value;
+		player.pitch = value;
+
+		return value;
 	}
 }

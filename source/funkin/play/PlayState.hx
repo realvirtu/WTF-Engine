@@ -56,6 +56,11 @@ class PlayState extends FunkinState
 	public var songEnded:Bool;
 	public var songActive:Bool;
 
+	/**
+	 * TODO: Make this changeable ingame
+	 */
+	public var playbackRate:Float = 1.25;
+
 	public var events:Array<EventData>;
 	public var voices:Voices;
 
@@ -293,11 +298,13 @@ class PlayState extends FunkinState
 			songLoaded = true;
 
 			healthLerp = health;
-
 			tallies = new Tallies();
+
 			voices = new Voices(song);
+			voices.pitch = playbackRate;
 
 			FunkinSound.playMusic(song.instPath, 1, false, false);
+			FunkinSound.music.pitch = playbackRate;
 			FunkinSound.music.onComplete = endSong;
 		}
 		else
