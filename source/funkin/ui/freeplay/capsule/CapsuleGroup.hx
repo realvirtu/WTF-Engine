@@ -37,8 +37,8 @@ class CapsuleGroup extends FlxTypedGroup<CapsuleSprite>
 	{
 		super.update(elapsed);
 
-		var up:Bool = Controls.instance.UI_UP_P;
-		var down:Bool = Controls.instance.UI_DOWN_P;
+		var up:Bool = Controls.instance.UI_UP_T;
+		var down:Bool = Controls.instance.UI_DOWN_T;
 
 		if ((up || down) && !busy)
 			change(up ? -1 : 1);

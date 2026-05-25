@@ -33,10 +33,10 @@ class OptionList extends FlxTypedGroup<Option>
 	{
 		super.update(elapsed);
 
-		final up:Bool = controls.UI_UP_P;
-		final down:Bool = controls.UI_DOWN_P;
-		final left:Bool = controls.UI_LEFT_P;
-		final right:Bool = controls.UI_RIGHT_P;
+		final up:Bool = controls.UI_UP_T;
+		final down:Bool = controls.UI_DOWN_T;
+		final left:Bool = controls.UI_LEFT_T;
+		final right:Bool = controls.UI_RIGHT_T;
 		final accept:Bool = controls.ACCEPT;
 
 		if (up || down)
