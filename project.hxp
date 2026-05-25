@@ -101,6 +101,10 @@ class Project extends HXProject
         if (!isDebug())
             setHaxedef("analyzer-optimize");
 
+        // Should help resolve some stupid openfl event stuff
+        // Mainly memory leaks
+        setHaxedef("openfl_pool_events");
+
         // This stops Lime's AssetCache class from recompiling every single time
         // I promise you doing this does nothing bad
         setHaxedef("lime_disable_assets_version");
