@@ -59,7 +59,7 @@ class PlayState extends FunkinState
 	/**
 	 * TODO: Make this changeable ingame
 	 */
-	public var playbackRate:Float = 1;
+	public var playbackRate(default, set):Float = 1;
 
 	public var events:Array<EventData>;
 	public var voices:Voices;
@@ -802,5 +802,17 @@ class PlayState extends FunkinState
 		FunkinSound.music.stop();
 
 		super.destroy();
+	}
+
+	@:noCompletion
+	function set_playbackRate(value:Float):Float
+	{
+		value = Math.max(0, value);
+		playbackRate = value;
+
+		FunkinSound.music.pitch = value;
+		voices.pitch = value;
+
+		return value;
 	}
 }
