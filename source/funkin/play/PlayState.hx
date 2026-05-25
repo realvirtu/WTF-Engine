@@ -59,7 +59,7 @@ class PlayState extends FunkinState
 	/**
 	 * TODO: Make this changeable ingame
 	 */
-	public var playbackRate:Float = 1.25;
+	public var playbackRate:Float = 1;
 
 	public var events:Array<EventData>;
 	public var voices:Voices;
