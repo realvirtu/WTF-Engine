@@ -42,8 +42,7 @@ class ModHandler
 		});
 
 		#if HAS_MODDING
-		for (meta in Polymod.scan())
-			Polymod.loadMod(meta.dirName);
+		loadMods();
 		#end
 	}
 
@@ -51,7 +50,12 @@ class ModHandler
 	{
 		Polymod.clearCache();
 		Polymod.clearScripts();
+
+		#if HAS_MODDING
+		loadMods();
+		#else
 		Polymod.reload();
+		#end
 
 		// Reloads the registries
 		// Not having this would ruin the point of hot-reloading
@@ -74,6 +78,18 @@ class ModHandler
 		if (Playlist.level != null)
 			Playlist.level = LevelRegistry.instance.fetch(Playlist.level.id);
 	}
+
+	#if HAS_MODDING
+	/**
+	 * TODO: Make this only load enabled mods.
+	 * Well uh after a mod menu gets added.
+	 */
+	static function loadMods()
+	{
+		for (meta in Polymod.scan())
+			Polymod.loadMod(meta.dirName);
+	}
+	#end
 
 	static function buildImports()
 	{
