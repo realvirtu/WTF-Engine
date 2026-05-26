@@ -3,6 +3,7 @@ package funkin.input;
 import lime.system.System;
 import lime.ui.GamepadButton;
 import lime.ui.KeyCode;
+import openfl.events.Event;
 
 /**
  * The engine's control action class.
@@ -25,13 +26,7 @@ class FunkinAction
 		this.keys = keys;
 		this.buttons = buttons;
 
-		FlxG.signals.preUpdate.add(update);
-	}
-
-	public function update()
-	{
-		elapsed = System.getTimer() - lastTime;
-		lastTime = System.getTimer();
+		FlxG.stage.addEventListener(Event.ENTER_FRAME, update);
 	}
 
 	public function press()
@@ -55,6 +50,12 @@ class FunkinAction
 	public inline function hasButton(button:GamepadButton):Bool
 	{
 		return buttons.contains(button);
+	}
+
+	function update(_)
+	{
+		elapsed = System.getTimer() - lastTime;
+		lastTime = System.getTimer();
 	}
 
 	@:noCompletion
