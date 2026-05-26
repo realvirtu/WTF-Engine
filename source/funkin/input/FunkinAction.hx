@@ -1,24 +1,37 @@
 package funkin.input;
 
-import flixel.input.keyboard.FlxKey;
+import lime.system.System;
 import lime.ui.GamepadButton;
-import openfl.Lib;
+import lime.ui.KeyCode;
 
 /**
  * The engine's control action class.
  */
 class FunkinAction
 {
-	var keys:Array<FlxKey> = [];
+	public var pressed:Bool = false;
+	public var justPressed(get, never):Bool;
+
+	var keys:Array<KeyCode> = [];
 	var buttons:Array<GamepadButton> = [];
 
-	var pressed:Bool = false;
-	var timestamp:Float = -1;
+	var timestamp:Float;
 
-	public function new(keys:Array<FlxKey>, buttons:Array<GamepadButton>)
+	var lastTime:Float;
+	var elapsed:Float;
+
+	public function new(keys:Array<KeyCode>, buttons:Array<GamepadButton>)
 	{
 		this.keys = keys;
 		this.buttons = buttons;
+
+		FlxG.signals.preUpdate.add(update);
+	}
+
+	public function update()
+	{
+		elapsed = System.getTimer() - lastTime;
+		lastTime = System.getTimer();
 	}
 
 	public function press()
@@ -26,7 +39,7 @@ class FunkinAction
 		if (pressed)
 			return;
 		pressed = true;
-		timestamp = Lib.getTimer() + 1;
+		timestamp = System.getTimer();
 	}
 
 	public function release()
@@ -34,17 +47,7 @@ class FunkinAction
 		pressed = false;
 	}
 
-	public inline function check():Bool
-	{
-		return pressed;
-	}
-
-	public inline function checkPressed():Bool
-	{
-		return Lib.getTimer() - timestamp <= FlxG.elapsed;
-	}
-
-	public inline function hasKey(key:FlxKey):Bool
+	public inline function hasKey(key:KeyCode):Bool
 	{
 		return keys.contains(key);
 	}
@@ -52,5 +55,11 @@ class FunkinAction
 	public inline function hasButton(button:GamepadButton):Bool
 	{
 		return buttons.contains(button);
+	}
+
+	@:noCompletion
+	function get_justPressed():Bool
+	{
+		return System.getTimer() - timestamp <= elapsed;
 	}
 }
