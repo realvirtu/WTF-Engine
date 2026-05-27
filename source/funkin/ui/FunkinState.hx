@@ -56,6 +56,10 @@ class FunkinState extends FlxState
 		// Removes conductor callbacks
 		conductor.stepHit.remove(stepHit);
 		conductor.beatHit.remove(beatHit);
+
+		// Clears the asset cache
+		// This is pretty good ngl
+		FunkinMemory.clearCache();
 	}
 
 	@:noCompletion

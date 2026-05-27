@@ -114,9 +114,6 @@ class StickerSubState extends FunkinSubState
 					state._requestedSubState.openSubState(stickers);
 				else
 					state.openSubState(stickers);
-
-				// Clears the cache
-				FunkinMemory.clearCache();
 			});
 		}
 		else
