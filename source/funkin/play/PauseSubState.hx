@@ -1,6 +1,5 @@
 package funkin.play;
 
-import flixel.FlxCamera;
 import flixel.sound.FlxSound;
 import flixel.tweens.FlxTween;
 import funkin.audio.FunkinSound;
@@ -49,10 +48,6 @@ class PauseSubState extends FunkinSubState
 
 		music = FunkinSound.load(musicPath, 0);
 		music.fadeIn(2);
-
-		camera = new FlxCamera();
-		camera.bgColor = 0x0;
-		FlxG.cameras.add(camera, false);
 
 		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFF000000);
 		bg.alpha = 0;

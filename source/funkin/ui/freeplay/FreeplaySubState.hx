@@ -1,6 +1,5 @@
 package funkin.ui.freeplay;
 
-import flixel.FlxCamera;
 import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
 import funkin.data.song.SongRegistry;
@@ -67,11 +66,8 @@ class FreeplaySubState extends FunkinSubState
 
 		exitMovers = new ExitMovers();
 		stateMachine = new StateMachine();
-		conductor.reset(150);
 
-		camera = new FlxCamera();
-		camera.bgColor = 0x0;
-		FlxG.cameras.add(camera, false);
+		conductor.reset(150);
 
 		backcard = new BackcardSprite();
 		add(backcard);

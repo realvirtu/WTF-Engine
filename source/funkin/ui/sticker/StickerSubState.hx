@@ -1,6 +1,5 @@
 package funkin.ui.sticker;
 
-import flixel.FlxCamera;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxTimer;
 import flixel.util.typeLimit.NextState;
@@ -39,10 +38,6 @@ class StickerSubState extends FunkinSubState
 	override public function create()
 	{
 		super.create();
-
-		camera = new FlxCamera();
-		camera.bgColor = 0x0;
-		FlxG.cameras.add(camera, false);
 
 		stickers ??= new FlxTypedGroup<StickerSprite>();
 		add(stickers);

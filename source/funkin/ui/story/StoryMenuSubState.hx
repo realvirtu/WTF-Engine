@@ -1,12 +1,10 @@
 package funkin.ui.story;
 
-import flixel.FlxCamera;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
-import funkin.data.song.SongRegistry;
 import funkin.data.story.LevelRegistry;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
@@ -63,11 +61,8 @@ class StoryMenuSubState extends FunkinSubState
 
 		exitMovers = new ExitMovers();
 		stateMachine = new StateMachine();
-		conductor.reset(100);
 
-		camera = new FlxCamera();
-		camera.bgColor = 0x0;
-		FlxG.cameras.add(camera, false);
+		conductor.reset(100);
 
 		blackTop = FunkinSprite.createSolidColor(0, 0, FlxG.width, 50, 0xFF000000);
 		blackTop.active = false;

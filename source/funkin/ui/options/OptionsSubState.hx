@@ -1,6 +1,5 @@
 package funkin.ui.options;
 
-import flixel.FlxCamera;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import funkin.audio.FunkinSound;
@@ -26,10 +25,6 @@ class OptionsSubState extends FunkinSubState
 
 		stateMachine = new StateMachine();
 		exitMovers = new ExitMovers();
-
-		camera = new FlxCamera();
-		camera.bgColor = 0x0;
-		FlxG.cameras.add(camera, false);
 
 		bg = FunkinSprite.create(0, 0, 'ui/menu/bg', 1.5);
 		bg.color = 0xFFD400FF;

@@ -1,5 +1,6 @@
 package funkin.ui;
 
+import flixel.FlxCamera;
 import flixel.FlxSubState;
 import funkin.input.Controls;
 import funkin.modding.event.ScriptEvent;
@@ -16,6 +17,10 @@ class FunkinSubState extends FlxSubState
 	{
 		super();
 
+		camera = new FlxCamera();
+		camera.bgColor = 0x0;
+		FlxG.cameras.add(camera, false);
+
 		// Adds conductor callbacks
 		conductor.stepHit.add(stepHit);
 		conductor.beatHit.add(beatHit);
@@ -23,11 +28,13 @@ class FunkinSubState extends FlxSubState
 
 	override public function destroy()
 	{
-		super.destroy();
+		FlxG.cameras.remove(camera);
 
 		// Removes conductor callbacks
 		conductor.stepHit.remove(stepHit);
 		conductor.beatHit.remove(beatHit);
+
+		super.destroy();
 	}
 
 	public function dispatch(event:ScriptEvent)
