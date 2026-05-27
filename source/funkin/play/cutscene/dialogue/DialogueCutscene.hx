@@ -81,7 +81,7 @@ class DialogueCutscene extends BaseCutscene
 	{
 		super.update(elapsed);
 
-		if (controls.ACCEPT)
+		if (controls.ACCEPT_P)
 			finishLine();
 	}
 

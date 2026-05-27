@@ -72,7 +72,7 @@ class GameOverSubState extends FunkinSubState
 		menuConductor.time = music?.time;
 		menuConductor.update();
 
-		if (controls.ACCEPT)
+		if (controls.ACCEPT_P)
 			retry();
 		if (controls.BACK)
 			PlayState.instance.exit();

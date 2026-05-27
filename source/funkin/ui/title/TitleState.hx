@@ -180,7 +180,7 @@ class TitleState extends FunkinState
 		if (controls.BACK)
 			WindowUtil.exit();
 
-		if (controls.ACCEPT)
+		if (controls.ACCEPT_P)
 		{
 			#if HAS_TITLE_SCARE
 			if (seenIntro)

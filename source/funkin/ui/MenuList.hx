@@ -33,7 +33,7 @@ class MenuList extends FlxTypedGroup< #if hl Dynamic #else FunkinText #end>
 
 		if (controls.UI_UP_P || controls.UI_DOWN_P)
 			change(controls.UI_UP_P ? -1 : 1);
-		if (controls.ACCEPT)
+		if (controls.ACCEPT_P)
 			onSelected.dispatch(entries[selected]);
 
 		// Updates the items to be in the correct position

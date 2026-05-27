@@ -147,7 +147,7 @@ class FreeplaySubState extends FunkinSubState
 
 		if (controls.FAVORITE)
 			favorite(capsules.capsule);
-		if (controls.ACCEPT)
+		if (controls.ACCEPT_P)
 			confirm(capsules.capsule);
 		if (controls.BACK)
 			exit();
@@ -378,11 +378,10 @@ class FreeplaySubState extends FunkinSubState
 
 	override public function destroy()
 	{
-		if (_parentState != null)
-		{
-			FunkinSound.music.stop();
+		FunkinSound.music.stop();
+		@:privateAccess
+		if (FlxG.game._nextState == null)
 			MainMenuState.playMusic(true);
-		}
 
 		super.destroy();
 	}

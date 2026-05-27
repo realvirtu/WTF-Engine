@@ -167,7 +167,7 @@ class StoryMenuSubState extends FunkinSubState
 
 		scoreText.text = Std.string(Math.round(lerpScore)).leadingZeros(10);
 
-		if (controls.ACCEPT)
+		if (controls.ACCEPT_P)
 			confirm();
 		if (controls.BACK)
 			exit();
