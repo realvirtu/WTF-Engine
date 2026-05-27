@@ -55,6 +55,7 @@ class MainMenuState extends FunkinState
 		items.addItem('story', openStoryMenu);
 		items.addItem('freeplay', openFreeplayMenu);
 		items.addItem('options', openOptionsMenu);
+		items.addItem('merch', openMerch);
 		add(items);
 
 		change(selectedItem);
@@ -118,6 +119,13 @@ class MainMenuState extends FunkinState
 	function openOptionsMenu()
 	{
 		openSubState(new OptionsSubState());
+	}
+
+	function openMerch()
+	{
+		// Hell yeah!
+		// Support Funkin' today!
+		FlxG.openURL('https://needlejuicerecords.com/collections/friday-night-funkin');
 	}
 
 	public static function playMusic(fadeIn:Bool = false)
