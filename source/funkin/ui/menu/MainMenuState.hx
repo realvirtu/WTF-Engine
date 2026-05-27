@@ -132,7 +132,6 @@ class MainMenuState extends FunkinState
 	{
 		FunkinSound.playMusic('ui/music/menu', 1, true, true, false);
 		if (fadeIn)
-			FunkinSound.music.volume = 0;
-		FunkinSound.music.fadeIn(0.75, FunkinSound.music.volume);
+			FunkinSound.music.fadeIn(0.75, 0);
 	}
 }

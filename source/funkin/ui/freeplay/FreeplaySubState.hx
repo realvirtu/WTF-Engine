@@ -376,11 +376,15 @@ class FreeplaySubState extends FunkinSubState
 		FunkinSound.music.stop();
 	}
 
-	override public function close()
+	override public function destroy()
 	{
-		super.close();
+		if (_parentState != null)
+		{
+			FunkinSound.music.stop();
+			MainMenuState.playMusic(true);
+		}
 
-		MainMenuState.playMusic(true);
+		super.destroy();
 	}
 
 	@:noCompletion
