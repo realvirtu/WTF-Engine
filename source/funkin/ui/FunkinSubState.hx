@@ -28,7 +28,8 @@ class FunkinSubState extends FlxSubState
 
 	override public function destroy()
 	{
-		FlxG.cameras.remove(camera);
+		if (camera != null && camera != FlxG.camera)
+			FlxG.cameras.remove(camera);
 
 		// Removes conductor callbacks
 		conductor.stepHit.remove(stepHit);

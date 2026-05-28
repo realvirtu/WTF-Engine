@@ -44,6 +44,12 @@ class GameOverSubState extends FunkinSubState
 
 		_parentState.persistentDraw = false;
 
+		// This doesn't need a unique camera
+		// This should use the game's camera actually
+		FlxG.cameras.remove(camera);
+
+		camera = FlxG.camera;
+
 		menuConductor = new Conductor();
 		menuConductor.beatHit.add(beatHit);
 		menuConductor.reset(100);
