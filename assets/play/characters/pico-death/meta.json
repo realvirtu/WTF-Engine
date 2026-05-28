@@ -1,0 +1,21 @@
+{
+    "name": "Pico (Death)",
+    "width": 0,
+    "height": 0,
+    "globalOffset": [0, -350],
+    "cameraOffset": [0, 0],
+    "animations": [
+        {
+            "name": "start",
+            "frames": [0, 1, 2]
+        },
+        {
+            "name": "loop",
+            "frames": [3, 4, 2]
+        },
+        {
+            "name": "end",
+            "frames": [5, 6, 2]
+        }
+    ]
+}
