@@ -66,7 +66,12 @@ class CreditsState extends FunkinState
 		addLine('Contributors', true);
 
 		for (contributor in GitMacro.getContributors())
-			addLine(contributor.name);
+		{
+			final total:Int = GitMacro.getContributions();
+			final percent:Int = Std.int(contributor.contributions / total * 100);
+
+			addLine('${contributor.name} - $percent%');
+		}
 	}
 
 	function addLine(name:String, section:Bool = false)
