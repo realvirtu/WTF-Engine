@@ -56,6 +56,7 @@ class MainMenuState extends FunkinState
 		items.addItem('freeplay', openFreeplayMenu);
 		items.addItem('options', openOptionsMenu);
 		items.addItem('merch', openMerch);
+		items.addItem('credits', openCreditsMenu);
 		add(items);
 
 		change(selectedItem);
@@ -75,9 +76,6 @@ class MainMenuState extends FunkinState
 			FlxG.switchState(() -> new TitleState());
 		if (controls.ACCEPT_P)
 			confirm();
-
-		if (controls.FAVORITE)
-			openSubState(new CreditsState());
 
 		items.busy = !stateMachine.canInteract();
 	}
@@ -129,6 +127,11 @@ class MainMenuState extends FunkinState
 		// Hell yeah!
 		// Support Funkin' today!
 		FlxG.openURL('https://needlejuicerecords.com/collections/friday-night-funkin');
+	}
+
+	function openCreditsMenu()
+	{
+		openSubState(new CreditsSubState());
 	}
 
 	public static function playMusic(fadeIn:Bool = false)

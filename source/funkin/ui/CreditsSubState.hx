@@ -13,7 +13,7 @@ import funkin.util.macro.GitMacro;
 /**
  * A `FunkinSubState` that contains the engine's credits.
  */
-class CreditsState extends FunkinSubState
+class CreditsSubState extends FunkinSubState
 {
 	final LINE_SPACING:Float = 20;
 	final SCROLL_SPEED:Float = 50;
