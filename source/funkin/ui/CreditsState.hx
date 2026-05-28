@@ -39,7 +39,7 @@ class CreditsState extends FunkinState
 		credits = new FlxTypedGroup<FunkinText>();
 		add(credits);
 
-		lineY = logo.y + logo.height + 50;
+		lineY = logo.y + logo.height + 30;
 
 		buildCredits();
 	}
@@ -72,6 +72,26 @@ class CreditsState extends FunkinState
 
 			addLine('${contributor.name} - $percent%');
 		}
+
+		// Special thanks
+		// Don't be offended if you aren't on here
+		addLine('Special Thanks', true);
+		addLine('The Funkin\' Crew Inc.');
+		addLine('The Funkin\' Contributors');
+		addLine('TechnikTil');
+		addLine('AnimatingLegend');
+		addLine('MightyTheArmiddilo');
+		addLine('CharlesIsCoffer');
+		addLine('CrusherNotDrip');
+		addLine('ADA Funni');
+		addLine('PurSnake');
+		addLine('Requazar');
+		addLine('Maki');
+		addLine('ACrazyTown');
+		addLine('Rodney');
+		addLine('minimehan');
+		addLine('Ahmed7P');
+		addLine('Blake');
 	}
 
 	function addLine(name:String, section:Bool = false)
