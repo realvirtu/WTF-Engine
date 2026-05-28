@@ -77,7 +77,7 @@ class MainMenuState extends FunkinState
 			confirm();
 
 		if (controls.FAVORITE)
-			FlxG.switchState(() -> new CreditsState());
+			openSubState(new CreditsState());
 
 		items.busy = !stateMachine.canInteract();
 	}

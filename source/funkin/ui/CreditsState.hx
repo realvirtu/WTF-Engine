@@ -2,6 +2,8 @@ package funkin.ui;
 
 import flixel.FlxObject;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
@@ -9,16 +11,21 @@ import funkin.ui.menu.MainMenuState;
 import funkin.util.macro.GitMacro;
 
 /**
- * A `FunkinState` that contains the engine's credits.
+ * A `FunkinSubState` that contains the engine's credits.
  */
-class CreditsState extends FunkinState
+class CreditsState extends FunkinSubState
 {
 	final LINE_SPACING:Float = 20;
 	final SCROLL_SPEED:Float = 50;
 
 	var lineY:Float = 0;
 
+	var exitMovers:ExitMovers;
+	var stateMachine:StateMachine;
+
 	var camFollow:FlxObject;
+
+	var bg:FunkinSprite;
 	var credits:FlxTypedGroup<FunkinText>;
 
 	override public function create()
@@ -26,10 +33,19 @@ class CreditsState extends FunkinState
 		super.create();
 
 		FunkinSound.playMusic('ui/freeplay/music/random');
+		FunkinSound.music.fadeIn(0.75);
+
+		exitMovers = new ExitMovers();
+		stateMachine = new StateMachine();
 
 		camFollow = new FlxObject();
 		camFollow.screenCenter();
-		FlxG.camera.follow(camFollow);
+		camera.follow(camFollow);
+
+		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFF000000);
+		bg.scrollFactor.set();
+		bg.active = false;
+		add(bg);
 
 		var logo:FunkinSprite = FunkinSprite.create(0, 100, 'ui/title/logo', 1.25);
 		logo.screenCenter(X);
@@ -41,7 +57,10 @@ class CreditsState extends FunkinState
 
 		lineY = logo.y + logo.height + 30;
 
+		exitMovers.add(logo, FlxG.width);
+
 		buildCredits();
+		intro();
 	}
 
 	override public function update(elapsed:Float)
@@ -51,7 +70,7 @@ class CreditsState extends FunkinState
 		camFollow.y += SCROLL_SPEED * (controls.ACCEPT ? 5 : 1) * elapsed;
 
 		// Exit to the main menu
-		if (controls.BACK || FlxG.camera.viewTop > lineY)
+		if (controls.BACK || camera.viewTop > lineY)
 			exit();
 	}
 
@@ -107,18 +126,45 @@ class CreditsState extends FunkinState
 
 		lineY += line.height + LINE_SPACING;
 
+		exitMovers.add(line, -line.width);
+
 		credits.add(line);
+	}
+
+	function intro()
+	{
+		stateMachine.transition(TRANSITIONING);
+
+		exitMovers.intro();
+		exitMovers.onIntroDone = stateMachine.reset;
+
+		bg.scale.x = bg.scale.y = 0;
+
+		FlxTween.tween(bg.scale, {x: FlxG.width, y: FlxG.height}, 0.75, {ease: FlxEase.quintOut});
 	}
 
 	function exit()
 	{
-		FlxG.switchState(() -> new MainMenuState());
+		if (!stateMachine.canInteract())
+			return;
+		stateMachine.transition(TRANSITIONING);
+
+		exitMovers.outro();
+		exitMovers.onOutroDone = close;
+
+		FlxTween.tween(bg.scale, {x: 0, y: 0}, 0.75, {ease: FlxEase.quintOut});
+
+		FunkinSound.playOnce('ui/sounds/cancel');
+		FunkinSound.music.stop();
 	}
 
 	override public function destroy()
 	{
-		super.destroy();
-
 		FunkinSound.music.stop();
+		@:privateAccess
+		if (FlxG.game._nextState == null)
+			MainMenuState.playMusic(true);
+
+		super.destroy();
 	}
 }
