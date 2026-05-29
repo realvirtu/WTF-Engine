@@ -86,38 +86,22 @@ class SongRegistry extends BaseRegistry<Song>
 				var song:Song = ScriptedSong.scriptInit(script, '');
 				var ogSong:Song = fetch(song.id);
 
-				// Allows variations to have unique scripts :D
-				// Only if the variation isn't the default one though
-				if (song.variation?.isEmpty())
-					song.variation = null;
-				song.variation ??= Constants.DEFAULT_VARIATION;
+				if (song.variation == null || song.variation.isEmpty())
+					song.variation = Constants.DEFAULT_VARIATION;
 
-				if (song.variation != Constants.DEFAULT_VARIATION)
-				{
-					ogSong = ogSong.getVariation(song.variation);
-
-					// Can't use ogSong because it just wouldn't work
-					// This is honestly better than the game crashing
-					fetch(song.id).variations.set(song.variation, song);
-				}
-				else
+				if (song.variation == Constants.DEFAULT_VARIATION)
 					entries.set(song.id, song);
+				else
+				{
+					var ogVariation:Song = ogSong.getVariation(song.variation);
+
+					ogSong.variations.set(song.variation, song);
+					ogSong = ogVariation;
+				}
 
 				song.meta = ogSong.meta;
 				song.chart = ogSong.chart;
 				song.variations = ogSong.variations;
-
-				for (variation in song.variations.keys())
-				{
-					var songVariation:Song = ScriptedSong.scriptInit(script, '');
-					var ogVariation:Song = ogSong.getVariation(variation);
-
-					songVariation.meta = ogVariation.meta;
-					songVariation.chart = ogVariation.chart;
-					songVariation.variation = ogVariation.variation;
-
-					song.variations.set(variation, songVariation);
-				}
 			}
 			catch (e)
 				trace('Failed to load script $script.');

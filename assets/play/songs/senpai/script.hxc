@@ -8,7 +8,8 @@ import funkin.play.PlayState;
 
 class SenpaiSong extends Song
 {
-    var seenCutscene:Bool = false;
+    var seenCutscene:Bool;
+    var seenSentpajim:Bool;
 
     var sentpajim:Bool;
     var noteCount:Int;
@@ -54,27 +55,37 @@ class SenpaiSong extends Song
 
         if (sentpajim && noteCount > 3 && opponent?.hasAnimation("sentpajim"))
         {
-            // Prevents singing from overriding the animation
-            event.note.kind = "no-anim";
-
-            opponent.playAnimation("sentpajim");
-            opponent.screenCenter();
-            opponent.centerOffsets();
-            opponent.scrollFactor.set();
-
             PlayState.instance.stage.remove(opponent, true);
             PlayState.instance.add(opponent);
             
             PlayState.instance.camHUD.visible = false;
             PlayState.instance.stage.visible = false;
 
-            PlayState.instance.songActive = false;
+            PlayState.instance.endSong();
 
-            FlxG.camera.active = false;
+            FunkinSound.playOnce('$path/sentpajim');
 
-            FunkinSound.stopAllSounds(true);
-            FlxTimer.wait(0.1, PlayState.instance.endSong);
+            event.playAnimation = false;
+
+            opponent.playAnimation("sentpajim");
+            opponent.screenCenter();
+            opponent.centerOffsets();
+            opponent.scrollFactor.set();
+
+            seenSentpajim = true;
+
+            FlxTimer.wait(0.2, PlayState.instance.endSong);
         }
+    }
+
+    override function onSongEnd(event:ScriptEvent)
+    {
+        super.onSongEnd(event);
+
+        if (!sentpajim || seenSentpajim)
+            return;
+
+        event.cancel();
     }
 
     override function onDestroy(event:ScriptEvent)
@@ -82,5 +93,6 @@ class SenpaiSong extends Song
         super.onDestroy(event);
 
         seenCutscene = false;
+        seenSentpajim = false;
     }
 }

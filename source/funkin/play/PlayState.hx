@@ -494,6 +494,7 @@ class PlayState extends FunkinState
 		var event:ScriptEvent = new ScriptEvent(SONG_END);
 		dispatch(event);
 
+		songActive = false;
 		songEnded = true;
 
 		FunkinSound.stopAllSounds(true);
