@@ -3,6 +3,7 @@ package funkin.util.macro;
 #if macro
 import haxe.Http;
 import haxe.Json;
+import haxe.macro.Context;
 import haxe.macro.Expr;
 #end
 
