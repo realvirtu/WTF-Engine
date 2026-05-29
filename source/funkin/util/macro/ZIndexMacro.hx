@@ -1,6 +1,6 @@
 package funkin.util.macro;
 
-#if (macro && !display)
+#if macro
 import haxe.macro.Context;
 import haxe.macro.Expr;
 
@@ -11,6 +11,9 @@ class ZIndexMacro
 {
 	public static macro function buildFlxBasic():Array<Field>
 	{
+		if (Context.defined('display'))
+			return [];
+
 		var fields = Context.getBuildFields();
 		var has:Bool = false;
 
@@ -36,6 +39,9 @@ class ZIndexMacro
 
 	public static macro function buildFlxGroup():Array<Field>
 	{
+		if (Context.defined('display'))
+			return [];
+
 		var fields = Context.getBuildFields();
 		var has:Bool = false;
 

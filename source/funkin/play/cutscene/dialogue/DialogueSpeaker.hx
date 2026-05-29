@@ -14,7 +14,7 @@ class DialogueSpeaker extends FunkinSprite
 {
 	static var parser(default, null) = new JsonParser<DialogueSpeakerData>();
 
-	public var right:Bool = false;
+	public var meta:DialogueSpeakerData;
 
 	public function new()
 	{
@@ -36,19 +36,15 @@ class DialogueSpeaker extends FunkinSprite
 			return;
 		}
 
-		var meta:DialogueSpeakerData = parser.fromJson(FileUtil.getText(metaPath));
-		var off:FlxPoint = MathUtil.arrayToPoint(meta.offset);
+		meta = parser.fromJson(FileUtil.getText(metaPath));
+		visible = true;
 
 		loadSprite('$path/image', meta.scale);
 		centerOffsets();
 
-		right = meta.right;
+		final off:FlxPoint = MathUtil.arrayToPoint(meta.offset);
 
-		offset.add(off.x, off.y);
-		visible = graphic != null;
-
-		// We're done with the offset point
-		// Why not add it back to the pool
+		offset.add(off);
 		off.put();
 	}
 }

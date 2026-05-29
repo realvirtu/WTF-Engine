@@ -5,6 +5,7 @@ package funkin.data.dialogue;
  */
 typedef DialogueData =
 {
+	var name:String;
 	var box:String;
 	@:optional
 	var music:String;

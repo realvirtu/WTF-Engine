@@ -5,8 +5,8 @@ package funkin.data.dialogue;
  */
 typedef DialogueSpeakerData =
 {
-	var offset:Array<Float>;
-	var right:Bool;
+	var name:String;
 	@:default(1)
 	var scale:Float;
+	var offset:Array<Float>;
 }

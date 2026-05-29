@@ -1,4 +1,5 @@
 {
-    "offset": [-30, -50],
-    "scale": 4
+    "name": "Spirit",
+    "scale": 3.5,
+    "offset": [0, 0]
 }

@@ -14,8 +14,7 @@ class DialogueBox extends FunkinSprite
 {
 	static var parser(default, null) = new JsonParser<DialogueBoxData>();
 
-	public var speakerOffset:FlxPoint;
-	public var textOffset:FlxPoint;
+	public var meta:DialogueBoxData;
 
 	public function new(id:String)
 	{
@@ -28,23 +27,14 @@ class DialogueBox extends FunkinSprite
 		if (!Paths.exists(metaPath))
 			return;
 
-		var meta:DialogueBoxData = parser.fromJson(FileUtil.getText(metaPath));
+		meta = parser.fromJson(FileUtil.getText(metaPath));
 
-		speakerOffset = MathUtil.arrayToPoint(meta.speakerOffset);
-		textOffset = MathUtil.arrayToPoint(meta.textOffset);
+		loadSprite('$path/image', meta.scale);
+		centerOffsets();
 
-		loadSprite('$path/image', meta.scale, meta.width, meta.height);
+		final off:FlxPoint = MathUtil.arrayToPoint(meta.offset);
 
-		addAnimation('start', [0, 1, 2], 10, false);
-		playAnimation('start');
-	}
-
-	override public function destroy()
-	{
-		super.destroy();
-
-		// Add these points back into the pool
-		speakerOffset.put();
-		textOffset.put();
+		offset.add(off);
+		off.put();
 	}
 }

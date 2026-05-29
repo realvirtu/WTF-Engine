@@ -17,6 +17,7 @@ class DialogueCutscene extends BaseCutscene
 {
 	static var parser(default, null) = new JsonParser<DialogueData>();
 
+	final TEXT_POSITION:Float = 50;
 	final TYPE_SPEED:Float = 0.03;
 	final FADE_SPEED:Float = 1;
 
@@ -65,8 +66,13 @@ class DialogueCutscene extends BaseCutscene
 		box.y = FlxG.height - box.height - 50;
 		add(box);
 
-		text = new FunkinText(box.x + box.textOffset.x, box.y + box.textOffset.y);
+		text = new FunkinText(box.x + TEXT_POSITION, box.y + TEXT_POSITION);
+		text.fieldWidth = Std.int(box.width - TEXT_POSITION * 2);
 		text.size = 24;
+		text.wrap = CHAR;
+		text.borderColor = 0xFF000000;
+		text.borderSize = 4;
+		text.borderStyle = SHADOW;
 		add(text);
 	}
 
@@ -94,8 +100,6 @@ class DialogueCutscene extends BaseCutscene
 		else
 			text.text = lineText;
 
-		box.playAnimation('start', true);
-
 		FunkinSound.playOnce('play/dialogue/sounds/next');
 	}
 
@@ -118,10 +122,7 @@ class DialogueCutscene extends BaseCutscene
 
 		speaker.load(line.speaker);
 		speaker.x = box.x;
-		speaker.y = box.y - speaker.height + box.speakerOffset.y;
-		if (speaker.right)
-			speaker.x = box.x + box.width - speaker.width;
-		speaker.x += box.speakerOffset.x;
+		speaker.y = box.y - speaker.height;
 
 		typeText();
 	}

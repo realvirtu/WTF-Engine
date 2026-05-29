@@ -1,5 +1,6 @@
 {
-    "box": "pixel",
+    "name": "Senpai",
+    "box": "roses",
     "music": "lunchbox",
     "lines": [
         {
@@ -8,11 +9,11 @@
         },
         {
             "speaker": "senpai",
-            "text": "your girlfriend is hot. i ask politely for\nyou to hand her over."
+            "text": "your girlfriend is hot. i ask politely for you to hand her over."
         },
         {
-            "speaker": "bf",
-            "text": "beep bop bap skibidi toilet boop skeedoop\nbop."
+            "speaker": "bf-pixel",
+            "text": "beep bop bap skibidi toilet boop skeedoop bop."
         }
     ]
 }

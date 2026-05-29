@@ -16,7 +16,7 @@ class RosesSong extends Song
     {
         super.onCountdownStart(event);
 
-        if (seenCutscene || !Playlist.isStory) return;
+        if (seenCutscene /*|| !Playlist.isStory*/) return;
         seenCutscene = true;
 
         event.cancel();

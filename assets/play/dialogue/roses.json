@@ -1,5 +1,6 @@
 {
-    "box": "pixel",
+    "name": "Roses",
+    "box": "roses",
     "lines": [
         {
             "speaker": "senpai-angry",
@@ -14,7 +15,7 @@
             "text": "all i want is to get freaky."
         },
         {
-            "speaker": "bf",
+            "speaker": "bf-pixel",
             "text": "bep boop baskeedoop bop."
         }
     ]
