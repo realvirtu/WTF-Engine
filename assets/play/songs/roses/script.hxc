@@ -1,3 +1,4 @@
+import funkin.audio.FunkinSound;
 import funkin.play.cutscene.dialogue.DialogueCutscene;
 import funkin.play.song.Song;
 import funkin.play.Playlist;
@@ -20,6 +21,8 @@ class RosesSong extends Song
         seenCutscene = true;
 
         event.cancel();
+
+        FunkinSound.playOnce('$path/sounds/angry');
 
         PlayState.instance.startCutscene(new DialogueCutscene(id, () ->
         {

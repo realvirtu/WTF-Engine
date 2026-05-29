@@ -63,7 +63,7 @@ class SenpaiSong extends Song
 
             PlayState.instance.endSong();
 
-            FunkinSound.playOnce('$path/sentpajim');
+            FunkinSound.playOnce('$path/sounds/sentpajim');
 
             event.playAnimation = false;
 
