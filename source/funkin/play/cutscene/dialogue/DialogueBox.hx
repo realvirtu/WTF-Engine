@@ -1,6 +1,7 @@
 package funkin.play.cutscene.dialogue;
 
 import flixel.math.FlxPoint;
+import flixel.util.FlxTimer;
 import funkin.data.dialogue.DialogueBoxData;
 import funkin.graphics.FunkinSprite;
 import funkin.util.FileUtil;
@@ -15,6 +16,10 @@ class DialogueBox extends FunkinSprite
 	static var parser(default, null) = new JsonParser<DialogueBoxData>();
 
 	public var meta:DialogueBoxData;
+
+	var scaleX:Float;
+	var scaleY:Float;
+	var squashTimer:FlxTimer;
 
 	public function new(id:String)
 	{
@@ -36,5 +41,21 @@ class DialogueBox extends FunkinSprite
 
 		offset.add(off);
 		off.put();
+
+		scaleX = scale.x;
+		scaleY = scale.y;
+	}
+
+	public function squash()
+	{
+		squashTimer?.cancel();
+		squashTimer = FlxTimer.wait(0.1, () ->
+		{
+			scale.x = scaleX;
+			scale.y = scaleY;
+		});
+
+		scale.x = scaleX * 1.05;
+		scale.y = scaleY * 0.95;
 	}
 }

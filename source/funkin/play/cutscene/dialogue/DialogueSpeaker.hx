@@ -1,6 +1,7 @@
 package funkin.play.cutscene.dialogue;
 
 import flixel.math.FlxPoint;
+import flixel.util.FlxTimer;
 import funkin.data.dialogue.DialogueSpeakerData;
 import funkin.graphics.FunkinSprite;
 import funkin.util.FileUtil;
@@ -15,6 +16,8 @@ class DialogueSpeaker extends FunkinSprite
 	static var parser(default, null) = new JsonParser<DialogueSpeakerData>();
 
 	public var meta:DialogueSpeakerData;
+
+	var squashTimer:FlxTimer;
 
 	public function new()
 	{
@@ -46,5 +49,13 @@ class DialogueSpeaker extends FunkinSprite
 
 		offset.add(off);
 		off.put();
+	}
+
+	public function squash()
+	{
+		y += 10;
+
+		squashTimer?.cancel();
+		squashTimer = FlxTimer.wait(0.05, () -> y -= 10);
 	}
 }
