@@ -27,6 +27,9 @@ class GitMacro
 
 	public static macro function getContributors():ExprOf<Array<ContributorData>>
 	{
+		if (Context.defined('display'))
+			return macro $v{[]};
+
 		if (_contributors != null)
 		{
 			trace('Using cached GitHub contributors list...');
