@@ -49,7 +49,7 @@ class DialogueCutscene extends BaseCutscene
 		data = parser.fromJson(FileUtil.getText(path));
 		lines = data.lines.copy();
 
-		music = FunkinSound.load('play/dialogue/music/${data.music}');
+		music = FunkinSound.load('play/dialogue/music/${data.music}', 0);
 		music.fadeIn();
 
 		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFFFFFFFF);

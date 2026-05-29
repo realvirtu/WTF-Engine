@@ -32,7 +32,7 @@ class CreditsSubState extends FunkinSubState
 	{
 		super.create();
 
-		FunkinSound.playMusic('ui/freeplay/music/random');
+		FunkinSound.playMusic('ui/freeplay/music/random', 0);
 		FunkinSound.music.fadeIn(0.75);
 
 		exitMovers = new ExitMovers();
