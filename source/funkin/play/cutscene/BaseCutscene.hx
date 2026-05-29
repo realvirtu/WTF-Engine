@@ -55,7 +55,7 @@ class BaseCutscene extends FlxGroup
 		if (FlxG.cameras.list.contains(camera))
 			FlxG.cameras.remove(camera);
 
-		PlayState.instance.remove(this, true);
+		PlayState.instance?.remove(this, true);
 
 		super.destroy();
 	}
