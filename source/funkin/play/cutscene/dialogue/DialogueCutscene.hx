@@ -100,8 +100,6 @@ class DialogueCutscene extends BaseCutscene
 		else
 			text.text = lineText;
 
-		box.squash();
-
 		FunkinSound.playOnce('play/dialogue/sounds/next');
 	}
 
@@ -125,8 +123,6 @@ class DialogueCutscene extends BaseCutscene
 		speaker.load(line.speaker);
 		speaker.x = box.x;
 		speaker.y = box.y - speaker.height;
-
-		speaker.squash();
 
 		typeText();
 	}
