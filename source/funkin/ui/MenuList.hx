@@ -40,8 +40,8 @@ class MenuList extends FlxTypedGroup< #if hl Dynamic #else FunkinText #end>
 		forEachAlive(item ->
 		{
 			item.alpha = item.ID == selected ? 1 : 0.6;
-			item.x = MathUtil.lerp(item.x, getItemX(#if hl cast #end item), 0.15);
-			item.y = MathUtil.lerp(item.y, getItemY(#if hl cast #end item), 0.15);
+			item.x = MathUtil.lerp(item.x, getItemX(#if hl cast #end item), 0.2);
+			item.y = MathUtil.lerp(item.y, getItemY(#if hl cast #end item), 0.2);
 		});
 	}
 
