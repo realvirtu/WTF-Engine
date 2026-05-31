@@ -40,6 +40,8 @@ class CreditsSubState extends FunkinSubState
 
 		camFollow = new FlxObject();
 		camFollow.screenCenter();
+		camFollow.active = false;
+
 		camera.follow(camFollow);
 
 		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFF000000);
@@ -53,6 +55,7 @@ class CreditsSubState extends FunkinSubState
 		add(logo);
 
 		credits = new FlxTypedGroup<FunkinText>();
+		credits.active = false;
 		add(credits);
 
 		lineY = logo.y + logo.height + 30;
