@@ -47,7 +47,7 @@ class LevelRegistry extends BaseRegistry<Level>
 		// SCRIPTED
 		//
 
-		var scripts:Array<String> = ScriptedLevel.listScriptClasses();
+		final scripts:Array<String> = ScriptedLevel.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted level(s)...');
 

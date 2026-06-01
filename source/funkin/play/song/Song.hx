@@ -25,6 +25,7 @@ class Song implements IPlayStateScriptedClass
 	public var artist(get, never):String;
 	public var difficulties(get, never):Array<String>;
 
+	public var album(get, never):String;
 	public var style(get, never):String;
 	public var stickerpack(get, never):String;
 
@@ -116,6 +117,12 @@ class Song implements IPlayStateScriptedClass
 	function get_difficulties():Array<String>
 	{
 		return meta.difficulties;
+	}
+
+	@:noCompletion
+	function get_album():String
+	{
+		return meta.album;
 	}
 
 	@:noCompletion

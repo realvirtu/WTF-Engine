@@ -47,7 +47,7 @@ class CharacterRegistry extends BaseRegistry<CharacterData>
 
 		scripted.clear();
 
-		var scripts:Array<String> = ScriptedCharacter.listScriptClasses();
+		final scripts:Array<String> = ScriptedCharacter.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted character(s)...');
 

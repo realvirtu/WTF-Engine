@@ -37,6 +37,9 @@ class ScriptedBaseCutscene extends funkin.play.cutscene.BaseCutscene implements 
 class ScriptedStickerPack extends funkin.ui.sticker.StickerPack implements HScriptedClass {}
 
 @:hscriptClass
+class ScriptedAlbum extends funkin.ui.freeplay.album.Album implements HScriptedClass {}
+
+@:hscriptClass
 class ScriptedModule extends funkin.modding.module.Module implements HScriptedClass {}
 
 //

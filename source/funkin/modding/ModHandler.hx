@@ -1,5 +1,6 @@
 package funkin.modding;
 
+import funkin.data.album.AlbumRegistry;
 import funkin.data.character.CharacterRegistry;
 import funkin.data.event.EventRegistry;
 import funkin.data.notekind.NoteKindRegistry;
@@ -67,6 +68,7 @@ class ModHandler
 		NoteKindRegistry.instance.load();
 		StyleRegistry.instance.load();
 		StickerRegistry.instance.load();
+		AlbumRegistry.instance.load();
 
 		// Reload all the modules
 		ModuleHandler.load();

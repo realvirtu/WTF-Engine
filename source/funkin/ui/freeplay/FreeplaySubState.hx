@@ -11,6 +11,7 @@ import funkin.play.PlayState;
 import funkin.play.Playlist;
 import funkin.play.song.Song;
 import funkin.save.Save;
+import funkin.ui.freeplay.album.AlbumSprite;
 import funkin.ui.freeplay.capsule.CapsuleGroup;
 import funkin.ui.freeplay.capsule.CapsuleSprite;
 import funkin.ui.freeplay.components.BackcardSprite;
@@ -46,6 +47,7 @@ class FreeplaySubState extends FunkinSubState
 	var backingImage:FunkinSprite;
 	var dj:DJSprite;
 	var capsules:CapsuleGroup;
+	var album:AlbumSprite;
 	var scoreText:FunkinText;
 	var diffText:DifficultyText;
 	var sortText:SortText;
@@ -102,6 +104,10 @@ class FreeplaySubState extends FunkinSubState
 		ostText.x = FlxG.width - ostText.width - freeplayText.x;
 		ostText.zIndex = blackbar.zIndex;
 		add(ostText);
+
+		album = new AlbumSprite();
+		album.angle = 2;
+		add(album);
 
 		scoreText = new FunkinText(0, blackbar.height + 40);
 		scoreText.alignment = RIGHT;
@@ -179,6 +185,11 @@ class FreeplaySubState extends FunkinSubState
 		selectedSong = selected;
 
 		songScore = Save.instance.getSongScore(song?.id, difficulty);
+
+		album.load(song?.album);
+		album.screenCenter(Y);
+		album.x = FlxG.width - album.sprite.width - 60;
+		album.y += 30;
 
 		// TODO: Song previews
 		if (lastSong != song)

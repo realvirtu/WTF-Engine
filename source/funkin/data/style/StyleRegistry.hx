@@ -45,7 +45,7 @@ class StyleRegistry extends BaseRegistry<Style>
 		// SCRIPTED
 		//
 
-		var scripts:Array<String> = ScriptedStyle.listScriptClasses();
+		final scripts:Array<String> = ScriptedStyle.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted style(s)...');
 

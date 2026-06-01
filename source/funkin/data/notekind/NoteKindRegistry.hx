@@ -26,7 +26,7 @@ class NoteKindRegistry extends BaseRegistry<NoteKind>
 		super.load();
 
 		// Loading note kinds just like scripts because it's literally just code
-		var scripts:Array<String> = ScriptedNoteKind.listScriptClasses();
+		final scripts:Array<String> = ScriptedNoteKind.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted notekind(s)...');
 

@@ -71,6 +71,7 @@ class SongConverter
 		wtfMeta.style = meta.playData.noteStyle;
 		wtfMeta.difficulties = meta.playData.difficulties;
 		wtfMeta.rating = meta.playData.ratings;
+		wtfMeta.album = meta.playData.album;
 		wtfMeta.stage = meta.playData.stage;
 		wtfMeta.player = meta.playData.characters.player;
 		wtfMeta.opponent = meta.playData.characters.opponent;

@@ -21,7 +21,7 @@ class EventRegistry extends BaseRegistry<SongEvent>
 
 		// Song events are loaded just like how scripted stuff is loaded in registries
 		// Song events are literally just code, so yeah
-		var scripts:Array<String> = ScriptedSongEvent.listScriptClasses();
+		final scripts:Array<String> = ScriptedSongEvent.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted song event(s)...');
 

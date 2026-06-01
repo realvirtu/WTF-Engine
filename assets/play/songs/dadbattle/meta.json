@@ -11,6 +11,7 @@
 	"stage": "stage",
 	"bpm": 180,
 	"artist": "Kawai Sprite",
+	"album": "volume1",
 	"rating": {
 		"normal": 2,
 		"hard": 3,

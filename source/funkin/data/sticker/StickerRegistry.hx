@@ -45,7 +45,7 @@ class StickerRegistry extends BaseRegistry<StickerPack>
 		// SCRIPTED
 		//
 
-		var scripts:Array<String> = ScriptedStickerPack.listScriptClasses();
+		final scripts:Array<String> = ScriptedStickerPack.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted stickerpack(s)...');
 

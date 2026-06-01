@@ -75,7 +75,7 @@ class SongRegistry extends BaseRegistry<Song>
 		// SCRIPTED
 		//
 
-		var scripts:Array<String> = ScriptedSong.listScriptClasses();
+		final scripts:Array<String> = ScriptedSong.listScriptClasses();
 
 		trace('Loading ${scripts.length} scripted song(s)...');
 

@@ -17,7 +17,7 @@ class ModuleHandler
 		clear();
 
 		// Loads the modules
-		var scripts:Array<String> = ScriptedModule.listScriptClasses();
+		final scripts:Array<String> = ScriptedModule.listScriptClasses();
 
 		for (script in scripts)
 		{

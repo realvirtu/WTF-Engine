@@ -4,6 +4,7 @@ import flixel.FlxObject;
 import flixel.FlxState;
 import funkin.Conductor;
 import funkin.DiscordRPC;
+import funkin.data.album.AlbumRegistry;
 import funkin.data.character.CharacterRegistry;
 import funkin.data.event.EventRegistry;
 import funkin.data.notekind.NoteKindRegistry;
@@ -71,6 +72,7 @@ class InitState extends FlxState
 		NoteKindRegistry.instance = new NoteKindRegistry();
 		StyleRegistry.instance = new StyleRegistry();
 		StickerRegistry.instance = new StickerRegistry();
+		AlbumRegistry.instance = new AlbumRegistry();
 
 		ModuleHandler.load();
 
