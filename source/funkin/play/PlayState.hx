@@ -62,19 +62,22 @@ class PlayState extends FunkinState
 	public var playbackRate(default, set):Float = 1;
 
 	public var events:Array<EventData>;
-	public var voices:Voices;
 
+	public var voices:Voices;
+	public var style:Style;
 	public var tallies:Tallies;
+
 	public var score:Float;
 	public var health:Float;
 	public var healthLerp:Float;
 	public var deaths:Int = 0;
 
-	public var style:Style;
-
-	public var camHUD:FlxCamera;
+	public var defaultZoom:Float;
+	public var camZoom:Float;
 
 	public var camFollow:FlxObject;
+	public var camHUD:FlxCamera;
+
 	public var cutscene:BaseCutscene;
 
 	public var opponentStrumline:Strumline;
@@ -174,6 +177,8 @@ class PlayState extends FunkinState
 		popups = new Popups(style);
 		add(popups);
 
+		defaultZoom = stage.zoom;
+
 		loadCharacters();
 		resetSong();
 
@@ -249,7 +254,7 @@ class PlayState extends FunkinState
 			timeText.screenCenter(X);
 		}
 
-		FlxG.camera.zoom = MathUtil.lerp(FlxG.camera.zoom, stage.zoom, 0.03);
+		FlxG.camera.zoom = MathUtil.lerp(FlxG.camera.zoom, camZoom, 0.03);
 		camHUD.zoom = MathUtil.lerp(camHUD.zoom, 1, 0.03);
 
 		// Death :(
@@ -282,7 +287,7 @@ class PlayState extends FunkinState
 
 		if (beat % 2 == 0)
 		{
-			FlxG.camera.zoom = stage.zoom + 0.05;
+			FlxG.camera.zoom = camZoom + 0.05;
 			camHUD.zoom = 1.02;
 		}
 	}
@@ -329,7 +334,8 @@ class PlayState extends FunkinState
 		setCameraTarget(stage.opponent, true);
 		setCameraTarget(stage.player, true);
 
-		FlxG.camera.zoom = stage.zoom;
+		// Reset the camera zoom
+		setCameraZoom(null, true);
 
 		// Loads the strumline
 		var notes:Array<SongNoteData> = song.getNotes(difficulty);
@@ -400,6 +406,16 @@ class PlayState extends FunkinState
 
 		if (instant)
 			FlxG.camera.snapToTarget();
+	}
+
+	public function setCameraZoom(?zoom:Float, instant:Bool = false)
+	{
+		// A null zoom means we're resetting the zoom
+		// Yeah why not
+		camZoom = zoom ?? defaultZoom;
+
+		if (instant)
+			FlxG.camera.zoom = camZoom;
 	}
 
 	public function pause()

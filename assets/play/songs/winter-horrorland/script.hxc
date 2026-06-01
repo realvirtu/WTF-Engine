@@ -1,4 +1,5 @@
 import flixel.util.FlxTimer;
+import flixel.tweens.FlxTween;
 import funkin.audio.FunkinSound;
 import funkin.play.song.Song;
 import funkin.play.stage.StageProp;
@@ -29,8 +30,16 @@ class WinterHorrorlandSong extends Song
         PlayState.instance.camFollow.setPosition(tree?.x + 100, tree?.y - 200);
         FlxG.camera.snapToTarget();
 
+        PlayState.instance.camHUD.visible = false;
+        PlayState.instance.setCameraZoom(2, true);
+
         FunkinSound.playOnce('$path/sounds/intro');
-        FlxTimer.wait(2, PlayState.instance.startCountdown);
+        
+        FlxTimer.wait(2, () -> {
+            PlayState.instance.camHUD.visible = true;
+            PlayState.instance.setCameraZoom();
+            PlayState.instance.startCountdown();
+        });
     }
 
     override function onDestroy(event:ScriptEvent)
