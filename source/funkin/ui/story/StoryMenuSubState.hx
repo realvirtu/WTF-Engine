@@ -22,6 +22,8 @@ import funkin.util.MathUtil;
  */
 class StoryMenuSubState extends FunkinSubState
 {
+	public static var instance:StoryMenuSubState;
+
 	static var selectedLevel:Int = 0;
 	static var selectedDiff:Int = 1;
 
@@ -56,6 +58,8 @@ class StoryMenuSubState extends FunkinSubState
 	override public function create()
 	{
 		super.create();
+
+		instance = this;
 
 		_parentState.persistentDraw = false;
 
@@ -284,6 +288,13 @@ class StoryMenuSubState extends FunkinSubState
 		exitMovers.onOutroDone = close;
 
 		FunkinSound.playOnce('ui/sounds/cancel');
+	}
+
+	override public function destroy()
+	{
+		super.destroy();
+
+		instance = null;
 	}
 
 	@:noCompletion

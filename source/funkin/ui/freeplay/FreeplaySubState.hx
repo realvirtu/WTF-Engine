@@ -27,6 +27,8 @@ import funkin.util.MathUtil;
  */
 class FreeplaySubState extends FunkinSubState
 {
+	public static var instance:FreeplaySubState;
+
 	static var selectedSong:Int = 1;
 	static var selectedDiff:Int = 1;
 	static var selectedSort:Int = 0;
@@ -64,6 +66,8 @@ class FreeplaySubState extends FunkinSubState
 	override public function create()
 	{
 		super.create();
+
+		instance = this;
 
 		FunkinSound.playMusic('ui/freeplay/music/random', 0);
 		FunkinSound.music.fadeIn(1, 0, 0.6);
@@ -405,6 +409,8 @@ class FreeplaySubState extends FunkinSubState
 			MainMenuState.playMusic(true);
 
 		super.destroy();
+
+		instance = null;
 	}
 
 	@:noCompletion
