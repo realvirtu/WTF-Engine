@@ -1,6 +1,7 @@
 package funkin.ui.freeplay.album;
 
 import flixel.group.FlxSpriteGroup;
+import flixel.util.FlxTimer;
 import funkin.data.album.AlbumRegistry;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
@@ -15,6 +16,8 @@ class AlbumSprite extends FlxSpriteGroup
 
 	public var sprite:FunkinSprite;
 	public var title:FunkinText;
+
+	var timer:FlxTimer;
 
 	public function new()
 	{
@@ -41,6 +44,8 @@ class AlbumSprite extends FlxSpriteGroup
 			return;
 		this.id = id;
 
+		timer?.cancel();
+
 		if (!AlbumRegistry.instance.exists(id))
 		{
 			album = null;
@@ -57,5 +62,14 @@ class AlbumSprite extends FlxSpriteGroup
 		title.text = album.name;
 		title.x = sprite.x + (sprite.width - title.width) / 2;
 		title.y = sprite.y + sprite.height - 10;
+
+		sprite.offset.y += 5;
+		title.offset.y += 5;
+
+		timer = FlxTimer.wait(0.05, () ->
+		{
+			sprite.offset.y -= 5;
+			title.offset.y -= 5;
+		});
 	}
 }

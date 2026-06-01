@@ -189,13 +189,15 @@ class FreeplaySubState extends FunkinSubState
 		album.load(song?.album);
 		album.screenCenter(Y);
 		album.x = FlxG.width - album.sprite.width - 45;
-		album.y += 40;
+		album.y += 35;
 
 		// Album width is so dumb
 		// The exit mover has to be applied like this :omg_bruh:
 		exitMovers.add(album, FlxG.width + album.width);
 
 		// TODO: Song previews
+		// Streamed audio was removed from Lime's Funkin' fork
+		// so this has to wait :(
 		if (lastSong != song)
 		{
 			// Song preview logic
