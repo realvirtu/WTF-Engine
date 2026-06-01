@@ -17,8 +17,6 @@ class AlbumSprite extends FlxSpriteGroup
 	public var sprite:FunkinSprite;
 	public var title:FunkinText;
 
-	var timer:FlxTimer;
-
 	public function new()
 	{
 		super();
@@ -40,12 +38,6 @@ class AlbumSprite extends FlxSpriteGroup
 
 	public function load(id:String)
 	{
-		if (this.id == id)
-			return;
-		this.id = id;
-
-		timer?.cancel();
-
 		if (!AlbumRegistry.instance.exists(id))
 		{
 			album = null;
@@ -57,6 +49,10 @@ class AlbumSprite extends FlxSpriteGroup
 		album = AlbumRegistry.instance.fetch(id);
 		visible = true;
 
+		if (this.id == id)
+			return;
+		this.id = id;
+
 		sprite.loadSprite('${album.path}/image', 1.75);
 
 		title.text = album.name;
@@ -66,7 +62,7 @@ class AlbumSprite extends FlxSpriteGroup
 		sprite.offset.y += 5;
 		title.offset.y += 5;
 
-		timer = FlxTimer.wait(0.05, () ->
+		FlxTimer.wait(0.05, () ->
 		{
 			sprite.offset.y -= 5;
 			title.offset.y -= 5;
