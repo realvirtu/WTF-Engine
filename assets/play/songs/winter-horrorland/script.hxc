@@ -1,0 +1,42 @@
+import flixel.util.FlxTimer;
+import funkin.audio.FunkinSound;
+import funkin.play.song.Song;
+import funkin.play.stage.StageProp;
+import funkin.play.Playlist;
+import funkin.play.PlayState;
+
+class WinterHorrorlandSong extends Song
+{
+    var seenCutscene:Bool;
+
+    public function new()
+    {
+        super("winter-horrorland");
+    }
+
+    override function onCountdownStart(event:CountdownScriptEvent)
+    {
+        super.onCountdownStart(event);
+
+        if (seenCutscene || !Playlist.isStory)
+            return;
+        seenCutscene = true;
+
+        event.cancel();
+
+        var tree:StageProp = PlayState.instance.stage.getProp("tree");
+
+        PlayState.instance.camFollow.setPosition(tree?.x + 100, tree?.y - 200);
+        FlxG.camera.snapToTarget();
+
+        FunkinSound.playOnce('$path/sounds/intro');
+        FlxTimer.wait(2, PlayState.instance.startCountdown);
+    }
+
+    override function onDestroy(event:ScriptEvent)
+    {
+        super.onDestroy(event);
+
+        seenCutscene = false;
+    }
+}
