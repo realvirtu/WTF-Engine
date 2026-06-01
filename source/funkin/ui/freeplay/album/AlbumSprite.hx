@@ -27,7 +27,11 @@ class AlbumSprite extends FlxSpriteGroup
 		add(sprite);
 
 		title = new FunkinText();
-		title.size = 24;
+		title.alignment = CENTER;
+		title.size = 35;
+		title.borderColor = 0xFF000000;
+		title.borderSize = 3;
+		title.borderStyle = OUTLINE;
 		add(title);
 	}
 
@@ -52,6 +56,6 @@ class AlbumSprite extends FlxSpriteGroup
 
 		title.text = album.name;
 		title.x = sprite.x + (sprite.width - title.width) / 2;
-		title.y = sprite.y + sprite.height;
+		title.y = sprite.y + sprite.height - 10;
 	}
 }
