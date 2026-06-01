@@ -7,6 +7,5 @@ typedef AlbumData =
 {
 	var name:String;
 	var artist:String;
-	@:optional
 	var ost:String;
 }

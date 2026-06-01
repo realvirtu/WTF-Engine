@@ -48,6 +48,8 @@ class FreeplaySubState extends FunkinSubState
 	var dj:DJSprite;
 	var capsules:CapsuleGroup;
 	var album:AlbumSprite;
+	var freeplayText:FunkinText;
+	var ostText:FunkinText;
 	var scoreText:FunkinText;
 	var diffText:DifficultyText;
 	var sortText:SortText;
@@ -93,15 +95,14 @@ class FreeplaySubState extends FunkinSubState
 		blackbar.zIndex = 1;
 		add(blackbar);
 
-		var freeplayText:FunkinText = new FunkinText(10, 0, 'freeplay');
+		freeplayText = new FunkinText(10, 0, 'freeplay');
 		freeplayText.size = 24;
 		freeplayText.y = (blackbar.height - freeplayText.height) / 2 + 0.5;
 		freeplayText.zIndex = blackbar.zIndex;
 		add(freeplayText);
 
-		var ostText:FunkinText = new FunkinText(0, freeplayText.y, 'official ost');
+		ostText = new FunkinText(0, freeplayText.y);
 		ostText.size = freeplayText.size;
-		ostText.x = FlxG.width - ostText.width - freeplayText.x;
 		ostText.zIndex = blackbar.zIndex;
 		add(ostText);
 
@@ -190,6 +191,9 @@ class FreeplaySubState extends FunkinSubState
 		album.screenCenter(Y);
 		album.x = FlxG.width - album.sprite.width - 45;
 		album.y += 35;
+
+		ostText.text = album.album?.ost ?? Constants.DEFAULT_OST_NAME;
+		ostText.x = FlxG.width - ostText.width - freeplayText.x;
 
 		// Album width is so dumb
 		// The exit mover has to be applied like this :omg_bruh:

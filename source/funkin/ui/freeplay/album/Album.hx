@@ -36,7 +36,7 @@ class Album
 	@:noCompletion
 	function get_ost():String
 	{
-		return meta.ost ?? 'official ost';
+		return meta.ost;
 	}
 
 	@:noCompletion
