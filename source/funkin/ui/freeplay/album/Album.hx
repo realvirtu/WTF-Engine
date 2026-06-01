@@ -14,7 +14,9 @@ class Album
 	public var artist(get, never):String;
 	public var ost(get, never):String;
 
-	public var path(get, never):String;
+	public var image(get, never):String;
+
+	var path(get, never):String;
 
 	public function new(id:String)
 	{
@@ -37,6 +39,12 @@ class Album
 	function get_ost():String
 	{
 		return meta.ost;
+	}
+
+	@:noCompletion
+	function get_image():String
+	{
+		return '$path/image';
 	}
 
 	@:noCompletion

@@ -53,7 +53,7 @@ class AlbumSprite extends FlxSpriteGroup
 			return;
 		this.id = id;
 
-		sprite.loadSprite('${album.path}/image', 1.75);
+		sprite.loadSprite(album.image, 1.75);
 
 		title.text = album.name;
 		title.x = sprite.x + (sprite.width - title.width) / 2;
