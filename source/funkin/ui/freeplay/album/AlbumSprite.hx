@@ -59,13 +59,15 @@ class AlbumSprite extends FlxSpriteGroup
 		title.x = sprite.x + (sprite.width - title.width) / 2;
 		title.y = sprite.y + sprite.height - 10;
 
-		sprite.offset.y += 5;
-		title.offset.y += 5;
+		final off:Float = 10;
+
+		sprite.offset.y += off;
+		title.offset.y += off;
 
 		FlxTimer.wait(0.05, () ->
 		{
-			sprite.offset.y -= 5;
-			title.offset.y -= 5;
+			sprite.offset.y -= off;
+			title.offset.y -= off;
 		});
 	}
 }
