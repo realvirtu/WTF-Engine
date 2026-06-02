@@ -10,7 +10,6 @@ import funkin.modding.event.ScriptEvent;
 import funkin.play.PlayState;
 import funkin.play.Playlist;
 import funkin.play.song.Song;
-import funkin.save.Save;
 import funkin.ui.freeplay.album.AlbumSprite;
 import funkin.ui.freeplay.capsule.CapsuleGroup;
 import funkin.ui.freeplay.capsule.CapsuleSprite;
@@ -189,7 +188,7 @@ class FreeplaySubState extends FunkinSubState
 	{
 		selectedSong = selected;
 
-		songScore = Save.instance.getSongScore(song?.id, difficulty);
+		songScore = song?.getScore(difficulty);
 
 		album.load(song?.album);
 		album.screenCenter(Y);
@@ -310,7 +309,7 @@ class FreeplaySubState extends FunkinSubState
 		stateMachine.transition(INTERACTING);
 
 		if (song != null)
-			capsule.favorited = !Save.instance.isSongFavorited(song.id, song.variation);
+			capsule.favorited = !song.isFavorited();
 
 		FlxTimer.wait(0.1, () -> stateMachine.reset());
 	}
@@ -325,9 +324,9 @@ class FreeplaySubState extends FunkinSubState
 		{
 			songs = songs.filter(song ->
 			{
-				var song:Song = SongRegistry.instance.fetchSong(song, difficulty);
+				final song:Song = SongRegistry.instance.fetchSong(song, difficulty);
 
-				return Save.instance.isSongFavorited(song.id, song.variation);
+				return song.isFavorited();
 			});
 		}
 		else if (selectedSort > 0)

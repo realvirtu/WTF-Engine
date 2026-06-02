@@ -9,7 +9,6 @@ import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
 import funkin.play.song.Song;
-import funkin.save.Save;
 
 /**
  * The song capsule sprite used for the freeplay menu.
@@ -135,7 +134,7 @@ class CapsuleSprite extends FlxSpriteGroup
 
 		this.song = value;
 		this.difficulty = difficulty;
-		this.favorited = Save.instance.isSongFavorited(value?.id, value?.variation);
+		this.favorited = value?.isFavorited();
 
 		songText.text = value?.name ?? 'Random';
 		songText.updateHitbox();
@@ -187,7 +186,8 @@ class CapsuleSprite extends FlxSpriteGroup
 		if (!justLoaded)
 		{
 			FunkinSound.playOnce('ui/freeplay/sounds/${value ? 'favorite' : 'unfavorite'}');
-			Save.instance.setFavorite(song.id, song.variation, value);
+
+			song.setFavorite(value);
 
 			y += value ? -20 : 20;
 		}

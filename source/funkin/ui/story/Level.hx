@@ -5,6 +5,7 @@ import funkin.data.story.LevelData;
 import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.event.ScriptEvent;
 import funkin.play.song.Song;
+import funkin.save.Save;
 
 /**
  * A class containing the metadata for a level.
@@ -25,6 +26,7 @@ class Level implements IPlayStateScriptedClass
 
 	var songs:Array<String>;
 	var songNames:Array<String>;
+	var diffs:Array<String>;
 
 	public function new(id:String)
 	{
@@ -76,6 +78,55 @@ class Level implements IPlayStateScriptedClass
 	public function hasSong(id:String):Bool
 	{
 		return getSongs().contains(id);
+	}
+
+	public function getDifficulties():Array<String>
+	{
+		if (diffs != null)
+			return diffs;
+
+		diffs = [];
+
+		for (i => song in getSongs())
+		{
+			final song:Song = SongRegistry.instance.fetchSong(song);
+
+			if (i == 0)
+				diffs = song.difficulties.copy();
+
+			for (diff in diffs.copy())
+			{
+				if (!song.hasDifficulty(diff))
+					diffs.remove(diff);
+			}
+		}
+
+		return diffs;
+	}
+
+	public function setScore(score:Int, diff:String, force:Bool = true)
+	{
+		Save.instance.setScore('level-$id', diff, score, force);
+	}
+
+	public function getScore(diff:String):Int
+	{
+		return Save.instance.getScore('level-$id', diff);
+	}
+
+	public function isComplete():Bool
+	{
+		for (diff in SongRegistry.instance.getDifficulties())
+		{
+			for (song in getSongs())
+			{
+				final song:Song = SongRegistry.instance.fetchSong(song, diff);
+
+				if (song.getScore(diff) > 0)
+					return true;
+			}
+		}
+		return false;
 	}
 
 	@:noCompletion

@@ -47,7 +47,7 @@ class SelectorText extends FlxSpriteGroup
 		change();
 	}
 
-	function change(change:Int = 0)
+	public function change(change:Int = 0)
 	{
 		if (busy)
 			return;
