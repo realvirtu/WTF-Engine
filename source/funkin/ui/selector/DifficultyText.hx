@@ -7,7 +7,7 @@ import funkin.input.Controls;
  */
 class DifficultyText extends SelectorText
 {
-	public var difficulties:Array<String>;
+	public var difficulties(default, set):Array<String>;
 	public var difficulty(get, never):String;
 
 	public function new(selected:Int = 0, difficulties:Array<String>)
@@ -50,6 +50,20 @@ class DifficultyText extends SelectorText
 			text.text = 'night';
 
 		super.updateText();
+	}
+
+	@:noCompletion
+	inline function set_difficulties(value:Array<String>):Array<String>
+	{
+		this.difficulties = value;
+
+		if (selected >= value.length)
+			selected = value.length - 1;
+
+		if (text != null)
+			updateText();
+
+		return value;
 	}
 
 	@:noCompletion

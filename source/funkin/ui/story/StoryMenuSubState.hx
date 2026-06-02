@@ -192,7 +192,6 @@ class StoryMenuSubState extends FunkinSubState
 		FlxTween.color(bg, 0.75, bg.color, FlxColor.fromString(level.color), {ease: FlxEase.quintOut});
 
 		diffText.difficulties = level.getDifficulties();
-		diffText.change();
 
 		levelText.text = level.name;
 		levelText.x = FlxG.width - levelText.width - 10;
