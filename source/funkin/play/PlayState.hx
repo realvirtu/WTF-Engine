@@ -202,7 +202,13 @@ class PlayState extends FunkinState
 			if (songLoaded)
 			{
 				if (songStarted)
-					conductor.time = MathUtil.lerp(conductor.time, FunkinSound.music.time, 0.42);
+				{
+					// Lerping is used to update the conductor time as Lime audio lacks precision
+					// One day this will be simplified to how it should be
+					final ratio:Float = 1 - Math.exp(-42 * elapsed);
+
+					conductor.time = FlxMath.lerp(conductor.time, FunkinSound.music.time, ratio);
+				}
 				else
 				{
 					conductor.time += elapsed * Constants.MS_PER_SEC;
