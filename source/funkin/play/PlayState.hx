@@ -33,6 +33,7 @@ import funkin.play.note.strum.Strumline;
 import funkin.play.song.Song;
 import funkin.play.song.Voices;
 import funkin.play.stage.Stage;
+import funkin.save.Save;
 import funkin.ui.FunkinState;
 import funkin.ui.freeplay.FreeplaySubState;
 import funkin.ui.sticker.StickerSubState;
@@ -526,7 +527,7 @@ class PlayState extends FunkinState
 		// Saves the song score
 		final score:Int = Std.int(score);
 
-		song.setScore(score, difficulty, false);
+		Save.instance.setSongScore(song.id, difficulty, score, false);
 
 		Playlist.tallies.combine(tallies);
 		Playlist.score += score;
@@ -536,8 +537,11 @@ class PlayState extends FunkinState
 			FlxG.resetState();
 		else
 		{
+			// Saves the level score
 			if (Playlist.isStory)
-				Playlist.level.setScore(Playlist.score, difficulty, false);
+				Save.instance.setLevelScore(Playlist.level.id, difficulty, Playlist.score, false);
+
+			// Exits the state
 			exit();
 		}
 	}

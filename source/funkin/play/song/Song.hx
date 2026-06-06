@@ -4,7 +4,6 @@ import funkin.data.event.EventData;
 import funkin.data.song.SongData;
 import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.event.ScriptEvent;
-import funkin.save.Save;
 import haxe.ds.StringMap;
 
 /**
@@ -88,40 +87,6 @@ class Song implements IPlayStateScriptedClass
 		if (variations.exists(id))
 			return variations.get(id);
 		return this;
-	}
-
-	public function setScore(score:Int, diff:String, force:Bool = true)
-	{
-		Save.instance.setScore('song-$id', diff, score, force);
-	}
-
-	public function getScore(diff:String):Int
-	{
-		return Save.instance.getScore('song-$id', diff);
-	}
-
-	public function setFavorite(favorite:Bool)
-	{
-		if (isFavorited() == favorite)
-			return;
-
-		Save.instance.favorites.set('$id:$variation', favorite);
-		Save.instance.flush();
-	}
-
-	public function isFavorited():Bool
-	{
-		return Save.instance.favorites.get('$id:$variation');
-	}
-
-	public function isComplete():Bool
-	{
-		for (diff in difficulties)
-		{
-			if (getScore(diff) > 0)
-				return true;
-		}
-		return false;
 	}
 
 	@:noCompletion

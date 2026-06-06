@@ -10,6 +10,7 @@ import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
 import funkin.play.PlayState;
 import funkin.play.Playlist;
+import funkin.save.Save;
 import funkin.ui.menu.MainMenuState;
 import funkin.ui.selector.DifficultyText;
 import funkin.ui.story.Level;
@@ -109,7 +110,9 @@ class StoryMenuSubState extends FunkinSubState
 		songsText.y = blackBottom.y + 50;
 		add(songsText);
 
-		diffText = new DifficultyText(selectedDiff, level.getDifficulties());
+		// TODO: Replace this with a much better system
+		// Erect and Nightmare shouldn't be selectable difficulties
+		diffText = new DifficultyText(selectedDiff, ['easy', 'normal', 'hard']);
 		diffText.size = 56;
 		diffText.onChanged.add(changeDiff);
 		diffText.y = blackBottom.y + 50;
@@ -225,7 +228,7 @@ class StoryMenuSubState extends FunkinSubState
 	function changeDiff(selected:Int)
 	{
 		selectedDiff = selected;
-		levelScore = level.getScore(difficulty);
+		levelScore = Save.instance.getLevelScore(level.id, difficulty);
 
 		diffText.x = FlxG.width - diffText.width / 2 - 220;
 
