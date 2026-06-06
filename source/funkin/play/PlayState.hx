@@ -212,9 +212,9 @@ class PlayState extends FunkinState
 				}
 				else
 				{
-					conductor.time += elapsed * Constants.MS_PER_SEC;
+					conductor.time += elapsed * Constants.MS_PER_SEC * playbackRate;
 
-					if (conductor.time >= Math.max(0, conductor.offset))
+					if (conductor.time >= conductor.offset)
 						startSong();
 				}
 
