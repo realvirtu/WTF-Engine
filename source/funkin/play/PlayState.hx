@@ -207,13 +207,13 @@ class PlayState extends FunkinState
 					// One day this will be simplified to how it should be
 					final ratio:Float = 1 - Math.exp(-42 * elapsed);
 
-					conductor.time = FlxMath.lerp(conductor.time, FunkinSound.music.time, ratio);
+					conductor.time = FlxMath.lerp(conductor.time, FunkinSound.music.time + conductor.offset, ratio);
 				}
 				else
 				{
 					conductor.time += elapsed * Constants.MS_PER_SEC;
 
-					if (conductor.time >= 0)
+					if (conductor.time >= Math.max(0, conductor.offset))
 						startSong();
 				}
 
@@ -359,7 +359,7 @@ class PlayState extends FunkinState
 
 		// Resets conductor stuff
 		conductor.reset(song.bpm);
-		conductor.time = -conductor.crotchet * 4;
+		conductor.time = -conductor.crotchet * 4 + Math.min(0, conductor.offset);
 
 		FunkinSound.stopAllSounds(true);
 

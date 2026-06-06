@@ -18,6 +18,11 @@ class Conductor
 	public var crotchet(get, never):Float;
 	public var quaver(get, never):Float;
 
+	/**
+	 * TODO: Make this changeable ingame.
+	 */
+	public var offset:Float = 0;
+
 	public var stepHit(default, null) = new FlxTypedSignal<Int->Void>();
 	public var beatHit(default, null) = new FlxTypedSignal<Int->Void>();
 
