@@ -66,8 +66,8 @@ class Level implements IPlayStateScriptedClass
 
 		for (song in getSongs())
 		{
-			var song:Song = SongRegistry.instance.fetchSong(song);
-			var name:String = song.name;
+			final song:Song = SongRegistry.instance.fetchSong(song);
+			final name:String = song.name;
 
 			songNames.push(name);
 		}
