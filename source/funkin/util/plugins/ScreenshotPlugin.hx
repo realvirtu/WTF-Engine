@@ -1,5 +1,6 @@
 package funkin.util.plugins;
 
+#if HAS_SCREENSHOTS
 import flixel.FlxBasic;
 import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
@@ -52,3 +53,4 @@ class ScreenshotPlugin extends FlxBasic
 		}
 	}
 }
+#end
