@@ -20,6 +20,7 @@ class Conductor
 
 	/**
 	 * TODO: Make this changeable ingame.
+	 * This is also really fucky.
 	 */
 	public var offset:Float = 0;
 
