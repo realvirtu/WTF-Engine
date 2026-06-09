@@ -31,6 +31,11 @@ class Style
 		return '$path/$id';
 	}
 
+	public function getNote(id:String):String
+	{
+		return getPath('note/$id');
+	}
+
 	public function getCountdown(id:String):String
 	{
 		return getPath('countdown/$id');
@@ -96,7 +101,7 @@ class Style
 	@:noCompletion
 	inline function get_path():String
 	{
-		return 'play/styles/$id';
+		return 'gameplay/styles/$id';
 	}
 
 	public function toString():String

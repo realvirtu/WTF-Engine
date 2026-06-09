@@ -16,7 +16,7 @@ class StickerRegistry extends BaseRegistry<StickerPack>
 
 	public function new()
 	{
-		super('stickers', 'ui/sticker/packs');
+		super('stickers', 'general/sticker/packs');
 	}
 
 	override public function load()

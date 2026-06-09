@@ -136,7 +136,7 @@ class PlayState extends FunkinState
 		playerStrumline.holdNoteDrop.add(playerHoldNoteDrop);
 		add(playerStrumline);
 
-		healthBorder = FunkinSprite.create(0, 0, 'play/bar');
+		healthBorder = FunkinSprite.create(0, 0, 'gameplay/healthbar');
 		healthBorder.screenCenter(X);
 		healthBorder.active = false;
 		healthBorder.camera = camHUD;

@@ -12,7 +12,7 @@ class NoteSplash extends FunkinSprite
 
 	public function buildSprite(style:Style)
 	{
-		loadSprite(style.getPath('splashes'), style.noteSplash.scale, style.noteSplash.width, style.noteSplash.height);
+		loadSprite(style.getNote('splashes'), style.noteSplash.scale, style.noteSplash.width, style.noteSplash.height);
 
 		for (i in 0...Constants.NOTE_COUNT)
 		{

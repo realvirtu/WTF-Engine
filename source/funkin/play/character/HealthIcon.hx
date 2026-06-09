@@ -26,7 +26,7 @@ class HealthIcon extends FunkinSprite
 		this.isPlayer = isPlayer;
 
 		final image:String = meta.id ?? id;
-		final path:String = 'play/characters/$image/icon';
+		final path:String = 'gameplay/characters/$image/icon';
 
 		// The sprite needs to be loaded in order to get the size
 		loadSprite(path);

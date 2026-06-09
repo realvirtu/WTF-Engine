@@ -7,11 +7,17 @@ import funkin.graphics.FunkinSprite;
  */
 class StickerSprite extends FunkinSprite
 {
-	public function new(pack:String, id:String)
+	public var pack:StickerPack;
+	public var id:String;
+
+	public function new(pack:StickerPack, id:String)
 	{
 		super();
 
-		loadSprite('ui/sticker/packs/$pack/$id', 2.65);
+		this.pack = pack;
+		this.id = id;
+
+		loadSprite('${pack.path}/$id', 2.65);
 
 		angle = FlxG.random.float(-10, 10);
 

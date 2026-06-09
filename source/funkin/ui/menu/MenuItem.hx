@@ -20,7 +20,7 @@ class MenuItem extends FunkinSprite
 
 		// Loads the sprite
 		// Loads it twice to properly get the frame size
-		final image:String = 'ui/menu/items/$id';
+		final image:String = 'menu/items/$id';
 
 		loadSprite(image);
 

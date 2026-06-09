@@ -24,7 +24,7 @@ class NoteSprite extends FunkinSprite
 
 	public function buildSprite(style:Style)
 	{
-		loadSprite(style.getPath('notes'), style.note.scale, style.note.width, style.note.height);
+		loadSprite(style.getNote('image'), style.note.scale, style.note.width, style.note.height);
 
 		for (i in 0...Constants.NOTE_COUNT)
 		{

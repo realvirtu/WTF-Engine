@@ -16,7 +16,7 @@ class FunkinText extends FlxBitmapText
 
 	public function new(x:Float = 0, y:Float = 0, text:String = '')
 	{
-		super(x, y, text, FlxBitmapFont.fromMonospace(Paths.image('ui/font'), LETTERS, FONT_SIZE));
+		super(x, y, text, FlxBitmapFont.fromMonospace(Paths.image('general/font'), LETTERS, FONT_SIZE));
 
 		letterSpacing = 2;
 		lineSpacing = 4;

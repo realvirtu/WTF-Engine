@@ -167,7 +167,7 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 	@:noCompletion
 	inline function get_path():String
 	{
-		return 'play/stages/$id';
+		return 'gameplay/stages/$id';
 	}
 
 	public function onCreate(event:ScriptEvent) {}

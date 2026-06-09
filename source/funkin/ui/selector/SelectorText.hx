@@ -61,7 +61,7 @@ class SelectorText extends FlxSpriteGroup
 
 		if (lastSelected != selected && change != 0)
 		{
-			FunkinSound.playOnce('ui/sounds/scroll');
+			FunkinSound.playOnce('general/sounds/scroll');
 
 			text.y -= 5;
 

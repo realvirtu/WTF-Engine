@@ -44,14 +44,14 @@ class TitleState extends FunkinState
 
 		conductor.reset(100);
 
-		gf = FunkinSprite.create(0, 0, 'ui/title/gf', 1.5, 268, 290);
+		gf = FunkinSprite.create(0, 0, 'menu/title/gf', 1.5, 268, 290);
 		gf.x = FlxG.width - gf.width - 30;
 		gf.y = FlxG.height - gf.height - 30;
 		gf.visible = false;
 		gf.addAnimation('idle', [0, 1, 2], 10, false);
 		add(gf);
 
-		logo = FunkinSprite.create(60, 60, 'ui/title/logo', 1.75);
+		logo = FunkinSprite.create(60, 60, 'menu/title/logo', 1.75);
 		logo.active = false;
 		logo.visible = false;
 		add(logo);
@@ -64,13 +64,13 @@ class TitleState extends FunkinState
 		add(startText);
 
 		#if HAS_TITLE_SCARE
-		gfSpooky = FunkinSprite.create(0, 0, 'ui/title/gf-spooky');
+		gfSpooky = FunkinSprite.create(0, 0, 'menu/title/scare/gf');
 		gfSpooky.screenCenter();
 		gfSpooky.active = false;
 		gfSpooky.y += 50;
 		add(gfSpooky);
 
-		gfScare = FunkinSprite.create(0, 0, 'ui/title/scare/scare');
+		gfScare = FunkinSprite.create(0, 0, 'menu/title/scare/scare');
 		gfScare.screenCenter();
 		gfScare.active = false;
 		gfScare.visible = false;
@@ -86,7 +86,7 @@ class TitleState extends FunkinState
 		if (seenIntro)
 			skipIntro();
 		else
-			FunkinSound.playMusic('ui/music/title-loop');
+			FunkinSound.playMusic('menu/title/scare/loop');
 		#else
 		skipIntro();
 		#end
@@ -128,7 +128,7 @@ class TitleState extends FunkinState
 		gfSpooky.destroy();
 		gfScare.visible = true;
 
-		FunkinSound.playOnce('ui/title/scare/scare');
+		FunkinSound.playOnce('menu/title/scare/scare');
 		FunkinSound.music.stop();
 
 		FlxTimer.wait(0.5, WindowUtil.exit);
@@ -142,7 +142,7 @@ class TitleState extends FunkinState
 
 		started = true;
 
-		FunkinSound.playOnce('ui/sounds/confirm');
+		FunkinSound.playOnce('general/sounds/confirm');
 		FlxFlicker.flicker(startText, 1, 0.04, true, true, _ -> exitToMenu());
 	}
 

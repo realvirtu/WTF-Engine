@@ -50,7 +50,7 @@ class Album
 	@:noCompletion
 	inline function get_path():String
 	{
-		return 'ui/freeplay/albums/$id';
+		return 'menu/freeplay/albums/$id';
 	}
 
 	public function toString():String

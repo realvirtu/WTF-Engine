@@ -18,7 +18,7 @@ class StageRegistry extends BaseRegistry<StageData>
 
 	public function new()
 	{
-		super('stages', 'play/stages');
+		super('stages', 'gameplay/stages');
 	}
 
 	override public function load()

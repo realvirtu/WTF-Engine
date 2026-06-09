@@ -37,7 +37,7 @@ class MainMenuState extends FunkinState
 		camFollow.screenCenter();
 		FlxG.camera.follow(camFollow, LOCKON, 0.06);
 
-		var bg:FunkinSprite = FunkinSprite.create(0, 0, 'ui/menu/bg', 1.5);
+		var bg:FunkinSprite = FunkinSprite.create(0, 0, 'menu/back', 1.5);
 		bg.scale.add(0.15, 0.15);
 		bg.color = 0xFFFFC82F;
 		bg.active = false;
@@ -96,7 +96,7 @@ class MainMenuState extends FunkinState
 
 		items.flicker();
 
-		FunkinSound.playOnce('ui/sounds/confirm');
+		FunkinSound.playOnce('general/sounds/confirm');
 		FlxTimer.wait(1, stateMachine.reset);
 	}
 
@@ -136,7 +136,7 @@ class MainMenuState extends FunkinState
 
 	public static function playMusic(fadeIn:Bool = false)
 	{
-		FunkinSound.playMusic('ui/music/menu', fadeIn ? 0 : 1, true, true, false);
+		FunkinSound.playMusic('menu/music', fadeIn ? 0 : 1, true, true, false);
 		FunkinSound.music.fadeIn(0.75, FunkinSound.music.volume);
 	}
 }

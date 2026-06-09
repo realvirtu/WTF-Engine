@@ -45,14 +45,14 @@ class Option extends FlxSpriteGroup
 		switch (type)
 		{
 			case CHECKBOX:
-				checkbox = FunkinSprite.create(text.width + 10, 0, 'ui/option/checkbox', 1.25, 72, 61);
+				checkbox = FunkinSprite.create(text.width + 10, 0, 'menu/option/checkbox', 1.25, 72, 61);
 				checkbox.y = (text.height - checkbox.height) / 2;
 				checkbox.active = false;
 				checkbox.addAnimation('checkbox', [0, 1], 0);
 				checkbox.playAnimation('checkbox');
 				add(checkbox);
 			case NUMERIC:
-				arrowLeft = FunkinSprite.create(text.width + 10, 0, 'ui/arrow');
+				arrowLeft = FunkinSprite.create(text.width + 10, 0, 'general/arrow/default');
 				arrowLeft.active = false;
 				arrowLeft.y = (text.height - arrowLeft.height) / 2;
 				add(arrowLeft);

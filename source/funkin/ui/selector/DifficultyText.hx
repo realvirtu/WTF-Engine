@@ -16,7 +16,7 @@ class DifficultyText extends SelectorText
 		// Setting this after the super will CRASH
 		this.difficulties = difficulties;
 
-		super(selected, 'ui/arrow');
+		super(selected, 'general/arrow/default');
 
 		size = 48;
 	}

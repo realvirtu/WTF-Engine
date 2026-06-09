@@ -42,7 +42,7 @@ class ScreenshotPlugin extends FlxBasic
 				var bytes:ByteArray = data.encode(data.rect, new PNGEncoderOptions());
 
 				File.saveBytes('screenshot.${Constants.IMAGE_EXT}', bytes);
-				FunkinSound.playOnce('ui/sounds/cancel');
+				FunkinSound.playOnce('general/sounds/cancel');
 
 				#if HAS_FPS_COUNTER
 				Main.fpsCounter.visible = true;

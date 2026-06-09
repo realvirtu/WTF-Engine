@@ -23,7 +23,7 @@ class HoldNoteCover extends FunkinSprite
 
 	public function buildSprite(style:Style)
 	{
-		loadSprite(style.getPath('hold-covers'), style.holdCover.scale, style.holdCover.width, style.holdCover.height);
+		loadSprite(style.getNote('hold/covers'), style.holdCover.scale, style.holdCover.width, style.holdCover.height);
 
 		for (i in 0...Constants.NOTE_COUNT)
 		{

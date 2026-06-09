@@ -47,7 +47,7 @@ class MenuList extends FlxTypedGroup< #if hl Dynamic #else FunkinText #end>
 
 	public function change(change:Int)
 	{
-		FunkinSound.playOnce('ui/sounds/scroll');
+		FunkinSound.playOnce('general/sounds/scroll');
 
 		selected += change;
 

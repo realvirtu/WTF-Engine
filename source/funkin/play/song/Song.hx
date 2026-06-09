@@ -188,7 +188,7 @@ class Song implements IPlayStateScriptedClass
 	@:noCompletion
 	inline function get_path():String
 	{
-		var path:String = 'play/songs/$id';
+		var path:String = 'gameplay/songs/$id';
 		if (variation != Constants.DEFAULT_VARIATION)
 			path += '/$variation';
 		return path;

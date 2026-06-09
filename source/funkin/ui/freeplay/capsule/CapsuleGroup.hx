@@ -67,7 +67,7 @@ class CapsuleGroup extends FlxTypedGroup<CapsuleSprite>
 
 		if (selected != lastSelected && change != 0)
 		{
-			FunkinSound.playOnce('ui/sounds/scroll');
+			FunkinSound.playOnce('general/sounds/scroll');
 
 			onChanged.dispatch(selected);
 		}

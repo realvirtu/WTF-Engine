@@ -40,7 +40,7 @@ class DialogueCutscene extends BaseCutscene
 	{
 		super(id, false, callback);
 
-		final path:String = Paths.json('play/dialogue/$id');
+		final path:String = Paths.json('gameplay/dialogue/cutscenes/$id');
 
 		// Don't run the dialogue if it doesn't exist
 		// Come on.. that's WAY too dangerous
@@ -50,7 +50,7 @@ class DialogueCutscene extends BaseCutscene
 		data = parser.fromJson(FileUtil.getText(path));
 		lines = data.lines.copy();
 
-		music = FunkinSound.load('play/dialogue/music/${data.music}', 0);
+		music = FunkinSound.load('gameplay/dialogue/music/${data.music}', 0);
 		music.fadeIn();
 
 		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFFFFFFFF);
@@ -100,7 +100,7 @@ class DialogueCutscene extends BaseCutscene
 		else
 			text.text = lineText;
 
-		FunkinSound.playOnce('play/dialogue/sounds/next');
+		FunkinSound.playOnce('gameplay/dialogue/sounds/next');
 	}
 
 	function nextLine()
@@ -137,7 +137,7 @@ class DialogueCutscene extends BaseCutscene
 			if (!lineFinished)
 				typeText();
 
-			FunkinSound.playOnce('play/dialogue/sounds/type', 0.35);
+			FunkinSound.playOnce('gameplay/dialogue/sounds/type', 0.35);
 		});
 	}
 

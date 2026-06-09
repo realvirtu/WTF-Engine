@@ -20,7 +20,7 @@ class DialogueBox extends FunkinSprite
 	{
 		super();
 
-		final path:String = 'play/dialogue/boxes/$id';
+		final path:String = 'gameplay/dialogue/boxes/$id';
 		final metaPath:String = Paths.json('$path/meta');
 
 		// Can't load the metadata if it doesn't exist

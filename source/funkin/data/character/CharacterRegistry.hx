@@ -19,7 +19,7 @@ class CharacterRegistry extends BaseRegistry<CharacterData>
 
 	public function new()
 	{
-		super('characters', 'play/characters');
+		super('characters', 'gameplay/characters');
 	}
 
 	override public function load()

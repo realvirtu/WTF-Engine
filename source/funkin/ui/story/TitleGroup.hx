@@ -82,7 +82,7 @@ class TitleGroup extends FlxTypedGroup<TitleText>
 
 		if (lastSelected != selected && change != 0)
 		{
-			FunkinSound.playOnce('ui/sounds/scroll');
+			FunkinSound.playOnce('general/sounds/scroll');
 
 			onChanged.dispatch(selected);
 		}

@@ -45,15 +45,15 @@ class Countdown extends FunkinSprite
 		switch (step)
 		{
 			case 0:
-				FunkinSound.playOnce(style.getCountdown('three'));
+				FunkinSound.playOnce(style.getCountdown('sounds/three'));
 			case 1:
-				FunkinSound.playOnce(style.getCountdown('two'));
+				FunkinSound.playOnce(style.getCountdown('sounds/two'));
 				popup('ready');
 			case 2:
-				FunkinSound.playOnce(style.getCountdown('one'));
+				FunkinSound.playOnce(style.getCountdown('sounds/one'));
 				popup('set');
 			case 3:
-				FunkinSound.playOnce(style.getCountdown('go'));
+				FunkinSound.playOnce(style.getCountdown('sounds/go'));
 				popup('go');
 		}
 	}

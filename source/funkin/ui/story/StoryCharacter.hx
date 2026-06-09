@@ -27,7 +27,7 @@ class StoryCharacter extends FunkinSprite
 
 		meta = null;
 
-		final path:String = 'ui/story/characters/$id';
+		final path:String = 'menu/story/characters/$id';
 		final metaPath:String = Paths.json('$path/meta');
 
 		// Metadata doesn't exist, so don't load it

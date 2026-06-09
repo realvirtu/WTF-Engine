@@ -16,7 +16,7 @@ class StyleRegistry extends BaseRegistry<Style>
 
 	public function new()
 	{
-		super('styles', 'play/styles');
+		super('styles', 'gameplay/styles');
 	}
 
 	override public function load()

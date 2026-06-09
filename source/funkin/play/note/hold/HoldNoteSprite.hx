@@ -53,7 +53,7 @@ class HoldNoteSprite extends FlxStrip
 
 	public function buildSprite(style:Style)
 	{
-		loadGraphic(Paths.image('${style.path}/hold-notes'));
+		loadGraphic(Paths.image(style.getNote('hold/image')));
 		setGraphicSize(Std.int(width * Constants.ZOOM * style.note.scale));
 		updateHitbox();
 

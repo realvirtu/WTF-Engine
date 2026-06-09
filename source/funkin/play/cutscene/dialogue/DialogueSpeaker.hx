@@ -25,7 +25,7 @@ class DialogueSpeaker extends FunkinSprite
 
 	public function load(id:String)
 	{
-		final path:String = 'play/dialogue/speakers/$id';
+		final path:String = 'gameplay/dialogue/speakers/$id';
 		final metaPath:String = Paths.json('$path/meta');
 
 		// Hide the speaker if it doesn't exist

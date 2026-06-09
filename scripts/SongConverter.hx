@@ -148,7 +148,7 @@ class SongConverter
 		wtfChart.events.sort((a, b) -> return a.t - b.t);
 
 		// Saves the final song
-		var output:String = '../assets/play/songs/$songName';
+		var output:String = '../assets/gameplay/songs/$songName';
 
 		if (isVariation)
 			output += '/$variation';

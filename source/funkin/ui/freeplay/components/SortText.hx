@@ -15,7 +15,7 @@ class SortText extends SelectorText
 
 	public function new(selected:Int = 0)
 	{
-		super(selected, 'ui/freeplay/sort-arrow');
+		super(selected, 'general/arrow/small');
 	}
 
 	override public function update(elapsed:Float)

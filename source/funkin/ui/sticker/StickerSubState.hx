@@ -80,7 +80,7 @@ class StickerSubState extends FunkinSubState
 				sticker.visible = !sticker.visible;
 
 				// Plays a cool sticker sound :)
-				FunkinSound.playOnce(Paths.random('ui/sticker/sounds/sticker', 1, 5));
+				FunkinSound.playOnce(Paths.random('general/sticker/sounds/sticker', 1, 5));
 
 				if (i == stickers.length - 1)
 					transition();

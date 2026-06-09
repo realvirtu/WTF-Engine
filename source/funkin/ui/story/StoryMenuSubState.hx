@@ -112,7 +112,7 @@ class StoryMenuSubState extends FunkinSubState
 
 		// TODO: Replace this with a much better system
 		// Erect and Nightmare shouldn't be selectable difficulties
-		diffText = new DifficultyText(selectedDiff, ['easy', 'normal', 'hard']);
+		diffText = new DifficultyText(selectedDiff, level.getDifficulties());
 		diffText.size = 56;
 		diffText.onChanged.add(changeDiff);
 		diffText.y = blackBottom.y + 50;
@@ -247,7 +247,7 @@ class StoryMenuSubState extends FunkinSubState
 		// Can't play a level with no songs :(
 		if (level.getSongs().length == 0)
 		{
-			FunkinSound.playOnce('ui/sounds/cancel');
+			FunkinSound.playOnce('general/sounds/cancel');
 			return;
 		}
 
@@ -256,7 +256,7 @@ class StoryMenuSubState extends FunkinSubState
 
 		player.playAnimation('confirm');
 
-		FunkinSound.playOnce('ui/sounds/confirm');
+		FunkinSound.playOnce('general/sounds/confirm');
 		FlxTimer.wait(1, () ->
 		{
 			camera.fade(0xFF000000, 0.25, false, () ->
@@ -289,7 +289,7 @@ class StoryMenuSubState extends FunkinSubState
 		exitMovers.outro();
 		exitMovers.onOutroDone = close;
 
-		FunkinSound.playOnce('ui/sounds/cancel');
+		FunkinSound.playOnce('general/sounds/cancel');
 	}
 
 	override public function destroy()

@@ -104,7 +104,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	@:noCompletion
 	inline function get_charPath():String
 	{
-		return 'play/characters/$id';
+		return 'gameplay/characters/$id';
 	}
 
 	@:noCompletion

@@ -24,7 +24,7 @@ class BackcardSprite extends FlxSpriteGroup
 	{
 		super();
 
-		card = FunkinSprite.create(0, 0, 'ui/freeplay/card/left', 1.5);
+		card = FunkinSprite.create(0, 0, 'menu/freeplay/card/left', 1.5);
 		card.color = cardColor;
 		card.active = false;
 		add(card);

@@ -26,7 +26,7 @@ class StrumSprite extends FunkinSprite
 
 	public function buildSprite(style:Style)
 	{
-		loadSprite(style.getPath('notes'), style.note.scale, style.note.width, style.note.height);
+		loadSprite(style.getNote('image'), style.note.scale, style.note.width, style.note.height);
 
 		addAnimation('static', [direction]);
 		addAnimation('press', [direction + Constants.NOTE_COUNT]);

@@ -44,7 +44,7 @@ class PauseSubState extends FunkinSubState
 			DEFAULT_ENTRIES.insert(2, 'difficulty');
 
 		final player:Character = PlayState.instance.stage.player;
-		final musicPath:String = 'play/characters/${player?.meta?.pause ?? player?.id}/pause';
+		final musicPath:String = 'gameplay/characters/${player?.meta?.pause ?? player?.id}/pause';
 
 		music = FunkinSound.load(musicPath, 0);
 		music.fadeIn(2);

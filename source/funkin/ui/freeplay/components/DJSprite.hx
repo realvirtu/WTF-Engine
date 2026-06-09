@@ -13,7 +13,7 @@ class DJSprite extends FunkinSprite
 	{
 		super(x, y);
 
-		loadSprite('ui/freeplay/dj', 1.25, 224, 258);
+		loadSprite('menu/freeplay/dj', 1.25, 224, 258);
 
 		addAnimation('idle', [0, 1, 2], 10, false);
 		addAnimation('confirm', [3, 4, 5], 10, false);

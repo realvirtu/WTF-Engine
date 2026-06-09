@@ -69,7 +69,7 @@ class FreeplaySubState extends FunkinSubState
 
 		instance = this;
 
-		FunkinSound.playMusic('ui/freeplay/music/random', 0);
+		FunkinSound.playMusic('menu/freeplay/music', 0);
 		FunkinSound.music.fadeIn(1, 0, 0.6);
 
 		exitMovers = new ExitMovers();
@@ -80,8 +80,8 @@ class FreeplaySubState extends FunkinSubState
 		backcard = new BackcardSprite();
 		add(backcard);
 
-		backingImage = FunkinSprite.create(0, 0, 'ui/freeplay/card/right', 1.5);
-		backingImage.shader = new TextureSwap('ui/freeplay/card/image');
+		backingImage = FunkinSprite.create(0, 0, 'menu/freeplay/card/right', 1.5);
+		backingImage.shader = new TextureSwap('menu/freeplay/card/image');
 		backingImage.active = false;
 		backingImage.x = FlxG.width - backingImage.width;
 		add(backingImage);
@@ -265,7 +265,7 @@ class FreeplaySubState extends FunkinSubState
 			// Can't select a capsule that's null
 			if (capsule == null)
 			{
-				FunkinSound.playOnce('ui/sounds/cancel');
+				FunkinSound.playOnce('general/sounds/cancel');
 				return;
 			}
 
@@ -277,7 +277,7 @@ class FreeplaySubState extends FunkinSubState
 		capsule.flicker();
 		dj.confirm();
 
-		FunkinSound.playOnce('ui/sounds/confirm');
+		FunkinSound.playOnce('general/sounds/confirm');
 
 		FlxTimer.wait(1, () ->
 		{
@@ -397,7 +397,7 @@ class FreeplaySubState extends FunkinSubState
 			close();
 		}
 
-		FunkinSound.playOnce('ui/sounds/cancel');
+		FunkinSound.playOnce('general/sounds/cancel');
 		FunkinSound.music.stop();
 	}
 

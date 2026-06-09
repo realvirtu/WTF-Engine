@@ -39,7 +39,7 @@ class CapsuleSprite extends FlxSpriteGroup
 	{
 		super();
 
-		capsule = FunkinSprite.create(0, 0, 'ui/freeplay/capsule/capsule');
+		capsule = FunkinSprite.create(0, 0, 'menu/freeplay/capsule/image');
 		capsule.active = false;
 		add(capsule);
 
@@ -62,7 +62,7 @@ class CapsuleSprite extends FlxSpriteGroup
 		ratingText.x = capsule.width - ratingText.width - 17;
 		add(ratingText);
 
-		heart = FunkinSprite.create(0, songText.y - 2, 'ui/freeplay/capsule/heart');
+		heart = FunkinSprite.create(0, songText.y - 2, 'menu/freeplay/capsule/heart');
 		heart.x = capsule.width - heart.width - 85;
 		heart.active = false;
 		heart.visible = false;
@@ -186,7 +186,7 @@ class CapsuleSprite extends FlxSpriteGroup
 
 		if (!justLoaded)
 		{
-			FunkinSound.playOnce('ui/freeplay/sounds/${value ? 'favorite' : 'unfavorite'}');
+			FunkinSound.playOnce('menu/freeplay/sounds/${value ? 'favorite' : 'unfavorite'}');
 			Save.instance.setFavorite(song.id, song.variation, value);
 
 			y += value ? -20 : 20;

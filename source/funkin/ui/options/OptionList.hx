@@ -85,7 +85,7 @@ class OptionList extends FlxTypedGroup<Option>
 
 		onChanged.dispatch(selected);
 
-		FunkinSound.playOnce('ui/sounds/scroll');
+		FunkinSound.playOnce('general/sounds/scroll');
 	}
 
 	function changeValue(change:Int)
@@ -101,7 +101,7 @@ class OptionList extends FlxTypedGroup<Option>
 		{
 			option.x += 10 * (change > 0 ? 1 : -1);
 
-			FunkinSound.playOnce('ui/sounds/scroll');
+			FunkinSound.playOnce('general/sounds/scroll');
 		}
 	}
 
@@ -114,7 +114,7 @@ class OptionList extends FlxTypedGroup<Option>
 		option.value = !option.value;
 		option.y += 10 * (option.value ? 1 : -1);
 
-		FunkinSound.playOnce('ui/sounds/scroll');
+		FunkinSound.playOnce('general/sounds/scroll');
 	}
 
 	function getOptionX(option:Option):Float

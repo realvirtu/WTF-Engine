@@ -71,7 +71,7 @@ class MenuItemGroup extends FlxTypedGroup<MenuItem>
 
 	function change(change:Int)
 	{
-		FunkinSound.playOnce('ui/sounds/scroll');
+		FunkinSound.playOnce('general/sounds/scroll');
 
 		selected += change;
 

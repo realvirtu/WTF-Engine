@@ -26,7 +26,7 @@ class OptionsSubState extends FunkinSubState
 		stateMachine = new StateMachine();
 		exitMovers = new ExitMovers();
 
-		bg = FunkinSprite.create(0, 0, 'ui/menu/bg', 1.5);
+		bg = FunkinSprite.create(0, 0, 'menu/back', 1.5);
 		bg.color = 0xFFD400FF;
 		bg.active = false;
 		add(bg);
@@ -101,6 +101,6 @@ class OptionsSubState extends FunkinSubState
 		exitMovers.onOutroDone = close;
 
 		FlxTween.tween(bg.scale, {x: 0, y: 0}, 0.75, {ease: FlxEase.quintOut});
-		FunkinSound.playOnce('ui/sounds/cancel');
+		FunkinSound.playOnce('general/sounds/cancel');
 	}
 }

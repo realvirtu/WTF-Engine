@@ -143,16 +143,16 @@ class GameOverSubState extends FunkinSubState
 
 	function getDeathMusic():String
 	{
-		final id:String = player?.meta?.death?.music ?? player?.id;
+		final path:String = player?.meta?.death?.music ?? player?.id;
 
-		return 'play/characters/$id-death/music';
+		return 'gameplay/characters/$path-death/music';
 	}
 
 	function getDeathSound(id:String)
 	{
 		final path:String = player?.meta?.death?.sounds ?? player?.id;
 
-		return 'play/characters/$path-death/$id';
+		return 'gameplay/characters/$path-death/$id';
 	}
 
 	override function beatHit(beat:Int)

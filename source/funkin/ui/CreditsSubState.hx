@@ -32,7 +32,7 @@ class CreditsSubState extends FunkinSubState
 	{
 		super.create();
 
-		FunkinSound.playMusic('ui/freeplay/music/random', 0);
+		FunkinSound.playMusic('menu/freeplay/music', 0);
 		FunkinSound.music.fadeIn(0.75);
 
 		exitMovers = new ExitMovers();
@@ -49,7 +49,7 @@ class CreditsSubState extends FunkinSubState
 		bg.active = false;
 		add(bg);
 
-		var logo:FunkinSprite = FunkinSprite.create(0, 100, 'ui/title/logo', 1.25);
+		var logo:FunkinSprite = FunkinSprite.create(0, 100, 'menu/title/logo', 1.25);
 		logo.screenCenter(X);
 		logo.active = false;
 		add(logo);
@@ -157,7 +157,7 @@ class CreditsSubState extends FunkinSubState
 
 		FlxTween.tween(bg.scale, {x: 0, y: 0}, 0.75, {ease: FlxEase.quintOut});
 
-		FunkinSound.playOnce('ui/sounds/cancel');
+		FunkinSound.playOnce('general/sounds/cancel');
 		FunkinSound.music.stop();
 	}
 
