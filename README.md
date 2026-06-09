@@ -1,6 +1,14 @@
-# Friday Night Funkin' WTF Engine
+<div align="center"><img src="assets/ui/title/logo.png" width="650" style="image-rendering: pixelated"></div>
+<h1 align="center">Friday Night Funkin' WTF Engine</h1>
 
-WTF Engine is the best worst Friday Night Funkin' engine out there. What this engine does differently is the art. Rather than using FNF's premade and visually pleasing graphics, this engine uses the shittiest possible art.
+WTF Engine is the best worst [Friday Night Funkin'](https://github.com/FunkinCrew/Funkin) engine out there. What this engine does differently is the art. Rather than using FNF's premade and visually pleasing graphics, this engine uses the shittiest possible art.
+
+<table>
+    <tr>
+        <td><img src="art/github/storymenu.png"></td>
+        <td><img src="art/github/freeplay.png"></td>
+    </tr>
+</table>
 
 Why should you even use this engine? The engine pretty much exists as a joke. The content made using this engine should be done for the fun of it.
 
