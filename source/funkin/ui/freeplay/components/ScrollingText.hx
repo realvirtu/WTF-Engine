@@ -11,6 +11,8 @@ class ScrollingText extends FunkinText
 	public var speed:Float;
 	public var spacing:Float;
 
+	public var scroll:Float = 0;
+
 	public function new(x:Float = 0, y:Float = 0, text:String = '', speed:Float = 1, spacing:Float = 50)
 	{
 		super(x, y, text);
@@ -25,10 +27,10 @@ class ScrollingText extends FunkinText
 	{
 		super.update(elapsed);
 
-		offset.x += speed * 60 * elapsed;
+		scroll += speed * 60 * elapsed;
 
-		if (Math.abs(offset.x) > width)
-			offset.x = 0;
+		if (Math.abs(scroll) > width)
+			scroll = 0;
 	}
 
 	override public function draw()
@@ -36,7 +38,7 @@ class ScrollingText extends FunkinText
 		var lastX:Float = x;
 		var count:Int = Math.ceil(scrollWidth / width) + 2;
 
-		x -= width;
+		x -= width + scroll;
 
 		for (i in 0...count)
 		{
