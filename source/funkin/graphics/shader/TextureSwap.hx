@@ -1,39 +1,23 @@
 package funkin.graphics.shader;
 
-import flixel.system.FlxAssets.FlxShader;
+import flixel.addons.display.FlxRuntimeShader;
+import funkin.util.FileUtil;
 import openfl.utils.Assets;
 
 /**
  * A shader for swapping a texture with another texture.
  */
-class TextureSwap extends FlxShader
+class TextureSwap extends FlxRuntimeShader
 {
-	@:glFragmentSource('
-        #pragma header
-
-        uniform sampler2D texture;
-
-        void main()
-        {
-            vec2 uv = openfl_TextureCoordv;
-            vec4 color = texture2D(bitmap, uv);
-            vec4 texColor = texture2D(texture, uv);
-
-            if (color.a > 0.0)
-            {
-                color.rgb = texColor.rgb;
-            }
-
-            gl_FragColor = color;
-        }
-    ')
 	public function new(id:String)
 	{
-		super();
+		super(FileUtil.getText(Paths.frag('general/shaders/texture-swap')));
 
-		loadTexture(id);
+		load(id);
 	}
 
-	public function loadTexture(id:String)
-		texture.input = Assets.getBitmapData(Paths.image(id));
+	public function load(id:String)
+	{
+		setBitmapData('texture', Assets.getBitmapData(Paths.image(id)));
+	}
 }

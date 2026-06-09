@@ -16,7 +16,7 @@ class SchoolEvilStage extends Stage
     {
         super.onCreate(event);
 
-        wiggle = new FlxRuntimeShader(FileUtil.getText(Paths.frag('$path/wiggle')));
+        wiggle = new FlxRuntimeShader(FileUtil.getText(Paths.frag('general/shaders/wiggle')));
         wiggle.setFloat("speed", 2);
         wiggle.setFloat("frequency", 10);
         wiggle.setFloat("waveAmplitude", 0.015);
