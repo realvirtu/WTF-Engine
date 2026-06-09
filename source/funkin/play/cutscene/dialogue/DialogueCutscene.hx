@@ -68,7 +68,7 @@ class DialogueCutscene extends BaseCutscene
 
 		text = new FunkinText(box.x + TEXT_POSITION, box.y + TEXT_POSITION);
 		text.fieldWidth = Std.int(box.width - TEXT_POSITION * 2);
-		text.size = 24;
+		text.size = 30;
 		text.wrap = CHAR;
 		text.borderColor = 0xFF000000;
 		text.borderSize = 4;

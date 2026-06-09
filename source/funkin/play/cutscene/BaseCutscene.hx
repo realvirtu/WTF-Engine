@@ -31,7 +31,6 @@ class BaseCutscene extends FlxGroup
 
 	public function start()
 	{
-		PlayState.instance.songActive = false;
 		PlayState.instance.camHUD.visible = !hideHUD;
 
 		trace('Started cutscene $id.');
