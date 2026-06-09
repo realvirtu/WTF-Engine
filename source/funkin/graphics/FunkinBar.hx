@@ -1,24 +1,23 @@
 package funkin.graphics;
 
-import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxColor;
 
 /**
  * A better version of Flixel's `FlxBar` class because `FlxBar` is dumb and stupid.
  */
-class FunkinBar extends FlxSpriteGroup
+class FunkinBar extends FunkinSprite
 {
 	public var min:Float;
 	public var max:Float;
 	public var isLeft:Bool;
 
-	public var value(default, set):Float;
+	public var emptyColor:FlxColor;
+	public var fillColor:FlxColor;
+
+	public var value:Float;
+
 	public var percent(get, never):Float;
-
 	public var fillPosition(get, never):Float;
-
-	var empty:FunkinSprite;
-	var fill:FunkinSprite;
 
 	public function new(x:Float, y:Float, width:Int, height:Int, min:Float = 0, max:Float = 100, isLeft:Bool = false)
 	{
@@ -28,34 +27,34 @@ class FunkinBar extends FlxSpriteGroup
 		this.max = max;
 		this.isLeft = isLeft;
 
-		empty = FunkinSprite.createSolidColor(0, 0, width, height, 0xFFFFFFFF);
-		empty.active = false;
-		add(empty);
+		makeSolidColor(width, height, 0xFFFFFFFF);
+		setColors(0xFF000000, 0xFFFFFFFF);
 
-		fill = empty.clone();
-		fill.offset.x = isLeft ? -width + 1 : 0;
-		fill.origin.x = isLeft ? 1 : 0;
-		add(fill);
-
+		active = false;
 		value = max;
+
+		offset.x = isLeft ? -width + 1 : 0;
+		origin.x = isLeft ? 1 : 0;
 	}
 
 	public function setColors(emptyColor:FlxColor, fillColor:FlxColor)
 	{
-		empty.color = emptyColor;
-		fill.color = fillColor;
+		this.emptyColor = emptyColor;
+		this.fillColor = fillColor;
 	}
 
-	@:noCompletion
-	function set_value(value:Float):Float
+	override public function draw()
 	{
-		if (this.value == value)
-			return value;
-		this.value = value;
+		color = emptyColor;
 
-		fill.scale.x = percent * fill.width;
+		super.draw();
 
-		return value;
+		scale.x = percent * width;
+		color = fillColor;
+
+		super.draw();
+
+		scale.x = width;
 	}
 
 	@:noCompletion
@@ -67,9 +66,9 @@ class FunkinBar extends FlxSpriteGroup
 	@:noCompletion
 	inline function get_fillPosition():Float
 	{
-		var pos:Float = percent * fill.width;
+		var pos:Float = percent * width;
 		if (isLeft)
-			pos = fill.width - pos;
+			pos = width - pos;
 		return x + pos;
 	}
 }
