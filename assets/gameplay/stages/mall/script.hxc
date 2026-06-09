@@ -1,0 +1,28 @@
+import flixel.addons.display.FlxRuntimeShader;
+import funkin.play.PlayState;
+import funkin.play.stage.Stage;
+import funkin.util.FileUtil;
+import openfl.filters.ShaderFilter;
+
+class MallStage extends Stage
+{
+    var saturation:FlxRuntimeShader;
+
+    public function new()
+    {
+        super("mall");
+    }
+
+    override function onCreate(event:ScriptEvent)
+    {
+        super.onCreate(event);
+
+        if (PlayState.song.variation == "erect")
+        {
+            saturation = new FlxRuntimeShader(FileUtil.getText(Paths.frag("general/shaders/saturation")));
+            saturation.setFloat("saturation", 2);
+
+            FlxG.camera.filters = [new ShaderFilter(saturation)];
+        }
+    }
+}

@@ -16,12 +16,12 @@ class SchoolEvilStage extends Stage
     {
         super.onCreate(event);
 
-        wiggle = new FlxRuntimeShader(FileUtil.getText(Paths.frag('general/shaders/wiggle')));
+        wiggle = new FlxRuntimeShader(FileUtil.getText(Paths.frag("general/shaders/wiggle")));
         wiggle.setFloat("speed", 2);
         wiggle.setFloat("frequency", 10);
         wiggle.setFloat("waveAmplitude", 0.015);
 
-        getProp('back').shader = wiggle;
+        getProp("back").shader = wiggle;
     }
 
     override function onUpdate(event:UpdateScriptEvent)
@@ -30,6 +30,6 @@ class SchoolEvilStage extends Stage
 
         wiggleTime += event.elapsed;
 
-        wiggle.setFloat('time', wiggleTime);
+        wiggle.setFloat("time", wiggleTime);
     }
 }
