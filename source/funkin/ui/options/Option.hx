@@ -52,7 +52,7 @@ class Option extends FlxSpriteGroup
 				checkbox.playAnimation('checkbox');
 				add(checkbox);
 			case NUMERIC:
-				arrowLeft = FunkinSprite.create(text.width + 10, 0, 'general/arrow/default');
+				arrowLeft = FunkinSprite.create(text.width + 10, 0, 'menu/arrow/default');
 				arrowLeft.active = false;
 				arrowLeft.y = (text.height - arrowLeft.height) / 2;
 				add(arrowLeft);

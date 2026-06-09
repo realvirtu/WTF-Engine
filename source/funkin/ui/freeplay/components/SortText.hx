@@ -15,7 +15,7 @@ class SortText extends SelectorText
 
 	public function new(selected:Int = 0)
 	{
-		super(selected, 'general/arrow/small');
+		super(selected, 'menu/arrow/small');
 	}
 
 	override public function update(elapsed:Float)
