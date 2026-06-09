@@ -81,7 +81,7 @@ class GameOverSubState extends FunkinSubState
 		if (controls.ACCEPT_P)
 			retry();
 		if (controls.BACK)
-			PlayState.instance.exit();
+			exit();
 	}
 
 	function startLoop()
@@ -120,6 +120,13 @@ class GameOverSubState extends FunkinSubState
 		FunkinSound.playOnce(getDeathSound('end'));
 
 		FlxTimer.wait(1, () -> FlxG.camera.fade(0xFF000000, 2, false, close));
+	}
+
+	function exit()
+	{
+		if (retrying)
+			return;
+		PlayState.instance.exit();
 	}
 
 	function buildCharacter()
