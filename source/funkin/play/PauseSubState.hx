@@ -86,6 +86,7 @@ class PauseSubState extends FunkinSubState
 		songText.text = song.name;
 		songText.text += '\ndifficulty: $difficulty';
 		songText.text += '\nartist: ${song.artist}';
+		songText.text += '\ncharter: ${song.charter}';
 		songText.text += '\n$deaths blue ball';
 
 		if (deaths != 1)
