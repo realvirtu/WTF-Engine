@@ -1,16 +1,18 @@
 {
+	"style": "funkin",
 	"name": "Spookeez Erect",
 	"gf": "gf",
+	"album": "volume3",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "spooky",
+	"charter": "Spazkid + fabs",
 	"player": "bf",
 	"stage": "spooky",
 	"bpm": 166,
 	"artist": "Kawai Sprite (feat. Saruky)",
-	"album": "volume3",
 	"rating": {
 		"nightmare": 12,
 		"erect": 11

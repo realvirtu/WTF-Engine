@@ -790,18 +790,18 @@
 		},
 		{
 			"v": {
-				"c": 1,
-				"a": "hey",
-				"f": true
+				"c": 0,
+				"a": "cheer",
+				"f": false
 			},
 			"t": 28200,
 			"e": "play-animation"
 		},
 		{
 			"v": {
-				"c": 0,
-				"a": "cheer",
-				"f": false
+				"c": 1,
+				"a": "hey",
+				"f": true
 			},
 			"t": 28200,
 			"e": "play-animation"

@@ -1,17 +1,19 @@
 {
+	"style": "funkin",
 	"name": "Pico",
 	"gf": "gf",
+	"album": "volume1",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "pico",
+	"charter": "ninjamuffin99 + MtH",
 	"player": "bf",
 	"stage": "philly-train",
 	"bpm": 150,
 	"artist": "Kawai Sprite",
-	"album": "volume1",
 	"rating": {
 		"normal": 2,
 		"hard": 2,

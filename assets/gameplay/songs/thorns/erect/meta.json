@@ -1,17 +1,18 @@
 {
+	"style": "pixel",
 	"name": "Thorns Erect",
 	"gf": "gf-pixel",
+	"album": "volume3",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "spirit",
+	"charter": "Jenny Crowe + fabs",
 	"player": "bf-pixel",
 	"stage": "school-evil",
 	"bpm": 190,
 	"artist": "Kawai Sprite (feat. Saster)",
-	"album": "volume3",
-	"style": "pixel",
 	"rating": {
 		"nightmare": 10,
 		"erect": 9

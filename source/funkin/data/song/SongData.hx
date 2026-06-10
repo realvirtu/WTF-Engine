@@ -11,6 +11,7 @@ typedef SongMetadata =
 	@:default(100)
 	var bpm:Float;
 	var artist:String;
+	var charter:String;
 	@:default([])
 	var difficulties:Array<String>;
 	var rating:Map<String, Int>;

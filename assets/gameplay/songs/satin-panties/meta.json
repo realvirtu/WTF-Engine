@@ -1,17 +1,19 @@
 {
+	"style": "funkin",
 	"name": "Satin Panties",
 	"gf": "gf",
+	"album": "volume1",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "mom",
+	"charter": "ninjamuffin99 + MtH + Spazkid",
 	"player": "bf",
 	"stage": "limo",
 	"bpm": 110,
 	"artist": "Kawai Sprite",
-	"album": "volume1",
 	"rating": {
 		"normal": 2,
 		"hard": 2,

@@ -2,17 +2,18 @@
 	"style": "funkin",
 	"name": "Guns",
 	"gf": "gf-tankman",
+	"album": "volume2",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "tankman",
+	"charter": "MtH",
 	"player": "bf",
 	"stage": "tank",
 	"bpm": 185,
 	"artist": "Kawai Sprite",
-	"album": "volume2",
 	"rating": {
 		"normal": 4,
 		"hard": 5,

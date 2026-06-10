@@ -1,16 +1,18 @@
 {
+	"style": "funkin",
 	"name": "Philly Nice Erect",
 	"gf": "gf",
+	"album": "volume3",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "pico",
+	"charter": "Spazkid + fabs",
 	"player": "bf",
 	"stage": "philly-train",
 	"bpm": 175,
 	"artist": "Kawai Sprite (feat. Saruky)",
-	"album": "volume3",
 	"rating": {
 		"nightmare": 9,
 		"erect": 8

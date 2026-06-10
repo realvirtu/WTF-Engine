@@ -2,17 +2,18 @@
 	"style": "funkin",
 	"name": "Blazin'",
 	"gf": "nene",
+	"album": "volume3",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "darnell-blazin",
+	"charter": "fabs + PhantomArcade",
 	"player": "pico-blazin",
-	"stage": "philly-streets",
+	"stage": "phillyBlazin",
 	"bpm": 180,
 	"artist": "Kawai Sprite",
-	"album": "volume3",
 	"rating": {
 		"normal": 4,
 		"hard": 5,

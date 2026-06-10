@@ -1,16 +1,18 @@
 {
+	"style": "funkin",
 	"name": "Fresh Erect",
 	"gf": "gf",
+	"album": "volume3",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "dad",
+	"charter": "fabs + Spazkid",
 	"player": "bf",
 	"stage": "stage",
 	"bpm": 125,
 	"artist": "Kohta Takahashi (feat. Saruky)",
-	"album": "volume3",
 	"rating": {
 		"nightmare": 7,
 		"erect": 6

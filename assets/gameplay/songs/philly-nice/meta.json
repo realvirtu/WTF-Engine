@@ -1,17 +1,19 @@
 {
+	"style": "funkin",
 	"name": "Philly Nice",
 	"gf": "gf",
+	"album": "volume1",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "pico",
+	"charter": "ninjamuffin99 + MtH + Spazkid",
 	"player": "bf",
 	"stage": "philly-train",
 	"bpm": 175,
 	"artist": "Kawai Sprite",
-	"album": "volume1",
 	"rating": {
 		"normal": 2,
 		"hard": 3,

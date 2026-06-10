@@ -6,157 +6,152 @@ import haxe.Json;
 import sys.FileSystem;
 import sys.io.File;
 
-using StringTools;
-
 /**
- * A class for converting a V-Slice song to a song that the engine can take.
- * This is kinda taken from Funkin'.
- * 
- * TODO: Remove this once V-Slice songs can be converted.
- * 
- * Usage: Run `haxe --run SongConverter` from `scripts`.
+ * From `scripts`, run `haxe --run SongConverter` to convert a song or all songs.
  */
 class SongConverter
 {
+	static final WTF_SONGS:String = '../assets/gameplay/songs';
+
+	static var path:String;
+	static var variation:String;
+
 	static function main()
 	{
-		Sys.stdout().writeString('Song directory: ');
+		Sys.stdout().writeString('V-Slice songs path: ');
 		Sys.stdout().flush();
 
-		final songDir:String = Sys.stdin().readLine();
+		path = Sys.stdin().readLine();
+
+		Sys.stdout().writeString('Song (Leave blank to convert all): ');
+		Sys.stdout().flush();
+
+		final song:String = Sys.stdin().readLine();
 
 		Sys.stdout().writeString('Variation: ');
 		Sys.stdout().flush();
 
-		final variation:String = Sys.stdin().readLine();
+		variation = Sys.stdin().readLine();
 
-		// Retrieves the song id
-		var songName:String = songDir;
-		var isVariation:Bool = variation != 'default' && variation != '';
+		if (song != '')
+			return convertSong(song);
 
-		songName = songName.replace('\\', '/');
-		songName = songName.substr(songName.lastIndexOf('/') + 1);
+		for (song in FileSystem.readDirectory(WTF_SONGS))
+			convertSong(song);
+	}
 
-		// Converts the song
-		var metaPath:String = '$songDir/$songName-metadata';
-		var chartPath:String = '$songDir/$songName-chart';
+	static function convertSong(id:String)
+	{
+		trace('Converting song $id...');
 
-		if (isVariation)
-		{
-			metaPath += '-$variation';
-			chartPath += '-$variation';
-		}
+		var suffix:String = '';
+		if (variation != 'default' && variation != '')
+			suffix = '-$variation';
 
-		metaPath += '.json';
-		chartPath += '.json';
+		final path:String = '$path/$id';
+		final metaPath:String = '$path/$id-metadata$suffix.json';
+		final chartPath:String = '$path/$id-chart$suffix.json';
 
 		if (!FileSystem.exists(metaPath) || !FileSystem.exists(chartPath))
-		{
-			trace('Failed to convert song. Chart or metadata is missing!');
-			return;
-		}
+			return trace('$id is NOT a valid song.');
+
+		var path:String = '$WTF_SONGS/$id';
+		if (variation != 'default' && variation != '')
+			path += '/$variation';
 
 		var meta:Dynamic = Json.parse(File.getContent(metaPath));
 		var chart:Dynamic = Json.parse(File.getContent(chartPath));
 
-		var timeChanges:Array<Dynamic> = meta.timeChanges;
+		chart = convertChart(chart, meta.timeChanges.copy());
+		meta = convertMeta(meta);
 
-		var wtfMeta:Dynamic = {}
-		var wtfChart:Dynamic = {}
+		FileSystem.createDirectory(path);
 
-		wtfMeta.name = meta.songName;
-		wtfMeta.bpm = timeChanges[0].bpm;
-		wtfMeta.artist = meta.artist;
-		wtfMeta.style = meta.playData.noteStyle;
-		wtfMeta.difficulties = meta.playData.difficulties;
-		wtfMeta.rating = meta.playData.ratings;
-		wtfMeta.album = meta.playData.album;
-		wtfMeta.stage = meta.playData.stage;
-		wtfMeta.player = meta.playData.characters.player;
-		wtfMeta.opponent = meta.playData.characters.opponent;
-		wtfMeta.gf = meta.playData.characters.girlfriend;
+		File.saveContent('$path/meta.json', Json.stringify(meta, '\t'));
+		File.saveContent('$path/chart.json', Json.stringify(chart, '\t'));
+	}
 
-		wtfChart.speed = chart.scrollSpeed;
-		wtfChart.notes = chart.notes;
-		wtfChart.events = [];
+	static function convertMeta(meta:Dynamic):Dynamic
+	{
+		return {
+			name: meta.songName,
+			bpm: meta.timeChanges[0].bpm,
+			artist: meta.artist,
+			charter: meta.charter,
+			difficulties: meta.playData.difficulties,
+			rating: meta.playData.ratings,
+			album: meta.playData.album,
+			style: meta.playData.noteStyle,
+			stage: meta.playData.stage,
+			player: meta.playData.characters.player,
+			opponent: meta.playData.characters.opponent,
+			gf: meta.playData.characters.girlfriend
+		}
+	}
+
+	static function convertChart(chart:Dynamic, timeChanges:Array<Dynamic>):Dynamic
+	{
+		timeChanges.shift();
+
+		// Converts events
+		var events:Array<Dynamic> = [];
 
 		for (event in chart.events ?? [])
-		{
-			var wtfEvent:Dynamic = {}
-
-			var kind:String = '';
-			var value:Dynamic = {}
-
-			switch (event.e)
-			{
-				case 'FocusCamera':
-					kind = 'focus-camera';
-
-					var c:Dynamic = event.v.char;
-
-					if (Std.isOfType(c, String))
-						c = Std.parseInt(c);
-
-					if (Type.typeof(event.v) == TInt)
-						c = event.v;
-
-					// Swap char because fuck
-					if (c == 0)
-						c = 1;
-					else if (c == 1)
-						c = 0;
-
-					value.c = c;
-				case 'PlayAnimation':
-					kind = 'play-animation';
-
-					var target:String = event.v.target;
-					var c:Int = 0;
-
-					if (target == 'boyfriend' || target == 'bf')
-						c = 1;
-					if (target == 'girlfriend' || target == 'gf')
-						c = 2;
-
-					value.c = c;
-					value.a = event.v.anim;
-					value.f = event.v.force;
-				default:
-					continue;
-			}
-
-			wtfEvent.t = event.t;
-			wtfEvent.e = kind;
-			wtfEvent.v = value;
-
-			wtfChart.events.push(wtfEvent);
-		}
-
+			convertEvent(event, events);
 		for (timeChange in timeChanges)
+			events.push({t: timeChange.t, e: 'change-bpm', v: {b: timeChange.bpm}});
+
+		events.sort((a, b) -> return a.t - b.t);
+
+		return {
+			speed: chart.scrollSpeed,
+			notes: chart.notes,
+			events: events
+		}
+	}
+
+	static function convertEvent(event:Dynamic, output:Array<Dynamic>)
+	{
+		var kind:String = event.e;
+		var value:Dynamic = {}
+
+		switch (kind)
 		{
-			// Don't include the first time change
-			if (timeChange.t == 0)
-				continue;
+			case 'FocusCamera':
+				kind = 'focus-camera';
 
-			var time:Float = timeChange.t;
-			var bpm:Float = timeChange.bpm;
+				var c:Dynamic = event.v.char;
 
-			wtfChart.events.push({t: time, e: 'change-bpm', v: {b: bpm}});
+				if (Std.isOfType(c, String))
+					c = Std.parseInt(c);
+				if (Type.typeof(event.v) == TInt)
+					c = event.v;
+
+				// Swap char because fuck
+				if (c == 0)
+					c = 1;
+				else if (c == 1)
+					c = 0;
+
+				value.c = c;
+			case 'PlayAnimation':
+				kind = 'play-animation';
+
+				var target:String = event.v.target;
+				var c:Int = 0;
+
+				if (target == 'boyfriend' || target == 'bf')
+					c = 1;
+				if (target == 'girlfriend' || target == 'gf')
+					c = 2;
+
+				value.c = c;
+				value.a = event.v.anim;
+				value.f = event.v.force;
+			default:
+				return;
 		}
 
-		wtfChart.events.sort((a, b) -> return a.t - b.t);
-
-		// Saves the final song
-		var output:String = '../assets/gameplay/songs/$songName';
-
-		if (isVariation)
-			output += '/$variation';
-
-		FileSystem.createDirectory(output);
-
-		File.saveContent('$output/meta.json', Json.stringify(wtfMeta, '\t'));
-		File.saveContent('$output/chart.json', Json.stringify(wtfChart, '\t'));
-
-		trace('Done converting song $songName ($variation).');
+		output.push({t: event.t, e: kind, v: value});
 	}
 }

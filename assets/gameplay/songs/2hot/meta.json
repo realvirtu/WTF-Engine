@@ -2,17 +2,18 @@
 	"style": "funkin",
 	"name": "2hot",
 	"gf": "nene",
+	"album": "volume3",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "darnell",
+	"charter": "Jenny Crowe + Spazkid + ninjamuffin99",
 	"player": "pico",
-	"stage": "philly-streets",
+	"stage": "phillyStreets",
 	"bpm": 182,
 	"artist": "Kawai Sprite",
-	"album": "volume3",
 	"rating": {
 		"normal": 4,
 		"hard": 5,

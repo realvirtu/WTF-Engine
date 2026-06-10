@@ -2,17 +2,18 @@
 	"style": "funkin",
 	"name": "Lit Up",
 	"gf": "nene",
+	"album": "volume3",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "darnell",
+	"charter": "Jenny Crowe + Spazkid",
 	"player": "pico",
-	"stage": "philly-streets",
+	"stage": "phillyStreets",
 	"bpm": 176,
 	"artist": "Kawai Sprite",
-	"album": "volume3",
 	"rating": {
 		"normal": 3,
 		"hard": 4,

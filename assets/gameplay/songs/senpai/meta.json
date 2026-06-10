@@ -1,18 +1,19 @@
 {
+	"style": "pixel",
 	"name": "Senpai",
 	"gf": "gf-pixel",
+	"album": "volume2",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "senpai",
+	"charter": "ninjamuffin99 + MtH",
 	"player": "bf-pixel",
 	"stage": "school",
 	"bpm": 144,
 	"artist": "Kawai Sprite",
-	"album": "volume2",
-	"style": "pixel",
 	"rating": {
 		"normal": 2,
 		"hard": 3,

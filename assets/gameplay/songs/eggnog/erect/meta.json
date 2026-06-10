@@ -1,16 +1,18 @@
 {
+	"style": "funkin",
 	"name": "Eggnog Erect",
 	"gf": "gf-christmas",
+	"album": "expansion1",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
-	"opponent": "parents",
+	"opponent": "parents-christmas",
+	"charter": "fabs + Spazkid",
 	"player": "bf-christmas",
 	"stage": "mall",
 	"bpm": 140,
 	"artist": "Saruky",
-	"album": "expansion1",
 	"rating": {
 		"nightmare": 7,
 		"erect": 6

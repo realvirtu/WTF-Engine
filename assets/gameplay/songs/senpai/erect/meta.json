@@ -1,17 +1,18 @@
 {
+	"style": "pixel",
 	"name": "Senpai Erect",
 	"gf": "gf-pixel",
+	"album": "volume3",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "senpai",
+	"charter": "Jenny Crowe + fabs",
 	"player": "bf-pixel",
 	"stage": "school",
 	"bpm": 158,
 	"artist": "Kawai Sprite",
-	"album": "volume3",
-	"style": "pixel",
 	"rating": {
 		"nightmare": 7,
 		"erect": 6

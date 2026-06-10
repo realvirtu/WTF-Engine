@@ -1,17 +1,18 @@
 {
 	"style": "funkin",
 	"name": "Ugh Erect",
-	"gf": "gf-tankman",
+	"gf": "gf-tankmen",
+	"album": "volume4",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "tankman",
+	"charter": "fabs + Spazkid",
 	"player": "bf",
 	"stage": "tank",
 	"bpm": 170,
 	"artist": "Kawai Sprite",
-	"album": "volume4",
 	"rating": {
 		"nightmare": 9,
 		"erect": 8

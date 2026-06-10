@@ -1,17 +1,18 @@
 {
+	"style": "pixel",
 	"name": "Roses Erect",
 	"gf": "gf-pixel",
+	"album": "volume3",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "senpai-angry",
+	"charter": "Jenny Crowe + fabs + Spazkid",
 	"player": "bf-pixel",
 	"stage": "school",
 	"bpm": 128,
 	"artist": "Kawai Sprite",
-	"album": "volume3",
-	"style": "pixel",
 	"rating": {
 		"nightmare": 9,
 		"erect": 8

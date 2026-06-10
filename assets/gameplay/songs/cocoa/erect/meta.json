@@ -1,16 +1,18 @@
 {
+	"style": "funkin",
 	"name": "Cocoa Erect",
 	"gf": "gf-christmas",
+	"album": "volume4",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
-	"opponent": "parents",
+	"opponent": "parents-christmas",
+	"charter": "fabs + Spazkid",
 	"player": "bf-christmas",
 	"stage": "mall",
 	"bpm": 174,
 	"artist": "Saster",
-	"album": "volume4",
 	"rating": {
 		"nightmare": 8,
 		"erect": 7

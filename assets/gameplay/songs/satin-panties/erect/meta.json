@@ -1,16 +1,18 @@
 {
+	"style": "funkin",
 	"name": "Satin Panties Erect",
 	"gf": "gf",
+	"album": "expansion1",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "mom",
+	"charter": "fabs + Spazkid",
 	"player": "bf",
 	"stage": "limo",
 	"bpm": 135,
 	"artist": "Kawai Sprite",
-	"album": "expansion1",
 	"rating": {
 		"nightmare": 12,
 		"erect": 11

@@ -23,6 +23,7 @@ class Song implements IPlayStateScriptedClass
 	public var name(get, never):String;
 	public var bpm(get, never):Float;
 	public var artist(get, never):String;
+	public var charter(get, never):String;
 	public var difficulties(get, never):Array<String>;
 
 	public var album(get, never):String;
@@ -111,6 +112,15 @@ class Song implements IPlayStateScriptedClass
 		if (artist == null || artist.trim() == '')
 			artist = Constants.DEFAULT_ARTIST;
 		return artist;
+	}
+
+	@:noCompletion
+	function get_charter():String
+	{
+		var charter:Null<String> = meta.charter;
+		if (charter == null || charter.trim() == '')
+			charter = Constants.DEFAULT_ARTIST;
+		return charter;
 	}
 
 	@:noCompletion

@@ -2,17 +2,18 @@
 	"style": "funkin",
 	"name": "Stress",
 	"gf": "pico-speaker",
+	"album": "volume2",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "tankman",
+	"charter": "MtH + Spazkid + Hundrec",
 	"player": "bf-holding-gf",
 	"stage": "tank",
 	"bpm": 178,
 	"artist": "Kawai Sprite",
-	"album": "volume2",
 	"rating": {
 		"normal": 4,
 		"hard": 5,

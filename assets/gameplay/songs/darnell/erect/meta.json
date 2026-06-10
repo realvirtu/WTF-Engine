@@ -2,16 +2,17 @@
 	"style": "funkin",
 	"name": "Darnell Erect",
 	"gf": "nene",
+	"album": "expansion2",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "darnell",
-	"player": "pico",
-	"stage": "philly-streets",
+	"charter": "fabs + Spazkid",
+	"player": "pico-playable",
+	"stage": "phillyStreetsErect",
 	"bpm": 155,
 	"artist": "Kawai Sprite",
-	"album": "expansion2",
 	"rating": {
 		"nightmare": 9,
 		"erect": 8

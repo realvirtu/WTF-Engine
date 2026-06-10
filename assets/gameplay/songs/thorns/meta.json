@@ -1,18 +1,19 @@
 {
+	"style": "pixel",
 	"name": "Thorns",
 	"gf": "gf-pixel",
+	"album": "volume2",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "spirit",
+	"charter": "ninjamuffin99 + MtH",
 	"player": "bf-pixel",
 	"stage": "school-evil",
 	"bpm": 190,
 	"artist": "Kawai Sprite",
-	"album": "volume2",
-	"style": "pixel",
 	"rating": {
 		"normal": 3,
 		"hard": 4,

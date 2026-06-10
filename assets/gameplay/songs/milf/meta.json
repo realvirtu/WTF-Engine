@@ -1,17 +1,19 @@
 {
+	"style": "funkin",
 	"name": "M.I.L.F",
 	"gf": "gf",
+	"album": "volume1",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "mom",
+	"charter": "ninjamuffin99 + MtH + Spazkid",
 	"player": "bf",
 	"stage": "limo",
 	"bpm": 180,
 	"artist": "Kawai Sprite",
-	"album": "volume1",
 	"rating": {
 		"normal": 3,
 		"hard": 4,

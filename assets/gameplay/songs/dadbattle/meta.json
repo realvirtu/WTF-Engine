@@ -1,17 +1,19 @@
 {
+	"style": "funkin",
 	"name": "DadBattle",
 	"gf": "gf",
+	"album": "volume1",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "dad",
+	"charter": "ninjamuffin99 + MtH",
 	"player": "bf",
 	"stage": "stage",
 	"bpm": 180,
 	"artist": "Kawai Sprite",
-	"album": "volume1",
 	"rating": {
 		"normal": 2,
 		"hard": 3,

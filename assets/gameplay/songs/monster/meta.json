@@ -1,17 +1,19 @@
 {
+	"style": "funkin",
 	"name": "Monster",
 	"gf": "gf",
+	"album": "volume2",
 	"difficulties": [
 		"easy",
 		"normal",
 		"hard"
 	],
 	"opponent": "monster",
+	"charter": "ChaoticGamerCG + MtH + Spazkid",
 	"player": "bf",
 	"stage": "spooky",
 	"bpm": 95,
 	"artist": "Bassetfilms",
-	"album": "volume2",
 	"rating": {
 		"normal": 2,
 		"hard": 2,

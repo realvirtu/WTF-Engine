@@ -1,16 +1,18 @@
 {
+	"style": "funkin",
 	"name": "Bopeebo Erect",
 	"gf": "gf",
+	"album": "volume3",
 	"difficulties": [
 		"erect",
 		"nightmare"
 	],
 	"opponent": "dad",
+	"charter": "Jenny Crowe + fabs + Spazkid",
 	"player": "bf",
 	"stage": "stage",
 	"bpm": 123,
 	"artist": "Kawai Sprite (feat. Saruky)",
-	"album": "volume3",
 	"rating": {
 		"nightmare": 8,
 		"erect": 7
