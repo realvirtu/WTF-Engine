@@ -19,7 +19,7 @@ class FunkinBar extends FunkinSprite
 	public var percent(get, never):Float;
 	public var fillPosition(get, never):Float;
 
-	public function new(x:Float, y:Float, width:Int, height:Int, min:Float = 0, max:Float = 100, isLeft:Bool = false)
+	public function new(x:Float, y:Float, width:Int, height:Int, min:Float = 0, max:Float = 1, isLeft:Bool = false)
 	{
 		super(x, y);
 
@@ -45,6 +45,7 @@ class FunkinBar extends FunkinSprite
 
 	override public function draw()
 	{
+		scale.x = width;
 		color = emptyColor;
 
 		super.draw();
@@ -53,8 +54,6 @@ class FunkinBar extends FunkinSprite
 		color = fillColor;
 
 		super.draw();
-
-		scale.x = width;
 	}
 
 	@:noCompletion
