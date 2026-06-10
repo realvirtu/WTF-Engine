@@ -1,13 +1,12 @@
+#if !interp
+package scripts;
+
+#end
 import haxe.Json;
 import sys.FileSystem;
 import sys.io.File;
 
 using StringTools;
-
-#if !interp
-package scripts;
-
-#end
 
 /**
  * A class for converting a V-Slice song to a song that the engine can take.
