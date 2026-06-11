@@ -27,9 +27,9 @@ class StickerSubState extends FunkinSubState
 		super();
 
 		// Fallback in case the specified pack doesn't exist
-		// BF should ALWAYS exist
+		// The default one should ALWAYS exist
 		if (!StickerRegistry.instance.exists(pack))
-			pack = 'bf';
+			pack = Constants.DEFAULT_STICKER_PACK;
 
 		this.nextState = nextState;
 		this.pack = pack;

@@ -49,6 +49,7 @@ class Constants
 	public static final DEFAULT_ARTIST:String = 'Unknown';
 	public static final DEFAULT_CHARTER:String = 'Unknown';
 	public static final DEFAULT_OST_NAME:String = 'official ost';
+	public static final DEFAULT_STICKER_PACK:String = 'default';
 	public static final DEFAULT_VARIATION:String = 'default';
 	public static final DEFAULT_SPEED:Float = 1;
 	public static final DEFAULT_CAMERA_ZOOM:Float = 1;
