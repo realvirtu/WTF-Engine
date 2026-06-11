@@ -54,8 +54,8 @@ class TwoHotSong extends Song
                 can.velocity.y = -1500;
                 FunkinSound.playOnce('$path/sounds/kick');
             case "knee-can":
-                can.acceleration.y = 3000;
-                can.velocity.set(1200, -800);
+                can.acceleration.y = 4000;
+                can.velocity.set(1200, -1000);
                 FunkinSound.playOnce('$path/sounds/knee');
             case "cock-gun":
                 FunkinSound.playOnce('$path/sounds/cock');

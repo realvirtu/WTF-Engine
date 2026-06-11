@@ -1,0 +1,24 @@
+import funkin.play.character.Character;
+
+class DarnellCharacter extends Character
+{
+    public function new()
+    {
+        super("darnell");
+    }
+
+    override function onNoteHit(event:NoteScriptEvent)
+    {
+        super.onNoteHit(event);
+
+        switch (event.note.kind)
+        {
+            case "light-can":
+                playAnimation("light");
+            case "kick-can":
+                playAnimation("kick");
+            case "knee-can":
+                playAnimation("knee");
+        }
+    }
+}

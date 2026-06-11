@@ -25,6 +25,18 @@
         {
             "name": "down",
             "frames": [9, 10]
+        },
+        {
+            "name": "light",
+            "frames": [11, 12]
+        },
+        {
+            "name": "kick",
+            "frames": [13, 14]
+        },
+        {
+            "name": "knee",
+            "frames": [15, 16]
         }
     ]
 }
