@@ -3,7 +3,7 @@
     "width": 200,
     "height": 242,
     "globalOffset": [0, -420],
-    "cameraOffset": [0, 0],
+    "cameraOffset": [0, 20],
     "icon": {},
     "bopEvery": 1,
     "animations": [
