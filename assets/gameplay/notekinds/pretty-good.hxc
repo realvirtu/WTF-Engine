@@ -1,5 +1,4 @@
 import funkin.play.note.NoteKind;
-import funkin.play.PlayState;
 
 class PrettyGoodNoteKind extends NoteKind
 {

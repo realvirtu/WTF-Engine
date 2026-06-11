@@ -247,7 +247,7 @@
 			},
 			{
 				"t": 8901.0989010989,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -266,22 +266,22 @@
 			},
 			{
 				"t": 9560.43956043956,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
 				"t": 9890.10989010989,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 9890.10989010989,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 10219.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -966,7 +966,7 @@
 			},
 			{
 				"t": 40549.4505494506,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -987,7 +987,7 @@
 			},
 			{
 				"t": 41208.7912087912,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -996,17 +996,17 @@
 			},
 			{
 				"t": 41538.1098901099,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 41538.4615384615,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 41867.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -1231,7 +1231,7 @@
 			},
 			{
 				"t": 51098.9010989011,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -1258,22 +1258,22 @@
 			},
 			{
 				"t": 51758.2417582418,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
 				"t": 52087.9120879121,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 52087.9120879121,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 52417.5824175824,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -2291,7 +2291,7 @@
 			},
 			{
 				"t": 80109.8901098901,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -2316,7 +2316,7 @@
 			},
 			{
 				"t": 80769.2307692308,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -2325,17 +2325,17 @@
 			},
 			{
 				"t": 81098.9010989011,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 81098.9010989011,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 81428.5714285714,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -2508,7 +2508,7 @@
 			},
 			{
 				"t": 85384.6153846154,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -2533,7 +2533,7 @@
 			},
 			{
 				"t": 86043.956043956,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -2542,17 +2542,17 @@
 			},
 			{
 				"t": 86373.6263736263,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 86373.6263736264,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 86703.2967032966,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -3644,7 +3644,7 @@
 			},
 			{
 				"t": 117032.967032967,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -3669,7 +3669,7 @@
 			},
 			{
 				"t": 117692.307692308,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -3678,17 +3678,17 @@
 			},
 			{
 				"t": 118021.978021978,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 118021.978021978,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 118351.648351648,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			}
 		],
@@ -3935,7 +3935,7 @@
 			},
 			{
 				"t": 8901.0989010989,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -3961,7 +3961,7 @@
 			},
 			{
 				"t": 9560.43956043956,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -3971,17 +3971,17 @@
 			},
 			{
 				"t": 9890.10989010989,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 9890.10989010989,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 10219.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -4758,7 +4758,7 @@
 			},
 			{
 				"t": 40549.4505494506,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -4787,7 +4787,7 @@
 			},
 			{
 				"t": 41208.7912087912,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -4800,17 +4800,17 @@
 			},
 			{
 				"t": 41538.4615384615,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 41538.4615384615,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 41868.1318681319,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -5043,7 +5043,7 @@
 			},
 			{
 				"t": 51098.9010989011,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -5072,7 +5072,7 @@
 			},
 			{
 				"t": 51758.2417582418,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -5085,17 +5085,17 @@
 			},
 			{
 				"t": 52087.9120879121,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 52087.9120879121,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 52417.5824175824,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -6248,7 +6248,7 @@
 			},
 			{
 				"t": 80109.8901098901,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -6277,7 +6277,7 @@
 			},
 			{
 				"t": 80769.2307692308,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -6294,17 +6294,17 @@
 			},
 			{
 				"t": 81098.1098901099,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 81098.9010989011,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 81427.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -6473,7 +6473,7 @@
 			},
 			{
 				"t": 85384.6153846154,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -6502,7 +6502,7 @@
 			},
 			{
 				"t": 86043.956043956,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -6519,17 +6519,17 @@
 			},
 			{
 				"t": 86373.1098901099,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 86373.6263736264,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 86702.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -7820,7 +7820,7 @@
 			},
 			{
 				"t": 117032.967032967,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -7857,7 +7857,7 @@
 			},
 			{
 				"t": 117692.307692308,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -7878,17 +7878,17 @@
 			},
 			{
 				"t": 118021.10989011,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 118021.978021978,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 118350.78021978,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			}
 		],
@@ -8131,7 +8131,7 @@
 			},
 			{
 				"t": 8901.0989010989,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -8145,22 +8145,22 @@
 			},
 			{
 				"t": 9560.43956043956,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
 				"t": 9890.10989010989,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 9890.10989010989,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 10219.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -8833,7 +8833,7 @@
 			},
 			{
 				"t": 40549.0989010989,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -8850,7 +8850,7 @@
 			},
 			{
 				"t": 41208.4395604396,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -8859,17 +8859,17 @@
 			},
 			{
 				"t": 41538.1098901099,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 41538.4615384615,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 41868.1318681319,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -9038,7 +9038,7 @@
 			},
 			{
 				"t": 51098.9010989011,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -9056,22 +9056,22 @@
 			},
 			{
 				"t": 51758.2417582418,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
 				"t": 52087.9120879121,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 52087.9120879121,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 52417.5824175824,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -9968,7 +9968,7 @@
 			},
 			{
 				"t": 80109.8901098901,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -9989,7 +9989,7 @@
 			},
 			{
 				"t": 80769.2307692308,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -9998,17 +9998,17 @@
 			},
 			{
 				"t": 81098.1098901099,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 81098.9010989011,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 81427.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -10165,7 +10165,7 @@
 			},
 			{
 				"t": 85384.6153846153,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -10190,7 +10190,7 @@
 			},
 			{
 				"t": 86043.956043956,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -10199,17 +10199,17 @@
 			},
 			{
 				"t": 86373.1098901099,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 86373.6263736263,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 86702.7802197802,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			},
 			{
@@ -11192,7 +11192,7 @@
 			},
 			{
 				"t": 117032.967032967,
-				"k": "weekend-1-lightcan",
+				"k": "light-can",
 				"d": 5
 			},
 			{
@@ -11213,7 +11213,7 @@
 			},
 			{
 				"t": 117692.307692308,
-				"k": "weekend-1-kickcan",
+				"k": "kick-can",
 				"d": 6
 			},
 			{
@@ -11222,17 +11222,17 @@
 			},
 			{
 				"t": 118021.10989011,
-				"k": "weekend-1-cockgun",
+				"k": "cock-gun",
 				"d": 1
 			},
 			{
 				"t": 118021.978021978,
-				"k": "weekend-1-kneecan",
+				"k": "knee-can",
 				"d": 7
 			},
 			{
 				"t": 118350.78021978,
-				"k": "weekend-1-firegun",
+				"k": "fire-gun",
 				"d": 0
 			}
 		]

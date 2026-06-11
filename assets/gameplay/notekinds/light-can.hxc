@@ -1,0 +1,11 @@
+import funkin.play.note.NoteKind;
+
+class LightCanNoteKind extends NoteKind
+{
+    public function new()
+    {
+        super("light-can");
+
+        // Handled in 2hot's script
+    }
+}

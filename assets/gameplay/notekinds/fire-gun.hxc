@@ -1,0 +1,11 @@
+import funkin.play.note.NoteKind;
+
+class FireGunNoteKind extends NoteKind
+{
+    public function new()
+    {
+        super("fire-gun");
+
+        // Handled in 2hot's script
+    }
+}
