@@ -70,7 +70,10 @@ class TwoHotSong extends Song
         super.onNoteMiss(event);
 
         if (event.note.kind == "fire-gun")
+        {
             resetCan();
+            FunkinSound.playOnce('$path/sounds/bonk');
+        }
     }
 
     override function onSongRetry(event:ScriptEvent)
