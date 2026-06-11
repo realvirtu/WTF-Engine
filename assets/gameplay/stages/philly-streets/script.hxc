@@ -1,9 +1,19 @@
 import funkin.play.stage.Stage;
+import funkin.play.PlayState;
 
 class PhillyStreetsStage extends Stage
 {
     public function new()
     {
         super("philly-streets");
+    }
+
+    override function onCreate(event:ScriptEvent)
+    {
+        super.onCreate(event);
+
+        // The spray cans aren't needed in Blazin'
+        if (PlayState.song.id == "blazin")
+            getProp("cans").destroy();
     }
 }
