@@ -85,14 +85,17 @@ class CreditsSubState extends FunkinSubState
 		addLine('VirtuGuy');
 
 		// GitHub contributors
-		addLine('Contributors', true);
-
-		for (contributor in GitMacro.getContributors())
+		if (GitMacro.getContributors().length > 0)
 		{
-			final total:Int = GitMacro.getContributions();
-			final percent:Int = Std.int(contributor.contributions / total * 100);
+			addLine('Contributors', true);
 
-			addLine('${contributor.name} - $percent%');
+			for (contributor in GitMacro.getContributors())
+			{
+				final total:Int = GitMacro.getContributions();
+				final percent:Int = Std.int(contributor.contributions / total * 100);
+
+				addLine('${contributor.name} - $percent%');
+			}
 		}
 
 		// Special thanks

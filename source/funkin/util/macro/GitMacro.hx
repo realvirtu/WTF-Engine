@@ -39,40 +39,36 @@ class GitMacro
 		}
 
 		var result:Array<ContributorData> = [];
-		var http:Http = new Http('https://api.github.com/repos/VirtuGuy/WTF-Engine/contributors');
 
-		http.setHeader('User-Agent', 'WTFEngine');
-		http.request();
-
-		var data:Dynamic = try Json.parse(http?.responseData);
-
-		// The http response can not be an array
-		// so uh yeah do this
-		if (!Std.isOfType(data, Array))
-			return macro $v{[]};
-
-		var data:Array<Dynamic> = cast data;
-
-		if (data.length == 0)
-			trace('Failed to fetch GitHub contributors.');
-
-		for (contributor in data)
+		try
 		{
-			final name:String = contributor.login;
-			final contributions:Int = contributor.contributions;
+			var http:Http = new Http('https://api.github.com/repos/VirtuGuy/WTF-Engine/contributors');
 
-			// Lol don't include me
-			// I'm the creator of the engine, not a contributor
-			if (name == 'VirtuGuy')
-				continue;
+			http.setHeader('User-Agent', 'WTFEngine');
+			http.request();
 
-			result.push({
-				name: name,
-				contributions: contributions
-			});
+			var data:Array<Dynamic> = Json.parse(http?.responseData);
 
-			_contributions += contributions;
+			for (contributor in data)
+			{
+				final name:String = contributor.login;
+				final contributions:Int = contributor.contributions;
+
+				// Lol don't include me
+				// I'm the creator of the engine, not a contributor
+				if (name == 'VirtuGuy')
+					continue;
+
+				result.push({
+					name: name,
+					contributions: contributions
+				});
+
+				_contributions += contributions;
+			}
 		}
+		catch (e)
+			trace('Failed to fetch GitHub contributors.');
 
 		_contributors = result;
 
