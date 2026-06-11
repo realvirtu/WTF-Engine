@@ -5,18 +5,23 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import funkin.audio.FunkinSound;
+import funkin.data.credits.CreditsData;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
 import funkin.ui.menu.MainMenuState;
+import funkin.util.FileUtil;
 import funkin.util.macro.GitMacro;
+import json2object.JsonParser;
 
 /**
  * A `FunkinSubState` that contains the engine's credits.
  */
 class CreditsSubState extends FunkinSubState
 {
-	final LINE_SPACING:Float = 20;
-	final SCROLL_SPEED:Float = 50;
+	static final LINE_SPACING:Float = 20;
+	static final SCROLL_SPEED:Float = 50;
+
+	static var parser(default, null) = new JsonParser<Array<CreditsData>>();
 
 	var lineY:Float = 0;
 
@@ -79,47 +84,48 @@ class CreditsSubState extends FunkinSubState
 
 	function buildCredits()
 	{
-		// WTF Engine authors
-		// Only me lmao
-		addLine('WTF Engine', true);
-		addLine('VirtuGuy');
+		final path:String = Paths.json('general/credits');
+		final data:Array<CreditsData> = parser.fromJson(FileUtil.getText(path));
 
-		// GitHub contributors
+		for (section in data)
+		{
+			if (section == null)
+				continue;
+
+			final header:String = section.header;
+			final body:Array<String> = section.body;
+
+			if (!header.isEmpty())
+				buildLine(header, true);
+
+			switch (header.toLowerCase())
+			{
+				case 'contributors':
+					buildContributors();
+				default:
+					for (item in body)
+						buildLine(item);
+			}
+		}
+	}
+
+	function buildContributors()
+	{
 		if (GitMacro.getContributors().length > 0)
 		{
-			addLine('Contributors', true);
-
 			for (contributor in GitMacro.getContributors())
 			{
 				final total:Int = GitMacro.getContributions();
 				final percent:Int = Std.int(contributor.contributions / total * 100);
 
-				addLine('${contributor.name} - $percent%');
+				buildLine('${contributor.name} [$percent%]');
 			}
 		}
-
-		// Special thanks
-		// Don't be offended if you aren't on here
-		addLine('Special Thanks', true);
-		addLine('The Funkin\' Crew Inc.');
-		addLine('The Funkin\' Contributors');
-		addLine('TechnikTil');
-		addLine('AnimatingLegend');
-		addLine('MightyTheArmiddilo');
-		addLine('CharlesIsCoffer');
-		addLine('CrusherNotDrip');
-		addLine('ADA Funni');
-		addLine('PurSnake');
-		addLine('Requazar');
-		addLine('Maki');
-		addLine('ACrazyTown');
-		addLine('Rodney528');
-		addLine('minimehan');
-		addLine('Ahmed7P');
-		addLine('Blake');
+		else
+			buildLine('lmao yeah there is none');
 	}
 
-	function addLine(name:String, section:Bool = false)
+	function buildLine(name:String, section:Bool = false)
 	{
 		if (section)
 			lineY += LINE_SPACING;
