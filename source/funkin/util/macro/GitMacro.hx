@@ -33,7 +33,7 @@ class GitMacro
 
 		if (_contributors != null)
 		{
-			trace('Using cached GitHub contributors list...');
+			trace('Using cached GitHub contributors list.');
 
 			return macro $v{_contributors};
 		}

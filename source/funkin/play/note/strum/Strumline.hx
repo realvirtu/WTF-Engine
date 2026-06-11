@@ -27,7 +27,6 @@ class Strumline extends FlxGroup
 	public var noteSplashes:FlxTypedGroup<NoteSplash>;
 	public var holdCovers:FlxTypedGroup<HoldNoteCover>;
 
-	public var noteHit(default, null) = new FlxTypedSignal<NoteSprite->Void>();
 	public var noteMiss(default, null) = new FlxTypedSignal<NoteSprite->Void>();
 	public var holdNoteHit(default, null) = new FlxTypedSignal<HoldNoteSprite->Void>();
 	public var holdNoteDrop(default, null) = new FlxTypedSignal<HoldNoteSprite->Void>();
@@ -255,7 +254,6 @@ class Strumline extends FlxGroup
 		}
 
 		note.kill();
-		noteHit.dispatch(note);
 	}
 
 	public function playSplash(direction:NoteDirection)

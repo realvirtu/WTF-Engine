@@ -123,14 +123,12 @@ class PlayState extends FunkinState
 		opponentStrumline = new Strumline(style, false);
 		opponentStrumline.x = 325;
 		opponentStrumline.camera = camHUD;
-		opponentStrumline.noteHit.add(opponentNoteHit);
 		opponentStrumline.holdNoteHit.add(opponentHoldNoteHit);
 		add(opponentStrumline);
 
 		playerStrumline = new Strumline(style, true);
 		playerStrumline.x = FlxG.width - opponentStrumline.x;
 		playerStrumline.camera = camHUD;
-		playerStrumline.noteHit.add(playerNoteHit);
 		playerStrumline.noteMiss.add(playerNoteMiss);
 		playerStrumline.holdNoteHit.add(playerHoldNoteHit);
 		playerStrumline.holdNoteDrop.add(playerHoldNoteDrop);
@@ -606,26 +604,12 @@ class PlayState extends FunkinState
 			if (!pressed || note == null)
 				continue;
 
-			var event:NoteScriptEvent = new NoteScriptEvent(NOTE_HIT, note);
-			dispatch(event);
-
-			if (event.cancelled)
-				continue;
-
-			playerStrumline.hitNote(note);
+			playerNoteHit(note);
 		}
 
 		// Opponent input
 		for (note in opponentStrumline.getMayHitNotes())
-		{
-			var event:NoteScriptEvent = new NoteScriptEvent(NOTE_HIT, note);
-			dispatch(event);
-
-			if (event.cancelled)
-				continue;
-
-			opponentStrumline.hitNote(note);
-		}
+			opponentNoteHit(note);
 
 		// The misc stuff
 		// Pausing, resetting, etc.
@@ -641,6 +625,12 @@ class PlayState extends FunkinState
 
 	function playerNoteHit(note:NoteSprite)
 	{
+		var event:NoteScriptEvent = new NoteScriptEvent(NOTE_HIT, note);
+		dispatch(event);
+
+		if (event.cancelled)
+			return;
+
 		var judgement:Judgement = RhythmUtil.judgeNote(note);
 
 		score += judgement.score;
@@ -666,6 +656,8 @@ class PlayState extends FunkinState
 
 		popups.popupJudgement(judgement);
 		popups.popupCombo(tallies.combo);
+
+		playerStrumline.hitNote(note);
 	}
 
 	function playerHoldNoteHit(holdNote:HoldNoteSprite)
@@ -736,7 +728,13 @@ class PlayState extends FunkinState
 
 	function opponentNoteHit(note:NoteSprite)
 	{
-		// TODO: Make this do something?
+		var event:NoteScriptEvent = new NoteScriptEvent(NOTE_HIT, note);
+		dispatch(event);
+
+		if (event.cancelled)
+			return;
+
+		opponentStrumline.hitNote(note);
 	}
 
 	function opponentHoldNoteHit(holdNote:HoldNoteSprite)
