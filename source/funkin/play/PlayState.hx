@@ -291,7 +291,7 @@ class PlayState extends FunkinState
 		opponentIcon?.bop();
 		playerIcon?.bop();
 
-		if (beat % 2 == 0)
+		if (beat % 4 == 0)
 		{
 			FlxG.camera.zoom = camZoom + 0.05;
 			camHUD.zoom = 1.02;
