@@ -1,0 +1,43 @@
+import funkin.play.note.NoteKind;
+
+// All these notekinds are used for 2hot
+
+class LightCanNoteKind extends NoteKind
+{
+    public function new()
+    {
+        super("light-can");
+    }
+}
+
+class KickCanNoteKind extends NoteKind
+{
+    public function new()
+    {
+        super("kick-can");
+    }
+}
+
+class KneeCanNoteKind extends NoteKind
+{
+    public function new()
+    {
+        super("knee-can");
+    }
+}
+
+class CockGunNoteKind extends NoteKind
+{
+    public function new()
+    {
+        super("cock-gun");
+    }
+}
+
+class FireGunNoteKind extends NoteKind
+{
+    public function new()
+    {
+        super("fire-gun");
+    }
+}
