@@ -119,7 +119,7 @@ class Song implements IPlayStateScriptedClass
 	{
 		var charter:Null<String> = meta.charter;
 		if (charter == null || charter.trim() == '')
-			charter = Constants.DEFAULT_ARTIST;
+			charter = Constants.DEFAULT_CHARTER;
 		return charter;
 	}
 

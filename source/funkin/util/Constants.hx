@@ -47,6 +47,7 @@ class Constants
 
 	public static final DEFAULT_NAME:String = 'Untitled';
 	public static final DEFAULT_ARTIST:String = 'Unknown';
+	public static final DEFAULT_CHARTER:String = 'Unknown';
 	public static final DEFAULT_OST_NAME:String = 'official ost';
 	public static final DEFAULT_VARIATION:String = 'default';
 	public static final DEFAULT_SPEED:Float = 1;
