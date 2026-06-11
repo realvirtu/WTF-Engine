@@ -5,6 +5,7 @@ import funkin.play.PlayState;
 class TwoHotSong extends Song
 {
     var cans:StageProp;
+    var can:StageProp;
 
     public function new()
     {
@@ -16,10 +17,67 @@ class TwoHotSong extends Song
         super.onCreate(event);
 
         cans = PlayState.instance.stage.getProp("cans");
+
+        can = new StageProp("can");
+        can.loadSprite('$path/props/can');
+        can.zIndex = cans.zIndex - 1;
+        can.moves = true;
+
+        PlayState.instance.stage.add(can);
+        PlayState.instance.stage.refresh();
+
+        resetCan();
+    }
+
+    override function onUpdate(event:UpdateScriptEvent)
+    {
+        super.onUpdate(event);
+
+        if (can.y > cans.y)
+        {
+            can.y = cans.y;
+            can.velocity.y = 0;
+        }
     }
 
     override function onNoteHit(event:NoteScriptEvent)
     {
         super.onNoteHit(event);
+
+        switch (event.note.kind)
+        {
+            case "weekend-1-lightcan":
+                // can lights up
+            case "weekend-1-kickcan":
+                can.acceleration.y = 8000;
+                can.velocity.y = -1500;
+            case "weekend-1-kneecan":
+                can.acceleration.y = 3000;
+                can.velocity.set(1200, -800);
+            case "weekend-1-firegun":
+                resetCan();
+        }
+    }
+
+    override function onNoteMiss(event:NoteScriptEvent)
+    {
+        super.onNoteMiss(event);
+
+        if (event.note.kind == "weekend-1-firegun")
+            resetCan();
+    }
+
+    override function onSongRetry(event:ScriptEvent)
+    {
+        super.onSongRetry(event);
+
+        resetCan();
+    }
+
+    function resetCan()
+    {
+        can.setPosition(cans.x + 21, cans.y);
+        can.acceleration.set();
+        can.velocity.set();
     }
 }
