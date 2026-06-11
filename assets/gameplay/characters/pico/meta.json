@@ -46,6 +46,14 @@
             "name": "down-miss",
             "frames": [9, 14],
             "framerate": 20
+        },
+        {
+            "name": "cock",
+            "frames": [15, 16]
+        },
+        {
+            "name": "fire",
+            "frames": [17, 18]
         }
     ]
 }
