@@ -10,6 +10,7 @@ class TwoHotSong extends Song
 
     var cans:StageProp;
     var can:StageProp;
+    var explosion:StageProp;
 
     public function new()
     {
@@ -27,7 +28,15 @@ class TwoHotSong extends Song
         can.zIndex = cans.zIndex - 1;
         can.moves = true;
 
+        explosion = new StageProp("explosion");
+        explosion.loadSprite('$path/props/explosion', 1, 258, 267);
+        explosion.addAnimation("explode", [0, 1, 2], 12, false);
+        explosion.animation.onFinish.add(_ -> resetExplosion());
+        explosion.zIndex = 100;
+        explosion.visible = false;
+
         PlayState.instance.stage.add(can);
+        PlayState.instance.stage.add(explosion);
         PlayState.instance.stage.refresh();
 
         resetCan();
@@ -55,11 +64,11 @@ class TwoHotSong extends Song
         {
             case "kick-can":
                 can.acceleration.y = 10000;
-                can.velocity.y = -1500;
+                can.velocity.y = -1800;
 
                 FunkinSound.playOnce('$path/sounds/kick');
             case "knee-can":
-                can.acceleration.set(4000, 5000);
+                can.acceleration.set(4000, 6000);
                 can.velocity.y = -1500;
 
                 canKicked = true;
@@ -68,7 +77,7 @@ class TwoHotSong extends Song
             case "cock-gun":
                 FunkinSound.playOnce('$path/sounds/cock');
             case "fire-gun":
-                resetCan();
+                explodeCan();
                 FunkinSound.playOnce('$path/sounds/shoot');
         }
     }
@@ -79,7 +88,7 @@ class TwoHotSong extends Song
 
         if (event.note.kind == "fire-gun")
         {
-            resetCan();
+            explodeCan();
 
             // Take damage from the spray can
             // Yeah the player already loses health
@@ -95,6 +104,29 @@ class TwoHotSong extends Song
         super.onSongRetry(event);
 
         resetCan();
+    }
+
+    function explodeCan()
+    {
+        can.acceleration.set();
+        can.velocity.set();
+        
+        canKicked = false;
+
+        explosion.playAnimation("explode", true);
+        explosion.x = can.x + (can.width - explosion.width) / 2;
+        explosion.y = can.y + (can.height - explosion.height) / 2;
+        explosion.visible = true;
+
+        resetCan();
+
+        // Shakes the camera for the cool
+        FlxG.camera.shake(0.01, 0.15);
+    }
+
+    function resetExplosion()
+    {
+        explosion.visible = false;
     }
 
     function resetCan()
