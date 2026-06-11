@@ -69,7 +69,7 @@ class TwoHotSong extends Song
     {
         super.onNoteMiss(event);
 
-        if (event.note.kind == "weekend-1-firegun")
+        if (event.note.kind == "fire-gun")
             resetCan();
     }
 
