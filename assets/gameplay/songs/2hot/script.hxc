@@ -7,6 +7,7 @@ import funkin.play.PlayState;
 class TwoHotSong extends Song
 {
     var canKicked:Bool;
+    var gunPrepped:Bool;
 
     var cans:StageProp;
     var can:StageProp;
@@ -75,9 +76,16 @@ class TwoHotSong extends Song
 
                 FunkinSound.playOnce('$path/sounds/knee');
             case "cock-gun":
+                gunPrepped = true;
+                
                 FunkinSound.playOnce('$path/sounds/cock');
             case "fire-gun":
+                // Can't fire the gun when it isn't prepped
+                if (!gunPrepped)
+                    return event.cancel();
+
                 explodeCan();
+
                 FunkinSound.playOnce('$path/sounds/shoot');
         }
     }
@@ -108,11 +116,6 @@ class TwoHotSong extends Song
 
     function explodeCan()
     {
-        can.acceleration.set();
-        can.velocity.set();
-        
-        canKicked = false;
-
         explosion.playAnimation("explode", true);
         explosion.x = can.x + (can.width - explosion.width) / 2;
         explosion.y = can.y + (can.height - explosion.height) / 2;
@@ -137,5 +140,6 @@ class TwoHotSong extends Song
         can.angle = 0;
 
         canKicked = false;
+        gunPrepped = false;
     }
 }
