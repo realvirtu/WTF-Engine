@@ -75,6 +75,8 @@ class CreditsSubState extends FunkinSubState
 	{
 		super.update(elapsed);
 
+		_parentState.persistentDraw = stateMachine.transitioning();
+
 		camFollow.y += SCROLL_SPEED * (controls.ACCEPT ? 5 : 1) * elapsed;
 
 		// Exit to the main menu
@@ -138,7 +140,7 @@ class CreditsSubState extends FunkinSubState
 
 		lineY += line.height + LINE_SPACING;
 
-		exitMovers.add(line, -line.width);
+		exitMovers.add(line, -line.x - line.width / 2);
 
 		credits.add(line);
 	}
