@@ -1,0 +1,22 @@
+import funkin.play.character.Character;
+
+class PicoCharacter extends Character
+{
+    public function new()
+    {
+        super("pico");
+    }
+
+    override function onNoteHit(event:NoteScriptEvent)
+    {
+        super.onNoteHit(event);
+
+        switch (event.note.kind)
+        {
+            case "cock-gun":
+                playAnimation("cock");
+            case "fire-gun":
+                playAnimation("fire");
+        }
+    }
+}

@@ -1,10 +1,13 @@
 import funkin.audio.FunkinSound;
+import funkin.play.character.Character;
 import funkin.play.song.Song;
 import funkin.play.stage.StageProp;
 import funkin.play.PlayState;
 
 class TwoHotSong extends Song
 {
+    var canKicked:Bool;
+
     var cans:StageProp;
     var can:StageProp;
 
@@ -34,6 +37,9 @@ class TwoHotSong extends Song
     {
         super.onUpdate(event);
 
+        if (canKicked)
+            can.angle += event.elapsed * 1000;
+
         if (can.y > cans.y)
         {
             can.y = cans.y;
@@ -47,15 +53,17 @@ class TwoHotSong extends Song
 
         switch (event.note.kind)
         {
-            case "light-can":
-                // light the can
             case "kick-can":
-                can.acceleration.y = 8000;
+                can.acceleration.y = 10000;
                 can.velocity.y = -1500;
+
                 FunkinSound.playOnce('$path/sounds/kick');
             case "knee-can":
-                can.acceleration.y = 4000;
-                can.velocity.set(1200, -1000);
+                can.acceleration.set(4000, 5000);
+                can.velocity.y = -1500;
+
+                canKicked = true;
+
                 FunkinSound.playOnce('$path/sounds/knee');
             case "cock-gun":
                 FunkinSound.playOnce('$path/sounds/cock');
@@ -72,6 +80,12 @@ class TwoHotSong extends Song
         if (event.note.kind == "fire-gun")
         {
             resetCan();
+
+            // Take damage from the spray can
+            // Yeah the player already loses health
+            // Why not lose more?
+            PlayState.instance.health -= 0.2;
+
             FunkinSound.playOnce('$path/sounds/bonk');
         }
     }
@@ -88,5 +102,8 @@ class TwoHotSong extends Song
         can.setPosition(cans.x + 21, cans.y);
         can.acceleration.set();
         can.velocity.set();
+        can.angle = 0;
+
+        canKicked = false;
     }
 }
