@@ -113,7 +113,7 @@ class CreditsSubState extends FunkinSubState
 		addLine('Requazar');
 		addLine('Maki');
 		addLine('ACrazyTown');
-		addLine('Rodney');
+		addLine('Rodney528');
 		addLine('minimehan');
 		addLine('Ahmed7P');
 		addLine('Blake');
