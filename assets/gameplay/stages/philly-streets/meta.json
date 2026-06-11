@@ -2,13 +2,13 @@
     "name": "Philly (Streets)",
     "zoom": 1.15,
     "opponent": {
-        "position": [-300, 300]
+        "position": [-350, 300]
     },
     "player": {
         "position": [250, 380]
     },
     "gf": {
-        "position": [-20, 250]
+        "position": [-20, 230]
     },
     "props": [
         {
@@ -23,16 +23,22 @@
         },
         {
             "image": "lights",
-            "position": [500, -120],
+            "position": [500, -110],
             "scroll": [0.9, 0.9]
         },
         {
             "image": "ground",
-            "position": [-650, 100]
+            "position": [-700, 100]
         },
         {
             "image": "wall",
-            "position": [-650, -290]
+            "position": [-700, -290]
+        },
+        {
+            "id": "cans",
+            "image": "cans",
+            "position": [-200, 120],
+            "zIndex": 2
         }
     ]
 }

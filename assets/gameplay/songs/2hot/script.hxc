@@ -1,0 +1,25 @@
+import funkin.play.song.Song;
+import funkin.play.stage.StageProp;
+import funkin.play.PlayState;
+
+class TwoHotSong extends Song
+{
+    var cans:StageProp;
+
+    public function new()
+    {
+        super("2hot");
+    }
+
+    override function onCreate(event:ScriptEvent)
+    {
+        super.onCreate(event);
+
+        cans = PlayState.instance.stage.getProp("cans");
+    }
+
+    override function onNoteHit(event:NoteScriptEvent)
+    {
+        super.onNoteHit(event);
+    }
+}
