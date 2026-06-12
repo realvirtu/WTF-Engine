@@ -590,9 +590,9 @@ class PlayState extends FunkinState
 
 		for (i in 0...directionNotes.length)
 		{
-			var note:NoteSprite = directionNotes[i][0];
-			var direction:NoteDirection = NoteDirection.fromInt(i);
-			var pressed:Bool = direction.justPressed || Preferences.botplay;
+			final note:NoteSprite = directionNotes[i][0];
+			final direction:NoteDirection = NoteDirection.fromInt(i);
+			final pressed:Bool = direction.justPressed || Preferences.botplay;
 
 			// Miss if ghost tapping is disabled
 			// Don't count the miss if botplay is enabled though
