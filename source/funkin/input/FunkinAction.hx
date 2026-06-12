@@ -61,6 +61,6 @@ class FunkinAction
 	@:noCompletion
 	function get_justPressed():Bool
 	{
-		return System.getTimer() - timestamp <= elapsed;
+		return timestamp + elapsed >= System.getTimer();
 	}
 }
