@@ -1,0 +1,16 @@
+import funkin.play.song.Song;
+
+class EggnogSong extends Song
+{
+    public function new()
+    {
+        super("eggnog");
+    }
+
+    override function get_name():String
+    {
+        if (FlxG.random.bool(10))
+            return "Eggnore";
+        return super.get_name();
+    }
+}
