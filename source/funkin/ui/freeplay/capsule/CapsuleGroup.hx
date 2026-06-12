@@ -37,8 +37,8 @@ class CapsuleGroup extends FlxTypedGroup<CapsuleSprite>
 	{
 		super.update(elapsed);
 
-		var up:Bool = Controls.instance.UI_UP_P;
-		var down:Bool = Controls.instance.UI_DOWN_P;
+		final up:Bool = Controls.instance.UI_UP_P;
+		final down:Bool = Controls.instance.UI_DOWN_P;
 
 		if ((up || down) && !busy)
 			change(up ? -1 : 1);
@@ -75,25 +75,25 @@ class CapsuleGroup extends FlxTypedGroup<CapsuleSprite>
 
 	public function load(songs:Array<String>, diff:String)
 	{
+		final prevSong:Song = song;
+
+		if (selected > songs.length)
+			selected = songs.length;
+
 		killMembers();
 
 		// Builds the Random capsule
 		buildCapsuleSprite(null, diff, 0);
 
-		var prevSong:Song = song;
-
-		if (selected > songs.length)
-			selected = songs.length;
-
 		for (i => song in songs)
 		{
-			var song:Song = SongRegistry.instance.fetchSong(song, diff);
-			var id:Int = i + 1;
+			final song:Song = SongRegistry.instance.fetchSong(song, diff);
+			final index:Int = i + 1;
 
 			if (prevSong?.id == song.id)
-				selected = id;
+				selected = index;
 
-			buildCapsuleSprite(song, diff, id);
+			buildCapsuleSprite(song, diff, index);
 		}
 
 		// Snaps the capsules into place
