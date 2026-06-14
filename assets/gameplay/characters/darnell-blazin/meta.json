@@ -1,13 +1,13 @@
 {
     "name": "Darnell (Blazin')",
-    "width": 249,
-    "height": 267,
-    "globalOffset": [200, -325],
+    "width": 248,
+    "height": 283,
+    "globalOffset": [220, -340],
     "cameraOffset": [100, -120],
     "icon": {
         "id": "darnell"
     },
-    "flipX": true,
+    "flipX": false,
     "scale": 1.5,
     "animations": [
         {

@@ -2,8 +2,8 @@
     "name": "Pico (Blazin')",
     "width": 249,
     "height": 267,
-    "globalOffset": [-160, -400],
-    "cameraOffset": [-100, -120],
+    "globalOffset": [-200, -400],
+    "cameraOffset": [-80, -120],
     "icon": {
         "id": "pico"
     },
