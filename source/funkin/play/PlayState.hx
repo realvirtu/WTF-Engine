@@ -213,7 +213,11 @@ class PlayState extends FunkinState
 						conductor.time = FlxMath.lerp(conductor.time, FunkinSound.music.time + conductor.offset, ratio);
 					}
 					else
+					{
 						trace('A lagspike occurred. Your game is lagging.');
+
+						conductor.time = FunkinSound.music.time + conductor.offset;
+					}
 				}
 				else
 				{
