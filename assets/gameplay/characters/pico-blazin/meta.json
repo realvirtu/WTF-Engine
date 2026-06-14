@@ -1,0 +1,24 @@
+{
+    "name": "Pico (Blazin')",
+    "width": 249,
+    "height": 267,
+    "globalOffset": [-160, -400],
+    "cameraOffset": [-100, -120],
+    "icon": {
+        "id": "pico"
+    },
+    "flipX": true,
+    "scale": 1.5,
+    "animations": [
+        {
+            "name": "idle",
+            "frames": [0, 1, 2]
+        },
+        {
+            "name": "punching",
+            "frames": [3, 4],
+            "framerate": 25,
+            "looped": true
+        }
+    ]
+}
