@@ -37,11 +37,18 @@ class CapsuleGroup extends FlxTypedGroup<CapsuleSprite>
 	{
 		super.update(elapsed);
 
-		final up:Bool = Controls.instance.UI_UP_P;
-		final down:Bool = Controls.instance.UI_DOWN_P;
+		if (!busy)
+		{
+			final up:Bool = Controls.instance.UI_UP_P;
+			final down:Bool = Controls.instance.UI_DOWN_P;
 
-		if ((up || down) && !busy)
-			change(up ? -1 : 1);
+			var scroll:Int = -FlxG.mouse.wheel;
+
+			if (up || down)
+				scroll = up ? -1 : 1;
+
+			change(scroll);
+		}
 
 		forEachAlive(capsule ->
 		{
