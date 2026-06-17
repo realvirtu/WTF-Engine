@@ -18,8 +18,8 @@ class PhillyStreetsStage extends Stage
         {
             getProp("cans").destroy();
 
-            opponent.setPosition(-100, 350);
-            player.setPosition(100, opponent.y);
+            opponent.setPosition(gf.x - 130, 350);
+            player.setPosition(gf.x + 130, opponent.y);
 
             // Correct the camera position because we moved the player
             // :serious_car:

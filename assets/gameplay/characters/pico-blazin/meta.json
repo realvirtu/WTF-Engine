@@ -3,7 +3,7 @@
     "width": 224,
     "height": 224,
     "globalOffset": [0, -350],
-    "cameraOffset": [-80, -100],
+    "cameraOffset": [-120, -100],
     "icon": {
         "id": "pico"
     },
