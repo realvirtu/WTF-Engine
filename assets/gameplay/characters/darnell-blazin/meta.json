@@ -3,11 +3,12 @@
     "width": 224,
     "height": 224,
     "globalOffset": [0, -350],
-    "cameraOffset": [100, -100],
+    "cameraOffset": [80, -100],
     "icon": {
         "id": "darnell"
     },
     "flipX": true,
+    "scale": 1.75,
     "animations": [
         {
             "name": "idle",

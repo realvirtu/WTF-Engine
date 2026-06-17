@@ -12,8 +12,18 @@ class PhillyStreetsStage extends Stage
     {
         super.onCreate(event);
 
-        // The spray cans aren't needed in Blazin'
+        // Blazin' unique stuff
+        // Spray can removal, character positioning, etc.
         if (PlayState.song.id == "blazin")
+        {
             getProp("cans").destroy();
+
+            opponent.setPosition(-100, 350);
+            player.setPosition(100, opponent.y);
+
+            // Correct the camera position because we moved the player
+            // :serious_car:
+            PlayState.instance.setCameraTarget(player, true);
+        }
     }
 }
