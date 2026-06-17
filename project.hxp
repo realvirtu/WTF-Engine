@@ -120,7 +120,6 @@ class Project extends HXProject
         // :whatthemad:
         addHaxeFlag("-dce no");
 
-        addHaxeMacro("addMetadata('@:build(funkin.util.macro.ZIndexMacro.buildFlxBasic())', 'flixel.FlxBasic')");
         addHaxeMacro("addMetadata('@:build(funkin.util.macro.ZIndexMacro.buildFlxGroup())', 'flixel.group.FlxTypedGroup')");
 
         // Include every funkin, flixel, and openfl class

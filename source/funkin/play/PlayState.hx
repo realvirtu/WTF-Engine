@@ -201,24 +201,7 @@ class PlayState extends FunkinState
 			if (songLoaded)
 			{
 				if (songStarted)
-				{
-					final diff:Float = Math.abs(conductor.time - (FunkinSound.music.time + conductor.offset));
-
-					if (diff <= Constants.CONDUCTOR_DRIFT_THRESHOLD)
-					{
-						// Lerping is used to update the conductor time as Lime audio lacks precision
-						// One day this will be simplified to how it should be
-						final ratio:Float = 1 - Math.exp(-42 * elapsed);
-
-						conductor.time = FlxMath.lerp(conductor.time, FunkinSound.music.time + conductor.offset, ratio);
-					}
-					else
-					{
-						trace('A lagspike occurred. Your game is lagging.');
-
-						conductor.time = FunkinSound.music.time + conductor.offset;
-					}
-				}
+					conductor.time = FunkinSound.music.time + conductor.offset;
 				else
 				{
 					conductor.time += elapsed * Constants.MS_PER_SEC * playbackRate;

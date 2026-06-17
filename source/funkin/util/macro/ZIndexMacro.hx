@@ -9,34 +9,6 @@ import haxe.macro.Expr;
  */
 class ZIndexMacro
 {
-	public static macro function buildFlxBasic():Array<Field>
-	{
-		if (Context.defined('display'))
-			return [];
-
-		var fields = Context.getBuildFields();
-		var has:Bool = false;
-
-		for (field in fields)
-		{
-			if (field.name != 'zIndex')
-				continue;
-			has = true;
-		}
-
-		if (!has)
-		{
-			fields.push({
-				name: 'zIndex',
-				access: [APublic],
-				kind: FieldType.FVar(macro :Int, macro $v{0}),
-				pos: Context.currentPos()
-			});
-		}
-
-		return fields;
-	}
-
 	public static macro function buildFlxGroup():Array<Field>
 	{
 		if (Context.defined('display'))
