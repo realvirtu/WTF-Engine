@@ -138,7 +138,7 @@ class ModHandler
 		// Trace the message because why the hell not
 		// Only the good errors though
 		// No one cares about framework and missing icons
-		if (e.code == FRAMEWORK_INIT || e.code == MOD_MISSING_ICON || e.code == MOD_MISSING_DIRECTORY)
+		if (e.code == FRAMEWORK_INIT || e.code == MOD_MISSING_ICON || e.code == MOD_MISSING_ID)
 			return;
 
 		trace(e.message);
