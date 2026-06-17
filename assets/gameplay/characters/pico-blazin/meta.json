@@ -1,24 +1,41 @@
 {
     "name": "Pico (Blazin')",
-    "width": 249,
-    "height": 267,
-    "globalOffset": [-200, -400],
-    "cameraOffset": [-80, -120],
+    "width": 224,
+    "height": 224,
+    "globalOffset": [0, -350],
+    "cameraOffset": [-100, -100],
     "icon": {
         "id": "pico"
     },
     "flipX": true,
-    "scale": 1.5,
     "animations": [
         {
             "name": "idle",
             "frames": [0, 1, 2]
         },
         {
-            "name": "punching",
-            "frames": [3, 4],
-            "framerate": 25,
-            "looped": true
+            "name": "block",
+            "frames": [3, 4]
+        },
+        {
+            "name": "dodge",
+            "frames": [5, 6]
+        },
+        {
+            "name": "punch-high-0",
+            "frames": [7, 8]
+        },
+        {
+            "name": "punch-high-1",
+            "frames": [9, 10]
+        },
+        {
+            "name": "punch-low-0",
+            "frames": [11, 12]
+        },
+        {
+            "name": "punch-low-1",
+            "frames": [13, 14]
         }
     ]
 }

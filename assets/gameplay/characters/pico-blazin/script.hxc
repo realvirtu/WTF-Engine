@@ -1,34 +1,32 @@
 import funkin.play.character.Character;
 
+using StringTools;
+
 class PicoBlazinCharacter extends Character
 {
-    var isPunching:Bool;
+    var num:Int = 0;
 
     public function new()
     {
         super("pico-blazin");
     }
 
-    override function bop(force:Bool = false)
+    override function onNoteHit(event:NoteScriptEvent)
     {
-        if (isPunching)
-            return;
-        super.bop(force);
-    }
+        var anim:String = '';
+        var name:String = 'high';
 
-    override function onCountdownStart(event:CountdownScriptEvent)
-    {
-        super.onCountdownStart(event);
+        if (FlxG.random.bool(50))
+            name = 'low';
 
-        isPunching = false;
-    }
+        num = 1 - num;
+        anim = 'punch-$name-$num';
 
-    override function onSongStart(event:ScriptEvent)
-    {
-        super.onSongStart(event);
+        if (FlxG.random.bool(10))
+            anim = 'block';
+        if (FlxG.random.bool(5))
+            anim = 'dodge';
 
-        isPunching = true;
-
-        playAnimation("punching");
+        playAnimation(anim, true);
     }
 }
