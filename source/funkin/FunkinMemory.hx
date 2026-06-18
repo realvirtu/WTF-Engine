@@ -1,7 +1,13 @@
 package funkin;
 
-import openfl.system.System;
-import openfl.utils.Assets;
+#if cpp
+import cpp.vm.Gc;
+#end
+#if hl
+import hl.Gc;
+#end
+import lime.utils.Assets as LimeAssets;
+import openfl.utils.Assets as OpenFlAssets;
 import polymod.Polymod;
 
 /**
@@ -18,10 +24,17 @@ class FunkinMemory
 		// Clearing the polymore cache
 		Polymod.clearCache();
 
-		Assets.cache.clear();
+		LimeAssets.cache.clear();
+		OpenFlAssets.cache.clear();
 
-		// Run the garbage collector
-		System.gc();
+		// Runs garbage collector
+		// Hashlink uses a separate one :serious_car:
+		#if cpp
+		Gc.compact();
+		#end
+		#if hl
+		Gc.major();
+		#end
 
 		trace('Done clearing cache.');
 	}
