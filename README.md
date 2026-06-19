@@ -1,4 +1,4 @@
-<div align="center"><img src="assets/menu/title/logo.png" width="650"></div>
+<div align="center"><img src="art/github/logo.png"></div>
 <h1 align="center">Friday Night Funkin' WTF Engine</h1>
 
 WTF Engine is the best worst [Friday Night Funkin'](https://github.com/FunkinCrew/Funkin) engine out there. What this engine does differently is the art. Rather than using FNF's premade and visually pleasing graphics, this engine uses the shittiest possible art.
