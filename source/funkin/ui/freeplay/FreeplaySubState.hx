@@ -111,7 +111,7 @@ class FreeplaySubState extends FunkinSubState
 		add(ostText);
 
 		album = new AlbumSprite();
-		album.angle = 10;
+		album.angle = 2;
 		add(album);
 
 		scoreText = new FunkinText(0, blackbar.height + 40);
