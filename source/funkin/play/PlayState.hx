@@ -267,15 +267,6 @@ class PlayState extends FunkinState
 		if (subState != null)
 			return;
 
-		if (countdown.step < 3)
-		{
-			var event:CountdownScriptEvent = new CountdownScriptEvent(COUNTDOWN_STEP, countdown.step + 1);
-			dispatch(event);
-
-			if (!event.cancelled)
-				countdown.advance();
-		}
-
 		// Don't bop all this stuff until the song starts
 		if (!songStarted)
 			return;
@@ -352,7 +343,7 @@ class PlayState extends FunkinState
 
 		// Resets conductor stuff
 		conductor.reset(song.bpm);
-		conductor.time = -conductor.crotchet * 4;
+		conductor.time = -conductor.crotchet * 5;
 
 		FunkinSound.stopAllSounds(true);
 
@@ -365,14 +356,14 @@ class PlayState extends FunkinState
 
 	public function startCountdown()
 	{
-		var event:CountdownScriptEvent = new CountdownScriptEvent(COUNTDOWN_START, -1);
+		var event:CountdownScriptEvent = new CountdownScriptEvent(COUNTDOWN_START, 0);
 		dispatch(event);
 
 		if (event.cancelled)
 			return;
 
 		songActive = true;
-		countdown.start();
+		countdown.start(playbackRate);
 	}
 
 	public function startCutscene(cutscene:BaseCutscene)
