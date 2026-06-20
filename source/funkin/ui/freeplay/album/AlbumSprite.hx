@@ -1,6 +1,7 @@
 package funkin.ui.freeplay.album;
 
 import flixel.group.FlxSpriteGroup;
+import flixel.math.FlxAngle;
 import flixel.util.FlxTimer;
 import funkin.data.album.AlbumRegistry;
 import funkin.graphics.FunkinSprite;
@@ -56,7 +57,7 @@ class AlbumSprite extends FlxSpriteGroup
 		sprite.loadSprite(album.image, 1.75);
 
 		title.text = album.name;
-		title.x = sprite.x + (sprite.width - title.width) / 2;
+		title.x = sprite.x + ((sprite.width - title.width) / 2) * Math.sin(FlxAngle.asRadians(angle));
 		title.y = sprite.y + sprite.height - 10;
 
 		final off:Float = 10;
