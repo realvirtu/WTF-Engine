@@ -201,12 +201,12 @@ class PlayState extends FunkinState
 			if (songLoaded)
 			{
 				if (songStarted)
-					conductor.time = FunkinSound.music.time + conductor.offset;
+					conductor.time = FunkinSound.music.time - conductor.offset;
 				else
 				{
 					conductor.time += elapsed * Constants.MS_PER_SEC * playbackRate;
 
-					if (conductor.time >= conductor.offset)
+					if (conductor.time >= -conductor.offset)
 						startSong();
 				}
 
@@ -352,7 +352,7 @@ class PlayState extends FunkinState
 
 		// Resets conductor stuff
 		conductor.reset(song.bpm);
-		conductor.time = -conductor.crotchet * 4 + Math.min(0, conductor.offset);
+		conductor.time = -conductor.crotchet * 4 - Math.max(0, conductor.offset);
 
 		FunkinSound.stopAllSounds(true);
 
