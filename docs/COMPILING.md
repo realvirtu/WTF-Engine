@@ -6,7 +6,7 @@ Below are steps to compiling WTF Engine. Y'know like the requirements and all th
 
 1. Install [Haxe](https://haxe.org/download).
 2. Install [Git](https://www.git-scm.com).
-3. Run `git clone https://github.com/VirtuGuy/WTF-Engine.git` from the folder where you want to store the repository.
+3. Run `git clone https://github.com/realvirtu/WTF-Engine.git` from the folder where you want to store the repository.
 4. Run `cd WTF-Engine`.
 5. Run `haxelib --global install hmm` and `haxelib --global run hmm setup`.
 6. Run `hmm install`.

@@ -42,12 +42,12 @@ class GitMacro
 
 		try
 		{
-			var http:Http = new Http('https://api.github.com/repos/VirtuGuy/WTF-Engine/contributors');
+			final http:Http = new Http('https://api.github.com/repos/realvirtu/WTF-Engine/contributors');
 
 			http.setHeader('User-Agent', 'WTFEngine');
 			http.request();
 
-			var data:Array<Dynamic> = Json.parse(http?.responseData);
+			final data:Array<Dynamic> = Json.parse(http?.responseData);
 
 			for (contributor in data)
 			{
@@ -56,7 +56,7 @@ class GitMacro
 
 				// Lol don't include me
 				// I'm the creator of the engine, not a contributor
-				if (name == 'VirtuGuy')
+				if (name == 'realvirtu')
 					continue;
 
 				result.push({

@@ -18,8 +18,8 @@ To compile the engine, please check out [COMPILING.md](docs/COMPILING.md).
 
 ## Credits
 
+- [Virtu](https://github.com/realvirtu) - Made the engine.
 - [FunkinCrew](https://github.com/FunkinCrew) - Made the disgusting game.
-- [VirtuGuy](https://github.com/VirtuGuy) - Made the engine.
 
 ## Special Thanks
 

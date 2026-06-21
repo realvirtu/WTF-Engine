@@ -9,8 +9,8 @@ class Project extends HXProject
 {
     final TITLE:String = "Friday Night Funkin' WTF Engine";
     final VERSION:String = "0.1.0";
-    final COMPANY:String = "VirtuGuy";
-    final PACKAGE:String = "com.virtuguy.wtfengine";
+    final COMPANY:String = "Virtu";
+    final PACKAGE:String = "com.virtu.wtfengine";
 
     final MAIN_CLASS:String = "Main";
     final FILE_NAME:String = "WTFEngine";
