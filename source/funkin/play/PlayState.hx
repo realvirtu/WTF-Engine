@@ -173,6 +173,7 @@ class PlayState extends FunkinState
 		add(stage);
 
 		popups = new Popups(style);
+		popups.camera = camHUD;
 		add(popups);
 
 		defaultZoom = stage.zoom;

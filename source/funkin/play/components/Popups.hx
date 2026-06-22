@@ -21,41 +21,9 @@ class Popups extends FlxTypedGroup<FunkinSprite>
 		this.style = style;
 	}
 
-	function popup(x:Float, y:Float, id:String):FunkinSprite
-	{
-		var popup:FunkinSprite = recycle(FunkinSprite);
-
-		popup.loadSprite(id, style.scale);
-
-		if (popup.graphic == null)
-		{
-			popup.kill();
-			return popup;
-		}
-
-		popup.setPosition(x, y);
-		popup.acceleration.y = 450;
-		popup.moves = true;
-
-		popup.velocity.y = -200 - FlxG.random.int(0, 30);
-		popup.alpha = 1;
-
-		FlxTimer.wait(0.25, () ->
-		{
-			FlxTween.tween(popup, {alpha: 0}, 0.6, {ease: FlxEase.quadOut, onComplete: _ -> popup.kill()});
-		});
-
-		// Ensure that the sprite is on top
-		popup.zIndex = getLast(last -> last.zIndex > popup.zIndex)?.zIndex + 1;
-
-		refresh();
-
-		return popup;
-	}
-
 	public function popupJudgement(id:Judgement)
 	{
-		popup(80, 40, style.getJudgement(id));
+		popup(style.getJudgement(id));
 	}
 
 	public function popupCombo(combo:Int)
@@ -70,8 +38,43 @@ class Popups extends FlxTypedGroup<FunkinSprite>
 		for (i => number in numbers)
 		{
 			var number:Int = Std.parseInt(number);
-			var sprite:FunkinSprite = popup(120, 90, style.getComboNumber(number));
+			var sprite:FunkinSprite = popup(style.getComboNumber(number));
+
 			sprite.x += sprite.width * 0.85 * i;
+			sprite.y += sprite.height;
 		}
+	}
+
+	function popup(id:String):FunkinSprite
+	{
+		var popup:FunkinSprite = recycle(FunkinSprite);
+
+		popup.loadSprite(id, style.scale);
+
+		if (popup.graphic == null)
+		{
+			popup.kill();
+			return popup;
+		}
+
+		popup.screenCenter();
+
+		popup.acceleration.y = 750;
+		popup.velocity.y = -250 - FlxG.random.int(0, 30);
+		popup.moves = true;
+
+		popup.alpha = 1;
+
+		FlxTimer.wait(0.25, () ->
+		{
+			FlxTween.tween(popup, {alpha: 0}, 0.35, {ease: FlxEase.quadOut, onComplete: _ -> popup.kill()});
+		});
+
+		// Ensure that the sprite is on top
+		popup.zIndex = getLast(last -> last.zIndex > popup.zIndex)?.zIndex + 1;
+
+		refresh();
+
+		return popup;
 	}
 }
