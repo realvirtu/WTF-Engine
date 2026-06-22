@@ -3,6 +3,7 @@ package;
 import flixel.FlxGame;
 import flixel.util.typeLimit.NextState.InitialState;
 import funkin.InitState;
+import funkin.audio.FunkinSoundTray;
 #if HAS_FPS_COUNTER
 import funkin.FPSCounter;
 #end
@@ -36,6 +37,8 @@ class Main extends FlxGame
 
 	override function create(_)
 	{
+		_customSoundTray = FunkinSoundTray;
+
 		super.create(_);
 
 		// Adds the FPS counter
