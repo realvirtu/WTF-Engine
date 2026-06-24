@@ -190,6 +190,6 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 		// Force the bopping animation
 		// This is honestly better than staying in a singing animation
-		bop();
+		bop(true);
 	}
 }
