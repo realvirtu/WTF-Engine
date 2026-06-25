@@ -81,7 +81,6 @@ class Project extends HXProject
             setHaxedef("HAS_DISCORD_RPC");
         if (isDebug())
             setHaxedef("HAS_SCREENSHOTS");
-        setHaxedef("HAS_TITLE_SCARE");
 
         // Flixel
         setHaxedef("FLX_NO_HEALTH");
