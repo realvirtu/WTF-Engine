@@ -12,7 +12,7 @@ body:
       label: "Description (include any images, videos, errors, etc.)"
       description: Provide a detailed description of your crash.
       placeholder: Describe your crash here...
-    validation:
+    validations:
       required: true
 
   - type: textarea

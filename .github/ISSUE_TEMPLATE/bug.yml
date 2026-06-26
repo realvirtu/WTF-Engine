@@ -12,7 +12,7 @@ body:
       label: "Description (include any images, videos, errors, etc.)"
       description: Provide a detailed description of your bug.
       placeholder: Describe your bug here...
-    validation:
+    validations:
       required: true
 
   - type: textarea
