@@ -34,13 +34,17 @@ class NoteSplash extends FunkinSprite
 			kill();
 
 		playAnimation(strum.direction.name);
-		updatePosition();
 	}
 
-	public function updatePosition()
+	override public function draw()
 	{
-		x = strum.x + (strum.width - width) / 2;
-		y = strum.y + (strum.height - height) / 2;
+		if (strum != null)
+		{
+			x = strum.x + (strum.width - width) / 2;
+			y = strum.y + (strum.height - height) / 2;
+		}
+
+		super.draw();
 	}
 
 	override public function revive()

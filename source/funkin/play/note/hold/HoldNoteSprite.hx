@@ -2,6 +2,8 @@ package funkin.play.note.hold;
 
 import flixel.FlxStrip;
 import funkin.data.song.SongData.SongNoteData;
+import funkin.play.note.strum.StrumSprite;
+import funkin.util.RhythmUtil;
 
 /**
  * A sprite used as a sustain note that the player must hold.
@@ -20,8 +22,10 @@ class HoldNoteSprite extends FlxStrip
 	public var wasHit:Bool;
 
 	public var data:SongNoteData;
+	public var strum:StrumSprite;
 
 	public var isPlayer(get, never):Bool;
+	public var distance(get, never):Float;
 
 	var holdHeight:Float;
 	var endHeight:Float;
@@ -118,8 +122,28 @@ class HoldNoteSprite extends FlxStrip
 	{
 		width = graphicWidth * scale.x / Constants.NOTE_COUNT;
 		height = holdHeight;
+
 		offset.set(0, flipY ? height : 0);
 		origin.set();
+	}
+
+	override public function draw()
+	{
+		if (strum != null)
+		{
+			x = strum.x + (strum.width - width) / 2;
+			y = strum.middle + distance * (Preferences.downscroll ? -1 : 1);
+
+			flipY = Preferences.downscroll;
+
+			if (wasHit)
+			{
+				length = time - Conductor.instance.time + fullLength;
+				y = strum.middle;
+			}
+		}
+
+		super.draw();
 	}
 
 	override public function revive()
@@ -136,6 +160,7 @@ class HoldNoteSprite extends FlxStrip
 		wasHit = false;
 
 		data = null;
+		strum = null;
 
 		holdHeight = 0;
 		endHeight = 0;
@@ -197,5 +222,11 @@ class HoldNoteSprite extends FlxStrip
 	inline function get_isPlayer():Bool
 	{
 		return data.d < Constants.NOTE_COUNT;
+	}
+
+	@:noCompletion
+	inline function get_distance():Float
+	{
+		return RhythmUtil.getDistance(time, speed);
 	}
 }

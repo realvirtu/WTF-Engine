@@ -3,6 +3,8 @@ package funkin.play.note;
 import funkin.data.song.SongData.SongNoteData;
 import funkin.graphics.FunkinSprite;
 import funkin.play.note.hold.HoldNoteSprite;
+import funkin.play.note.strum.StrumSprite;
+import funkin.util.RhythmUtil;
 
 /**
  * A `FunkinSprite` used as a note for a `Strumline`.
@@ -18,9 +20,13 @@ class NoteSprite extends FunkinSprite
 	public var wasMissed:Bool;
 
 	public var holdNote:HoldNoteSprite;
+	public var strum:StrumSprite;
+
 	public var data:SongNoteData;
+	public var speed:Float;
 
 	public var isPlayer(get, never):Bool;
+	public var distance(get, never):Float;
 
 	public function buildSprite(style:Style)
 	{
@@ -38,6 +44,17 @@ class NoteSprite extends FunkinSprite
 		this.active = false;
 	}
 
+	override public function draw()
+	{
+		if (strum != null)
+		{
+			x = strum.x;
+			y = strum.y + distance * (Preferences.downscroll ? -1 : 1);
+		}
+
+		super.draw();
+	}
+
 	override public function revive()
 	{
 		super.revive();
@@ -51,6 +68,8 @@ class NoteSprite extends FunkinSprite
 		wasMissed = false;
 
 		holdNote = null;
+		strum = null;
+
 		data = null;
 	}
 
@@ -70,5 +89,11 @@ class NoteSprite extends FunkinSprite
 	inline function get_isPlayer():Bool
 	{
 		return data.d < Constants.NOTE_COUNT;
+	}
+
+	@:noCompletion
+	inline function get_distance():Float
+	{
+		return RhythmUtil.getDistance(time, speed);
 	}
 }

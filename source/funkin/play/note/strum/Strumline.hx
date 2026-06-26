@@ -31,7 +31,6 @@ class Strumline extends FlxGroup
 	public var holdNoteHit(default, null) = new FlxTypedSignal<HoldNoteSprite->Void>();
 	public var holdNoteDrop(default, null) = new FlxTypedSignal<HoldNoteSprite->Void>();
 
-	var dirty:Bool = false;
 	var style:Style;
 
 	public function new(style:Style, isPlayer:Bool)
@@ -72,11 +71,11 @@ class Strumline extends FlxGroup
 		// Spawns the notes
 		while (data[0] != null)
 		{
-			var noteData:SongNoteData = data[0];
-			var time:Float = noteData.t;
-			var direction:NoteDirection = NoteDirection.fromInt(noteData.d);
-			var kind:String = noteData.k;
-			var length:Float = noteData.l;
+			final noteData:SongNoteData = data[0];
+			final time:Float = noteData.t;
+			final direction:NoteDirection = NoteDirection.fromInt(noteData.d);
+			final kind:String = noteData.k;
+			final length:Float = noteData.l;
 
 			if (RhythmUtil.getDistance(time, speed) > FlxG.height)
 				break;
@@ -94,12 +93,14 @@ class Strumline extends FlxGroup
 			if (note.graphic == null)
 				note.buildSprite(style);
 
-			note.y = -9999;
+			note.strum = getStrum(direction);
 
 			note.time = time;
 			note.direction = direction;
 			note.kind = kind;
+
 			note.data = noteData;
+			note.speed = speed;
 
 			// Creates a hold note
 			// However, its length has to be lengthy enough to be considered length
@@ -110,7 +111,7 @@ class Strumline extends FlxGroup
 				if (holdNote.graphic == null)
 					holdNote.buildSprite(style);
 
-				holdNote.y = -9999;
+				holdNote.strum = note.strum;
 
 				holdNote.time = time;
 				holdNote.direction = direction;
@@ -118,7 +119,6 @@ class Strumline extends FlxGroup
 				holdNote.length = length;
 				holdNote.fullLength = length;
 
-				holdNote.flipY = Preferences.downscroll;
 				holdNote.data = noteData;
 				holdNote.speed = speed;
 
@@ -136,14 +136,7 @@ class Strumline extends FlxGroup
 		// Note processing
 		notes.forEachAlive(note ->
 		{
-			var strum:StrumSprite = getStrum(note.direction);
-			var distance:Float = RhythmUtil.getDistance(note.time, speed);
-
-			// Positions the note
-			note.x = strum.x;
-			note.y = strum.y + distance * (Preferences.downscroll ? -1 : 1);
-
-			if (distance <= -strum.y - note.height && note.wasMissed)
+			if (note.distance <= -note.strum.y - note.height && note.wasMissed)
 				note.kill();
 
 			RhythmUtil.processHitWindow(note, isPlayer);
@@ -160,33 +153,21 @@ class Strumline extends FlxGroup
 		// Hold note processing
 		holdNotes.forEachAlive(holdNote ->
 		{
-			var strum:StrumSprite = getStrum(holdNote.direction);
-			var distance:Float = RhythmUtil.getDistance(holdNote.time, speed);
-			var y:Float = strum.y + strum.height / 2;
-
-			// Positions the hold note
-			holdNote.x = strum.x + (strum.width - holdNote.width) / 2;
-			holdNote.y = y + distance * (Preferences.downscroll ? -1 : 1);
-
-			if (distance <= -y - holdNote.height && !holdNote.wasHit)
+			if (holdNote.distance <= -holdNote.strum.middle - holdNote.height && !holdNote.wasHit)
 				holdNote.kill();
 
 			// Hold note input
 			if (holdNote.wasHit)
 			{
 				// Drops the hold note
-				if (!holdNote.direction.pressed && isPlayer && holdNote.length > 100 && !dirty)
+				if (!holdNote.direction.pressed && isPlayer && holdNote.length > 100)
 				{
 					holdNote.kill();
 					holdNoteDrop.dispatch(holdNote);
 					return;
 				}
 
-				getStrum(holdNote.direction).playConfirm();
-
-				holdNote.length = holdNote.time - Conductor.instance.time + holdNote.fullLength;
-				holdNote.y = y;
-
+				holdNote.strum.playConfirm();
 				holdNoteHit.dispatch(holdNote);
 
 				// Kill the hold note if it's short enough
@@ -200,7 +181,7 @@ class Strumline extends FlxGroup
 		{
 			final pressed:Bool = strum.direction.pressed;
 
-			if (strum.confirmTime > 0 || dirty)
+			if (strum.confirmTime > 0)
 				return;
 
 			if (pressed && isPlayer)
@@ -212,8 +193,6 @@ class Strumline extends FlxGroup
 
 	public function updateScroll()
 	{
-		dirty = true;
-
 		strums.forEach(strum ->
 		{
 			strum.y = 60;
@@ -221,15 +200,6 @@ class Strumline extends FlxGroup
 			if (Preferences.downscroll)
 				strum.y = FlxG.height - strum.height - strum.y;
 		});
-
-		holdNotes.forEachAlive(holdNote -> holdNote.flipY = Preferences.downscroll);
-
-		noteSplashes.forEachAlive(splash -> splash.updatePosition());
-		holdCovers.forEachAlive(cover -> cover.updatePosition());
-
-		process();
-
-		dirty = false;
 	}
 
 	public function load(notes:Array<SongNoteData>, speed:Float)
@@ -310,6 +280,7 @@ class Strumline extends FlxGroup
 			return value;
 		this.speed = value;
 
+		notes.forEachAlive(note -> note.speed = value);
 		holdNotes.forEachAlive(holdNote -> holdNote.speed = value);
 
 		return value;

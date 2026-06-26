@@ -10,6 +10,8 @@ class StrumSprite extends FunkinSprite
 	public var direction:NoteDirection;
 	public var confirmTime:Float = 0;
 
+	public var middle(get, never):Float;
+
 	public function new(direction:NoteDirection)
 	{
 		super();
@@ -49,5 +51,11 @@ class StrumSprite extends FunkinSprite
 	{
 		playAnimation('confirm');
 		confirmTime = 1;
+	}
+
+	@:noCompletion
+	inline function get_middle():Float
+	{
+		return y + height / 2;
 	}
 }
