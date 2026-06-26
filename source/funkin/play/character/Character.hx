@@ -95,6 +95,9 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 	override public function playAnimation(name:String, force:Bool = false)
 	{
+		if (!hasAnimation(name))
+			return;
+
 		super.playAnimation(name, force);
 
 		if (!isBopping)
