@@ -15,6 +15,10 @@ class FunkinAction
 
 	var timestamp(default, null):Int = -1;
 
+	var spamming:Bool = false;
+	var spamTicks:Int = 0;
+	var lastTicks:Int = -1;
+
 	public function new(keys:Array<FlxKey>, buttons:Array<GamepadButton>)
 	{
 		this.keys = keys;
@@ -36,6 +40,9 @@ class FunkinAction
 
 	public inline function checkPressed():Bool
 		return FlxG.game.ticks - timestamp <= FlxG.elapsed * Constants.MS_PER_SEC;
+
+	public inline function checkTurbo():Bool
+		return TurboControl.check(this);
 
 	public inline function hasKey(key:FlxKey):Bool
 		return keys.contains(key);

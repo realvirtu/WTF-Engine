@@ -45,6 +45,10 @@ class Controls
 	public var UI_DOWN_P(get, never):Bool;
 	public var UI_UP_P(get, never):Bool;
 	public var UI_RIGHT_P(get, never):Bool;
+	public var UI_LEFT_T(get, never):Bool;
+	public var UI_DOWN_T(get, never):Bool;
+	public var UI_UP_T(get, never):Bool;
+	public var UI_RIGHT_T(get, never):Bool;
 	public var ACCEPT(get, never):Bool;
 	public var BACK(get, never):Bool;
 	public var PAUSE(get, never):Bool;
@@ -147,6 +151,30 @@ class Controls
 	inline function get_UI_RIGHT_P():Bool
 	{
 		return getAction(UIRight).checkPressed();
+	}
+
+	@:noCompletion
+	inline function get_UI_LEFT_T():Bool
+	{
+		return getAction(UILeft).checkTurbo();
+	}
+
+	@:noCompletion
+	inline function get_UI_DOWN_T():Bool
+	{
+		return getAction(UIDown).checkTurbo();
+	}
+
+	@:noCompletion
+	inline function get_UI_UP_T():Bool
+	{
+		return getAction(UIUp).checkTurbo();
+	}
+
+	@:noCompletion
+	inline function get_UI_RIGHT_T():Bool
+	{
+		return getAction(UIRight).checkTurbo();
 	}
 
 	@:noCompletion
