@@ -1,6 +1,7 @@
 package funkin.play.note.strum;
 
 import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxSignal.FlxTypedSignal;
 import flixel.util.FlxSort;
 import funkin.data.song.SongData;
@@ -19,9 +20,9 @@ class Strumline extends FlxGroup
 	public var data:Array<SongNoteData> = [];
 	public var speed(default, set):Float;
 
-	public var x(default, set):Float;
+	public var x(get, set):Float;
 
-	public var strums:FlxTypedGroup<StrumSprite>;
+	public var strums:FlxTypedSpriteGroup<StrumSprite>;
 	public var notes:FlxTypedGroup<NoteSprite>;
 	public var holdNotes:FlxTypedGroup<HoldNoteSprite>;
 	public var noteSplashes:FlxTypedGroup<NoteSplash>;
@@ -40,7 +41,7 @@ class Strumline extends FlxGroup
 		this.style = style;
 		this.isPlayer = isPlayer;
 
-		strums = new FlxTypedGroup<StrumSprite>();
+		strums = new FlxTypedSpriteGroup<StrumSprite>();
 		add(strums);
 
 		noteSplashes = new FlxTypedGroup<NoteSplash>();
@@ -55,15 +56,7 @@ class Strumline extends FlxGroup
 		notes = new FlxTypedGroup<NoteSprite>();
 		add(notes);
 
-		// Builds the strums
-		for (direction in 0...Constants.NOTE_COUNT)
-		{
-			var strum:StrumSprite = new StrumSprite(direction);
-			strum.buildSprite(style);
-			strums.add(strum);
-		}
-
-		refresh();
+		buildStrums();
 	}
 
 	public function process()
@@ -191,15 +184,30 @@ class Strumline extends FlxGroup
 		});
 	}
 
+	public function buildStrums()
+	{
+		for (direction in 0...Constants.NOTE_COUNT)
+		{
+			final off:Float = (direction - Constants.NOTE_COUNT / 2);
+			final spacing:Float = 2;
+
+			var strum:StrumSprite = new StrumSprite(direction);
+
+			strum.buildSprite(style);
+
+			strum.x = off * (strum.width + spacing);
+			strum.x += spacing / 2;
+
+			strums.add(strum);
+		}
+	}
+
 	public function updateScroll()
 	{
-		strums.forEach(strum ->
-		{
-			strum.y = 60;
+		strums.y = 60;
 
-			if (Preferences.downscroll)
-				strum.y = FlxG.height - strum.height - strum.y;
-		});
+		if (Preferences.downscroll)
+			strums.y = FlxG.height - strums.height - strums.y;
 	}
 
 	public function load(notes:Array<SongNoteData>, speed:Float)
@@ -289,17 +297,13 @@ class Strumline extends FlxGroup
 	@:noCompletion
 	inline function set_x(value:Float):Float
 	{
-		this.x = value;
-
-		strums.forEach(strum ->
-		{
-			var off:Float = (strum.direction - Constants.NOTE_COUNT / 2);
-			var spacing:Float = 2;
-
-			strum.x = value + off * (strum.width + spacing);
-			strum.x += spacing / 2;
-		});
-
+		strums.x = value;
 		return value;
+	}
+
+	@:noCompletion
+	inline function get_x():Float
+	{
+		return strums.x;
 	}
 }
