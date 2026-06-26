@@ -1,6 +1,9 @@
 package funkin.ui.title;
 
+import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.effects.FlxFlicker;
+import flixel.util.FlxColor;
 import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
@@ -14,6 +17,10 @@ import funkin.util.WindowUtil;
  */
 class TitleState extends FunkinState
 {
+	static final GRID_SIZE:Int = 64;
+	static final GRID_COLOR:FlxColor = 0x10FFFFFF;
+	static final GRID_SPEED:Float = 30;
+
 	var started:Bool = false;
 	var logoScale:Float;
 
@@ -26,6 +33,11 @@ class TitleState extends FunkinState
 		super.create();
 
 		conductor.reset(100);
+
+		var bg:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(GRID_SIZE, GRID_SIZE, GRID_SIZE * 2, GRID_SIZE * 2, true, GRID_COLOR, 0x0));
+		bg.moves = true;
+		bg.velocity.set(GRID_SPEED, GRID_SPEED);
+		add(bg);
 
 		gf = FunkinSprite.create(0, 0, 'menu/title/gf', 1.5, 268, 290);
 		gf.x = FlxG.width - gf.width - 30;
