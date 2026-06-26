@@ -1,8 +1,0 @@
-name: Polish
-description: Suggest improvements to the game.
-labels: [type: polish]
-title: Polish
-body:
-  - type: textarea
-    attributes:
-      label: What needs to be polished in the game, and why?
