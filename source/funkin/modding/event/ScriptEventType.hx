@@ -10,6 +10,11 @@ enum ScriptEventType
 	UPDATE;
 	DESTROY;
 
+	// State
+	STATE_CREATE;
+	SUBSTATE_OPEN;
+	SUBSTATE_CLOSE;
+
 	// Note
 	NOTE_HIT;
 	NOTE_MISS;

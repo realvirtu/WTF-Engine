@@ -31,6 +31,27 @@ class ScriptEventDispatcher
 		}
 
 		//
+		// STATE
+		//
+
+		if (Std.isOfType(target, IStateScriptedClass))
+		{
+			var target:IStateScriptedClass = cast target;
+
+			switch (event.type)
+			{
+				case STATE_CREATE:
+					target.onStateCreate(cast event);
+				case SUBSTATE_OPEN:
+					target.onSubStateOpen(cast event);
+				case SUBSTATE_CLOSE:
+					target.onSubStateClose(cast event);
+				default:
+					// Does literally nothing
+			}
+		}
+
+		//
 		// NOTE
 		//
 

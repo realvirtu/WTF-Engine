@@ -47,7 +47,8 @@ class ModuleHandler
 
 	public static function setModuleActive(id:String, active:Bool)
 	{
-		var module:Module = getModule(id);
+		final module:Module = getModule(id);
+
 		if (module != null)
 			module.active = active;
 	}

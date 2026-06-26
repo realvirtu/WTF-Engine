@@ -14,6 +14,16 @@ interface IScriptedClass
 }
 
 /**
+ * An interface for scripted classes that follow different states.
+ */
+interface IStateScriptedClass extends IScriptedClass
+{
+	public function onStateCreate(event:StateScriptEvent):Void;
+	public function onSubStateOpen(event:SubStateScriptEvent):Void;
+	public function onSubStateClose(event:SubStateScriptEvent):Void;
+}
+
+/**
  * A interface for scripted classes that require note events.
  */
 interface INoteScriptedClass extends IScriptedClass

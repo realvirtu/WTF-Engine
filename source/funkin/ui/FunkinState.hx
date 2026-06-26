@@ -22,6 +22,13 @@ class FunkinState extends FlxState
 		conductor.beatHit.add(beatHit);
 	}
 
+	override public function create()
+	{
+		super.create();
+
+		dispatch(new StateScriptEvent(STATE_CREATE, this));
+	}
+
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);

@@ -1,5 +1,7 @@
 package funkin.modding.event;
 
+import flixel.FlxState;
+import flixel.FlxSubState;
 import funkin.data.event.EventData;
 import funkin.data.song.SongData.SongNoteData;
 import funkin.play.note.NoteDirection;
@@ -39,6 +41,36 @@ class UpdateScriptEvent extends ScriptEvent
 		super(UPDATE);
 
 		this.elapsed = elapsed;
+	}
+}
+
+/**
+ * A script event that runs for states.
+ */
+class StateScriptEvent extends ScriptEvent
+{
+	public var state(default, null):FlxState;
+
+	public function new(type:ScriptEventType, state:FlxState)
+	{
+		super(type);
+
+		this.state = state;
+	}
+}
+
+/**
+ * A script event that runs for substates.
+ */
+class SubStateScriptEvent extends ScriptEvent
+{
+	public var state(default, null):FlxSubState;
+
+	public function new(type:ScriptEventType, state:FlxSubState)
+	{
+		super(type);
+
+		this.state = state;
 	}
 }
 

@@ -26,6 +26,20 @@ class FunkinSubState extends FlxSubState
 		conductor.beatHit.add(beatHit);
 	}
 
+	override public function create()
+	{
+		super.create();
+
+		dispatch(new SubStateScriptEvent(SUBSTATE_OPEN, this));
+	}
+
+	override public function close()
+	{
+		super.close();
+
+		dispatch(new SubStateScriptEvent(SUBSTATE_CLOSE, this));
+	}
+
 	override public function destroy()
 	{
 		if (camera != null && camera != FlxG.camera)

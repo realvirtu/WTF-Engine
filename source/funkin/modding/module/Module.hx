@@ -1,14 +1,13 @@
 package funkin.modding.module;
 
-import funkin.modding.IScriptedClass.IFreeplayScriptedClass;
-import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
+import funkin.modding.IScriptedClass;
 import funkin.modding.event.ScriptEvent;
 
 /**
  * A class that serves as an advanced script class for mods.
  * Unlike any scripted class, this runs globally.
  */
-class Module implements IPlayStateScriptedClass implements IFreeplayScriptedClass
+class Module implements IStateScriptedClass implements IPlayStateScriptedClass implements IFreeplayScriptedClass
 {
 	public final id:String;
 
@@ -32,6 +31,12 @@ class Module implements IPlayStateScriptedClass implements IFreeplayScriptedClas
 	public function onDestroy(event:ScriptEvent) {}
 
 	public function onScriptEvent(event:ScriptEvent) {}
+
+	public function onStateCreate(event:StateScriptEvent) {}
+
+	public function onSubStateOpen(event:SubStateScriptEvent) {}
+
+	public function onSubStateClose(event:SubStateScriptEvent) {}
 
 	public function onNoteHit(event:NoteScriptEvent) {}
 
