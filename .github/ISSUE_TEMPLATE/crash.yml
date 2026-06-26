@@ -1,0 +1,22 @@
+name: Crash Report
+description: Report a crash that occurred while playing the game.
+labels: [type: crash]
+title: "Crash Report: "
+body:
+  - type: markdown
+    attributes:
+      value: "## Describe your crash."
+
+  - type: textarea
+    attributes:
+      label: "Description (include any images, videos, errors, etc.)"
+      description: Provide a detailed description of your crash.
+      placeholder: Describe your crash here...
+    validation:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: What steps can other people take to reliably encounter this issue?
+      placeholder: 1. Open the game...

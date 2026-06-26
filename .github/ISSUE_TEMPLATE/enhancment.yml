@@ -1,0 +1,10 @@
+name: Enhancement
+description: Suggest a new feature.
+labels: [type: enhancement]
+title: "Enhancement: "
+body:
+  - type: textarea
+    attributes:
+      label: What is your suggestion, and why should it be implemented?
+    validations:
+      required: true
