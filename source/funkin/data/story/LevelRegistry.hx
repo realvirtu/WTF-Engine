@@ -67,10 +67,18 @@ class LevelRegistry extends BaseRegistry<Level>
 		}
 	}
 
-	public function listSorted():Array<String>
+	override public function listDefaults():Array<String>
 	{
-		var list:Array<String> = list();
-		list.sort(SortUtil.defaultsAlphabetically.bind(Constants.DEFAULT_LEVELS));
-		return list;
+		return [
+			'tutorial',
+			'week1',
+			'week2',
+			'week3',
+			'week4',
+			'week5',
+			'week6',
+			'week7',
+			'weekend1'
+		];
 	}
 }

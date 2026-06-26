@@ -176,10 +176,8 @@ class SongRegistry extends BaseRegistry<Song>
 		return list;
 	}
 
-	public function listSorted():Array<String>
+	override public function listDefaults():Array<String>
 	{
-		var list:Array<String> = list();
-		list.sort(SortUtil.defaultsAlphabetically.bind(Constants.DEFAULT_SONGS));
-		return list;
+		return ['test', 't'];
 	}
 }

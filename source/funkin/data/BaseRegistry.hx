@@ -1,5 +1,6 @@
 package funkin.data;
 
+import funkin.util.SortUtil;
 import haxe.ds.StringMap;
 
 /**
@@ -49,6 +50,18 @@ class BaseRegistry<T>
 	public function list():Array<String>
 	{
 		return entries.keys().array();
+	}
+
+	public function listSorted():Array<String>
+	{
+		var result:Array<String> = list();
+		result.sort(SortUtil.defaultsAlphabetically.bind(listDefaults()));
+		return result;
+	}
+
+	public function listDefaults():Array<String>
+	{
+		return [];
 	}
 
 	public function exists(id:String):Bool

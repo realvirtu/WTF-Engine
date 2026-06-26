@@ -25,26 +25,6 @@ class Constants
 	public static final NOTE_COUNT:Int = 4;
 	public static final ZOOM:Float = 1.35;
 
-	/**
-	 * This is so that the engine's levels have higher priority over custom levels.
-	 */
-	public static final DEFAULT_LEVELS:Array<String> = [
-		'tutorial',
-		'week1',
-		'week2',
-		'week3',
-		'week4',
-		'week5',
-		'week6',
-		'week7',
-		'weekend 1'
-	];
-
-	/**
-	 * This is so that the engine's songs have higher priority over custom songs.
-	 */
-	public static final DEFAULT_SONGS:Array<String> = ['test', 't'];
-
 	public static final DEFAULT_NAME:String = 'Untitled';
 	public static final DEFAULT_ARTIST:String = 'Unknown';
 	public static final DEFAULT_CHARTER:String = 'Unknown';
