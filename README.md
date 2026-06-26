@@ -20,6 +20,7 @@ To compile the engine, please check out [COMPILING.md](docs/COMPILING.md).
 
 - [Virtu](https://github.com/realvirtu) - Made the engine.
 - [FunkinCrew](https://github.com/FunkinCrew) - Made the disgusting game.
+- [Kaivara](https://github.com/KaiCodesLol) - Tundrec.
 
 ## Special Thanks
 
