@@ -1,12 +1,12 @@
 package funkin.play.note;
 
-import funkin.modding.IScriptedClass.INoteScriptedClass;
+import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.event.ScriptEvent;
 
 /**
  * The note kind class (no-anim, ugh, etc.).
  */
-class NoteKind implements INoteScriptedClass
+class NoteKind implements IPlayStateScriptedClass
 {
 	public var id:String;
 
@@ -32,6 +32,34 @@ class NoteKind implements INoteScriptedClass
 	public function onHoldNoteDrop(event:HoldNoteScriptEvent) {}
 
 	public function onGhostMiss(event:GhostMissScriptEvent) {}
+
+	public function onStepHit(event:ConductorScriptEvent) {}
+
+	public function onBeatHit(event:ConductorScriptEvent) {}
+
+	public function onSongLoaded(event:SongLoadScriptEvent) {}
+
+	public function onSongStart(event:ScriptEvent) {}
+
+	public function onSongEnd(event:ScriptEvent) {}
+
+	public function onSongRetry(event:ScriptEvent) {}
+
+	public function onSongEvent(event:SongEventScriptEvent) {}
+
+	public function onCountdownStart(event:CountdownScriptEvent) {}
+
+	public function onCountdownStep(event:CountdownScriptEvent) {}
+
+	public function onPause(event:ScriptEvent) {}
+
+	public function onResume(event:ScriptEvent) {}
+
+	public function onGameOverStart(event:ScriptEvent) {}
+
+	public function onGameOverLoop(event:ScriptEvent) {}
+
+	public function onGameOverRetry(event:ScriptEvent) {}
 
 	public function toString():String
 	{

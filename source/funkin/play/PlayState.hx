@@ -744,6 +744,7 @@ class PlayState extends FunkinState
 		ScriptEventDispatcher.dispatch(Playlist.level, event);
 		ScriptEventDispatcher.dispatch(song, event);
 
+		EventRegistry.instance.dispatch(event);
 		NoteKindRegistry.instance.dispatch(event);
 
 		ScriptEventDispatcher.dispatch(stage, event);

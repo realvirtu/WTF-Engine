@@ -1,6 +1,8 @@
 package funkin.data.event;
 
 import funkin.modding.ScriptBases.ScriptedSongEvent;
+import funkin.modding.event.ScriptEvent;
+import funkin.modding.event.ScriptEventDispatcher;
 import funkin.play.song.SongEvent;
 
 /**
@@ -35,6 +37,12 @@ class EventRegistry extends BaseRegistry<SongEvent>
 			catch (e)
 				trace('Failed to load script $script.');
 		}
+	}
+
+	public function dispatch(event:ScriptEvent)
+	{
+		for (songEvent in entries)
+			ScriptEventDispatcher.dispatch(songEvent, event);
 	}
 
 	public function handleEvent(event:String, value:Dynamic)
