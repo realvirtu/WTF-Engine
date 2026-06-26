@@ -19,7 +19,7 @@ class FunkinSound
 
 	public static inline function playOnce(id:String, volume:Float = 1):FlxSound
 	{
-		return FlxG.sound.play(Paths.sound(id), volume);
+		return load(id, volume, false);
 	}
 
 	public static function playMusic(id:String, volume:Float = 1, looped:Bool = true, autoPlay:Bool = true, overrideMusic:Bool = true)
