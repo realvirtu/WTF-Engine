@@ -6,7 +6,6 @@ import funkin.modding.ScriptBases.ScriptedSong;
 import funkin.play.song.Song;
 import funkin.ui.story.Level;
 import funkin.util.FileUtil;
-import funkin.util.SortUtil;
 import json2object.JsonParser;
 
 /**

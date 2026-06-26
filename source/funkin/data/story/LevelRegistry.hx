@@ -3,7 +3,6 @@ package funkin.data.story;
 import funkin.modding.ScriptBases.ScriptedLevel;
 import funkin.ui.story.Level;
 import funkin.util.FileUtil;
-import funkin.util.SortUtil;
 import json2object.JsonParser;
 
 /**
