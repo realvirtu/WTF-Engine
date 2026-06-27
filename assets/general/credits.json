@@ -2,8 +2,8 @@
     {
         "header": "WTF Engine",
         "body": [
-            "Virtu: Everything",
-            "Kaivara: Tundrec"
+            { "name": "Virtu", "role": "Everything" },
+            { "name": "Kaivara", "role": "Tundrec" }
         ]
     },
     {
@@ -13,26 +13,26 @@
     {
         "header": "Special Thanks",
         "body": [
-            "The Funkin' Crew Inc.",
-            "NotHyper474",
-            "KoloInDaCrib",
-            "Anysad",
-            "Jackxson",
-            "Lasercar",
-            "ACrazyTown",
-            "ADA Funni",
-            "Ahmed7P",
-            "AnimatingLegend",
-            "Blake (and his expansion)",
-            "CharlesIsCoffer",
-            "CrusherNotDrip",
-            "Maki",
-            "MightyTheArmiddilo",
-            "Mehan",
-            "PurSnake",
-            "Requazar",
-            "Rodney528",
-            "TechnikTil"
+            { "name": "The Funkin' Crew Inc." },
+            { "name": "NotHyper474" },
+            { "name": "KoloInDaCrib" },
+            { "name": "Anysad" },
+            { "name": "Jackxson" },
+            { "name": "Lasercar" },
+            { "name": "ACrazyTown" },
+            { "name": "ADA Funni" },
+            { "name": "Ahmed7P" },
+            { "name": "AnimatingLegend" },
+            { "name": "Blake (and his expansion)" },
+            { "name": "CharlesIsCoffer" },
+            { "name": "CrusherNotDrip" },
+            { "name": "Maki" },
+            { "name": "MightyTheArmiddilo" },
+            { "name": "Mehan" },
+            { "name": "PurSnake" },
+            { "name": "Requazar" },
+            { "name": "Rodney528" },
+            { "name": "TechnikTil" }
         ]
     }
 ]

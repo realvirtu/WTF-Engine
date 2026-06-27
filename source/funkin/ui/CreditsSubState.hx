@@ -95,10 +95,10 @@ class CreditsSubState extends FunkinSubState
 				continue;
 
 			final header:String = section.header;
-			final body:Array<String> = section.body;
+			final body:Array<CreditsBodyData> = section.body;
 
 			if (!header.isEmpty())
-				buildLine(header, true);
+				buildLine(header, '', true);
 
 			switch (header.toLowerCase())
 			{
@@ -106,7 +106,7 @@ class CreditsSubState extends FunkinSubState
 					buildContributors();
 				default:
 					for (item in body)
-						buildLine(item);
+						buildLine(item.name, item.role);
 			}
 		}
 	}
@@ -127,12 +127,17 @@ class CreditsSubState extends FunkinSubState
 			buildLine('lmao yeah there is none');
 	}
 
-	function buildLine(name:String, section:Bool = false)
+	function buildLine(name:String, role:String = '', section:Bool = false)
 	{
 		if (section)
 			lineY += LINE_SPACING;
 
-		var line:FunkinText = new FunkinText(0, lineY, name);
+		var text:String = name;
+
+		if (!role.isEmpty())
+			text += ': $role';
+
+		var line:FunkinText = new FunkinText(0, lineY, text);
 
 		line.size = section ? 28 : 20;
 		line.alpha = section ? 0.6 : 1;
@@ -141,7 +146,6 @@ class CreditsSubState extends FunkinSubState
 		lineY += line.height + LINE_SPACING;
 
 		exitMovers.add(line, -line.x - line.width / 2);
-
 		credits.add(line);
 	}
 
