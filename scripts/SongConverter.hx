@@ -3,8 +3,11 @@ package scripts;
 
 #end
 import haxe.Json;
+import haxe.ds.StringMap;
 import sys.FileSystem;
 import sys.io.File;
+
+using StringTools;
 
 /**
  * From `scripts`, run `haxe --run SongConverter` to convert a song or all songs.
@@ -15,6 +18,8 @@ class SongConverter
 
 	static var path:String;
 	static var variation:String;
+
+	static var song:String;
 
 	static function main()
 	{
@@ -43,6 +48,8 @@ class SongConverter
 	static function convertSong(id:String)
 	{
 		trace('Converting song $id...');
+
+		song = id;
 
 		var suffix:String = '';
 		if (variation != 'default' && variation != '')
@@ -73,7 +80,7 @@ class SongConverter
 
 	static function convertMeta(meta:Dynamic):Dynamic
 	{
-		return {
+		var meta:Dynamic = {
 			name: meta.songName,
 			bpm: meta.timeChanges[0].bpm,
 			artist: meta.artist,
@@ -82,10 +89,69 @@ class SongConverter
 			rating: meta.playData.ratings,
 			album: meta.playData.album,
 			style: meta.playData.noteStyle,
-			stage: meta.playData.stage,
-			player: meta.playData.characters.player,
-			opponent: meta.playData.characters.opponent,
-			gf: meta.playData.characters.girlfriend
+			stage: convertStage(meta.playData.stage),
+			player: convertCharacter(meta.playData.characters.player),
+			opponent: convertCharacter(meta.playData.characters.opponent),
+			gf: convertCharacter(meta.playData.characters.girlfriend)
+		}
+
+		if (song == 'tutorial')
+			meta.gf = meta.opponent;
+
+		return meta;
+	}
+
+	static function convertStage(id:String):String
+	{
+		if (id == null)
+			return id;
+
+		if (id.endsWith('Erect'))
+			id = id.replace('Erect', '');
+
+		return switch (id)
+		{
+			case 'mainStage':
+				'stage';
+			case 'spookyMansion':
+				'spooky';
+			case 'phillyTrain':
+				'philly-train';
+			case 'limoRide':
+				'limo';
+			case 'mallXmas':
+				'mall';
+			case 'mallEvil':
+				'mall-evil';
+			case 'schoolEvil':
+				'school-evil';
+			case 'tankmanBattlefield':
+				'tank';
+			case 'phillyStreets' | 'phillyBlazin':
+				'philly-streets';
+			default:
+				id;
+		}
+	}
+
+	static function convertCharacter(id:String):String
+	{
+		if (id == null)
+			return id;
+
+		if (id.endsWith('-car'))
+			id = id.replace('-car', '');
+		if (id.endsWith('-dark'))
+			id = id.replace('-dark', '');
+
+		return switch (id)
+		{
+			case 'gf-tankmen':
+				'gf-tankman';
+			case 'parents-christmas':
+				'parents';
+			default:
+				id;
 		}
 	}
 
@@ -103,10 +169,58 @@ class SongConverter
 
 		events.sort((a, b) -> return a.t - b.t);
 
+		// Converts notes
+		var notes:Map<String, Array<Dynamic>> = chart.notes;
+
+		convertNotes(notes);
+
 		return {
 			speed: chart.scrollSpeed,
-			notes: chart.notes,
+			notes: notes,
 			events: events
+		}
+	}
+
+	static function convertNotes(notes:Map<String, Array<Dynamic>>)
+	{
+		if (notes == null)
+			return;
+
+		for (diff in notes)
+		{
+			for (note in diff)
+			{
+				if (note == null)
+					continue;
+
+				if (song == 'blazin')
+					note.k = '';
+
+				if (note.k.startsWith('weekend-1-'))
+					note.k = note.k.replace('weekend-1-', '');
+
+				switch (note.k)
+				{
+					case 'mom':
+						note.k = 'alt';
+					case 'noanim':
+						note.k = 'no-anim';
+					case 'hehPrettyGood':
+						note.k = 'pretty-good';
+					case 'lightcan':
+						note.k = 'light-can';
+					case 'kickcan':
+						note.k = 'kick-can';
+					case 'kneecan':
+						note.k = 'knee-can';
+					case 'cockgun':
+						note.k = 'cock-gun';
+					case 'firegun':
+						note.k = 'fire-gun';
+					default:
+						// lmao do nothing
+				}
+			}
 		}
 	}
 
