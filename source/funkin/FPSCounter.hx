@@ -81,11 +81,19 @@ class FPSCounter extends TextField
 		bg.graphics.endFill();
 	}
 
+	function formatMemory(memory:Float)
+	{
+		return memory >= 1000 ? '${FlxMath.roundDecimal(memory / 1000, 2)}gb' : '${FlxMath.roundDecimal(memory, 2)}mb';
+	}
+
 	function updateDisplay()
 	{
-		var memoryUnit = systemMemory >= 1000 ? 'gb' : 'mb';
-
-		text = 'FPS: $currentFPS\nMEM: $systemMemory / $maxMemory$memoryUnit';
+		text = [
+			'FPS: $currentFPS',
+			#if !hl
+			'MEM: ${formatMemory(systemMemory)} / ${formatMemory(maxMemory)}'
+			#end
+		].join('\n');
 		textColor = 0xFFFFFFFF;
 
 		if (maxMemory > 3000 || currentFPS <= Preferences.fpsCap / 2)
