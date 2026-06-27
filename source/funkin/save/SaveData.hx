@@ -19,6 +19,7 @@ typedef SaveOptionsData =
 {
 	var downscroll:Bool;
 	var ghostTapping:Bool;
+	var hitSoundVolume:Int;
 	var showTimer:Bool;
 	var showFPS:Bool;
 	var fpsBGOpacity:Int;

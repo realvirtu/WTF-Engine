@@ -62,6 +62,7 @@ class OptionsSubState extends FunkinSubState
 	{
 		options.addOption('downscroll');
 		options.addOption('ghostTapping', 'ghost tapping');
+		options.addOption('hitSoundVolume', 'hit sounds', 10, 0, 100);
 		options.addOption('showTimer', 'show timer');
 
 		#if HAS_FPS_COUNTER

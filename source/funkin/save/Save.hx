@@ -196,6 +196,7 @@ class Save
 			options: {
 				downscroll: false,
 				ghostTapping: true,
+				hitSoundVolume: 0,
 				showTimer: true,
 				showFPS: true,
 				fpsBGOpacity: 50,

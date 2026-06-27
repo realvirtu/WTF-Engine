@@ -657,6 +657,10 @@ class PlayState extends FunkinState
 		popups.popupCombo(tallies.combo);
 
 		playerStrumline.hitNote(note);
+
+		// Plays a hit sound
+		// Note hitting is now pretty (just like me :D)
+		FunkinSound.playOnce('gameplay/hit', Preferences.hitSoundVolume / 100);
 	}
 
 	function playerHoldNoteHit(holdNote:HoldNoteSprite)

@@ -12,6 +12,7 @@ class Preferences
 {
 	public static var downscroll(get, set):Bool;
 	public static var ghostTapping(get, set):Bool;
+	public static var hitSoundVolume(get, set):Int;
 	public static var showTimer(get, set):Bool;
 
 	#if HAS_FPS_COUNTER
@@ -55,6 +56,21 @@ class Preferences
 	static inline function get_ghostTapping():Bool
 	{
 		return Save.instance.options.ghostTapping;
+	}
+
+	@:noCompletion
+	static inline function set_hitSoundVolume(value:Int):Int
+	{
+		Save.instance.options.hitSoundVolume = value;
+		Save.instance.flush();
+
+		return value;
+	}
+
+	@:noCompletion
+	static inline function get_hitSoundVolume():Int
+	{
+		return Save.instance.options.hitSoundVolume;
 	}
 
 	@:noCompletion
