@@ -244,18 +244,6 @@ class PlayState extends FunkinState
 			playerIcon.isDead = health < 0.2;
 		}
 
-		if (Preferences.botplay)
-		{
-			scoreText.text = 'Botplay Enabled';
-		}
-		else 
-		{
-			final SHOW_DECIMALS:Bool = false;
-			final COMMA_SEPARATOR:Bool = true;
-			scoreText.text = 'score: ${FlxStringUtil.formatMoney(Std.int(score), SHOW_DECIMALS, COMMA_SEPARATOR)} | misses: ${tallies.misses}';
-		}
-		scoreText.screenCenter(X);
-
 		if (!songEnded)
 		{
 			timeText.text = FlxStringUtil.formatTime((FunkinSound.music.length - FunkinSound.music.time) / Constants.MS_PER_SEC);
@@ -268,6 +256,20 @@ class PlayState extends FunkinState
 		// Death :(
 		if (health <= healthBar.min)
 			openSubState(new GameOverSubState());
+	}
+
+	override public function draw()
+	{
+		// Score text is updated here so that toggling botplay does its changes
+		// I'm so friggin smart
+		if (Preferences.botplay)
+			scoreText.text = 'botplay enabled';
+		else
+			scoreText.text = 'score: ${FlxStringUtil.formatMoney(Std.int(score), false, true)} | misses: ${tallies.misses}';
+
+		scoreText.screenCenter(X);
+
+		super.draw();
 	}
 
 	override function beatHit(beat:Int)
@@ -430,6 +432,8 @@ class PlayState extends FunkinState
 
 	public function updatePreferences()
 	{
+		// I feel like this isn't good enough
+		// Is there even a better way to do this?
 		timeText.y = 35;
 		timeText.visible = Preferences.showTimer;
 
