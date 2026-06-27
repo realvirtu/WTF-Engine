@@ -72,15 +72,15 @@ class FunkinSoundTray extends FlxSoundTray
 
 	function popup(up:Bool)
 	{
+		final volume:Int = FlxG.sound.muted ? 0 : Math.round(FlxG.sound.logToLinear(FlxG.sound.volume) * 10);
+
 		_timer = 0;
 
-		isSilent = FlxG.sound.volume == 0 || FlxG.sound.muted;
+		isSilent = volume == 0;
 		lerpPos = 10;
 
 		visible = true;
 		active = true;
-
-		final volume:Int = isSilent ? 0 : Math.round(FlxG.sound.logToLinear(FlxG.sound.volume) * 10);
 
 		for (i => bar in _bars)
 			bar.visible = i < volume;
