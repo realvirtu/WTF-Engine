@@ -2,6 +2,7 @@ package funkin;
 
 #if HAS_FPS_COUNTER
 import flixel.math.FlxMath;
+import haxe.Timer;
 import openfl.display.Shape;
 import openfl.system.System;
 import openfl.text.TextField;
@@ -44,15 +45,17 @@ class FPSCounter extends TextField
 	override function __enterFrame(deltaTime:Float)
 	{
 		// FPS
-		final now:Float = haxe.Timer.stamp() * 1000;
+		final now:Float = Timer.stamp() * 1000;
 
 		times.push(now);
+
 		while (times[0] < now - 1000)
 			times.shift();
 		currentFPS = times.length;
 
 		// Memory
 		systemMemory = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 2));
+
 		if (systemMemory > maxMemory)
 			maxMemory = systemMemory;
 
@@ -81,23 +84,32 @@ class FPSCounter extends TextField
 		bg.graphics.endFill();
 	}
 
-	function formatMemory(memory:Float)
-	{
-		return memory >= 1000 ? '${FlxMath.roundDecimal(memory / 1000, 2)}gb' : '${FlxMath.roundDecimal(memory, 2)}mb';
-	}
-
 	function updateDisplay()
 	{
-		text = [
-			'FPS: $currentFPS',
-			#if !hl
-			'MEM: ${formatMemory(systemMemory)} / ${formatMemory(maxMemory)}'
-			#end
-		].join('\n');
+		text = 'FPS: $currentFPS';
+		#if !hl
+		text += '\nMEM: ${formatMemory(systemMemory)} / ${formatMemory(maxMemory)}';
+		#end
+
 		textColor = 0xFFFFFFFF;
 
 		if (maxMemory > 3000 || currentFPS <= Preferences.fpsCap / 2)
 			textColor = 0xFFFF0000;
+	}
+
+	function formatMemory(memory:Float):String
+	{
+		var unit:String = 'mb';
+
+		// Properly format gigabytes
+		// Knowing how the game is, I doubt this would ever occur
+		if (memory >= 1000)
+		{
+			memory /= 1000;
+			unit = 'gb';
+		}
+
+		return '${FlxMath.roundDecimal(memory, 2)}$unit';
 	}
 }
 #end
