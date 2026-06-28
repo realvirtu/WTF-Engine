@@ -72,8 +72,9 @@ class PlayState extends FunkinState
 	public var healthLerp:Float;
 	public var deaths:Int = 0;
 
-	public var defaultZoom:Float;
+	public var stageZoom:Float;
 	public var camZoom:Float;
+	public var camBopMultiplier:Float;
 
 	public var camFollow:FlxObject;
 	public var camHUD:FlxCamera;
@@ -176,7 +177,7 @@ class PlayState extends FunkinState
 		stage = StageRegistry.instance.fetchStage(song.stage);
 		add(stage);
 
-		defaultZoom = stage.zoom;
+		stageZoom = stage.zoom;
 
 		loadCharacters();
 		resetSong();
@@ -250,8 +251,10 @@ class PlayState extends FunkinState
 			timeText.screenCenter(X);
 		}
 
-		FlxG.camera.zoom = MathUtil.lerp(FlxG.camera.zoom, camZoom, 0.03);
-		camHUD.zoom = MathUtil.lerp(camHUD.zoom, 1, 0.03);
+		camBopMultiplier = MathUtil.lerp(camBopMultiplier, 1, 0.03);
+
+		camera.zoom = camZoom * camBopMultiplier;
+		camHUD.zoom = camBopMultiplier;
 
 		// Death :(
 		if (health <= healthBar.min)
@@ -287,10 +290,7 @@ class PlayState extends FunkinState
 		playerIcon?.bop();
 
 		if (beat % 4 == 0)
-		{
-			FlxG.camera.zoom = camZoom + 0.05;
-			camHUD.zoom = 1.02;
-		}
+			camBopMultiplier = 1.02;
 	}
 
 	public function resetSong()
@@ -406,17 +406,20 @@ class PlayState extends FunkinState
 		PlayState.instance.camFollow.setPosition(pos.x + offset.x, pos.y + offset.y);
 
 		if (instant)
-			FlxG.camera.snapToTarget();
+			camera.snapToTarget();
 	}
 
 	public function setCameraZoom(?zoom:Float, instant:Bool = false)
 	{
 		// A null zoom means we're resetting the zoom
 		// Yeah why not
-		camZoom = zoom ?? defaultZoom;
+		camZoom = zoom ?? stageZoom;
+
+		// Reset this because it should be 1
+		camBopMultiplier = 1;
 
 		if (instant)
-			FlxG.camera.zoom = camZoom;
+			camera.zoom = camZoom;
 	}
 
 	public function pause()
@@ -788,7 +791,7 @@ class PlayState extends FunkinState
 		FlxG.sound.defaultMusicGroup.pause();
 		FlxG.sound.defaultSoundGroup.pause();
 
-		FlxG.camera.active = false;
+		camera.active = false;
 	}
 
 	override public function closeSubState()
@@ -812,7 +815,7 @@ class PlayState extends FunkinState
 		FlxG.sound.defaultMusicGroup.resume();
 		FlxG.sound.defaultSoundGroup.resume();
 
-		FlxG.camera.active = true;
+		camera.active = true;
 	}
 
 	override public function destroy()

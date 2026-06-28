@@ -59,7 +59,7 @@ class SongConverter
 		final chartPath:String = '$path/$id-chart$suffix.json';
 
 		if (!FileSystem.exists(metaPath) || !FileSystem.exists(chartPath))
-			return trace('$id is NOT a valid song.');
+			return trace('$id$suffix is NOT a valid song.');
 
 		var path:String = '$WTF_SONGS/$id';
 		if (variation != 'default' && variation != '')
@@ -258,6 +258,17 @@ class SongConverter
 					c = 0;
 
 				value.c = c;
+			case 'ZoomCamera':
+				kind = 'zoom-camera';
+
+				value.z = event.v.zoom;
+				value.e = event.v.ease;
+
+				if (event.v.duration != null)
+					value.d = event.v.duration;
+
+				if (event.v.easeDir != null)
+					value.e += event.v.easeDir;
 			case 'PlayAnimation':
 				kind = 'play-animation';
 

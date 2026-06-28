@@ -1,0 +1,43 @@
+import flixel.tweens.FlxTween;
+import funkin.play.song.SongEvent;
+import funkin.play.PlayState;
+
+class ZoomCameraEvent extends SongEvent
+{
+    var tween:FlxTween;
+
+    public function new()
+    {
+        super("zoom-camera");
+    }
+
+    override function handle(value:Dynamic)
+    {
+        super.handle(value);
+
+        var zoom:Float = getFloat("z");
+        var ease:EaseFunction = getEase("e");
+        var duration:Float = getFloat("d");
+
+        zoom *= PlayState.instance.stageZoom;
+        duration *= Conductor.instance.quaver / Constants.MS_PER_SEC;
+
+        // Playback rate needs to be applied
+        // I mean duh
+        duration /= PlayState.instance.playbackRate;
+
+        tween?.cancel();
+
+        if (ease != null)
+            tween = FlxTween.tween(PlayState.instance, {camZoom: zoom}, duration, {ease: ease});
+        else
+            PlayState.instance.camZoom = zoom;
+    }
+
+    override function onSongRetry(event:ScriptEvent)
+    {
+        super.onSongRetry(event);
+
+        tween?.cancel();
+    }
+}

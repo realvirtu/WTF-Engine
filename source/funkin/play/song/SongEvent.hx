@@ -1,5 +1,7 @@
 package funkin.play.song;
 
+import flixel.tweens.FlxEase.EaseFunction;
+import flixel.tweens.FlxEase;
 import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.event.ScriptEvent;
 import funkin.play.character.Character;
@@ -58,6 +60,11 @@ class SongEvent implements IPlayStateScriptedClass
 			default:
 				null;
 		}
+	}
+
+	function getEase(id:String):EaseFunction
+	{
+		return Reflect.field(FlxEase, getValue(id));
 	}
 
 	function getValue(id:String):Dynamic
