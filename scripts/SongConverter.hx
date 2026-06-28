@@ -3,7 +3,6 @@ package scripts;
 
 #end
 import haxe.Json;
-import haxe.ds.StringMap;
 import sys.FileSystem;
 import sys.io.File;
 
@@ -143,6 +142,8 @@ class SongConverter
 			id = id.replace('-car', '');
 		if (id.endsWith('-dark'))
 			id = id.replace('-dark', '');
+		if (id.endsWith('-playable'))
+			id = id.replace('-playable', '');
 
 		return switch (id)
 		{
@@ -170,7 +171,7 @@ class SongConverter
 		events.sort((a, b) -> return a.t - b.t);
 
 		// Converts notes
-		var notes:Map<String, Array<Dynamic>> = chart.notes;
+		var notes:Dynamic = chart.notes;
 
 		convertNotes(notes);
 
@@ -181,45 +182,54 @@ class SongConverter
 		}
 	}
 
-	static function convertNotes(notes:Map<String, Array<Dynamic>>)
+	static function convertNotes(notes:Dynamic)
 	{
 		if (notes == null)
 			return;
 
-		for (diff in notes)
+		for (diff in Reflect.fields(notes))
 		{
-			for (note in diff)
+			final notes:Array<Dynamic> = Reflect.field(notes, diff);
+
+			for (note in notes)
 			{
-				if (note == null)
+				if (note?.k == null)
 					continue;
 
 				if (song == 'blazin')
-					note.k = '';
+				{
+					Reflect.deleteField(note, 'k');
+					continue;
+				}
 
-				if (note.k.startsWith('weekend-1-'))
-					note.k = note.k.replace('weekend-1-', '');
+				var k:String = note.k;
 
-				switch (note.k)
+				if (k?.startsWith('weekend-1-'))
+					k = k.replace('weekend-1-', '');
+
+				switch (k)
 				{
 					case 'mom':
-						note.k = 'alt';
+						k = 'alt';
 					case 'noanim':
-						note.k = 'no-anim';
+						k = 'no-anim';
 					case 'hehPrettyGood':
-						note.k = 'pretty-good';
+						k = 'pretty-good';
 					case 'lightcan':
-						note.k = 'light-can';
+						k = 'light-can';
 					case 'kickcan':
-						note.k = 'kick-can';
+						k = 'kick-can';
 					case 'kneecan':
-						note.k = 'knee-can';
+						k = 'knee-can';
 					case 'cockgun':
-						note.k = 'cock-gun';
+						k = 'cock-gun';
 					case 'firegun':
-						note.k = 'fire-gun';
+						k = 'fire-gun';
 					default:
 						// lmao do nothing
 				}
+
+				note.k = k;
 			}
 		}
 	}
