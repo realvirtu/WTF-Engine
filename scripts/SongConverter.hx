@@ -269,6 +269,11 @@ class SongConverter
 
 				if (event.v.easeDir != null)
 					value.e += event.v.easeDir;
+			case 'SetCameraBop':
+				kind = 'camera-bop';
+
+				value.r = event.v.rate;
+				value.i = event.v.intensity;
 			case 'PlayAnimation':
 				kind = 'play-animation';
 

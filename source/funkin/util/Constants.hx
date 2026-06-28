@@ -34,6 +34,10 @@ class Constants
 	public static final DEFAULT_SPEED:Float = 1;
 	public static final DEFAULT_CAMERA_ZOOM:Float = 1;
 
+	public static final CAMERA_FOLLOW_RATE:Float = 0.04;
+	public static final CAMERA_BOP_RATE:Float = 4;
+	public static final CAMERA_BOP_INTENSITY:Float = 1.035;
+
 	public static final RESYNC_THRESHOLD:Float = 30;
 
 	public static final HIT_WINDOW_MS:Float = 160;

@@ -74,7 +74,10 @@ class PlayState extends FunkinState
 
 	public var stageZoom:Float;
 	public var camZoom:Float;
+
 	public var camBopMultiplier:Float;
+	public var camBopRate:Int;
+	public var camBopIntensity:Float;
 
 	public var camFollow:FlxObject;
 	public var camHUD:FlxCamera;
@@ -115,7 +118,7 @@ class PlayState extends FunkinState
 
 		camFollow = new FlxObject();
 		camFollow.active = false;
-		FlxG.camera.follow(camFollow, LOCKON, 0.04);
+		FlxG.camera.follow(camFollow, LOCKON, Constants.CAMERA_FOLLOW_RATE);
 
 		//
 		// HUD
@@ -289,8 +292,13 @@ class PlayState extends FunkinState
 		opponentIcon?.bop();
 		playerIcon?.bop();
 
-		if (beat % 4 == 0)
-			camBopMultiplier = 1.02;
+		// Bop the camera
+		// This uses step instead of beat for more precision
+		final rate:Float = Constants.STEPS_PER_BEAT * Constants.CAMERA_BOP_RATE / camBopRate;
+		final intensity:Float = Constants.CAMERA_BOP_INTENSITY * camBopIntensity;
+
+		if (conductor.step % rate == 0)
+			camBopMultiplier = intensity;
 	}
 
 	public function resetSong()
@@ -329,16 +337,23 @@ class PlayState extends FunkinState
 		score = 0.0;
 		tallies.reset();
 
-		// This is done so that a character is targeted
-		// Not all characters exist in a song
+		//
+		// CAMERA
+		//
+
 		setCameraTarget(stage.gf, true);
 		setCameraTarget(stage.opponent, true);
 		setCameraTarget(stage.player, true);
 
-		// Reset the camera zoom
 		setCameraZoom(null, true);
 
-		// Loads the strumline
+		camBopRate = 1;
+		camBopIntensity = 1;
+
+		//
+		// STRUMLINE
+		//
+
 		var notes:Array<SongNoteData> = song.getNotes(difficulty);
 		var speed:Float = song.getSpeed(difficulty);
 
@@ -353,7 +368,10 @@ class PlayState extends FunkinState
 		opponentStrumline.load(notes.filter(note -> return note.d >= Constants.NOTE_COUNT), speed);
 		playerStrumline.load(notes.filter(note -> return note.d < Constants.NOTE_COUNT), speed);
 
-		// Resets conductor stuff
+		//
+		// SETUP
+		//
+
 		conductor.reset(song.bpm);
 		conductor.time = -conductor.crotchet * 5;
 
