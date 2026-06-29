@@ -36,7 +36,7 @@ class Constants
 
 	public static final CAMERA_FOLLOW_RATE:Float = 0.04;
 	public static final CAMERA_BOP_RATE:Float = 4;
-	public static final CAMERA_BOP_INTENSITY:Float = 1.035;
+	public static final CAMERA_BOP_INTENSITY:Float = 1.025;
 
 	public static final RESYNC_THRESHOLD:Float = 30;
 
