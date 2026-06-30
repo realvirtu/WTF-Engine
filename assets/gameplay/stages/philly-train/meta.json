@@ -18,14 +18,16 @@
         },
         {
             "image": "buildings",
-            "position": [-350, 20],
-            "scroll": [0.3, 0.3]
+            "position": [-350, 0],
+            "scroll": [0.3, 0.3],
+            "scale": 1.1
         },
         {
             "id": "windows",
             "image": "windows",
-            "position": [-325, 80],
-            "scroll": [0.3, 0.3]
+            "position": [-325, 60],
+            "scroll": [0.3, 0.3],
+            "scale": 1.1
         },
         {
             "id": "train",
