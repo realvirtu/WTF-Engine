@@ -1,12 +1,16 @@
 {
     "name": "Pico",
-    "width": 226,
+    "width": 232,
     "height": 225,
     "flipX": true,
     "animations": [
         {
             "name": "idle",
             "frames": [0, 1, 2]
+        },
+        {
+            "name": "confirm",
+            "frames": [3, 4, 5]
         }
     ]
 }

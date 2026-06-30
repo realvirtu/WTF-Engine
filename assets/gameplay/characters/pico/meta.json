@@ -48,12 +48,16 @@
             "framerate": 20
         },
         {
+            "name": "hey",
+            "frames": [15, 16, 17]
+        },
+        {
             "name": "cock",
-            "frames": [15, 16]
+            "frames": [18, 19]
         },
         {
             "name": "fire",
-            "frames": [17, 18]
+            "frames": [20, 21]
         }
     ]
 }
