@@ -32,6 +32,10 @@ class Project extends HXProject
         app.file = FILE_NAME;
         app.preloader = PRELOADER;
 
+        //
+        // WINDOW
+        //
+
         window.width = WIDTH;
         window.height = HEIGHT;
         window.fps = 60;
@@ -43,10 +47,18 @@ class Project extends HXProject
         window.fullscreen = false;
         window.resizable = true;
 
+        //
+        // ASSETS
+        //
+
         sources.push("source");
         icons.push(new Icon("art/icon.png"));
         
         includeAssets("assets");
+
+        //
+        // SETUP
+        //
 
         setupBuildPath();
         setupDefines();
@@ -74,38 +86,49 @@ class Project extends HXProject
 
     function setupDefines()
     {
-        // WTF Engine
+        //
+        // WTF ENGINE
+        //
+
+        setHaxedef("funkin", VERSION);
         setHaxedef("HAS_FPS_COUNTER");
         setHaxedef("HAS_MODDING");
+
         if (isCPP())
             setHaxedef("HAS_DISCORD_RPC");
         if (isDebug())
             setHaxedef("HAS_SCREENSHOTS");
 
-        // Flixel
+        //
+        // FLIXEL
+        //
+
         setHaxedef("FLX_NO_HEALTH");
         setHaxedef("FLX_NO_FOCUS_LOST_SCREEN");
-        if (!isDebug())
-            setHaxedef("FLX_NO_DEBUG");
         setHaxedef("NAPE_RELEASE_BUILD");
 
-        // Polymod
+        if (!isDebug())
+            setHaxedef("FLX_NO_DEBUG");
+
+        //
+        // POLYMOD
+        //
+
         setHaxedef("POLYMOD_MOD_METADATA_FILE", "meta.json");
         setHaxedef("POLYMOD_MOD_ICON_FILE", "icon.png");
-        if (isDebug())
-            setHaxedef("POLYMOD_DEBUG");
         setHaxedef("hscriptPos");
 
-        // Does a cool optimization
+        if (isDebug())
+            setHaxedef("POLYMOD_DEBUG");
+
+        //
+        // MISC
+        //
+
         if (!isDebug())
             setHaxedef("analyzer-optimize");
 
-        // Should help resolve some stupid openfl event stuff
-        // Mainly memory leaks
         setHaxedef("openfl_pool_events");
-
-        // This stops Lime's AssetCache class from recompiling every single time
-        // I promise you doing this does nothing bad
         setHaxedef("lime_disable_assets_version");
         
         // Makes message reporting nice and pretty
@@ -132,18 +155,14 @@ class Project extends HXProject
     {
         addHaxelib("flixel");
         addHaxelib("flixel-addons");
-        
-        addHaxelib("json2object");
-        addHaxelib("hxdiscord_rpc");
-
-        addHaxelib("polymod");
-        addHaxelib("thx.core");
-        addHaxelib("thx.semver");
-        addHaxelib("jsonpath");
-        addHaxelib("jsonpatch");
 
         addHaxelib("funkin.vis");
         addHaxelib("grig.audio");
+        
+        addHaxelib("polymod");
+        addHaxelib("json2object");
+
+        addHaxelib("hxdiscord_rpc");
     }
 
     function setHaxedef(name:String, ?value:String)
