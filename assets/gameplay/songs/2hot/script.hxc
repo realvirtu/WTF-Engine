@@ -34,13 +34,13 @@ class TwoHotSong extends Song
         explosion.addAnimation("explode", [0, 1, 2], 12, false);
         explosion.animation.onFinish.add(_ -> resetExplosion());
         explosion.zIndex = 100;
-        explosion.visible = false;
 
         PlayState.instance.stage.add(can);
         PlayState.instance.stage.add(explosion);
         PlayState.instance.stage.refresh();
 
         resetCan();
+        resetExplosion();
     }
 
     override function onUpdate(event:UpdateScriptEvent)
@@ -112,6 +112,7 @@ class TwoHotSong extends Song
         super.onSongRetry(event);
 
         resetCan();
+        resetExplosion();
     }
 
     function explodeCan()
@@ -119,7 +120,9 @@ class TwoHotSong extends Song
         explosion.playAnimation("explode", true);
         explosion.x = can.x + (can.width - explosion.width) / 2;
         explosion.y = can.y + (can.height - explosion.height) / 2;
+
         explosion.visible = true;
+        explosion.active = true;
 
         resetCan();
 
@@ -130,6 +133,7 @@ class TwoHotSong extends Song
     function resetExplosion()
     {
         explosion.visible = false;
+        explosion.active = false;
     }
 
     function resetCan()
