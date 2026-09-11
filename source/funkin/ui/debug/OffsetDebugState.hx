@@ -4,7 +4,6 @@ import flixel.FlxCamera;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.util.FlxColor;
-import funkin.audio.FunkinSound;
 import funkin.data.character.CharacterRegistry;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
