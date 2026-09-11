@@ -1,3 +1,4 @@
+import funkin.play.character.CharacterType;
 import funkin.play.character.Character;
 import funkin.play.GameOverSubState;
 
@@ -40,6 +41,9 @@ class PicoCharacter extends Character
 
     function setDeath(id:String)
     {
+        if (type != CharacterType.PLAYER)
+            return;
+
         GameOverSubState.deathId = id;
         GameOverSubState.deathSFX = id;
         GameOverSubState.deathMusic = 'pico';

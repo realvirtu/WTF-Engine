@@ -1,3 +1,4 @@
+import funkin.play.character.CharacterType;
 import funkin.play.character.Character;
 import funkin.play.GameOverSubState;
 import funkin.play.PauseSubState;
@@ -12,6 +13,9 @@ class PicoChristmasCharacter extends Character
     override function onCreate(event:ScriptEvent)
     {
         super.onCreate(event);
+
+        if (type != CharacterType.PLAYER)
+            return;
 
         GameOverSubState.deathId = 'pico';
         GameOverSubState.deathMusic = 'pico';
