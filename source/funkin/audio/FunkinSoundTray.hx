@@ -60,7 +60,7 @@ class FunkinSoundTray extends FlxSoundTray
 		lerpScaleX = MathUtil.lerp(lerpScaleX, SCALE, 0.3);
 		lerpScaleY = MathUtil.lerp(lerpScaleY, SCALE, 0.3);
 
-		lerpPos = MathUtil.lerp(lerpPos, targetPos, 0.15);
+		lerpPos = MathUtil.lerp(lerpPos, targetPos, 0.1);
 
 		alpha = MathUtil.lerp(alpha, targetAlpha, 0.45);
 
