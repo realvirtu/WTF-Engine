@@ -38,6 +38,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		loadSprite('$charPath/image', meta.scale, meta.width, meta.height);
 
 		buildAnimations();
+		updateOffset();
 
 		flipX = meta.flipX != (type == PLAYER);
 		flipY = meta.flipY;
