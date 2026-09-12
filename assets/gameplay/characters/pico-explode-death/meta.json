@@ -2,7 +2,7 @@
     "name": "Pico (Death) [Explode]",
     "width": 218,
     "height": 269,
-    "globalOffset": [-45, -285],
+    "globalOffset": [-85, -275],
     "cameraOffset": [0, 0],
     "animations": [
         {
