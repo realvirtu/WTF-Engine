@@ -38,35 +38,41 @@
             "name": "left-miss",
             "frames": [0, 1],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "right-miss",
             "frames": [2, 3],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "up-miss",
             "frames": [4, 5],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "down-miss",
             "frames": [6, 7],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "hey",
             "frames": [0, 1, 2],
-            "image": "hey"
+            "image": "hey",
+            "offset": [45, 32]
         },
         {
             "name": "cheer",
             "frames": [0, 1, 2],
-            "image": "cheer"
+            "image": "cheer",
+            "offset": [50, 5]
         }
     ]
 }
