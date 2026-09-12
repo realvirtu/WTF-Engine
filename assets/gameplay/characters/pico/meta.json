@@ -71,7 +71,7 @@
             "name": "cheer",
             "frames": [0, 1, 2],
             "image": "cheer",
-            "offset": [30, 20]
+            "offset": [40, 20]
         },
         {
             "name": "cock",
