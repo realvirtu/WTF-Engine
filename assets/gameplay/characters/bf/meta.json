@@ -9,9 +9,9 @@
     },
     "flipX": true,
     "images": [
-        { "name": "miss", "width": 266, "height": 248, "offset": [0, 0] },
-        { "name": "hey", "width": 207, "height": 218, "offset": [0, 0] },
-        { "name": "cheer", "width": 207, "height": 237, "offset": [0, 0] }
+        { "name": "miss", "width": 266, "height": 248 },
+        { "name": "hey", "width": 207, "height": 218 },
+        { "name": "cheer", "width": 207, "height": 237 }
     ],
     "animations": [
         {

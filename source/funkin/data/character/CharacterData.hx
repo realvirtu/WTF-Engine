@@ -50,6 +50,7 @@ typedef CharacterAnimData = PropAnimData &
 {
 	@:optional
 	var image:String;
+	var offset:Array<Float>;
 }
 
 /**
@@ -62,5 +63,4 @@ typedef CharacterImageData =
 	var width:Int;
 	@:optional
 	var height:Int;
-	var offset:Array<Float>;
 }

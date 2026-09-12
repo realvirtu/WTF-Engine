@@ -7,10 +7,10 @@
     "icon": {},
     "flipX": true,
     "images": [
-        { "name": "miss", "width": 238, "height": 244, "offset": [0, 0] },
-        { "name": "hey", "width": 223, "height": 225, "offset": [0, 0] },
-        { "name": "cheer", "width": 194, "height": 238, "offset": [0, 0] },
-        { "name": "shoot", "width": 199, "height": 224, "offset": [0, 0] }
+        { "name": "miss", "width": 238, "height": 244 },
+        { "name": "hey", "width": 223, "height": 225 },
+        { "name": "cheer", "width": 194, "height": 238 },
+        { "name": "shoot", "width": 199, "height": 224 }
     ],
     "animations": [
         {
@@ -37,45 +37,53 @@
             "name": "left-miss",
             "frames": [0, 1],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [3, 0]
         },
         {
             "name": "right-miss",
             "frames": [2, 3],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [3, 0]
         },
         {
             "name": "up-miss",
             "frames": [4, 5],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [3, 0]
         },
         {
             "name": "down-miss",
             "frames": [6, 7],
             "framerate": 20,
-            "image": "miss"
+            "image": "miss",
+            "offset": [3, 0]
         },
         {
             "name": "hey",
             "frames": [0, 1, 2],
-            "image": "hey"
+            "image": "hey",
+            "offset": [15, 26]
         },
         {
             "name": "cheer",
             "frames": [0, 1, 2],
-            "image": "cheer"
+            "image": "cheer",
+            "offset": [30, 20]
         },
         {
             "name": "cock",
             "frames": [0, 1],
-            "image": "shoot"
+            "image": "shoot",
+            "offset": [55, 27]
         },
         {
             "name": "fire",
             "frames": [2, 3],
-            "image": "shoot"
+            "image": "shoot",
+            "offset": [55, 27]
         }
     ]
 }

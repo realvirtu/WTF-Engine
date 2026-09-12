@@ -6,6 +6,7 @@ import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.event.ScriptEvent;
 import funkin.play.note.NoteDirection;
 import funkin.play.stage.StageProp;
+import haxe.ds.StringMap;
 
 /**
  * A `StageProp` that sings and bops and all that.
@@ -24,6 +25,9 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	public var isSinging(get, never):Bool;
 	public var isMissing(get, never):Bool;
 
+	public var animOffsets(default, null) = new StringMap<Array<Float>>();
+	public var globalOffset(get, never):Array<Float>;
+
 	var charPath(get, never):String;
 
 	public function buildSprite()
@@ -35,8 +39,6 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 		buildAnimations();
 
-		offset.set(-meta.globalOffset[0] ?? 0, -meta.globalOffset[1] ?? 0);
-
 		flipX = meta.flipX != (type == PLAYER);
 		flipY = meta.flipY;
 
@@ -45,7 +47,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		singDuration = meta.singDuration;
 		singTimer = MAX_SING_TIME;
 
-		bop();
+		bop(true);
 	}
 
 	override function update(elapsed:Float)
@@ -83,6 +85,14 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		playAnimation('${direction.name}-miss$suffix', true);
 	}
 
+	public function updateOffset()
+	{
+		final animOffset:Array<Float> = animOffsets.get(getCurrentAnimation()) ?? [0, 0];
+
+		offset.set(-globalOffset[0], -globalOffset[1]);
+		offset.subtract(animOffset[0], animOffset[1]);
+	}
+
 	public function buildHealthIcon():HealthIcon
 	{
 		// Return null if icon data is lacking
@@ -116,9 +126,12 @@ class Character extends StageProp implements IPlayStateScriptedClass
 			if (anim == null)
 				continue;
 
+			final name:String = anim.name;
 			final index:Int = numFrames[images.indexOf(anim.image)];
 
-			addAnimation(anim.name, [for (frame in anim.frames) frame + index], anim.framerate, anim.looped);
+			addAnimation(name, [for (frame in anim.frames) frame + index], anim.framerate, anim.looped);
+
+			animOffsets.set(name, anim.offset);
 		}
 	}
 
@@ -128,6 +141,8 @@ class Character extends StageProp implements IPlayStateScriptedClass
 			return;
 
 		super.playAnimation(name, force);
+
+		updateOffset();
 
 		if (!isBopping)
 			singTimer = 0;
@@ -217,6 +232,12 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	inline function get_isMissing():Bool
 	{
 		return getCurrentAnimation().endsWith('-miss');
+	}
+
+	@:noCompletion
+	inline function get_globalOffset():Array<Float>
+	{
+		return meta.globalOffset;
 	}
 
 	@:noCompletion
