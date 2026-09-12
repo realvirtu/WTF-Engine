@@ -47,13 +47,16 @@ class TwoHotSong extends Song
     {
         super.onUpdate(event);
 
-        if (canKicked)
-            can.angle += event.elapsed * 1000;
-
-        if (can.y > cans.y)
+        if (can != null)
         {
-            can.y = cans.y;
-            can.velocity.y = 0;
+            if (canKicked)
+                can.angle += event.elapsed * 1000;
+
+            if (can.y > cans.y)
+            {
+                can.y = cans.y;
+                can.velocity.y = 0;
+            }
         }
     }
 
