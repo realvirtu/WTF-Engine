@@ -73,7 +73,7 @@ class ABotSprite extends FlxTypedSpriteGroup
 
         for (i => bar in viz)
         {
-            var frame:Int = Math.round(levels[i]?.value * 6);
+            var frame:Int = Math.round(levels[i]?.value * 3.5);
 
             bar.animation.frameIndex = Math.min(4, frame);
             bar.visible = frame > 0;
