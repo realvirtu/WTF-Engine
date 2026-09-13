@@ -19,6 +19,28 @@ class Project extends HXProject
     final WIDTH:Int = 1280;
     final HEIGHT:Int = 720;
 
+    final COMPILE_MESSAGES:Array<String> = [
+        "What the fuck is a Friday Night Funkin'?!",
+        "Jigsaw is the goat",
+        "Pico says trans rights are human rights",
+        "Yo nene",
+        "Kade Engine my beloved <3",
+        "D-Sides is a good mod",
+        "Blissful Erect is a good song",
+        "We love tole toles",
+        "You disgusting orange boy and your awful way of 'singing'",
+        "Chud chud chudchudchud chchchch",
+        "This is where boys become women",
+        "This engine does NOT use Heaps",
+        "Can you get me a hot gamer boyfriend",
+        "Can you get me a hot gamer girlfriend",
+        "Week 8 is in September, are you ready to meet Bro?",
+        "Do NOT look up FNF PR 5000",
+        "You're green with it",
+        "Oh, lemmie check if I added the fucking mod that closes the game when it opens",
+        "Remember to submit suggestions so the devs can ignore them"
+    ];
+
     public function new()
     {
         super();
@@ -65,10 +87,15 @@ class Project extends HXProject
         setupMacros();
         setupHaxelibs();
 
-        // Web error
-        // Funny
-        if (isWeb())
-            error("Web isn't supported you stupid bitch.");
+        if (isBuild())
+        {
+            // Web error for funny
+            // Otherwise do some good info
+            if (isWeb())
+                error("Web isn't supported you stupid bitch.");
+            else
+                printCompileMessage();
+        }
     }
 
     function setupBuildPath()
@@ -199,10 +226,25 @@ class Project extends HXProject
     // LOGGING
     //
 
+    function info(message:String)
+    {
+        Sys.println('\x1b[1m[INFO] $message\x1b[0m');
+    }
+
     function error(message:String)
     {
         Sys.stderr().write(Bytes.ofString(message));
         Sys.exit(1);
+    }
+
+    function printCompileMessage()
+    {
+        var message:String = COMPILE_MESSAGES[Std.random(COMPILE_MESSAGES.length)];
+
+        info("Today's message:");
+        info(message);
+        
+        Sys.println('');
     }
 
     //
@@ -212,6 +254,11 @@ class Project extends HXProject
     function isWeb():Bool
     {
         return platformType == PlatformType.WEB;
+    }
+
+    function isBuild():Bool
+    {
+        return command == "test" || command == "build";
     }
 
     function isDebug():Bool
