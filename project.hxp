@@ -40,7 +40,26 @@ class Project extends HXProject
         "Do NOT look up FNF PR 5000",
         "You're green with it",
         "Oh, lemmie check if I added the fucking mod that closes the game when it opens",
-        "Remember to submit suggestions so the devs can ignore them"
+        "Remember to submit suggestions so the devs can ignore them",
+        "IT'S ME",
+        "Haiiiiiiiiiiiiiiiiiiiiiiiiiii!! :3",
+        "I'm merging it",
+        "Let's take a look",
+        "Polymod ain't done nun leave it out of this",
+        "This wordle sucks",
+        "Bug Report:",
+        "But here's the coder",
+        "Sentpajim bis being a littlke bit bfgreakty",
+        "I'm funking my remnants",
+        "To enable pen pressure, disable Windows Ink",
+        "Ultimate rhythm gaming",
+        "Check out TechNotDrip Engine",
+        "Check out Moon Engine",
+        "Check out Codename Engine",
+        "I just found this new gif please don't steal",
+        "There's so much HaxeFlixel",
+        "Developer we have a bug",
+        "Kids are smoking dare"
     ];
 
     public function new()
