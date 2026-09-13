@@ -121,6 +121,25 @@ class SongLoadScriptEvent extends ScriptEvent
 }
 
 /**
+ * A script event that runs when a song event occurs.
+ * 
+ * This event is cancelable.
+ */
+class SongEventScriptEvent extends ScriptEvent
+{
+	public var kind:String;
+	public var value:Dynamic;
+
+	public function new(kind:String, value:Dynamic)
+	{
+		super(SONG_EVENT);
+
+		this.kind = kind;
+		this.value = value;
+	}
+}
+
+/**
  * The base script event that runs for regular notes.
  * 
  * This event is cancelable.
@@ -128,15 +147,23 @@ class SongLoadScriptEvent extends ScriptEvent
 class NoteScriptEvent extends ScriptEvent
 {
 	public var note(default, null):NoteSprite;
+	public var combo(default, null):Int;
+
+	public var score:Float;
+	public var health:Float;
 
 	public var playAnimation:Bool;
 	public var suffix:String;
 
-	public function new(type:ScriptEventType, note:NoteSprite)
+	public function new(type:ScriptEventType, note:NoteSprite, score:Float = 0, health:Float = 0, combo:Int = 0)
 	{
 		super(type);
 
 		this.note = note;
+		this.combo = combo;
+
+		this.score = score;
+		this.health = health;
 
 		playAnimation = true;
 		suffix = '';
@@ -163,25 +190,6 @@ class HoldNoteScriptEvent extends ScriptEvent
 
 		playAnimation = true;
 		suffix = '';
-	}
-}
-
-/**
- * A script event that runs when a song event occurs.
- * 
- * This event is cancelable.
- */
-class SongEventScriptEvent extends ScriptEvent
-{
-	public var kind:String;
-	public var value:Dynamic;
-
-	public function new(kind:String, value:Dynamic)
-	{
-		super(SONG_EVENT);
-
-		this.kind = kind;
-		this.value = value;
 	}
 }
 

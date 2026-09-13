@@ -764,16 +764,16 @@ class PlayState extends FunkinState
 
 	function playerNoteHit(note:NoteSprite)
 	{
-		var event:NoteScriptEvent = NoteScriptEvent.get(NOTE_HIT, note);
+		final judgement:Judgement = RhythmUtil.judgeNote(note);
+
+		var event:NoteScriptEvent = NoteScriptEvent.get(NOTE_HIT, note, judgement.score, Constants.NOTE_HEALTH, tallies.combo + 1);
 		dispatch(event);
 
 		if (event.cancelled)
 			return;
 
-		final judgement:Judgement = RhythmUtil.judgeNote(note);
-
-		score += judgement.score;
-		health += Constants.NOTE_HEALTH;
+		score += event.score;
+		health += event.health;
 
 		tallies.hits++;
 		tallies.combo++;
@@ -796,8 +796,6 @@ class PlayState extends FunkinState
 		popups.popupJudgement(judgement);
 		popups.popupCombo(tallies.combo);
 
-		stage.gf?.playAnimation('combo${tallies.combo}');
-
 		playerStrumline.hitNote(note, judgement != BAD && judgement != SHIT);
 	}
 
@@ -819,23 +817,22 @@ class PlayState extends FunkinState
 	{
 		playerStrumline.missNote(note);
 
-		var event:NoteScriptEvent = NoteScriptEvent.get(NOTE_MISS, note);
-		dispatch(event);
-
-		if (event.cancelled)
-			return;
-
 		var missScore:Float = Constants.MISS_SCORE;
 
 		if (note.holdNote != null)
 			missScore *= (note.holdNote.length / 500);
 
-		score += missScore;
+		var event:NoteScriptEvent = NoteScriptEvent.get(NOTE_MISS, note, missScore, Constants.MISS_HEALTH, tallies.combo);
+		dispatch(event);
+
+		if (event.cancelled)
+			return;
+
+		score += event.score;
+		health += event.health;
 
 		tallies.misses++;
 		tallies.combo = 0;
-
-		health += Constants.MISS_HEALTH;
 
 		voices.playerVolume = 0;
 
@@ -868,7 +865,6 @@ class PlayState extends FunkinState
 
 		holdNote.kill();
 
-		// Takes away score based on how long the hold note is
 		score += Constants.MISS_SCORE * (holdNote.length / 500);
 		health += Constants.MISS_HEALTH;
 

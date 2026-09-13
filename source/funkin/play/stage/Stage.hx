@@ -144,7 +144,7 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 		var scroll:FlxPoint = MathUtil.arrayToPoint(meta?.gf?.scroll, 1);
 
 		gf?.destroy();
-		gf = CharacterRegistry.instance.fetchCharacter(id);
+		gf = CharacterRegistry.instance.fetchCharacter(id, GF);
 
 		if (gf != null)
 		{

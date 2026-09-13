@@ -28,6 +28,8 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	public var animOffsets(default, null) = new StringMap<Array<Float>>();
 	public var globalOffset(get, never):Array<Float>;
 
+	var dropAnimCounts:Array<Int> = [];
+
 	var charPath(get, never):String;
 
 	public function buildSprite()
@@ -86,6 +88,24 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		playAnimation('${direction.name}-miss$suffix', true);
 	}
 
+	public function combo(combo:Int)
+	{
+		playAnimation('combo$combo', true);
+	}
+
+	public function drop(combo:Int)
+	{
+		var count:Int = 0;
+
+		for (num in dropAnimCounts)
+		{
+			if (combo >= num && num > count)
+				count = num;
+		}
+
+		playAnimation('drop$count');
+	}
+
 	public function updateOffset()
 	{
 		final animOffset:Array<Float> = animOffsets.get(getCurrentAnimation()) ?? [0, 0];
@@ -133,6 +153,11 @@ class Character extends StageProp implements IPlayStateScriptedClass
 			addAnimation(name, [for (frame in anim.frames) frame + index], anim.framerate, anim.looped);
 
 			animOffsets.set(name, anim.offset);
+
+			// This is mainly for the GF character
+			// Because GF plays a drop animation when you lose your combo
+			if (name.startsWith('drop'))
+				dropAnimCounts.push(Std.parseInt(name.substr('drop'.length)));
 		}
 	}
 
@@ -153,31 +178,55 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.onNoteHit(event);
 
-		if (event.cancelled || !event.playAnimation || type == PLAYER != event.note.isPlayer || type == OTHER)
+		if (event.cancelled)
 			return;
 
-		sing(event.note.direction, event.suffix);
+		switch (type)
+		{
+			case OPPONENT | PLAYER:
+				if (type == PLAYER == event.note.isPlayer && event.playAnimation)
+					sing(event.note.direction, event.suffix);
+			case GF:
+				combo(event.combo);
+			default:
+				// Does literally nothing
+		}
 	}
 
 	override function onNoteMiss(event:NoteScriptEvent)
 	{
 		super.onNoteMiss(event);
 
-		if (event.cancelled || !event.playAnimation || type != PLAYER)
+		if (event.cancelled)
 			return;
 
-		miss(event.note.direction, event.suffix);
+		switch (type)
+		{
+			case PLAYER:
+				if (event.playAnimation)
+					miss(event.note.direction, event.suffix);
+			case GF:
+				drop(event.combo);
+			default:
+				// Does literally nothing
+		}
 	}
 
 	override function onHoldNoteHold(event:HoldNoteScriptEvent)
 	{
 		super.onHoldNoteHold(event);
 
-		if (event.cancelled || !event.playAnimation || type == PLAYER != event.holdNote.isPlayer || type == OTHER)
+		if (event.cancelled)
 			return;
 
-		if (!isBopping)
-			singTimer = 0;
+		switch (type)
+		{
+			case OPPONENT | PLAYER:
+				if (type == PLAYER == event.holdNote.isPlayer && event.playAnimation && !isBopping)
+					singTimer = 0;
+			default:
+				// Does literally nothing
+		}
 	}
 
 	override function onHoldNoteDrop(event:HoldNoteScriptEvent)

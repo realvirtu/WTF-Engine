@@ -7,7 +7,8 @@
     "icon": {},
     "bopEvery": 1,
     "images": [
-        { "name": "cheer", "width": 252, "height": 295 }
+        { "name": "cheer", "width": 252, "height": 295 },
+        { "name": "cry", "width": 252, "height": 290 }
     ],
     "animations": [
         {
@@ -47,6 +48,12 @@
             "frames": [0, 1],
             "image": "cheer",
             "offset": [7, 0]
+        },
+        {
+            "name": "drop70",
+            "frames": [0, 1],
+            "image": "cry",
+            "offset": [7, 8]
         }
     ]
 }

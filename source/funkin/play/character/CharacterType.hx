@@ -8,5 +8,6 @@ enum CharacterType
 {
 	OPPONENT;
 	PLAYER;
+	GF;
 	OTHER;
 }
