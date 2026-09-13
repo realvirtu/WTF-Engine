@@ -321,8 +321,11 @@ class PlayState extends FunkinState
 				playerIcon.state = IDLE;
 		}
 
-		timeText.text = FlxStringUtil.formatTime((FunkinSound.music.length - FunkinSound.music.time).clamp(0, FunkinSound.music.length) / Constants.MS_PER_SEC);
-		timeText.screenCenter(X);
+		if (!songEnded)
+		{
+			timeText.text = FlxStringUtil.formatTime((FunkinSound.music.length - FunkinSound.music.time) / Constants.MS_PER_SEC);
+			timeText.screenCenter(X);
+		}
 
 		updateScoreText();
 
