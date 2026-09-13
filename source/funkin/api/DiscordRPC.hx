@@ -52,7 +52,7 @@ class DiscordRPC
 
 	public static function start()
 	{
-		trace('Initializing Discord RPC...'.info());
+		info('Initializing Discord RPC...');
 
 		Discord.Initialize(APP_ID, RawPointer.addressOf(handlers), false, null);
 	}
@@ -87,17 +87,22 @@ class DiscordRPC
 
 	public static function shutdown(code:Int)
 	{
-		trace('Shutting down Discord RPC...'.info());
+		info('Shutting down Discord RPC...');
 
 		Discord.Shutdown();
 	}
 
 	static function ready(request:RawConstPointer<DiscordUser>)
 	{
-		trace('Done initializing Discord RPC.'.info());
-		trace('Haiii!! ${request[0].username}!'.info());
+		info('Done initializing Discord RPC.');
+		info('Haiii!! ${request[0].username}!');
 
 		Discord.UpdatePresence(RawPointer.addressOf(presence));
+	}
+
+	static function info(message:String)
+	{
+		trace(message.blue());
 	}
 
 	static function error(code:Int, message:ConstCharStar)
@@ -107,7 +112,7 @@ class DiscordRPC
 
 	static function disconnect(code:Int, message:ConstCharStar)
 	{
-		trace('Disconnected ($code:$message).'.info());
+		info('Disconnected ($code:$message).');
 	}
 }
 #end

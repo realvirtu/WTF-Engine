@@ -38,15 +38,6 @@ enum abstract AnsiCode(String) to String from String
 	var BG_MAGENTA = '\x1b[45m';
 	var BG_CYAN = '\x1b[46m';
 	var BG_WHITE = '\x1b[47m';
-
-	var BRIGHT_BLACK = '\x1b[90m';
-	var BRIGHT_RED = '\x1b[91m';
-	var BRIGHT_GREEN = '\x1b[92m';
-	var BRIGHT_YELLOW = '\x1b[93m';
-	var BRIGHT_BLUE = '\x1b[94m';
-	var BRIGHT_MAGENTA = '\x1b[95m';
-	var BRIGHT_CYAN = '\x1b[96m';
-	var BRIGHT_WHITE = '\x1b[97m';
 }
 
 /**
@@ -61,7 +52,7 @@ class AnsiTools
 	//
 	public static inline function info(s:String):String
 	{
-		return bold(blue(s));
+		return bold(magenta(s));
 	}
 
 	public static inline function warn(s:String):String
@@ -76,11 +67,11 @@ class AnsiTools
 
 	public static inline function debug(s:String):String
 	{
-		return bold(magenta(s));
+		return bold(green(s));
 	}
 
 	//
-	// STYLING
+	// STYLES
 	//
 
 	public static inline function bold(s:String):String
@@ -209,50 +200,6 @@ class AnsiTools
 	public static inline function bgWhite(s:String):String
 	{
 		return apply(s, BG_WHITE);
-	}
-
-	//
-	// BRIGHT COLORS
-	//
-
-	public static inline function brightBlack(s:String):String
-	{
-		return apply(s, BRIGHT_BLACK);
-	}
-
-	public static inline function brightRed(s:String):String
-	{
-		return apply(s, BRIGHT_RED);
-	}
-
-	public static inline function brightGreen(s:String):String
-	{
-		return apply(s, BRIGHT_GREEN);
-	}
-
-	public static inline function brightYellow(s:String):String
-	{
-		return apply(s, BRIGHT_YELLOW);
-	}
-
-	public static inline function brightBlue(s:String):String
-	{
-		return apply(s, BRIGHT_BLUE);
-	}
-
-	public static inline function brightMagenta(s:String):String
-	{
-		return apply(s, BRIGHT_MAGENTA);
-	}
-
-	public static inline function brightCyan(s:String):String
-	{
-		return apply(s, BRIGHT_CYAN);
-	}
-
-	public static inline function brightWhite(s:String):String
-	{
-		return apply(s, BRIGHT_WHITE);
 	}
 
 	static inline function apply(s:String, code:AnsiCode):String

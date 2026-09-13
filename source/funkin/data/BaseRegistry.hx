@@ -34,7 +34,7 @@ class BaseRegistry<T>
 		if (exists(id))
 			trace('$id is already registered under ${this.id}!'.warn());
 		else
-			trace('Registered $id under ${this.id}.'.info());
+			trace('Registered $id under ${this.id}.'.debug());
 		entries.set(id, entry);
 	}
 

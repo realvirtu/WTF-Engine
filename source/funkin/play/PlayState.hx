@@ -672,10 +672,6 @@ class PlayState extends FunkinState
 
 			EventRegistry.instance.handleEvent(event.kind, event.value);
 
-			#if debug
-			trace('Handling event ${event.kind}.'.info());
-			#end
-
 			nextEventIndex = i + 1;
 		}
 	}
