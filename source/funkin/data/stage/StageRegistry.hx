@@ -47,7 +47,7 @@ class StageRegistry extends BaseRegistry<StageData>
 
 		final scripts:Array<String> = Stage.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted stage(s)...');
+		trace('Loading ${scripts.length} scripted stage(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -59,7 +59,7 @@ class StageRegistry extends BaseRegistry<StageData>
 				stage.destroy();
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 

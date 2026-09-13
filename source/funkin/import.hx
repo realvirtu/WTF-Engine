@@ -11,4 +11,5 @@ using StringTools;
 using funkin.util.tools.IteratorTools;
 using funkin.util.tools.NumberTools;
 using funkin.util.tools.StringTools;
+using tools.AnsiTools;
 #end

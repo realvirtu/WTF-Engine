@@ -24,7 +24,7 @@ class EventRegistry extends BaseRegistry<SongEvent>
 		// Song events are literally just code, so yeah
 		final scripts:Array<String> = SongEvent.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted song event(s)...');
+		trace('Loading ${scripts.length} scripted song event(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -34,7 +34,7 @@ class EventRegistry extends BaseRegistry<SongEvent>
 				entries.set(event.id, event);
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 

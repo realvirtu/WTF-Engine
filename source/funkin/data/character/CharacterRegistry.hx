@@ -48,7 +48,7 @@ class CharacterRegistry extends BaseRegistry<CharacterData>
 
 		final scripts:Array<String> = Character.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted character(s)...');
+		trace('Loading ${scripts.length} scripted character(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -60,7 +60,7 @@ class CharacterRegistry extends BaseRegistry<CharacterData>
 				character.destroy();
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 

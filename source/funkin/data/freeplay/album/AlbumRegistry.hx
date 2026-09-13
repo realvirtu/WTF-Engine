@@ -46,7 +46,7 @@ class AlbumRegistry extends BaseRegistry<Album>
 
 		final scripts:Array<String> = Album.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted album(s)...');
+		trace('Loading ${scripts.length} scripted album(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -63,7 +63,7 @@ class AlbumRegistry extends BaseRegistry<Album>
 				entries.set(album.id, album);
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 }

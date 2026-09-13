@@ -79,7 +79,7 @@ class SongRegistry extends BaseRegistry<Song>
 
 		final scripts:Array<String> = Song.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted song(s)...');
+		trace('Loading ${scripts.length} scripted song(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -109,7 +109,7 @@ class SongRegistry extends BaseRegistry<Song>
 				song.variations = ogSong.variations;
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 

@@ -27,7 +27,7 @@ class NoteKindRegistry extends BaseRegistry<NoteKind>
 		// Loading note kinds just like scripts because it's literally just code
 		final scripts:Array<String> = NoteKind.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted notekind(s)...');
+		trace('Loading ${scripts.length} scripted notekind(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -37,7 +37,7 @@ class NoteKindRegistry extends BaseRegistry<NoteKind>
 				entries.set(kind.id, kind);
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 

@@ -182,7 +182,7 @@ class FreeplaySubState extends FunkinSubState
 
 			player = PlayerRegistry.instance.fetch(id);
 
-			trace('Changing player to $player');
+			trace('Changing player to $player'.info());
 
 			changeDiff(selectedDiff);
 		}

@@ -33,7 +33,7 @@ class BaseCutscene extends FlxGroup
 	{
 		PlayState.instance.camHUD.visible = !hideHUD;
 
-		trace('Started cutscene $id.');
+		trace('Started cutscene $id.'.info());
 	}
 
 	public function close()
@@ -46,7 +46,7 @@ class BaseCutscene extends FlxGroup
 		// The cutscene's no longer needed, so destroy it
 		destroy();
 
-		trace('Ended cutscene $id.');
+		trace('Ended cutscene $id.'.info());
 	}
 
 	override function destroy()

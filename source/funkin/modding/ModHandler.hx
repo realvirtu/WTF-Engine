@@ -109,7 +109,17 @@ class ModHandler
 		if (e.code == FRAMEWORK_INIT || e.code == MOD_MISSING_ICON || e.code == MOD_MISSING_ID)
 			return;
 
-		trace(e.message);
+		switch (e.severity)
+		{
+			case ERROR:
+				trace(e.message.error());
+			case WARNING:
+				trace(e.message.warn());
+			case DEBUG:
+				trace(e.message.debug());
+			case INFO:
+				trace(e.message.info());
+		}
 
 		// Only alert the player of errors because no one cares about the other stuff
 		// Though the player should be aware of dependency problems as well

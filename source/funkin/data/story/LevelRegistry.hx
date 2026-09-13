@@ -47,7 +47,7 @@ class LevelRegistry extends BaseRegistry<Level>
 
 		final scripts:Array<String> = Level.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted level(s)...');
+		trace('Loading ${scripts.length} scripted level(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -64,7 +64,7 @@ class LevelRegistry extends BaseRegistry<Level>
 				entries.set(level.id, level);
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 

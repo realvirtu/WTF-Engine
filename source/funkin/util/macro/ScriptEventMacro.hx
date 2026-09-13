@@ -112,7 +112,7 @@ class ScriptEventMacro
 							// Check if the pool has 50 or more events
 							// You never know when I decide to fuck up
 							if (pool.length > 50)
-								trace($v{cls.name} + ' pool has more than 50 events. Is there a leak?');
+								trace(tools.AnsiTools.warn($v{cls.name} + ' pool has more than 50 events. Is there a leak?'));
 
 							if (event == null)
 							{

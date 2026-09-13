@@ -288,12 +288,12 @@ class Controls
 
 		gamepad.onDisconnect.add(() ->
 		{
-			trace('Disconnected gamepad device.');
+			trace('Disconnected gamepad device.'.info());
 
 			gamepadConnected = false;
 		});
 
-		trace('Connected gamepad device.');
+		trace('Connected gamepad device.'.info());
 	}
 
 	function handlePress(action:FunkinAction)

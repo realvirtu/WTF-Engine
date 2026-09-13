@@ -46,7 +46,7 @@ class StickerRegistry extends BaseRegistry<StickerPack>
 
 		final scripts:Array<String> = StickerPack.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted stickerpack(s)...');
+		trace('Loading ${scripts.length} scripted stickerpack(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -63,7 +63,7 @@ class StickerRegistry extends BaseRegistry<StickerPack>
 				entries.set(pack.id, pack);
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 }

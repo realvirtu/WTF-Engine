@@ -32,7 +32,7 @@ class StateMachine
 		// This message is a little annoying
 		// Why not make it debug exclusive?
 		#if debug
-		trace('Transitioned from $previousState to $currentState.');
+		trace('Transitioned from $previousState to $currentState.'.info());
 		#end
 
 		return true;

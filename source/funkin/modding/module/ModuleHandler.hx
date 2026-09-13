@@ -26,7 +26,7 @@ class ModuleHandler
 				modules.set(module.id, module);
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 
 		create();
@@ -35,7 +35,7 @@ class ModuleHandler
 		// This allows modules to update, even when the game isn't paused
 		FlxG.signals.postUpdate.add(update);
 
-		trace('Done loading modules.');
+		trace('Done loading modules.'.info());
 	}
 
 	public static inline function getModule(id:String):Module

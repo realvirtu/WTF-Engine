@@ -46,7 +46,7 @@ class NoteStyleRegistry extends BaseRegistry<NoteStyle>
 
 		final scripts:Array<String> = NoteStyle.listScriptClasses();
 
-		trace('Loading ${scripts.length} scripted style(s)...');
+		trace('Loading ${scripts.length} scripted style(s)...'.info());
 
 		for (script in scripts)
 		{
@@ -63,7 +63,7 @@ class NoteStyleRegistry extends BaseRegistry<NoteStyle>
 				entries.set(style.id, style);
 			}
 			catch (e)
-				trace('Failed to load script $script.');
+				trace('Failed to load script $script.'.error());
 		}
 	}
 }

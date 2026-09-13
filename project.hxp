@@ -2,6 +2,8 @@ import hxp.*;
 import lime.tools.*;
 import haxe.io.Bytes;
 
+using tools.AnsiTools;
+
 /**
  * The engine"s project class.
  */
@@ -228,12 +230,12 @@ class Project extends HXProject
 
     function info(message:String)
     {
-        Sys.println('\x1b[1m[INFO] $message\x1b[0m');
+        Sys.println(message.info());
     }
 
     function error(message:String)
     {
-        Sys.stderr().write(Bytes.ofString(message));
+        Sys.stderr().write(Bytes.ofString(message.error()));
         Sys.exit(1);
     }
 

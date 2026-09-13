@@ -9,8 +9,8 @@ class WindowUtil
 {
 	public static function exit()
 	{
-		trace('Exiting the game...');
-		trace('This is NOT a crash.');
+		trace('Exiting the game...'.warn());
+		trace('This is NOT a crash.'.warn());
 
 		Sys.exit(0);
 	}

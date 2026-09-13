@@ -96,9 +96,9 @@ class Save
 		favorites.set('$id:$variation', favorite);
 
 		if (favorite)
-			trace('Favorited song $id ($variation).');
+			trace('Favorited song $id ($variation).'.info());
 		else
-			trace('Unfavorited song $id ($variation).');
+			trace('Unfavorited song $id ($variation).'.info());
 
 		flush();
 	}
@@ -178,7 +178,7 @@ class Save
 			return;
 		scores.set('$id-$diff', score);
 
-		trace('Updated score for $id to $score.');
+		trace('Updated score for $id to $score.'.info());
 
 		flush();
 	}
