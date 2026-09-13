@@ -16,16 +16,6 @@ class FunkinSound extends FlxSound
 
 	static var pool(default, null) = new FlxTypedGroup<FunkinSound>();
 
-	override function destroy()
-	{
-		super.destroy();
-
-		fadeTween?.cancel();
-		fadeTween = null;
-
-		FlxTween.cancelTweensOf(this);
-	}
-
 	//
 	// FunkinSound
 	//
