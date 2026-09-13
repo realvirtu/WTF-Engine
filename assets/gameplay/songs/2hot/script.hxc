@@ -100,7 +100,7 @@ class TwoHotSong extends Song
             // Take damage from the spray can
             // Yeah the player already loses health
             // Why not lose more?
-            PlayState.instance.health -= 0.2;
+            event.health -= 0.3;
 
             FunkinSound.playOnce(getPath('sounds/bonk'));
         }
