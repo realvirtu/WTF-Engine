@@ -321,11 +321,10 @@ class PlayState extends FunkinState
 				playerIcon.state = IDLE;
 		}
 
-		if (songActive)
-		{
-			timeText.text = FlxStringUtil.formatTime((FunkinSound.music.length - FunkinSound.music.time) / Constants.MS_PER_SEC);
-			timeText.screenCenter(X);
-		}
+		timeText.text = FlxStringUtil.formatTime((FunkinSound.music.length - FunkinSound.music.time).clamp(0, FunkinSound.music.length) / Constants.MS_PER_SEC);
+		timeText.screenCenter(X);
+
+		updateScoreText();
 
 		camBopMultiplier = MathUtil.lerp(camBopMultiplier, 1, 0.03);
 		camera.zoom = camZoom * camBopMultiplier;
@@ -333,23 +332,6 @@ class PlayState extends FunkinState
 		// Death :(
 		if (health <= healthBar.min)
 			openSubState(new GameOverSubState(stage.player));
-	}
-
-	override function draw()
-	{
-		if (criticalError)
-			return;
-
-		// Score text is updated here so that toggling botplay does its changes
-		// I'm so friggin smart
-		if (Preferences.botplay)
-			scoreText.text = 'botplay enabled';
-		else
-			scoreText.text = 'score: ${FlxStringUtil.formatMoney(Std.int(score), false, true)} | misses: ${tallies.misses}';
-
-		scoreText.screenCenter(X);
-
-		super.draw();
 	}
 
 	override function beatHit(beat:Int)
@@ -563,6 +545,18 @@ class PlayState extends FunkinState
 
 		opponentStrumline.updateScroll();
 		playerStrumline.updateScroll();
+
+		updateScoreText();
+	}
+
+	function updateScoreText()
+	{
+		if (Preferences.botplay)
+			scoreText.text = 'botplay enabled';
+		else
+			scoreText.text = 'score: ${FlxStringUtil.formatMoney(Std.int(score), false, true)} | misses: ${tallies.misses}';
+
+		scoreText.screenCenter(X);
 	}
 
 	function loadCharacters()
