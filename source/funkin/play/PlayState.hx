@@ -796,6 +796,8 @@ class PlayState extends FunkinState
 		popups.popupJudgement(judgement);
 		popups.popupCombo(tallies.combo);
 
+		stage.gf?.playAnimation('combo${tallies.combo}');
+
 		playerStrumline.hitNote(note, judgement != BAD && judgement != SHIT);
 	}
 
