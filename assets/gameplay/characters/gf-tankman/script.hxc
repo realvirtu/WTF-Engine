@@ -15,7 +15,7 @@ class GFTankmanCharacter extends Character
 
         var tankmen:StageProp = new StageProp('tankmen');
 
-        tankmen.loadSprite('$charPath/tankmen', 1, 444, 212);
+        tankmen.loadSprite('$charPath/images/tankmen', 1, 444, 212);
         tankmen.addAnimation('idle', [0, 1, 2], 10, false);
 
         tankmen.setPosition(x - 90, y + 100);
