@@ -6,10 +6,31 @@
     "cameraOffset": [0, 20],
     "icon": {},
     "bopEvery": 1,
+    "images": [
+        { "name": "cheer", "width": 156, "height": 242 }
+    ],
     "animations": [
         {
             "name": "idle",
             "frames": [0, 1, 2]
+        },
+        {
+            "name": "cheer",
+            "frames": [0, 1, 2, 3],
+            "image": "cheer",
+            "offset": [55, -15]
+        },
+        {
+            "name": "combo50",
+            "frames": [0, 1, 2, 3],
+            "image": "cheer",
+            "offset": [55, -15]
+        },
+        {
+            "name": "combo200",
+            "frames": [0, 1, 2, 3],
+            "image": "cheer",
+            "offset": [55, -15]
         }
     ]
 }
