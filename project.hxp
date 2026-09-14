@@ -262,6 +262,8 @@ class Project extends HXProject
     {
         var message:String = COMPILE_MESSAGES[Std.random(COMPILE_MESSAGES.length)];
 
+        Sys.println('');
+
         info("Today's message:");
         info(message);
         
