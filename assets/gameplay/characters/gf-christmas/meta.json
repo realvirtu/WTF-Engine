@@ -8,10 +8,38 @@
         "id": "gf"
     },
     "bopEvery": 1,
+    "images": [
+        { "name": "cheer", "width": 253, "height": 295 },
+        { "name": "cry", "width": 253, "height": 290 }
+    ],
     "animations": [
         {
             "name": "idle",
             "frames": [0, 1, 2]
+        },
+        {
+            "name": "cheer",
+            "frames": [0, 1],
+            "image": "cheer",
+            "offset": [7, 0]
+        },
+        {
+            "name": "combo50",
+            "frames": [0, 1],
+            "image": "cheer",
+            "offset": [7, 0]
+        },
+        {
+            "name": "combo200",
+            "frames": [0, 1],
+            "image": "cheer",
+            "offset": [7, 0]
+        },
+        {
+            "name": "drop70",
+            "frames": [0, 1],
+            "image": "cry",
+            "offset": [7, 8]
         }
     ]
 }
