@@ -800,8 +800,10 @@ class PlayState extends FunkinState
 		if (event.cancelled)
 			return;
 
-		score += Constants.HOLD_SCORE_PER_SEC * FlxG.elapsed;
-		health += Constants.HOLD_HEALTH_PER_SEC * FlxG.elapsed;
+		final holdElapsed:Float = Math.min(FlxG.elapsed, holdNote.length / Constants.MS_PER_SEC);
+
+		score += Constants.HOLD_SCORE_PER_SEC * holdElapsed;
+		health += Constants.HOLD_HEALTH_PER_SEC * holdElapsed;
 
 		voices.playerVolume = 1;
 	}
