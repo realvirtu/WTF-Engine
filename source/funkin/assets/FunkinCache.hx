@@ -19,14 +19,14 @@ class FunkinCache
 		// Pffff I don't know what major means
 		Gc.run(true);
 
-		trace('Done clearing cache.'.info());
+		trace('Done clearing cache.'.yellow());
 	}
 
 	public static function clearStickers()
 	{
 		clear('sticker/');
 
-		trace('Done clearing sticker cache.'.info());
+		trace('Done clearing sticker cache.'.yellow());
 	}
 
 	static function clear(?prefix:String)
