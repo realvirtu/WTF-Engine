@@ -149,7 +149,7 @@ class CapsuleSprite extends FlxSpriteGroup
 		songText.text = value?.name ?? 'Random';
 		songText.updateHitbox();
 
-		bpmText.text = Std.string(value?.bpm?.b).leadingZeros(3);
+		bpmText.text = Std.string(Std.int(value?.bpm?.b)).leadingZeros(3);
 		bpmText.visible = diffText.visible;
 
 		justLoaded = false;
