@@ -217,6 +217,7 @@ class Save
 			favorites: new StringMap<Bool>(),
 			options: {
 				downscroll: false,
+				cameraBops: true,
 				showTimer: true,
 				showFPS: true,
 				fpsBGOpacity: 50,

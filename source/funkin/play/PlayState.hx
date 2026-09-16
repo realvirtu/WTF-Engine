@@ -356,7 +356,7 @@ class PlayState extends FunkinState
 		final rate:Float = Constants.STEPS_PER_BEAT * Constants.CAMERA_BOP_RATE / camBopRate;
 		final intensity:Float = Constants.CAMERA_BOP_INTENSITY * camBopIntensity;
 
-		if (conductor.step % rate == 0)
+		if (conductor.step % rate == 0 && Preferences.cameraBops)
 			camBopMultiplier = intensity;
 	}
 
