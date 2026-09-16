@@ -53,7 +53,7 @@ class Strumline extends FlxGroup
 		add(notes);
 
 		for (direction in 0...Constants.NOTE_COUNT)
-			strums.add(new StrumSprite(direction));
+			strums.add(new StrumSprite(direction, isPlayer));
 
 		this.style = style;
 		this.isPlayer = isPlayer;

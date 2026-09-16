@@ -7,26 +7,32 @@ import funkin.graphics.FunkinSprite;
  */
 class StrumSprite extends FunkinSprite
 {
-	public var direction:NoteDirection;
+	public final direction:NoteDirection;
+	public final isPlayer:Bool;
+
 	public var confirmTime:Float = 0;
 
 	public var middle(get, never):Float;
 
-	public function new(direction:NoteDirection)
+	public function new(direction:NoteDirection, isPlayer:Bool)
 	{
 		super();
 
 		this.direction = direction;
+		this.isPlayer = isPlayer;
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-		confirmTime = Math.max(0, confirmTime - elapsed * 10);
+		if (confirmTime > 0)
+		{
+			confirmTime = Math.max(0, confirmTime - elapsed * 10);
 
-		if (confirmTime == 0 && getCurrentAnimation() == 'confirm')
-			playStatic();
+			if (confirmTime == 0)
+				playStatic();
+		}
 	}
 
 	public function buildSprite(style:NoteStyle)
@@ -54,7 +60,9 @@ class StrumSprite extends FunkinSprite
 	{
 		playAnimation('confirm');
 
-		confirmTime = 1;
+		// Slightly longer time for the opponent
+		// Gives the opponent strums a snapped look
+		confirmTime = isPlayer ? 1 : 1.5;
 	}
 
 	@:noCompletion
