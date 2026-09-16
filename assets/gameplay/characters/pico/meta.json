@@ -4,7 +4,9 @@
     "height": 244,
     "globalOffset": [-120, -255],
     "cameraOffset": [-100, -100],
-    "icon": {},
+    "icon": {
+        "id": "pico"
+    },
     "flipX": true,
     "images": [
         { "name": "miss", "width": 238, "height": 244 },

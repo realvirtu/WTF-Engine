@@ -6,6 +6,7 @@
     "globalOffset": [-24, -153],
     "cameraOffset": [-100, -100],
     "icon": {
+        "id": "bf-pixel",
         "flipX": true,
         "scale": 3.5
     },

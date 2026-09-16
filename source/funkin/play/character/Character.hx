@@ -114,15 +114,6 @@ class Character extends StageProp implements IPlayStateScriptedClass
 		offset.subtract(animOffset[0], animOffset[1]);
 	}
 
-	public function buildHealthIcon():HealthIcon
-	{
-		// Return null if icon data is lacking
-		// The god damn errors this would give >:(
-		if (meta.icon == null)
-			return null;
-		return new HealthIcon(id, meta.icon, type == PLAYER);
-	}
-
 	function buildAnimations()
 	{
 		if (frames == null)

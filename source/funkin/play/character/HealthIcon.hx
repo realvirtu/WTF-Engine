@@ -10,37 +10,58 @@ import funkin.util.MathUtil;
  */
 class HealthIcon extends FunkinSprite
 {
-	static final LERP_SPEED:Float = 0.165;
 	static final BOP_SCALE:Float = 1.265;
+	static final LERP_SPEED:Float = 0.165;
 
-	public final id:String;
-	public final meta:CharacterIconData;
 	public final isPlayer:Bool;
+
+	public var bopEvery:Float;
+	public var bopAngle:Float;
 
 	public var state(default, set):HealthIconState = IDLE;
 
 	var _scale:Float;
 
-	public function new(id:String, meta:CharacterIconData, isPlayer:Bool = false)
+	public function new(meta:CharacterIconData, isPlayer:Bool)
 	{
 		super();
 
-		this.id = id;
-		this.meta = meta;
 		this.isPlayer = isPlayer;
 
-		final image:String = meta.id ?? id;
-		final path:String = '${CharacterRegistry.instance.path}/$image/icon';
+		load(meta);
+	}
 
-		// The sprite needs to be loaded in order to get the size
-		loadSprite(path);
-		loadSprite(path, meta.scale, graphic?.height, graphic?.height);
+	public function load(meta:CharacterIconData)
+	{
+		meta ??= {
+			id: '',
+			scale: 1,
+			flipX: true,
+			flipY: false,
+			bopEvery: 1,
+			bopAngle: 0
+		}
+
+		// Loads the icon sprite
+		// Uses the default icon if the icon doesn't exist
+		var image:String = '${CharacterRegistry.instance.path}/${meta.id}/icon';
+
+		if (!Paths.exists(Paths.image(image)))
+			image = 'gameplay/icon';
+
+		loadSprite(image);
+		loadSprite(image, meta.scale, frameHeight, frameHeight);
 
 		addAnimation('icon', [0, 1, 2], 0);
 		playAnimation('icon');
 
+		updateState();
+
 		flipX = meta.flipX != isPlayer;
 		flipY = meta.flipY;
+
+		bopEvery = meta.bopEvery;
+		bopAngle = meta.bopAngle;
 
 		_scale = scale.x;
 	}
@@ -57,23 +78,16 @@ class HealthIcon extends FunkinSprite
 	public function bop()
 	{
 		// Don't bop the icon if it's not the right beat
-		if (Conductor.instance.beat % meta.bopEvery != 0)
+		// Using steps for more precision
+		if (Conductor.instance.step * Constants.STEPS_PER_BEAT % bopEvery != 0)
 			return;
 
 		scale.x = scale.y = _scale * BOP_SCALE;
-
-		if (meta.bopAngle != null)
-			angle = meta.bopAngle;
+		angle = bopAngle;
 	}
 
-	@:noCompletion
-	function set_state(value:HealthIconState):HealthIconState
+	function updateState()
 	{
-		if (state == value)
-			return state;
-
-		state = value;
-
 		animation.frameIndex = switch (state)
 		{
 			case LOSING:
@@ -83,6 +97,14 @@ class HealthIcon extends FunkinSprite
 			default:
 				0;
 		}
+	}
+
+	@:noCompletion
+	inline function set_state(value:HealthIconState):HealthIconState
+	{
+		state = value;
+
+		updateState();
 
 		return state;
 	}

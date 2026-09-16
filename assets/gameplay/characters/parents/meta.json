@@ -4,7 +4,9 @@
     "height": 315,
     "globalOffset": [-165, -315],
     "cameraOffset": [100, -80],
-    "icon": {},
+    "icon": {
+        "id": "parents"
+    },
     "animations": [
         {
             "name": "idle",

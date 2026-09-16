@@ -5,7 +5,9 @@
     "globalOffset": [-93, -260],
     "cameraOffset": [100, -100],
     "scale": 1.05,
-    "icon": {},
+    "icon": {
+        "id": "tankman"
+    },
     "animations": [
         {
             "name": "idle",

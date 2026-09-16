@@ -4,7 +4,9 @@
     "height": 316,
     "globalOffset": [-105, -348],
     "cameraOffset": [100, -80],
-    "icon": {},
+    "icon": {
+        "id": "monster"
+    },
     "animations": [
         {
             "name": "idle",

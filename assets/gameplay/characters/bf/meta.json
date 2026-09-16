@@ -5,6 +5,7 @@
     "globalOffset": [-125, -240],
     "cameraOffset": [-100, -100],
     "icon": {
+        "id": "bf",
         "flipX": true
     },
     "flipX": true,

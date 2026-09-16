@@ -581,8 +581,8 @@ class PlayState extends FunkinState
 		}
 
 		// Sets up character health icons
-		opponentIcon = stage.opponent?.buildHealthIcon();
-		playerIcon = stage.player?.buildHealthIcon();
+		opponentIcon = new HealthIcon(stage.opponent?.meta?.icon, false);
+		playerIcon = new HealthIcon(stage.player?.meta?.icon, true);
 
 		if (opponentIcon != null)
 		{

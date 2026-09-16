@@ -4,7 +4,9 @@
     "height": 242,
     "globalOffset": [-120, -350],
     "cameraOffset": [0, 20],
-    "icon": {},
+    "icon": {
+        "id": "nene"
+    },
     "bopEvery": 1,
     "images": [
         { "name": "cheer", "width": 156, "height": 242 }

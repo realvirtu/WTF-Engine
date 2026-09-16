@@ -6,6 +6,7 @@
     "globalOffset": [-9, -266],
     "cameraOffset": [100, -50],
     "icon": {
+        "id": "spirit",
         "scale": 3.5
     },
     "animations": [

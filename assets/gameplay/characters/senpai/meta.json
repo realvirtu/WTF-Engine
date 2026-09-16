@@ -6,6 +6,7 @@
     "globalOffset": [-6, -245],
     "cameraOffset": [100, -80],
     "icon": {
+        "id": "senpai",
         "scale": 3.5
     },
     "animations": [

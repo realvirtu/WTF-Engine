@@ -4,7 +4,9 @@
     "height": 252,
     "globalOffset": [-214, -255],
     "cameraOffset": [100, -120],
-    "icon": {},
+    "icon": {
+        "id": "tundrec"
+    },
     "animations": [
         {
             "name": "idle",

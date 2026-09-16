@@ -4,7 +4,9 @@
     "height": 295,
     "globalOffset": [-127, -330],
     "cameraOffset": [0, -60],
-    "icon": {},
+    "icon": {
+        "id": "gf"
+    },
     "bopEvery": 1,
     "images": [
         { "name": "cheer", "width": 252, "height": 295 },

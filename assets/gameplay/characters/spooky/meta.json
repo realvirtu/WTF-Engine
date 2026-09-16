@@ -4,7 +4,9 @@
     "height": 266,
     "globalOffset": [-123, -280],
     "cameraOffset": [100, -80],
-    "icon": {},
+    "icon": {
+        "id": "spooky"
+    },
     "animations": [
         {
             "name": "idle",

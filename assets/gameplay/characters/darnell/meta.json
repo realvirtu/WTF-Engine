@@ -4,7 +4,9 @@
     "height": 250,
     "globalOffset": [-90, -265],
     "cameraOffset": [100, -100],
-    "icon": {},
+    "icon": {
+        "id": "darnell"
+    },
     "animations": [
         {
             "name": "idle",

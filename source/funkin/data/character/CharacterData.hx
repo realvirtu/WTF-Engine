@@ -38,7 +38,7 @@ typedef CharacterIconData =
 	var flipX:Bool;
 	var flipY:Bool;
 	@:default(1)
-	var bopEvery:Int;
+	var bopEvery:Float;
 	@:optional
 	var bopAngle:Float;
 }

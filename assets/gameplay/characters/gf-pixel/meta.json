@@ -5,7 +5,9 @@
     "scale": 3.5,
     "globalOffset": [-35, -228],
     "cameraOffset": [0, -60],
-    "icon": {},
+    "icon": {
+        "id": "gf"
+    },
     "bopEvery": 1,
     "animations": [
         {

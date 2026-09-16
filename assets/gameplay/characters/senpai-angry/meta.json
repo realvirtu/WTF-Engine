@@ -6,6 +6,7 @@
     "globalOffset": [0, -245],
     "cameraOffset": [100, -80],
     "icon": {
+        "id": "senpai-angry",
         "scale": 3.5
     },
     "animations": [
