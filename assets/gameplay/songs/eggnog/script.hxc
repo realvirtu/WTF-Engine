@@ -7,10 +7,10 @@ class EggnogSong extends Song
         super('eggnog');
     }
 
-    // override function get_name():String
-    // {
-    //     if (FlxG.random.bool(10))
-    //         return 'Eggnore';
-    //     return super.get_name();
-    // }
+    override function get_name():String
+    {
+        if (FlxG.random.bool(10))
+            return 'Eggnore';
+        return super.get_name();
+    }
 }

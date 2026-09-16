@@ -7,10 +7,10 @@ class DarnellSong extends Song
         super('darnell');
     }
 
-    // override function get_name():String
-    // {
-    //     if (FlxG.random.bool(10))
-    //         return 'Danrell';
-    //     return super.get_name();
-    // }
+    override function get_name():String
+    {
+        if (FlxG.random.bool(10))
+            return 'Danrell';
+        return super.get_name();
+    }
 }
