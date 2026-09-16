@@ -92,7 +92,7 @@
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "d6bc186555faef0308596573dd5e0126c68de215",
+      "ref": "ee9b5062d9a23ca0ccbe17f10787c542a3301c20",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {
@@ -106,7 +106,7 @@
       "name": "thx.semver",
       "type": "git",
       "dir": null,
-      "ref": "b91cf5cfee6ebe43b60f8acea4257f07af176b99",
+      "ref": "d7ed6011c506130702ef4953a9ec8ecc86b32210",
       "url": "https://github.com/FunkinCrew/thx.semver"
     },
     {
