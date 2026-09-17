@@ -1,7 +1,7 @@
 {
     "name": "Boyfriend (Christmas)",
     "width": 266,
-    "height": 248,
+    "height": 242,
     "globalOffset": [-125, -250],
     "cameraOffset": [-100, -100],
     "icon": {
@@ -9,6 +9,10 @@
         "flipX": true
     },
     "flipX": true,
+    "images": [
+        { "name": "miss", "width": 266, "height": 248 },
+        { "name": "hey", "width": 207, "height": 218 }
+    ],
     "animations": [
         {
             "name": "idle",
@@ -32,27 +36,37 @@
         },
         {
             "name": "left-miss",
-            "frames": [3, 11],
-            "framerate": 20
+            "frames": [0, 1],
+            "framerate": 20,
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "right-miss",
-            "frames": [5, 12],
-            "framerate": 20
+            "frames": [2, 3],
+            "framerate": 20,
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "up-miss",
-            "frames": [7, 13],
-            "framerate": 20
+            "frames": [4, 5],
+            "framerate": 20,
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "down-miss",
-            "frames": [9, 14],
-            "framerate": 20
+            "frames": [6, 7],
+            "framerate": 20,
+            "image": "miss",
+            "offset": [0, -8]
         },
         {
             "name": "hey",
-            "frames": [15, 16, 17]
+            "frames": [0, 1, 2],
+            "image": "hey",
+            "offset": [45, 32]
         }
     ]
 }
