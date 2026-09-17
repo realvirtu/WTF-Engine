@@ -15,11 +15,16 @@ class HealthIcon extends FunkinSprite
 
 	public final isPlayer:Bool;
 
+	public var meta(default, null):CharacterIconData;
+
 	public var bopEvery:Float;
 	public var bopAngle:Float;
 
 	public var state(default, set):HealthIconState = IDLE;
 
+	var isOld:Bool = false;
+
+	var _meta:CharacterIconData;
 	var _scale:Float;
 
 	public function new(meta:CharacterIconData, isPlayer:Bool)
@@ -33,7 +38,7 @@ class HealthIcon extends FunkinSprite
 
 	public function load(meta:CharacterIconData)
 	{
-		meta ??= {
+		this.meta = meta ??= {
 			id: '',
 			scale: 1,
 			flipX: true,
@@ -64,6 +69,26 @@ class HealthIcon extends FunkinSprite
 		bopAngle = meta.bopAngle;
 
 		_scale = scale.x;
+	}
+
+	public function toggleOldIcon()
+	{
+		isOld = !isOld;
+
+		if (isOld)
+		{
+			_meta = meta;
+
+			load({
+				id: 'bf-old',
+				scale: 1,
+				flipX: true,
+				flipY: false,
+				bopEvery: 1
+			});
+		}
+		else
+			load(_meta);
 	}
 
 	override function update(elapsed:Float)
