@@ -65,7 +65,12 @@ class Project extends HXProject
         "I'm a vegan uwu",
         "Hashbrowns <3",
         "The bitch is back",
-        "Hyper the goat"
+        "Hyper the goat",
+        "Meow",
+        "This is a hot spot",
+        "There's liver in my blood *uncommon*",
+        "Mrrrow",
+        "What the fuck"
     ];
 
     public function new()
