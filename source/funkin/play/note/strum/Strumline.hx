@@ -218,6 +218,14 @@ class Strumline extends FlxGroup
 		speed = 0;
 
 		nextNoteIndex = -1;
+
+		// Resets the strum animations
+		// No more unwanted strum glow :3
+		strums.forEach(strum ->
+		{
+			strum.confirmTime = 0;
+			strum.playStatic();
+		});
 	}
 
 	public function getCurrentNotes():Array<NoteSprite>
