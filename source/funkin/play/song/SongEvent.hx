@@ -49,6 +49,9 @@ class SongEvent implements IPlayStateScriptedClass
 
 	function getCharacter(id:String):Character
 	{
+		if (PlayState.instance.stage == null)
+			return null;
+
 		return switch (getInt(id))
 		{
 			case 0:

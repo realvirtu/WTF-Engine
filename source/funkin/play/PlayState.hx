@@ -57,6 +57,10 @@ typedef PlayStateParams =
 	var difficulty:String;
 	@:optional
 	var instrumental:String;
+	@:optional
+	var playbackRate:Float;
+	@:optional
+	var minimalMode:Bool;
 }
 
 /**
@@ -71,6 +75,8 @@ class PlayState extends FunkinState
 	public var song(get, set):Song;
 	public var difficulty(get, set):String;
 	public var instrumental(get, set):String;
+	public var playbackRate(get, set):Float;
+	public var minimalMode(get, set):Bool;
 
 	public var songLoaded:Bool;
 	public var songStarted:Bool;
@@ -78,11 +84,6 @@ class PlayState extends FunkinState
 	public var songActive:Bool;
 
 	public var isPaused(get, never):Bool;
-
-	/**
-	 * TODO: Make this changeable ingame
-	 */
-	public var playbackRate(default, set):Float = 1;
 
 	public var events:Array<EventData>;
 	public var nextEventIndex:Int = -1;
@@ -229,11 +230,15 @@ class PlayState extends FunkinState
 		// SETUP
 		//
 
-		stage = StageRegistry.instance.fetchStage(song.stage);
-		stageZoom = stage.zoom;
-		add(stage);
+		if (minimalMode)
+		{
+			var bg:FunkinSprite = FunkinSprite.create(0, 0, 'ui/menu/bg', 1.5);
+			bg.scrollFactor.set();
+			bg.color = 0xFF028D48;
+			add(bg);
+		}
 
-		loadCharacters();
+		loadStage();
 		loadSong();
 
 		refresh();
@@ -297,27 +302,32 @@ class PlayState extends FunkinState
 
 		healthBar.value = healthLerp;
 
-		opponentIcon.x = healthBar.fillPosition - opponentIcon.width + 15;
-		opponentIcon.state = IDLE;
-
-		playerIcon.x = healthBar.fillPosition - 15;
-		playerIcon.state = IDLE;
-
-		if (health > 0.8)
+		if (opponentIcon != null)
 		{
-			opponentIcon.state = LOSING;
-			playerIcon.state = WINNING;
-		}
-		else if (health < 0.2)
-		{
-			opponentIcon.state = WINNING;
-			playerIcon.state = LOSING;
+			opponentIcon.x = healthBar.fillPosition - opponentIcon.width + 15;
+			opponentIcon.state = IDLE;
+
+			if (health > 0.8)
+				opponentIcon.state = LOSING;
+			else if (health < 0.2)
+				opponentIcon.state = WINNING;
 		}
 
-		#if HAS_OLD_ICON_SECRET
-		if (FlxG.keys.justPressed.NINE)
-			playerIcon.toggleOldIcon();
-		#end
+		if (playerIcon != null)
+		{
+			playerIcon.x = healthBar.fillPosition - 15;
+			playerIcon.state = IDLE;
+
+			if (health > 0.8)
+				playerIcon.state = WINNING;
+			else if (health < 0.2)
+				playerIcon.state = LOSING;
+
+			#if HAS_OLD_ICON_SECRET
+			if (FlxG.keys.justPressed.NINE)
+				playerIcon.toggleOldIcon();
+			#end
+		}
 
 		if (!songEnded)
 		{
@@ -330,8 +340,7 @@ class PlayState extends FunkinState
 		camBopMultiplier = MathUtil.lerp(camBopMultiplier, 1, 0.03);
 		camera.zoom = camZoom * camBopMultiplier;
 
-		// Death :(
-		if (health <= healthBar.min)
+		if (health == healthBar.min && !minimalMode)
 			openSubState(new GameOverSubState(stage.player));
 	}
 
@@ -346,8 +355,8 @@ class PlayState extends FunkinState
 		if (!songStarted)
 			return;
 
-		opponentIcon.bop();
-		playerIcon.bop();
+		opponentIcon?.bop();
+		playerIcon?.bop();
 
 		// Bop the camera
 		// This uses step instead of beat for more precision
@@ -398,13 +407,16 @@ class PlayState extends FunkinState
 		// CAMERA
 		//
 
-		setCameraTarget(stage.gf, true);
-		setCameraTarget(stage.opponent, true);
-		setCameraTarget(stage.player, true);
+		if (!minimalMode)
+		{
+			setCameraTarget(stage.gf, true);
+			setCameraTarget(stage.opponent, true);
+			setCameraTarget(stage.player, true);
 
-		setCameraZoom(null, true);
+			setCameraZoom(null, true);
 
-		camera.snapToTarget();
+			camera.snapToTarget();
+		}
 
 		camBopRate = 1;
 		camBopIntensity = 1;
@@ -472,7 +484,6 @@ class PlayState extends FunkinState
 
 	public function setCameraTarget(target:Character, instant:Bool = false)
 	{
-		// Why????
 		if (target == null)
 			return;
 
@@ -537,8 +548,10 @@ class PlayState extends FunkinState
 
 		scoreText.y = healthBorder.y + healthBorder.height + 20;
 
-		opponentIcon.y = healthBar.y - opponentIcon.height / 2;
-		playerIcon.y = healthBar.y - playerIcon.height / 2;
+		if (opponentIcon != null)
+			opponentIcon.y = healthBar.y - opponentIcon.height / 2;
+		if (playerIcon != null)
+			playerIcon.y = healthBar.y - playerIcon.height / 2;
 
 		playerStrumline.isPlayer = !Preferences.botplay;
 
@@ -558,8 +571,23 @@ class PlayState extends FunkinState
 		scoreText.screenCenter(X);
 	}
 
+	function loadStage()
+	{
+		if (minimalMode)
+			return;
+
+		stage = StageRegistry.instance.fetchStage(song.stage);
+		stageZoom = stage.zoom;
+		add(stage);
+
+		loadCharacters();
+	}
+
 	function loadCharacters()
 	{
+		if (minimalMode)
+			return;
+
 		stage.setPlayer(song.player);
 		stage.setOpponent(song.opponent);
 		stage.setGF(song.gf);
@@ -737,7 +765,7 @@ class PlayState extends FunkinState
 		if (controls.PAUSE)
 			pause();
 
-		if (controls.RESET)
+		if (controls.RESET && !minimalMode)
 		{
 			health = healthBar.min;
 			healthLerp = health;
@@ -1011,12 +1039,29 @@ class PlayState extends FunkinState
 	function set_playbackRate(value:Float):Float
 	{
 		value = Math.max(0, value);
-		playbackRate = value;
 
 		FunkinSound.music.pitch = value;
 		voices.pitch = value;
 
-		return value;
+		return lastParams.playbackRate = value;
+	}
+
+	@:noCompletion
+	function get_playbackRate():Float
+	{
+		return lastParams.playbackRate ?? 1;
+	}
+
+	@:noCompletion
+	function set_minimalMode(value:Bool):Bool
+	{
+		return lastParams.minimalMode = value;
+	}
+
+	@:noCompletion
+	function get_minimalMode():Bool
+	{
+		return lastParams.minimalMode;
 	}
 
 	@:noCompletion

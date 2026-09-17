@@ -22,7 +22,10 @@ class TwoHotSong extends Song
     {
         super.onCreate(event);
 
-        cans = PlayState.instance.stage.getProp('cans');
+        cans = PlayState.instance.stage?.getProp('cans');
+
+        if (cans == null)
+            return;
 
         can = new StageProp('can');
         can.loadSprite(getPath('props/can'));
@@ -47,22 +50,25 @@ class TwoHotSong extends Song
     {
         super.onUpdate(event);
 
-        if (can != null)
-        {
-            if (canKicked)
-                can.angle += event.elapsed * 1000;
+        if (can == null)
+            return;
 
-            if (can.y > cans.y)
-            {
-                can.y = cans.y;
-                can.velocity.y = 0;
-            }
+        if (canKicked)
+            can.angle += event.elapsed * 1000;
+
+        if (can.y > cans.y)
+        {
+            can.y = cans.y;
+            can.velocity.y = 0;
         }
     }
 
     override function onNoteHit(event:NoteScriptEvent)
     {
         super.onNoteHit(event);
+
+        if (can == null)
+            return;
 
         switch (event.note.kind)
         {
@@ -93,6 +99,9 @@ class TwoHotSong extends Song
     {
         super.onNoteMiss(event);
 
+        if (can == null)
+            return;
+
         if (event.note.kind == 'fire-gun')
         {
             explodeCan();
@@ -109,6 +118,9 @@ class TwoHotSong extends Song
     override function onSongRetry(event:ScriptEvent)
     {
         super.onSongRetry(event);
+
+        if (can == null)
+            return;
 
         resetCan();
         resetExplosion();

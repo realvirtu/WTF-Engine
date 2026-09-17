@@ -48,7 +48,8 @@ class SenpaiSong extends Song
     {
         super.onNoteHit(event);
 
-        if (event.note.isPlayer) return;
+        if (event.note.isPlayer || PlayState.instance.minimalMode)
+            return;
 
         var opponent:Character = PlayState.instance.stage.opponent;
 
