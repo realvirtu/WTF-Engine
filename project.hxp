@@ -48,7 +48,9 @@ class Project extends HXProject
         "Polymod ain't done nun leave it out of this",
         "This wordle sucks",
         "Bug Report:",
+        "Enhancement:",
         "But here's the coder",
+        "But here's the scripter",
         "Sentpajim bis being a littlke bit bfgreakty",
         "I'm funking my remnants",
         "To enable pen pressure, disable Windows Ink",
@@ -59,7 +61,11 @@ class Project extends HXProject
         "I just found this new gif please don't steal",
         "There's so much HaxeFlixel",
         "Developer we have a bug",
-        "Kids are smoking dare"
+        "Kids are smoking dare",
+        "I'm a vegan uwu",
+        "Hashbrowns <3",
+        "The bitch is back",
+        "Hyper the goat"
     ];
 
     public function new()
