@@ -346,8 +346,8 @@ class PlayState extends FunkinState
 		if (!songStarted)
 			return;
 
-		opponentIcon?.bop();
-		playerIcon?.bop();
+		opponentIcon.bop();
+		playerIcon.bop();
 
 		// Bop the camera
 		// This uses step instead of beat for more precision
@@ -537,10 +537,8 @@ class PlayState extends FunkinState
 
 		scoreText.y = healthBorder.y + healthBorder.height + 20;
 
-		if (opponentIcon != null)
-			opponentIcon.y = healthBar.y - opponentIcon.height / 2;
-		if (playerIcon != null)
-			playerIcon.y = healthBar.y - playerIcon.height / 2;
+		opponentIcon.y = healthBar.y - opponentIcon.height / 2;
+		playerIcon.y = healthBar.y - playerIcon.height / 2;
 
 		playerStrumline.isPlayer = !Preferences.botplay;
 
@@ -578,23 +576,16 @@ class PlayState extends FunkinState
 			stage.refresh();
 		}
 
-		// Sets up character health icons
+		// Health icons
 		opponentIcon = new HealthIcon(stage.opponent?.meta?.icon, false);
+		opponentIcon.camera = camHUD;
+		opponentIcon.zIndex = healthBorder.zIndex;
+		add(opponentIcon);
+
 		playerIcon = new HealthIcon(stage.player?.meta?.icon, true);
-
-		if (opponentIcon != null)
-		{
-			opponentIcon.camera = camHUD;
-			opponentIcon.zIndex = healthBorder.zIndex;
-			add(opponentIcon);
-		}
-
-		if (playerIcon != null)
-		{
-			playerIcon.camera = camHUD;
-			playerIcon.zIndex = healthBorder.zIndex;
-			add(playerIcon);
-		}
+		playerIcon.camera = camHUD;
+		playerIcon.zIndex = healthBorder.zIndex;
+		add(playerIcon);
 
 		GameOverSubState.reset();
 		PauseSubState.reset();
