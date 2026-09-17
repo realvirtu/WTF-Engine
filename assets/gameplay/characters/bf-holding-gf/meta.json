@@ -1,6 +1,6 @@
 {
     "name": "Boyfriend (Holding GF)",
-    "width": 294,
+    "width": 296,
     "height": 251,
     "globalOffset": [-125, -250],
     "cameraOffset": [-100, -100],
@@ -9,6 +9,9 @@
         "flipX": true
     },
     "flipX": true,
+    "images": [
+        { "name": "miss", "width": 296, "height": 252 }
+    ],
     "animations": [
         {
             "name": "idle",
@@ -32,23 +35,27 @@
         },
         {
             "name": "left-miss",
-            "frames": [3, 11],
-            "framerate": 20
+            "frames": [0, 1],
+            "framerate": 20,
+            "image": "miss"
         },
         {
             "name": "right-miss",
-            "frames": [5, 12],
-            "framerate": 20
+            "frames": [2, 3],
+            "framerate": 20,
+            "image": "miss"
         },
         {
             "name": "up-miss",
-            "frames": [7, 13],
-            "framerate": 20
+            "frames": [4, 5],
+            "framerate": 20,
+            "image": "miss"
         },
         {
             "name": "down-miss",
-            "frames": [9, 14],
-            "framerate": 20
+            "frames": [6, 7],
+            "framerate": 20,
+            "image": "miss"
         }
     ]
 }
