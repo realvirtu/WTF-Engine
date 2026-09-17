@@ -298,7 +298,10 @@ class PlayState extends FunkinState
 		healthBar.value = healthLerp;
 
 		opponentIcon.x = healthBar.fillPosition - opponentIcon.width + 15;
+		opponentIcon.state = IDLE;
+
 		playerIcon.x = healthBar.fillPosition - 15;
+		playerIcon.state = IDLE;
 
 		if (health > 0.8)
 		{
@@ -310,14 +313,11 @@ class PlayState extends FunkinState
 			opponentIcon.state = WINNING;
 			playerIcon.state = LOSING;
 		}
-		else
-		{
-			opponentIcon.state = IDLE;
-			playerIcon.state = IDLE;
-		}
 
+		#if HAS_OLD_ICON_SECRET
 		if (FlxG.keys.justPressed.NINE)
 			playerIcon.toggleOldIcon();
+		#end
 
 		if (!songEnded)
 		{

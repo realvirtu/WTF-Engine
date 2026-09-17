@@ -22,10 +22,12 @@ class HealthIcon extends FunkinSprite
 
 	public var state(default, set):HealthIconState = IDLE;
 
-	var isOld:Bool = false;
-
 	var _meta:CharacterIconData;
 	var _scale:Float;
+
+	#if HAS_OLD_ICON_SECRET
+	var isOld:Bool = false;
+	#end
 
 	public function new(meta:CharacterIconData, isPlayer:Bool)
 	{
@@ -71,6 +73,7 @@ class HealthIcon extends FunkinSprite
 		_scale = scale.x;
 	}
 
+	#if HAS_OLD_ICON_SECRET
 	public function toggleOldIcon()
 	{
 		isOld = !isOld;
@@ -90,6 +93,7 @@ class HealthIcon extends FunkinSprite
 		else
 			load(_meta);
 	}
+	#end
 
 	override function update(elapsed:Float)
 	{
