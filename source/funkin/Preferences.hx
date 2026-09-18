@@ -16,6 +16,7 @@ class Preferences
 {
 	public static var downscroll(get, set):Bool;
 	public static var cameraBops(get, set):Bool;
+	public static var strumBGOpacity(get, set):Int;
 	public static var showTimer(get, set):Bool;
 
 	#if HAS_FPS_COUNTER
@@ -62,6 +63,23 @@ class Preferences
 	static inline function get_cameraBops():Bool
 	{
 		return Save.instance.options.cameraBops;
+	}
+
+	@:noCompletion
+	static inline function set_strumBGOpacity(value:Int):Int
+	{
+		Save.instance.options.strumBGOpacity = value;
+		Save.instance.flush();
+
+		PlayState.instance?.updatePreferences();
+
+		return value;
+	}
+
+	@:noCompletion
+	static inline function get_strumBGOpacity():Int
+	{
+		return Save.instance.options.strumBGOpacity;
 	}
 
 	@:noCompletion

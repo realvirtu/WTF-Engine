@@ -19,6 +19,7 @@ typedef SaveOptionsData =
 {
 	var downscroll:Bool;
 	var cameraBops:Bool;
+	var strumBGOpacity:Int;
 	var showTimer:Bool;
 	var showFPS:Bool;
 	var fpsBGOpacity:Int;

@@ -218,6 +218,7 @@ class Save
 			options: {
 				downscroll: false,
 				cameraBops: true,
+				strumBGOpacity: 0,
 				showTimer: true,
 				showFPS: true,
 				fpsBGOpacity: 50,

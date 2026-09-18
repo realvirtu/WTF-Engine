@@ -64,6 +64,7 @@ class OptionsSubState extends FunkinSubState
 	{
 		options.addOption('downscroll');
 		options.addOption('cameraBops', 'camera bops');
+		options.addOption('strumBGOpacity', 'strum background', 10, 0, 100);
 		options.addOption('showTimer', 'show timer');
 
 		#if HAS_FPS_COUNTER

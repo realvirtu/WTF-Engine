@@ -5,6 +5,7 @@ import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxSignal.FlxTypedSignal;
 import flixel.util.FlxSort;
 import funkin.data.song.SongData;
+import funkin.graphics.FunkinSprite;
 import funkin.play.note.hold.HoldNoteCover;
 import funkin.play.note.hold.HoldNoteSprite;
 import funkin.util.RhythmUtil;
@@ -23,6 +24,7 @@ class Strumline extends FlxGroup
 
 	public var x(get, set):Float;
 
+	public var bg:FunkinSprite;
 	public var strums:FlxTypedSpriteGroup<StrumSprite>;
 	public var notes:FlxTypedGroup<NoteSprite>;
 	public var holdNotes:FlxTypedGroup<HoldNoteSprite>;
@@ -36,6 +38,10 @@ class Strumline extends FlxGroup
 	public function new(style:NoteStyle, isPlayer:Bool)
 	{
 		super();
+
+		bg = FunkinSprite.createSolidColor(0, 0, 1, 1, 0xFF000000);
+		bg.alpha = 0;
+		add(bg);
 
 		strums = new FlxTypedSpriteGroup<StrumSprite>();
 		add(strums);
@@ -140,6 +146,8 @@ class Strumline extends FlxGroup
 
 		if (Preferences.downscroll)
 			strums.y = FlxG.height - strums.height - strums.y;
+
+		bg.alpha = Preferences.strumBGOpacity / 100;
 
 		process();
 	}
@@ -310,13 +318,19 @@ class Strumline extends FlxGroup
 		noteSplashes.forEach(splash -> splash.buildSprite(style));
 		holdCovers.forEach(cover -> cover.buildSprite(style));
 
+		bg.setGraphicSize(strums.width + 20, FlxG.height);
+		bg.updateHitbox();
+
 		return style;
 	}
 
 	@:noCompletion
 	inline function set_x(value:Float):Float
 	{
-		return strums.x = value;
+		strums.x = value;
+		bg.x = strums.x - bg.width / 2;
+
+		return strums.x;
 	}
 
 	@:noCompletion
