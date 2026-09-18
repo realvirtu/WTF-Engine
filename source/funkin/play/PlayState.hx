@@ -304,8 +304,8 @@ class PlayState extends FunkinState
 
 		if (opponentIcon != null)
 		{
-			opponentIcon.x = healthBar.fillPosition - opponentIcon.width + 15;
 			opponentIcon.state = IDLE;
+			opponentIcon.snapToBar(healthBar);
 
 			if (health > 0.8)
 				opponentIcon.state = LOSING;
@@ -315,8 +315,8 @@ class PlayState extends FunkinState
 
 		if (playerIcon != null)
 		{
-			playerIcon.x = healthBar.fillPosition - 15;
 			playerIcon.state = IDLE;
+			playerIcon.snapToBar(healthBar);
 
 			if (health > 0.8)
 				playerIcon.state = WINNING;
@@ -548,10 +548,8 @@ class PlayState extends FunkinState
 
 		scoreText.y = healthBorder.y + healthBorder.height + 20;
 
-		if (opponentIcon != null)
-			opponentIcon.y = healthBar.y - opponentIcon.height / 2;
-		if (playerIcon != null)
-			playerIcon.y = healthBar.y - playerIcon.height / 2;
+		opponentIcon?.snapToBar(healthBar);
+		playerIcon?.snapToBar(healthBar);
 
 		playerStrumline.isPlayer = !Preferences.botplay;
 

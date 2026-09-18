@@ -2,6 +2,7 @@ package funkin.play.character;
 
 import funkin.data.character.CharacterData.CharacterIconData;
 import funkin.data.character.CharacterRegistry;
+import funkin.graphics.FunkinBar;
 import funkin.graphics.FunkinSprite;
 import funkin.util.MathUtil;
 
@@ -10,8 +11,9 @@ import funkin.util.MathUtil;
  */
 class HealthIcon extends FunkinSprite
 {
-	static final BOP_SCALE:Float = 1.265;
-	static final LERP_SPEED:Float = 0.165;
+	final BAR_OFFSET:Float = 15;
+	final BOP_SCALE:Float = 1.265;
+	final LERP_SPEED:Float = 0.165;
 
 	public final isPlayer:Bool;
 
@@ -113,6 +115,15 @@ class HealthIcon extends FunkinSprite
 
 		scale.x = scale.y = _scale * BOP_SCALE;
 		angle = bopAngle;
+	}
+
+	public function snapToBar(bar:FunkinBar)
+	{
+		if (bar == null)
+			return;
+
+		x = bar.fillPosition + (isPlayer ? -BAR_OFFSET : -width + BAR_OFFSET);
+		y = bar.y - height / 2;
 	}
 
 	function updateState()
