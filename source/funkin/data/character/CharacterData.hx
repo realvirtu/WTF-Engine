@@ -11,7 +11,9 @@ typedef CharacterData =
 	var width:Int;
 	var height:Int;
 	var icon:CharacterIconData;
+	@:default([])
 	var globalOffset:Array<Float>;
+	@:default([])
 	var cameraOffset:Array<Float>;
 	@:default(1)
 	var scale:Float;

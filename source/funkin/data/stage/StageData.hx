@@ -38,7 +38,9 @@ typedef StagePropData =
 	var image:String;
 	var width:Int;
 	var height:Int;
+	@:default([])
 	var position:Array<Float>;
+	@:default([1, 1])
 	var scroll:Array<Float>;
 	@:default(1)
 	var scale:Float;

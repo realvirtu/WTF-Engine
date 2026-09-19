@@ -8,5 +8,6 @@ typedef DialogueSpeakerData =
 	var name:String;
 	@:default(1)
 	var scale:Float;
+	@:default([])
 	var offset:Array<Float>;
 }

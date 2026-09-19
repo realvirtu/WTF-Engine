@@ -42,9 +42,7 @@ class DialogueSpeaker extends FunkinSprite
 		loadSprite('$path/image', meta.scale);
 		centerOffsets();
 
-		final off:Array<Float> = meta.offset ?? [0, 0];
-
-		offset.x += off[0];
-		offset.y += off[1];
+		offset.x += meta.offset[0];
+		offset.y += meta.offset[1];
 	}
 }

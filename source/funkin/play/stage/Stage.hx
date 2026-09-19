@@ -46,17 +46,14 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 			if (prop == null)
 				continue;
 
-			final position:Array<Float> = prop.position ?? [0, 0];
-			final scroll:Array<Float> = prop.scroll ?? [1, 1];
-
 			var sprite:StageProp = new StageProp(prop.id);
 
 			sprite.loadSprite('$path/props/${prop.image}', prop.scale, prop.width, prop.height);
 			sprite.loadAnimations(prop.animations);
 
-			sprite.setPosition(position[0], position[1]);
+			sprite.setPosition(prop.position[0], prop.position[1]);
 
-			sprite.scrollFactor.set(scroll[0], scroll[1]);
+			sprite.scrollFactor.set(prop.scroll[0], prop.scroll[1]);
 			sprite.active = prop.animations.length > 0;
 
 			sprite.flipX = prop.flipX;
@@ -139,17 +136,17 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 
 	public function getPlayerPosition():Array<Float>
 	{
-		return meta?.player?.position ?? [0, 0];
+		return meta?.player?.position ?? [];
 	}
 
 	public function getOpponentPosition():Array<Float>
 	{
-		return meta?.opponent?.position ?? [0, 0];
+		return meta?.opponent?.position ?? [];
 	}
 
 	public function getGFPosition():Array<Float>
 	{
-		return meta?.gf?.position ?? [0, 0];
+		return meta?.gf?.position ?? [];
 	}
 
 	public function onCreate(event:ScriptEvent) {}

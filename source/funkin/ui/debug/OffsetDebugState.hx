@@ -120,21 +120,26 @@ class OffsetDebugState extends FunkinState
 		final up:Bool = FlxG.keys.justPressed.W;
 		final down:Bool = FlxG.keys.justPressed.S;
 
+		var offsetX:Float = character.globalOffset[0];
+		var offsetY:Float = character.globalOffset[1];
+
 		var add:Int = 10;
 
 		add = FlxG.keys.pressed.SHIFT ? 100 : add;
 		add = FlxG.keys.pressed.CONTROL ? 1 : add;
 
-		if (left || right)
-			character.offset.x -= (left ? -add : add);
-		if (up || down)
-			character.offset.y -= (up ? -add : add);
-
-		var offsetX:Float = -character.offset.x;
-		var offsetY:Float = -character.offset.y;
-
 		offsetX = offsetX == -0 ? 0 : offsetX;
 		offsetY = offsetY == -0 ? 0 : offsetY;
+
+		if (left || right)
+			offsetX += (left ? -add : add);
+		if (up || down)
+			offsetY += (up ? -add : add);
+
+		character.globalOffset[0] = offsetX;
+		character.globalOffset[1] = offsetY;
+
+		character.updateOffset();
 
 		offsetText.text = '($offsetX, $offsetY)';
 	}

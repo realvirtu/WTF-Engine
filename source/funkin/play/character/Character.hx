@@ -26,8 +26,8 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	public var isSinging(get, never):Bool;
 	public var isMissing(get, never):Bool;
 
-	public var animOffsets(default, null) = new StringMap<Array<Float>>();
-	public var globalOffset(get, never):Array<Float>;
+	public var animOffsets(default, null):StringMap<Array<Float>>;
+	public var globalOffset(default, null):Array<Float>;
 
 	var dropAnimCounts:Array<Int> = [];
 
@@ -40,16 +40,19 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 		loadSprite('$charPath/image', meta.scale, meta.width, meta.height);
 
-		buildAnimations();
-		updateOffset();
+		animOffsets = new StringMap<Array<Float>>();
+		globalOffset = meta.globalOffset.copy();
+
+		singDuration = meta.singDuration;
+		singTimer = MAX_SING_TIME;
+
+		bopEvery = meta.bopEvery;
 
 		flipX = meta.flipX != (type == PLAYER);
 		flipY = meta.flipY;
 
-		bopEvery = meta.bopEvery;
-
-		singDuration = meta.singDuration;
-		singTimer = MAX_SING_TIME;
+		buildAnimations();
+		updateOffset();
 
 		bop(true);
 	}
@@ -109,7 +112,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 	public function updateOffset()
 	{
-		final animOffset:Array<Float> = animOffsets.get(getCurrentAnimation()) ?? [0, 0];
+		final animOffset:Array<Float> = animOffsets.get(getCurrentAnimation()) ?? [];
 
 		offset.set(-globalOffset[0], -globalOffset[1]);
 		offset.subtract(animOffset[0], animOffset[1]);
@@ -117,8 +120,11 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 	public function getCameraPosition():Array<Float>
 	{
+		if (meta == null)
+			return [0, 0];
+
 		final pos:FlxPoint = getGraphicMidpoint();
-		final offset:Array<Float> = meta.cameraOffset ?? [0, 0];
+		final offset:Array<Float> = meta.cameraOffset.copy();
 
 		if (flipX)
 			offset[0] = -offset[0];
@@ -155,7 +161,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 			addAnimation(name, [for (frame in anim.frames) frame + index], anim.framerate, anim.looped);
 
-			animOffsets.set(name, anim.offset);
+			animOffsets.set(name, anim.offset?.copy());
 
 			// This is mainly for the GF character
 			// Because GF plays a drop animation when you lose your combo
@@ -285,12 +291,6 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	inline function get_isMissing():Bool
 	{
 		return getCurrentAnimation().endsWith('-miss');
-	}
-
-	@:noCompletion
-	inline function get_globalOffset():Array<Float>
-	{
-		return meta.globalOffset;
 	}
 
 	@:noCompletion
