@@ -149,6 +149,9 @@ class PlayState extends FunkinState
 		song = params.song;
 		difficulty = params.difficulty;
 		instrumental = params.instrumental;
+
+		if (song != null)
+			style = NoteStyleRegistry.instance.fetch(song.style);
 	}
 
 	override function create()
@@ -159,8 +162,6 @@ class PlayState extends FunkinState
 			return FlxG.switchState(() -> new MainMenuState());
 
 		instance = this;
-
-		style = NoteStyleRegistry.instance.fetch(song.style);
 
 		//
 		// CAMERAS
