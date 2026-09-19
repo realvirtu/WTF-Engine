@@ -15,22 +15,4 @@ class MathUtil
 	{
 		return FlxMath.lerp(a, b, FlxMath.getElapsedLerp(ratio, FlxG.elapsed));
 	}
-
-	/**
-	 * Converts an array to an `FlxPoint`.
-	 * `number` is the default value for either X and Y.
-	 */
-	public static function arrayToPoint(array:Array<Float>, number:Float = 0):FlxPoint
-	{
-		var x:Float = number;
-		var y:Float = number;
-
-		if (array != null)
-		{
-			x = array[0] ?? x;
-			y = array[1] ?? y;
-		}
-
-		return FlxPoint.get(x, y);
-	}
 }

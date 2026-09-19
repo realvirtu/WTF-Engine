@@ -1,7 +1,7 @@
 {
 	"style": "funkin",
 	"name": "Tutorial",
-	"gf": "gf",
+	"gf": null,
 	"album": "volume1",
 	"difficulties": [
 		"easy",

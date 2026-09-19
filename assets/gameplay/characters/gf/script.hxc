@@ -1,0 +1,25 @@
+import funkin.play.character.Character;
+import funkin.play.PlayState;
+
+class GFCharacter extends Character
+{
+    public function new()
+    {
+        super('gf');
+    }
+
+    override function onCreate(event:ScriptEvent)
+    {
+        super.onCreate(event);
+
+        if (PlayState.instance.song.id == 'tutorial')
+        {
+            x = PlayState.instance.stage.getGFPosition()[0];
+            y = PlayState.instance.stage.getGFPosition()[1];
+
+            zIndex = 1;
+
+            PlayState.instance.stage.refresh();
+        }
+    }
+}

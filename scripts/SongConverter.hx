@@ -102,8 +102,6 @@ class SongConverter
 
 		switch (song)
 		{
-			case 'tutorial':
-				meta.gf = meta.opponent;
 			case 'roses':
 				// I don't feel like doing offsets :3
 				meta.instrumentals.remove('pico');

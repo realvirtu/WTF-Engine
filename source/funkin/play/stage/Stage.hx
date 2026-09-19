@@ -54,25 +54,21 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 			var sprite:StageProp = new StageProp(data.id);
 
 			final image:String = '$path/props/${data.image}';
-			final position:FlxPoint = MathUtil.arrayToPoint(prop.position);
-			final scroll:FlxPoint = MathUtil.arrayToPoint(data.scroll, 1);
+			final position:Array<Float> = prop.position ?? [0, 0];
+			final scroll:Array<Float> = data.scroll ?? [1, 1];
 
 			sprite.loadSprite(image, data.scale, data.width, data.height);
 			sprite.loadAnimations(data.animations);
 
-			sprite.scrollFactor.copyFrom(scroll);
+			sprite.setPosition(position[0], position[1]);
+
+			sprite.scrollFactor.set(scroll[0], scroll[1]);
 
 			sprite.flipX = data.flipX;
 			sprite.flipY = data.flipY;
 			sprite.zIndex = data.zIndex;
 
 			sprite.active = data.animations.length > 0;
-
-			sprite.setPosition(position.x, position.y);
-
-			// We're done with the points
-			position.put();
-			scroll.put();
 
 			if (prop.id != null)
 			{
@@ -92,84 +88,79 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 		return props.get(id);
 	}
 
-	public function setPlayer(id:String):Character
+	public function setPlayer(id:String)
 	{
-		var position:FlxPoint = MathUtil.arrayToPoint(meta?.player?.position);
-		var scroll:FlxPoint = MathUtil.arrayToPoint(meta?.player?.scroll, 1);
-
 		player?.destroy();
 		player = CharacterRegistry.instance.fetchCharacter(id, PLAYER);
 
 		if (player != null)
 		{
-			player.setPosition(position.x, position.y);
-			player.scrollFactor.copyFrom(scroll);
-			player.zIndex = meta?.player?.zIndex ?? 2;
+			final scroll:Array<Float> = meta?.player?.scroll ?? [1, 1];
+			final zIndex:Int = meta?.player?.zIndex ?? 2;
+
+			player.setPosition(getPlayerPosition()[0], getPlayerPosition()[1]);
+
+			player.scrollFactor.set(scroll[0], scroll[1]);
+			player.zIndex = zIndex;
 
 			add(player);
 			refresh();
 		}
-
-		position.put();
-		scroll.put();
-
-		return player;
 	}
 
 	public function setOpponent(id:String)
 	{
-		var position:FlxPoint = MathUtil.arrayToPoint(meta?.opponent?.position);
-		var scroll:FlxPoint = MathUtil.arrayToPoint(meta?.opponent?.scroll, 1);
-
 		opponent?.destroy();
 		opponent = CharacterRegistry.instance.fetchCharacter(id, OPPONENT);
 
 		if (opponent != null)
 		{
-			opponent.setPosition(position.x, position.y);
-			opponent.scrollFactor.copyFrom(scroll);
-			opponent.zIndex = meta?.opponent?.zIndex ?? 2;
+			final scroll:Array<Float> = meta?.opponent?.scroll ?? [1, 1];
+			final zIndex:Int = meta?.opponent?.zIndex ?? 2;
+
+			opponent.setPosition(getOpponentPosition()[0], getOpponentPosition()[1]);
+
+			opponent.scrollFactor.set(scroll[0], scroll[1]);
+			opponent.zIndex = zIndex;
 
 			add(opponent);
 			refresh();
 		}
-
-		position.put();
-		scroll.put();
 	}
 
 	public function setGF(id:String)
 	{
-		var position:FlxPoint = MathUtil.arrayToPoint(meta?.gf?.position);
-		var scroll:FlxPoint = MathUtil.arrayToPoint(meta?.gf?.scroll, 1);
-
 		gf?.destroy();
 		gf = CharacterRegistry.instance.fetchCharacter(id, GF);
 
 		if (gf != null)
 		{
-			gf.setPosition(position.x, position.y);
-			gf.scrollFactor.copyFrom(scroll);
-			gf.zIndex = meta?.gf?.zIndex ?? 1;
+			final scroll:Array<Float> = meta?.gf?.scroll ?? [1, 1];
+			final zIndex:Int = meta?.gf?.zIndex ?? 1;
+
+			gf.setPosition(getGFPosition()[0], getGFPosition()[1]);
+
+			gf.scrollFactor.set(scroll[0], scroll[1]);
+			gf.zIndex = zIndex;
 
 			add(gf);
 			refresh();
 		}
-
-		position.put();
-		scroll.put();
 	}
 
-	@:noCompletion
-	function get_zoom():Float
+	public function getPlayerPosition():Array<Float>
 	{
-		return meta?.zoom ?? Constants.DEFAULT_CAMERA_ZOOM;
+		return meta?.player?.position ?? [0, 0];
 	}
 
-	@:noCompletion
-	inline function get_path():String
+	public function getOpponentPosition():Array<Float>
 	{
-		return '${StageRegistry.instance.path}/$id';
+		return meta?.opponent?.position ?? [0, 0];
+	}
+
+	public function getGFPosition():Array<Float>
+	{
+		return meta?.gf?.position ?? [0, 0];
 	}
 
 	public function onCreate(event:ScriptEvent) {}
@@ -180,13 +171,7 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 
 	public function onScriptEvent(event:ScriptEvent)
 	{
-		// Thank you Hyper :whatthehappy:
-		// It's done like this because for Spirit, he runs refresh on the stage
-		// Running a refresh means it iterates through Spirit over and over again
-		// Spirit creates an FlxTrail as well, so the loop just never ends
-		var props:Array<FlxBasic> = members.copy().filter(prop -> prop?.exists && return prop is IScriptedClass);
-
-		for (prop in props)
+		for (prop in members.copy().filter(prop -> return prop is IScriptedClass))
 			ScriptEventDispatcher.dispatch(cast prop, event);
 	}
 
@@ -229,4 +214,16 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 	public function onGameOverLoop(event:ScriptEvent) {}
 
 	public function onGameOverRetry(event:ScriptEvent) {}
+
+	@:noCompletion
+	function get_zoom():Float
+	{
+		return meta?.zoom ?? Constants.DEFAULT_CAMERA_ZOOM;
+	}
+
+	@:noCompletion
+	inline function get_path():String
+	{
+		return '${StageRegistry.instance.path}/$id';
+	}
 }

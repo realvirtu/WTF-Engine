@@ -32,9 +32,9 @@ class DialogueBox extends FunkinSprite
 		loadSprite('$path/image', meta.scale);
 		centerOffsets();
 
-		final off:FlxPoint = MathUtil.arrayToPoint(meta.offset);
+		final off:Array<Float> = meta.offset ?? [0, 0];
 
-		offset.add(off);
-		off.put();
+		offset.x += off[0];
+		offset.y += off[1];
 	}
 }

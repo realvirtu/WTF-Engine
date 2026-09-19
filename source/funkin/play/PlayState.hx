@@ -488,17 +488,15 @@ class PlayState extends FunkinState
 			return;
 
 		final pos:FlxPoint = target.getGraphicMidpoint();
-		final offset:FlxPoint = MathUtil.arrayToPoint(target.meta.cameraOffset);
+		final offset:Array<Float> = target.meta.cameraOffset ?? [0, 0];
 
 		if (target.flipX)
-			offset.x = -offset.x;
+			offset[0] = -offset[0];
 
-		PlayState.instance.camFollow.setPosition(pos.x + offset.x, pos.y + offset.y);
+		PlayState.instance.camFollow.setPosition(pos.x + offset[0], pos.y + offset[1]);
 
 		if (instant)
 			camera.snapToTarget();
-
-		offset.put();
 	}
 
 	public function setCameraZoom(?zoom:Float, instant:Bool = false)
@@ -589,18 +587,6 @@ class PlayState extends FunkinState
 		stage.setPlayer(song.player);
 		stage.setOpponent(song.opponent);
 		stage.setGF(song.gf);
-
-		// GF opponent
-		if (stage.opponent != null && song.opponent == song.gf)
-		{
-			stage.opponent.setPosition(stage.gf.x, stage.gf.y);
-			stage.opponent.zIndex = stage.gf.zIndex;
-
-			stage.gf.destroy();
-			stage.gf = null;
-
-			stage.refresh();
-		}
 
 		// Health icons
 		opponentIcon = new HealthIcon(stage.opponent?.meta?.icon, false);
