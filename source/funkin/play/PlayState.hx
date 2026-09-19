@@ -97,7 +97,7 @@ class PlayState extends FunkinState
 	public var healthLerp:Float;
 	public var deaths:Int = 0;
 
-	public var stageZoom:Float;
+	public var stageZoom:Float = 1;
 	public var camZoom:Float;
 
 	public var camBopMultiplier:Float;
@@ -234,7 +234,7 @@ class PlayState extends FunkinState
 		{
 			var bg:FunkinSprite = FunkinSprite.create(0, 0, 'ui/menu/bg', 1.5);
 			bg.scrollFactor.set();
-			bg.color = 0xFF028D48;
+			bg.color = 0xFF00B95D;
 			add(bg);
 		}
 
@@ -340,8 +340,8 @@ class PlayState extends FunkinState
 		camBopMultiplier = MathUtil.lerp(camBopMultiplier, 1, 0.03);
 		camera.zoom = camZoom * camBopMultiplier;
 
-		if (health == healthBar.min && !minimalMode)
-			openSubState(new GameOverSubState(stage.player));
+		if (health == healthBar.min)
+			openSubState(new GameOverSubState(stage?.player));
 	}
 
 	override function beatHit(beat:Int)
@@ -412,11 +412,11 @@ class PlayState extends FunkinState
 			setCameraTarget(stage.gf, true);
 			setCameraTarget(stage.opponent, true);
 			setCameraTarget(stage.player, true);
-
-			setCameraZoom(null, true);
-
-			camera.snapToTarget();
 		}
+
+		setCameraZoom(null, true);
+
+		camera.snapToTarget();
 
 		camBopRate = 1;
 		camBopIntensity = 1;
@@ -763,7 +763,7 @@ class PlayState extends FunkinState
 		if (controls.PAUSE)
 			pause();
 
-		if (controls.RESET && !minimalMode)
+		if (controls.RESET)
 		{
 			health = healthBar.min;
 			healthLerp = health;

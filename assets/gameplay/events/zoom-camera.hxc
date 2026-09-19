@@ -15,6 +15,9 @@ class ZoomCameraEvent extends SongEvent
     {
         super.handle(value);
 
+        if (PlayState.instance.minimalMode)
+            return;
+
         var zoom:Float = getFloat('z');
         var ease:EaseFunction = getEase('e');
         var duration:Float = getFloat('d');
