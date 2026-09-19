@@ -1,5 +1,6 @@
 package funkin.play.character;
 
+import flixel.math.FlxPoint;
 import funkin.data.character.CharacterData;
 import funkin.data.character.CharacterRegistry;
 import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
@@ -112,6 +113,17 @@ class Character extends StageProp implements IPlayStateScriptedClass
 
 		offset.set(-globalOffset[0], -globalOffset[1]);
 		offset.subtract(animOffset[0], animOffset[1]);
+	}
+
+	public function getCameraPosition():Array<Float>
+	{
+		final pos:FlxPoint = getGraphicMidpoint();
+		final offset:Array<Float> = meta.cameraOffset ?? [0, 0];
+
+		if (flipX)
+			offset[0] = -offset[0];
+
+		return [pos.x + offset[0], pos.y + offset[1]];
 	}
 
 	function buildAnimations()

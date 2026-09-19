@@ -4,7 +4,6 @@ import flixel.FlxCamera;
 import flixel.FlxObject;
 import flixel.FlxSubState;
 import flixel.math.FlxMath;
-import flixel.math.FlxPoint;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
@@ -487,13 +486,8 @@ class PlayState extends FunkinState
 		if (target == null)
 			return;
 
-		final pos:FlxPoint = target.getGraphicMidpoint();
-		final offset:Array<Float> = target.meta.cameraOffset ?? [0, 0];
-
-		if (target.flipX)
-			offset[0] = -offset[0];
-
-		PlayState.instance.camFollow.setPosition(pos.x + offset[0], pos.y + offset[1]);
+		PlayState.instance.camFollow.x = target.getCameraPosition()[0];
+		PlayState.instance.camFollow.y = target.getCameraPosition()[1];
 
 		if (instant)
 			camera.snapToTarget();
