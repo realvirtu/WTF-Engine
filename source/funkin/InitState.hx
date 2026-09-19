@@ -32,6 +32,10 @@ import funkin.util.plugins.ScreenshotPlugin;
  */
 class InitState extends FlxState
 {
+	#if HAS_FOCUS_LOST_VOLUME
+	var lastFocusVolume:Null<Float>;
+	#end
+
 	override function create()
 	{
 		super.create();
@@ -45,6 +49,11 @@ class InitState extends FlxState
 
 		@:privateAccess
 		FlxG.mouse._visibleWhenFocusLost = false;
+
+		#if HAS_FOCUS_LOST_VOLUME
+		FlxG.signals.focusLost.add(onLoseFocus);
+		FlxG.signals.focusGained.add(onGainFocus);
+		#end
 
 		#if HAS_DISCORD_RPC
 		DiscordRPC.init();
@@ -82,6 +91,26 @@ class InitState extends FlxState
 		// Starts the game
 		FlxG.switchState(() -> new TitleState());
 	}
+
+	#if HAS_FOCUS_LOST_VOLUME
+	function onLoseFocus()
+	{
+		if (Preferences.autoPause)
+			return;
+
+		lastFocusVolume = FlxG.sound.volume;
+
+		FlxG.sound.volume *= 0.25;
+	}
+
+	function onGainFocus()
+	{
+		if (Preferences.autoPause || lastFocusVolume == null)
+			return;
+
+		FlxG.sound.volume = lastFocusVolume;
+	}
+	#end
 
 	public static function loadRegistries()
 	{

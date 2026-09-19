@@ -152,6 +152,7 @@ class Project extends HXProject
         setHaxedef("funkin", VERSION);
 
         setHaxedef("HAS_ANTI_MASH");
+        setHaxedef("HAS_FOCUS_LOST_VOLUME");
         setHaxedef("HAS_FPS_COUNTER");
         setHaxedef("HAS_TRANS_SECRET");
         setHaxedef("HAS_OLD_ICON_SECRET");

@@ -15,9 +15,6 @@ class FunkinState extends FlxState
 	var conductor(get, never):Conductor;
 	var controls(get, never):Controls;
 
-	var lostFocusVolume:Float;
-	var lostFocus:Bool;
-
 	override function create()
 	{
 		super.create();
@@ -61,34 +58,6 @@ class FunkinState extends FlxState
 	function directionDown(direction:NoteDirection) {}
 
 	function directionUp(direction:NoteDirection) {}
-
-	override function onFocusLost()
-	{
-		super.onFocusLost();
-
-		// Lower the volume when focus is lost
-		if (Preferences.autoPause)
-			return;
-
-		lostFocusVolume = FlxG.sound.volume;
-		lostFocus = true;
-
-		FlxG.sound.volume *= 0.25;
-	}
-
-	override function onFocus()
-	{
-		super.onFocus();
-
-		// Restore the volume when the window has focus again
-		// It'd suck if the game stayed quiet
-		if (Preferences.autoPause || !lostFocus)
-			return;
-
-		lostFocus = false;
-
-		FlxG.sound.volume = lostFocusVolume;
-	}
 
 	override function destroy()
 	{
