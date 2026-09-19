@@ -1,8 +1,6 @@
 package funkin.play.stage;
 
-import flixel.FlxBasic;
 import flixel.group.FlxGroup;
-import flixel.math.FlxPoint;
 import funkin.data.character.CharacterRegistry;
 import funkin.data.stage.StageData;
 import funkin.data.stage.StageRegistry;
@@ -10,7 +8,6 @@ import funkin.modding.IScriptedClass;
 import funkin.modding.event.ScriptEvent;
 import funkin.modding.event.ScriptEventDispatcher;
 import funkin.play.character.Character;
-import funkin.util.MathUtil;
 import haxe.ds.StringMap;
 
 /**
@@ -23,7 +20,6 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 	public var meta:StageData;
 
 	public var props(default, null) = new StringMap<StageProp>();
-	public var propData(default, null) = new StringMap<StagePropData>();
 
 	public var zoom(get, never):Float;
 
@@ -50,36 +46,29 @@ class Stage extends FlxGroup implements IPlayStateScriptedClass
 			if (prop == null)
 				continue;
 
-			var data:StagePropData = propData.get(prop.prop) ?? prop;
-			var sprite:StageProp = new StageProp(data.id);
-
-			final image:String = '$path/props/${data.image}';
 			final position:Array<Float> = prop.position ?? [0, 0];
-			final scroll:Array<Float> = data.scroll ?? [1, 1];
+			final scroll:Array<Float> = prop.scroll ?? [1, 1];
 
-			sprite.loadSprite(image, data.scale, data.width, data.height);
-			sprite.loadAnimations(data.animations);
+			var sprite:StageProp = new StageProp(prop.id);
+
+			sprite.loadSprite('$path/props/${prop.image}', prop.scale, prop.width, prop.height);
+			sprite.loadAnimations(prop.animations);
 
 			sprite.setPosition(position[0], position[1]);
 
 			sprite.scrollFactor.set(scroll[0], scroll[1]);
+			sprite.active = prop.animations.length > 0;
 
-			sprite.flipX = data.flipX;
-			sprite.flipY = data.flipY;
-			sprite.zIndex = data.zIndex;
-
-			sprite.active = data.animations.length > 0;
+			sprite.flipX = prop.flipX;
+			sprite.flipY = prop.flipY;
+			sprite.zIndex = prop.zIndex;
 
 			if (prop.id != null)
-			{
 				props.set(prop.id, sprite);
-				propData.set(prop.id, data);
-			}
 
 			add(sprite);
 		}
 
-		// Refreshes to properly sort props
 		refresh();
 	}
 

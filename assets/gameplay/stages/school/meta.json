@@ -67,8 +67,21 @@
         },
         {
             "id": "girls2",
-            "prop": "girls1",
-            "position": [60, -400]
+            "image": "girls",
+            "position": [60, -400],
+            "scale": 3.5,
+            "width": 83,
+            "height": 70,
+            "animations": [
+                {
+                    "name": "idle",
+                    "frames": [0, 1, 2]
+                },
+                {
+                    "name": "idle-scared",
+                    "frames": [3, 4, 5]
+                }
+            ]
         }
     ]
 }
