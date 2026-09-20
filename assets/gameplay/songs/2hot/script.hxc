@@ -126,6 +126,15 @@ class TwoHotSong extends Song
         resetExplosion();
     }
 
+    override function onDestroy(event:ScriptEvent)
+    {
+        super.onDestroy(event);
+
+        cans = null;
+        can = null;
+        explosion = null;
+    }
+
     function explodeCan()
     {
         explosion.playAnimation('explode', true);
