@@ -81,6 +81,7 @@ class FunkinSoundTray extends FlxSoundTray
 		FunkinSound.playOnce(getPath('sounds/${FlxG.sound.volume == 1 ? 'max' : 'up'}'));
 
 		popup(true);
+		save();
 	}
 
 	override function showDecrement()
@@ -88,6 +89,7 @@ class FunkinSoundTray extends FlxSoundTray
 		FunkinSound.playOnce(getPath('sounds/down'));
 
 		popup(false);
+		save();
 	}
 
 	function popup(up:Bool)
@@ -119,6 +121,19 @@ class FunkinSoundTray extends FlxSoundTray
 		addChild(bar);
 
 		return bar;
+	}
+
+	function save()
+	{
+		// Flixel automatically loads volume save data
+		// However we need to manually save it
+		#if FLX_SAVE
+		if (!FlxG.save.isBound)
+			return;
+		FlxG.save.data.volume = FlxG.sound.volume;
+		FlxG.save.data.mute = FlxG.sound.muted;
+		FlxG.save.flush();
+		#end
 	}
 
 	inline function getPath(id:String):String
