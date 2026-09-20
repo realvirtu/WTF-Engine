@@ -62,7 +62,7 @@ class StrumSprite extends FunkinSprite
 
 		// Slightly longer time for the opponent
 		// Gives the opponent strums a snapped look
-		confirmTime = isPlayer ? 1 : 2;
+		confirmTime = isPlayer ? 1 : 1.85;
 	}
 
 	@:noCompletion
