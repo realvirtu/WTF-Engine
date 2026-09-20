@@ -3,11 +3,9 @@ package funkin.save;
 import funkin.data.song.SongRegistry;
 import funkin.data.story.LevelRegistry;
 import funkin.play.song.Song;
-import funkin.save.SaveData.SaveOptionsData;
 import funkin.ui.story.Level;
 import funkin.util.WindowUtil;
 import haxe.ds.StringMap;
-import lime.system.System;
 #if HAS_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
@@ -21,11 +19,13 @@ class Save
 
 	public var scores(get, never):StringMap<Int>;
 	public var favorites(get, never):StringMap<Bool>;
-	public var options(get, never):SaveOptionsData;
+	public var options(get, never):StringMap<Dynamic>;
 
 	var data:SaveData;
 
-	public function new()
+	public function new() {}
+
+	public function load()
 	{
 		// Loads default data if there is none
 		// Hehe merge
@@ -37,18 +37,18 @@ class Save
 		// LOAD
 		//
 
-		FlxG.autoPause = options.autoPause;
-		FlxG.drawFramerate = FlxG.updateFramerate = options.unlockedFPS ? 0 : options.fpsCap;
+		FlxG.autoPause = Preferences.autoPause;
+		FlxG.drawFramerate = FlxG.updateFramerate = Preferences.unlockedFPS ? 0 : Preferences.fpsCap;
 
-		WindowUtil.setVSync(options.vsync);
+		WindowUtil.setVSync(Preferences.vsync);
 
 		#if HAS_FPS_COUNTER
-		Main.fpsCounter.visible = options.showFPS;
-		Main.fpsCounter.bg.alpha = options.fpsBGOpacity / 100;
+		Main.fpsCounter.visible = Preferences.showFPS;
+		Main.fpsCounter.bg.alpha = Preferences.fpsBGOpacity / 100;
 		#end
 
 		#if HAS_DISCORD_RPC
-		if (options.discordRPC)
+		if (Preferences.discordRPC)
 			DiscordRPC.start();
 		#end
 	}
@@ -89,16 +89,10 @@ class Save
 			variation = null;
 		variation ??= Constants.DEFAULT_VARIATION;
 
-		// Don't favorite the song if it's already favorited
 		if (isSongFavorited(id, variation) == favorite)
 			return;
 
 		favorites.set('$id:$variation', favorite);
-
-		if (favorite)
-			trace('Favorited song $id ($variation).'.info());
-		else
-			trace('Unfavorited song $id ($variation).'.info());
 
 		flush();
 	}
@@ -205,7 +199,7 @@ class Save
 	}
 
 	@:noCompletion
-	inline function get_options():SaveOptionsData
+	inline function get_options():StringMap<Dynamic>
 	{
 		return data.options;
 	}
@@ -215,19 +209,7 @@ class Save
 		return {
 			scores: new StringMap<Int>(),
 			favorites: new StringMap<Bool>(),
-			options: {
-				downscroll: false,
-				cameraBops: true,
-				strumBGOpacity: 0,
-				showTimer: true,
-				showFPS: true,
-				fpsBGOpacity: 50,
-				fpsCap: 200,
-				vsync: false,
-				unlockedFPS: false,
-				autoPause: true,
-				discordRPC: true,
-			}
+			options: new StringMap<Dynamic>()
 		}
 	}
 }

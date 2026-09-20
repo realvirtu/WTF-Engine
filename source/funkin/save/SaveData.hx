@@ -9,23 +9,5 @@ typedef SaveData =
 {
 	var scores:StringMap<Int>;
 	var favorites:StringMap<Bool>;
-	var options:SaveOptionsData;
-}
-
-/**
- * A structure object used for the save options data.
- */
-typedef SaveOptionsData =
-{
-	var downscroll:Bool;
-	var cameraBops:Bool;
-	var strumBGOpacity:Int;
-	var showTimer:Bool;
-	var showFPS:Bool;
-	var fpsBGOpacity:Int;
-	var fpsCap:Int;
-	var vsync:Bool;
-	var unlockedFPS:Bool;
-	var autoPause:Bool;
-	var discordRPC:Bool;
+	var options:StringMap<Dynamic>;
 }

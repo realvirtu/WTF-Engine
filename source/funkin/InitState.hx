@@ -60,6 +60,7 @@ class InitState extends FlxState
 		#end
 
 		Save.instance = new Save();
+		Save.instance.load();
 
 		ModHandler.init();
 

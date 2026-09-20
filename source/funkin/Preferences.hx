@@ -36,7 +36,7 @@ class Preferences
 	@:noCompletion
 	static inline function set_downscroll(value:Bool):Bool
 	{
-		Save.instance.options.downscroll = value;
+		Save.instance.options.set('downscroll', value);
 		Save.instance.flush();
 
 		PlayState.instance?.updatePreferences();
@@ -47,13 +47,13 @@ class Preferences
 	@:noCompletion
 	static inline function get_downscroll():Bool
 	{
-		return Save.instance.options.downscroll;
+		return Save.instance.options.get('downscroll') ?? false;
 	}
 
 	@:noCompletion
 	static inline function set_cameraBops(value:Bool):Bool
 	{
-		Save.instance.options.cameraBops = value;
+		Save.instance.options.set('cameraBops', value);
 		Save.instance.flush();
 
 		return value;
@@ -62,13 +62,13 @@ class Preferences
 	@:noCompletion
 	static inline function get_cameraBops():Bool
 	{
-		return Save.instance.options.cameraBops;
+		return Save.instance.options.get('cameraBops') ?? true;
 	}
 
 	@:noCompletion
 	static inline function set_strumBGOpacity(value:Int):Int
 	{
-		Save.instance.options.strumBGOpacity = value;
+		Save.instance.options.set('strumBGOpacity', value);
 		Save.instance.flush();
 
 		PlayState.instance?.updatePreferences();
@@ -79,13 +79,13 @@ class Preferences
 	@:noCompletion
 	static inline function get_strumBGOpacity():Int
 	{
-		return Save.instance.options.strumBGOpacity;
+		return Save.instance.options.get('strumBGOpacity') ?? 0;
 	}
 
 	@:noCompletion
 	static inline function set_showTimer(value:Bool):Bool
 	{
-		Save.instance.options.showTimer = value;
+		Save.instance.options.set('showTimer', value);
 		Save.instance.flush();
 
 		PlayState.instance?.updatePreferences();
@@ -96,14 +96,14 @@ class Preferences
 	@:noCompletion
 	static inline function get_showTimer():Bool
 	{
-		return Save.instance.options.showTimer;
+		return Save.instance.options.get('showTimer') ?? true;
 	}
 
 	#if HAS_FPS_COUNTER
 	@:noCompletion
 	static inline function set_showFPS(value:Bool):Bool
 	{
-		Save.instance.options.showFPS = value;
+		Save.instance.options.set('showFPS', value);
 		Save.instance.flush();
 
 		Main.fpsCounter.visible = value;
@@ -114,13 +114,13 @@ class Preferences
 	@:noCompletion
 	static inline function get_showFPS():Bool
 	{
-		return Save.instance.options.showFPS;
+		return Save.instance.options.get('showFPS') ?? true;
 	}
 
 	@:noCompletion
 	static inline function set_fpsBGOpacity(value:Int):Int
 	{
-		Save.instance.options.fpsBGOpacity = value;
+		Save.instance.options.set('fpsBGOpacity', value);
 		Save.instance.flush();
 
 		Main.fpsCounter.bg.alpha = value / 100;
@@ -131,14 +131,14 @@ class Preferences
 	@:noCompletion
 	static inline function get_fpsBGOpacity():Int
 	{
-		return Save.instance.options.fpsBGOpacity;
+		return Save.instance.options.get('fpsBGOpacity') ?? 50;
 	}
 	#end
 
 	@:noCompletion
 	static inline function set_fpsCap(value:Int):Int
 	{
-		Save.instance.options.fpsCap = value;
+		Save.instance.options.set('fpsCap', value);
 		Save.instance.flush();
 
 		FlxG.drawFramerate = FlxG.updateFramerate = unlockedFPS ? 0 : value;
@@ -149,13 +149,13 @@ class Preferences
 	@:noCompletion
 	static inline function get_fpsCap():Int
 	{
-		return Save.instance.options.fpsCap;
+		return Save.instance.options.get('fpsCap') ?? 200;
 	}
 
 	@:noCompletion
 	static inline function set_vsync(value:Bool):Bool
 	{
-		Save.instance.options.vsync = value;
+		Save.instance.options.set('vsync', value);
 		Save.instance.flush();
 
 		WindowUtil.setVSync(value);
@@ -166,13 +166,13 @@ class Preferences
 	@:noCompletion
 	static inline function get_vsync():Bool
 	{
-		return Save.instance.options.vsync;
+		return Save.instance.options.get('vsync') ?? false;
 	}
 
 	@:noCompletion
 	static inline function set_unlockedFPS(value:Bool):Bool
 	{
-		Save.instance.options.unlockedFPS = value;
+		Save.instance.options.set('unlockedFPS', value);
 		Save.instance.flush();
 
 		FlxG.drawFramerate = FlxG.updateFramerate = value ? 0 : fpsCap;
@@ -183,13 +183,13 @@ class Preferences
 	@:noCompletion
 	static inline function get_unlockedFPS():Bool
 	{
-		return Save.instance.options.unlockedFPS;
+		return Save.instance.options.get('unlockedFPS') ?? false;
 	}
 
 	@:noCompletion
 	static inline function set_autoPause(value:Bool):Bool
 	{
-		Save.instance.options.autoPause = value;
+		Save.instance.options.set('autoPause', value);
 		Save.instance.flush();
 
 		FlxG.autoPause = value;
@@ -200,14 +200,14 @@ class Preferences
 	@:noCompletion
 	static inline function get_autoPause():Bool
 	{
-		return Save.instance.options.autoPause;
+		return Save.instance.options.get('autoPause') ?? true;
 	}
 
 	#if HAS_DISCORD_RPC
 	@:noCompletion
 	static inline function set_discordRPC(value:Bool):Bool
 	{
-		Save.instance.options.discordRPC = value;
+		Save.instance.options.set('discordRPC', value);
 		Save.instance.flush();
 
 		if (value)
@@ -221,7 +221,7 @@ class Preferences
 	@:noCompletion
 	static inline function get_discordRPC():Bool
 	{
-		return Save.instance.options.discordRPC;
+		return Save.instance.options.get('discordRPC') ?? true;
 	}
 	#end
 
