@@ -70,7 +70,7 @@ class Save
 
 		variation ??= Constants.DEFAULT_VARIATION;
 
-		return setScore('song-$id:$variation', diff, score, force);
+		return setScore('song:$id-$variation', diff, score, force);
 	}
 
 	public function getSongScore(id:String, diff:String, ?variation:String)
@@ -80,7 +80,7 @@ class Save
 
 		variation ??= Constants.DEFAULT_VARIATION;
 
-		return getScore('song-$id:$variation', diff);
+		return getScore('song:$id-$variation', diff);
 	}
 
 	public function setFavorite(id:String, ?variation:String, favorite:Bool)
@@ -92,7 +92,7 @@ class Save
 		if (isSongFavorited(id, variation) == favorite)
 			return;
 
-		favorites.set('$id:$variation', favorite);
+		favorites.set('$id-$variation', favorite);
 
 		flush();
 	}
@@ -104,7 +104,7 @@ class Save
 
 		variation ??= Constants.DEFAULT_VARIATION;
 
-		return favorites.get('$id:$variation') ?? false;
+		return favorites.get('$id-$variation') ?? false;
 	}
 
 	public function isSongComplete(id:String):Bool
@@ -134,12 +134,12 @@ class Save
 
 	public function setLevelScore(id:String, diff:String, score:Int, force:Bool = true)
 	{
-		return setScore('level-$id', diff, score, force);
+		return setScore('level:$id', diff, score, force);
 	}
 
 	public function getLevelScore(id:String, diff:String):Int
 	{
-		return getScore('level-$id', diff);
+		return getScore('level:$id', diff);
 	}
 
 	public function isLevelComplete(id:String):Bool
