@@ -48,7 +48,7 @@ class CapsuleSprite extends FlxSpriteGroup
 		songText = new FunkinText(33, 36.5, 'what the song');
 		songText.autoBounds = false;
 		songText.size = 20;
-		songText.clipRect = new FlxRect(0, 0, 0, songText.frameHeight);
+		songText.clipRect = FlxRect.get(0, 0, 0, songText.frameHeight);
 		add(songText);
 
 		bpmText = new CapsuleText(35, 0, '100');
