@@ -60,9 +60,7 @@ class StrumSprite extends FunkinSprite
 	{
 		playAnimation('confirm');
 
-		// Slightly longer time for the opponent
-		// Gives the opponent strums a snapped look
-		confirmTime = isPlayer ? 1 : 1.85;
+		confirmTime = 1;
 	}
 
 	@:noCompletion
