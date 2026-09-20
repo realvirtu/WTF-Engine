@@ -1,6 +1,5 @@
 package funkin.audio;
 
-import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.sound.FlxSound;
 
