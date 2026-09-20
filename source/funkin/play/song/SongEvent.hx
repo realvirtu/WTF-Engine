@@ -1,6 +1,5 @@
 package funkin.play.song;
 
-import flixel.tweens.FlxEase.EaseFunction;
 import flixel.tweens.FlxEase;
 import funkin.modding.IScriptedClass.IPlayStateScriptedClass;
 import funkin.modding.event.ScriptEvent;
