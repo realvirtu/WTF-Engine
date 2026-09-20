@@ -40,7 +40,7 @@ class PhillyTrainStage extends Stage
     {
         super.onUpdate(event);
 
-        windows.alpha -= event.elapsed / (Conductor.instance.crotchet / Constants.MS_PER_SEC * WINDOW_BEATS);
+        windows.alpha -= event.elapsed / (Conductor.instance.beatLength / Constants.MS_PER_SEC * WINDOW_BEATS);
 
         train.visible = trainActive;
 

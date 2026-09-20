@@ -446,7 +446,7 @@ class PlayState extends FunkinState
 		//
 
 		conductor.reset(song.bpm);
-		conductor.time = -conductor.crotchet * 5;
+		conductor.time = -conductor.beatLength * 5;
 
 		FunkinSound.stopAllSounds(true);
 

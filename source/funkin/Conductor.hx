@@ -29,8 +29,8 @@ class Conductor
 	public var beat(default, null):Int;
 	public var measure(default, null):Int;
 
-	public var crotchet(get, never):Float;
-	public var quaver(get, never):Float;
+	public var stepLength(get, never):Float;
+	public var beatLength(get, never):Float;
 
 	/**
 	 * TODO: Make this changeable ingame.
@@ -56,7 +56,7 @@ class Conductor
 
 		this.time = time ??= FunkinSound.music?.time;
 
-		step = changeStep + Math.floor((time - changeTimestamp) / quaver);
+		step = changeStep + Math.floor((time - changeTimestamp) / stepLength);
 		beat = Math.floor(step / Constants.STEPS_PER_BEAT);
 		measure = changeMeasure + Math.floor((beat - changeBeat) / bpm.n);
 
@@ -104,14 +104,14 @@ class Conductor
 	}
 
 	@:noCompletion
-	inline function get_crotchet():Float
+	inline function get_stepLength():Float
 	{
-		return Constants.SECS_PER_MIN / bpm.b * Constants.MS_PER_SEC;
+		return Constants.SECS_PER_MIN / bpm.b / bpm.d * Constants.MS_PER_SEC;
 	}
 
 	@:noCompletion
-	inline function get_quaver():Float
+	inline function get_beatLength():Float
 	{
-		return crotchet / bpm.d;
+		return stepLength * Constants.STEPS_PER_BEAT;
 	}
 }

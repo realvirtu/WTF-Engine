@@ -32,7 +32,7 @@ class Countdown extends FunkinSprite
 		visible = false;
 
 		timer?.cancel();
-		timer = FlxTimer.loop(Conductor.instance.crotchet / Constants.MS_PER_SEC / rate, step, 4);
+		timer = FlxTimer.loop(Conductor.instance.beatLength / Constants.MS_PER_SEC / rate, step, 4);
 
 		FlxTween.cancelTweensOf(this);
 		FlxTween.cancelTweensOf(scale);

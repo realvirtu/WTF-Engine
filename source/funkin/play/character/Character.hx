@@ -61,7 +61,7 @@ class Character extends StageProp implements IPlayStateScriptedClass
 	{
 		super.update(elapsed);
 
-		final singSeconds:Float = MAX_SING_TIME / (Conductor.instance.quaver / Constants.MS_PER_SEC * singDuration);
+		final singSeconds:Float = MAX_SING_TIME / (Conductor.instance.stepLength / Constants.MS_PER_SEC * singDuration);
 
 		singTimer = Math.min(MAX_SING_TIME, singTimer + elapsed * singSeconds);
 	}

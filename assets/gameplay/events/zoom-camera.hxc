@@ -23,7 +23,7 @@ class ZoomCameraEvent extends SongEvent
         var duration:Float = getFloat('d');
 
         zoom *= PlayState.instance.stageZoom;
-        duration *= Conductor.instance.quaver / Constants.MS_PER_SEC;
+        duration *= Conductor.instance.stepLength / Constants.MS_PER_SEC;
 
         // Playback rate needs to be applied
         // I mean duh
