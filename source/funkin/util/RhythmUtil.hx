@@ -71,4 +71,9 @@ class RhythmUtil
 	{
 		return (time - Conductor.instance.time) * Constants.PIXELS_PER_MS * speed;
 	}
+
+	public static inline function getNoteY(strumY:Float, time:Float, speed:Float, downscroll:Bool):Float
+	{
+		return strumY + getDistance(time, speed) * (downscroll ? -1 : 1);
+	}
 }

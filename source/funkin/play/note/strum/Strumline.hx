@@ -97,10 +97,9 @@ class Strumline extends FlxGroup
 		notes.forEachAlive(note ->
 		{
 			final strum:StrumSprite = getStrum(note.direction);
-			final distance:Float = RhythmUtil.getDistance(note.time, speed);
 
 			note.x = strum.x;
-			note.y = strum.y + distance * (Preferences.downscroll ? -1 : 1);
+			note.y = RhythmUtil.getNoteY(strum.y, note.time, speed, Preferences.downscroll);
 
 			final isOffscreen:Bool = Preferences.downscroll ? note.y > FlxG.height : note.y < -note.height;
 
@@ -114,10 +113,9 @@ class Strumline extends FlxGroup
 		holdNotes.forEachAlive(holdNote ->
 		{
 			final strum:StrumSprite = getStrum(holdNote.direction);
-			final distance:Float = RhythmUtil.getDistance(holdNote.time, speed);
 
 			holdNote.x = strum.x + (strum.width - holdNote.width) / 2;
-			holdNote.y = strum.middle + distance * (Preferences.downscroll ? -1 : 1);
+			holdNote.y = RhythmUtil.getNoteY(strum.middle, holdNote.time, speed, Preferences.downscroll);
 
 			holdNote.flipY = Preferences.downscroll;
 			holdNote.speed = speed;
@@ -125,7 +123,7 @@ class Strumline extends FlxGroup
 			if (holdNote.wasHit)
 			{
 				holdNote.y = strum.middle;
-				holdNote.length = holdNote.time - Conductor.instance.time + holdNote.fullLength;
+				holdNote.length = Math.min(0, holdNote.time - Conductor.instance.time) + holdNote.fullLength;
 
 				getStrum(holdNote.direction).playConfirm();
 
