@@ -19,6 +19,13 @@ class SenpaiSong extends Song
         super('senpai');
     }
 
+    override function get_name():String
+    {
+        if (FlxG.random.bool(5))
+            return 'Sentpajim';
+        return super.get_name();
+    }
+
     override function onCountdownStart(event:CountdownScriptEvent)
     {
         super.onCountdownStart(event);
