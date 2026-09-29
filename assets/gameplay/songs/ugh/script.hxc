@@ -1,0 +1,16 @@
+import funkin.play.song.Song;
+
+class UghSong extends Song
+{
+    public function new()
+    {
+        super('ugh');
+    }
+
+    override function get_name():String
+    {
+        if (FlxG.random.bool(10))
+            return 'Ugh 2';
+        return super.get_name();
+    }
+}
