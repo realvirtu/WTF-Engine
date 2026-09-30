@@ -10,11 +10,12 @@ Below are steps to compiling WTF Engine. Y'know like the requirements and all th
 4. Run `cd WTF-Engine`.
 5. Run `haxelib --global install hmm` and `haxelib --global run hmm setup`.
 6. Run `hmm install`.
-7. Run `haxelib run lime setup`.
-8. Run `lime rebuild windows`. You may have to run this command again whenever the Lime dependency gets updated.
+7. Run `haxelib run lime rebuild alias`.
+8. Run `haxelib run lime rebuild <platform>`.
+9. Run `haxelib run lime setup -alias`.
 
 > [!NOTE]
-> If dependencies need updating, run `hmm install`.
+> If dependencies need updating, run `hmm install`. Sometimes you might need to repeat step 8.
 
 ## Platform Setup
 
@@ -27,5 +28,5 @@ Windows:
 
 ## Compiling
 
-- Run `lime test <platform>` to compile the engine.
-- Run `lime run <platform>` if you want to relaunch the engine.
+- Run `lime test <platform>` to compile the game.
+- Run `lime run <platform>` if you want to relaunch the game.
