@@ -8,13 +8,13 @@ import funkin.audio.FunkinSound;
 import funkin.data.story.LevelRegistry;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
-import funkin.play.PlayState;
 import funkin.play.Playlist;
 import funkin.save.Save;
 import funkin.ui.freeplay.components.DifficultySelector;
 import funkin.ui.menu.MainMenuState;
 import funkin.ui.story.Level;
 import funkin.util.MathUtil;
+import funkin.util.plugins.StickerPlugin;
 
 /**
  * The story menu sub state for the engine.
@@ -157,6 +157,15 @@ class StoryMenuSubState extends FunkinSubState
 
 		conductor.update();
 
+		// No interaction while the sticker transition is active
+		// Don't wanna mess things up
+		stateMachine.active = !StickerPlugin.instance.active;
+
+		if (controls.ACCEPT_P)
+			confirm();
+		if (controls.BACK)
+			exit();
+
 		_parentState.persistentDraw = stateMachine.transitioning();
 
 		titleGroup.lerp = !stateMachine.transitioning();
@@ -166,11 +175,6 @@ class StoryMenuSubState extends FunkinSubState
 		lerpScore = MathUtil.lerp(lerpScore, levelScore, 0.45);
 
 		scoreText.text = Std.string(Math.round(lerpScore)).leadingZeros(10);
-
-		if (controls.ACCEPT_P)
-			confirm();
-		if (controls.BACK)
-			exit();
 	}
 
 	override function beatHit(beat:Int)

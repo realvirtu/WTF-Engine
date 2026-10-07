@@ -23,6 +23,7 @@ import funkin.ui.freeplay.components.SortSelector;
 import funkin.ui.freeplay.player.Player;
 import funkin.ui.menu.MainMenuState;
 import funkin.util.MathUtil;
+import funkin.util.plugins.StickerPlugin;
 
 /**
  * The engine's freeplay sub state.
@@ -161,6 +162,10 @@ class FreeplaySubState extends FunkinSubState
 		super.update(elapsed);
 
 		conductor.update();
+
+		// No interaction while the sticker transition is active
+		// Don't wanna mess things up
+		stateMachine.active = !StickerPlugin.instance.active;
 
 		if (controls.FAVORITE)
 			favorite(capsules.capsule);

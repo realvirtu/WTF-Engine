@@ -20,7 +20,7 @@ class StickerPlugin extends FlxBasic
 	public static var instance:StickerPlugin;
 
 	final START_OFFSET:Int = -100;
-	final STICKER_TIME:Float = 0.01;
+	final STICKER_TIME:Float = 0.0125;
 
 	var sprite:Sprite;
 
@@ -60,6 +60,7 @@ class StickerPlugin extends FlxBasic
 	public function clear()
 	{
 		sprite.removeChildren();
+		active = false;
 	}
 
 	function start(?id:String, ?callback:() -> Void)
@@ -79,6 +80,8 @@ class StickerPlugin extends FlxBasic
 				callback();
 			return;
 		}
+
+		active = true;
 
 		var x:Float = START_OFFSET;
 		var y:Float = START_OFFSET;

@@ -15,6 +15,8 @@ enum State
  */
 class StateMachine
 {
+	public var active:Bool = true;
+
 	var currentState(default, null):State = IDLE;
 	var previousState(default, null):State = IDLE;
 
@@ -45,7 +47,7 @@ class StateMachine
 
 	public function canInteract():Bool
 	{
-		return currentState == IDLE;
+		return currentState == IDLE && active;
 	}
 
 	public function transitioning():Bool
