@@ -32,7 +32,7 @@
       "name": "hxcpp",
       "type": "git",
       "dir": null,
-      "ref": "1f4661402afe66ae7bf6a94161148f5285da5c93",
+      "ref": "a8b5f73b217132cdb595e515bb10332959a1ed39",
       "url": "https://github.com/FunkinCrew/hxcpp"
     },
     {
@@ -78,21 +78,21 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "37ed69386ce4923d52f87da42403037c01394281",
+      "ref": "02a798b836cd6cc31e37971526e80b0614fe179b",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {
       "name": "openfl",
       "type": "git",
       "dir": null,
-      "ref": "05b4d5162741c823dab7b97899e38db09e54d775",
+      "ref": "5f89368628a67dd1d460cd3eed56b2ef2ab1679b",
       "url": "https://github.com/FunkinCrew/openfl"
     },
     {
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "385c85f1a74e772131a1cfe4a12cd0a9db599b97",
+      "ref": "ba2f9effc0eea612ddb533ec244c4c084ff69d51",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {
