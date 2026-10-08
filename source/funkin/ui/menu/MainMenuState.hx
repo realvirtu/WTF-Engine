@@ -11,6 +11,7 @@ import funkin.ui.freeplay.FreeplaySubState;
 import funkin.ui.options.OptionsSubState;
 import funkin.ui.story.StoryMenuSubState;
 import funkin.ui.title.TitleState;
+import funkin.util.plugins.StickerPlugin;
 #if HAS_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
@@ -86,15 +87,20 @@ class MainMenuState extends FunkinState
 	{
 		super.update(elapsed);
 
+		stateMachine.active = !StickerPlugin.instance.active;
+
 		if (controls.BACK)
 			exit();
 		if (controls.ACCEPT_P)
 			confirm();
 
-		// TODO: Add a better way to access this
-		// This is for testing purposes
-		if (FlxG.keys.justPressed.SEVEN)
+		// Debugg controls
+		// Press 7 to access offset debug
+		// Press 8 to test sticker transition
+		if (FlxG.keys.justPressed.SEVEN && stateMachine.canInteract())
 			FlxG.switchState(() -> new OffsetDebugState());
+		if (FlxG.keys.justPressed.EIGHT && stateMachine.canInteract())
+			StickerPlugin.instance.switchState(null);
 
 		items.busy = !stateMachine.canInteract();
 	}
