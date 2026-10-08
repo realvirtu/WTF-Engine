@@ -1,6 +1,8 @@
 package funkin.util.plugins;
 
 import flixel.FlxBasic;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.util.typeLimit.NextState;
 import funkin.assets.FunkinCache;
@@ -20,7 +22,7 @@ class StickerPlugin extends FlxBasic
 	public static var instance:StickerPlugin;
 
 	final START_OFFSET:Int = -100;
-	final STICKER_TIME:Float = 0.0125;
+	final STICKER_TIME:Float = 0.015;
 
 	var sprite:Sprite;
 
@@ -118,15 +120,39 @@ class StickerPlugin extends FlxBasic
 			{
 				sticker.visible = !sticker.visible;
 
-				FunkinSound.playOnce(Paths.random('general/sticker/sounds/sticker', 1, 4));
+				if (sticker.visible)
+				{
+					final x:Float = sticker.x;
+					final y:Float = sticker.y;
+
+					FlxTween.tween(sticker, {scaleX: sticker.scaleX}, 0.05, {
+						ease: FlxEase.backOut,
+						onUpdate: _ ->
+						{
+							sticker.scaleY = sticker.scaleX;
+
+							// Yes this HAS to be done like this
+							// :obese_cat:
+							sticker.x = x + (sticker.width / sticker.scaleX - sticker.width) / 2;
+							sticker.y = y + (sticker.height / sticker.scaleY - sticker.height) / 2;
+						}
+					});
+
+					sticker.scaleX = sticker.scaleY *= 1.35;
+				}
 
 				if (i == sprite.__children.length - 1)
 				{
-					if (!sticker.visible)
-						clear();
-					if (callback != null)
-						callback();
+					FlxTimer.wait(0.05, () ->
+					{
+						if (!sticker.visible)
+							clear();
+						if (callback != null)
+							callback();
+					});
 				}
+
+				FunkinSound.playOnce(Paths.random('general/sticker/sounds/sticker', 1, 4));
 			});
 		}
 	}
