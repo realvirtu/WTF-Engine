@@ -3,7 +3,8 @@ import funkin.play.PlayState;
 
 class PicoSpeakerCharacter extends Character
 {
-    var data:Array<Dynamic>;
+    var noteData:Array<Dynamic>;
+    var nextNoteIndex:Int = -1;
 
     public function new()
     {
@@ -17,24 +18,24 @@ class PicoSpeakerCharacter extends Character
         if (!PlayState.instance.songActive)
             return;
 
-        while (data.length > 0)
+        for (i in nextNoteIndex...noteData.length)
         {
-            var note:Dynamic = data[0];
+            var note:Dynamic = noteData[i];
 
-            // Skip the note in case it's null
-            if (note == null)
+            // Skip the note if it's null or in the past
+            if (note == null || Conductor.instance.time - note.t > Constants.MS_PER_SEC)
             {
-                data.shift();
-                break;
+                nextNoteIndex = i + 1;
+                continue;
             }
 
-            // Can't do much if it isn't time to shoot
-            if (note.t > Conductor.instance.time)
-                break;
-
-            data.shift();
-
+            // Don't shoot until it's the right time
+			if (note.t > Conductor.instance.time)
+				break;
+            
             shoot(note.d);
+
+            nextNoteIndex = i + 1;
         }
     }
 
@@ -42,7 +43,8 @@ class PicoSpeakerCharacter extends Character
     {
         super.onSongLoaded(event);
 
-        data = PlayState.instance.song.getNotes('picospeaker').copy();
+        noteData = PlayState.instance.song.getNotes('picospeaker');
+        nextNoteIndex = 0;
     }
 
     function shoot(direction:Int)
