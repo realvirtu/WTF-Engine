@@ -55,7 +55,7 @@ class StickerPlugin extends FlxBasic
 				return popup();
 
 			FlxG.switchState(nextState);
-			FlxG.signals.preStateCreate.addOnce(_ -> popup(FunkinCache.clearStickers));
+			FlxG.signals.preStateCreate.addOnce(_ -> popup());
 		});
 	}
 
@@ -63,6 +63,8 @@ class StickerPlugin extends FlxBasic
 	{
 		sprite.removeChildren();
 		active = false;
+
+		FunkinCache.clearStickers();
 	}
 
 	function start(?id:String, ?callback:() -> Void)
