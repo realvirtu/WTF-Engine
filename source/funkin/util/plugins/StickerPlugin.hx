@@ -82,8 +82,8 @@ class StickerPlugin extends FlxBasic
 
 		active = true;
 
-		var x:Float = -100;
-		var y:Float = -100;
+		var x:Float = -200;
+		var y:Float = -200;
 
 		while (x < FlxG.width)
 		{
@@ -98,7 +98,7 @@ class StickerPlugin extends FlxBasic
 
 			if (x >= FlxG.width && y < FlxG.height)
 			{
-				x = -100;
+				x = -200;
 				y += FlxG.random.int(50, 100);
 			}
 		}
