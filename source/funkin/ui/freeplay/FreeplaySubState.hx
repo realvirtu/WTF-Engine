@@ -46,6 +46,9 @@ class FreeplaySubState extends FunkinSubState
 	var song(get, never):Song;
 	var difficulty(get, never):String;
 
+	var previewTimers:Array<FlxTimer> = [];
+	var previewSong:Song;
+
 	var songScore:Int;
 	var lerpScore:Float;
 
@@ -75,9 +78,6 @@ class FreeplaySubState extends FunkinSubState
 
 		if (player == null)
 			player = PlayerRegistry.instance.fetch('bf');
-
-		FunkinSound.playMusic('ui/freeplay/music', 0);
-		FunkinSound.music.fadeIn(1, 0, 0.6);
 
 		exitMovers = new ExitMovers();
 		stateMachine = new StateMachine();
@@ -151,6 +151,8 @@ class FreeplaySubState extends FunkinSubState
 			stateMachine.transition(TRANSITIONING);
 
 		changeDiff(selectedDiff);
+		playSongPreview(true);
+
 		refresh();
 
 		if (!skipIntro)
@@ -231,6 +233,8 @@ class FreeplaySubState extends FunkinSubState
 		// Album width is so dumb
 		// The exit mover has to be applied like this :omg_bruh:
 		exitMovers.add(album, FlxG.width + album.width);
+
+		playSongPreview();
 	}
 
 	function changeDiff(selected:Int)
@@ -258,6 +262,27 @@ class FreeplaySubState extends FunkinSubState
 		stateMachine.transition(INTERACTING);
 
 		FlxTimer.wait(0.1, () -> stateMachine.reset());
+	}
+
+	function playSongPreview(force:Bool = false)
+	{
+		if (previewSong == song && !force)
+			return;
+
+		previewSong = song;
+
+		FunkinSound.playMusic(song?.getInstrumentalPath() ?? 'ui/freeplay/music', 0);
+		FunkinSound.music.fadeIn(2);
+
+		final length:Float = FunkinSound.music.length / 10000;
+
+		for (timer in previewTimers)
+			timer.cancel();
+
+		previewTimers = [];
+
+		previewTimers.push(FlxTimer.wait(length, () -> FunkinSound.music.fadeOut(2)));
+		previewTimers.push(FlxTimer.wait(length + 2, () -> playSongPreview(true)));
 	}
 
 	function confirm(capsule:CapsuleSprite)
@@ -428,6 +453,9 @@ class FreeplaySubState extends FunkinSubState
 		@:privateAccess
 		if (FlxG.game._nextState == null)
 			MainMenuState.playMusic(true);
+
+		for (timer in previewTimers)
+			timer.cancel();
 
 		super.destroy();
 

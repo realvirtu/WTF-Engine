@@ -5,8 +5,6 @@ import flixel.sound.FlxSound;
 
 /**
  * A helper class for handling the engine's audio.
- * 
- * TODO: Change `playMusic` to use streamed audio.
  */
 class FunkinSound extends FlxSound
 {
