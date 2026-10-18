@@ -17,7 +17,7 @@ class StickerSprite extends Bitmap
 		this.pack = pack;
 		this.id = id;
 
-		scaleX = scaleY = Constants.ZOOM * 2.65;
+		scaleX = scaleY = Constants.ZOOM * 3.25;
 		rotation = FlxG.random.float(-10, 10);
 
 		visible = false;

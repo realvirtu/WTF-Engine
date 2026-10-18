@@ -1,8 +1,6 @@
 package funkin.util.plugins;
 
 import flixel.FlxBasic;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.util.typeLimit.NextState;
 import funkin.assets.FunkinCache;
@@ -20,9 +18,6 @@ import openfl.geom.Rectangle;
 class StickerPlugin extends FlxBasic
 {
 	public static var instance:StickerPlugin;
-
-	final START_OFFSET:Int = -100;
-	final STICKER_TIME:Float = 0.015;
 
 	var sprite:Sprite;
 
@@ -87,8 +82,8 @@ class StickerPlugin extends FlxBasic
 
 		active = true;
 
-		var x:Float = START_OFFSET;
-		var y:Float = START_OFFSET;
+		var x:Float = -100;
+		var y:Float = -100;
 
 		while (x < FlxG.width)
 		{
@@ -99,11 +94,11 @@ class StickerPlugin extends FlxBasic
 
 			sprite.addChild(sticker);
 
-			x += sticker.width / 2;
+			x += sticker.width / 2 * 0.85;
 
 			if (x >= FlxG.width && y < FlxG.height)
 			{
-				x = START_OFFSET;
+				x = -100;
 				y += FlxG.random.int(50, 100);
 			}
 		}
@@ -118,34 +113,27 @@ class StickerPlugin extends FlxBasic
 	{
 		for (i => sticker in sprite.__children)
 		{
-			FlxTimer.wait(STICKER_TIME * (i + 1), () ->
+			FlxTimer.wait((1 / sprite.numChildren) * i, () ->
 			{
 				sticker.visible = !sticker.visible;
 
 				if (sticker.visible)
 				{
-					final x:Float = sticker.x;
-					final y:Float = sticker.y;
+					FlxTimer.wait(0.03, () ->
+					{
+						final width:Float = sticker.width;
+						final height:Float = sticker.height;
 
-					FlxTween.tween(sticker, {scaleX: sticker.scaleX}, 0.05, {
-						ease: FlxEase.backOut,
-						onUpdate: _ ->
-						{
-							sticker.scaleY = sticker.scaleX;
+						sticker.scaleX = sticker.scaleY *= 0.85;
 
-							// Yes this HAS to be done like this
-							// :obese_cat:
-							sticker.x = x + (sticker.width / sticker.scaleX - sticker.width) / 2;
-							sticker.y = y + (sticker.height / sticker.scaleY - sticker.height) / 2;
-						}
+						sticker.x += (width - sticker.width) / 2;
+						sticker.y += (height - sticker.height) / 2;
 					});
-
-					sticker.scaleX = sticker.scaleY *= 1.35;
 				}
 
 				if (i == sprite.__children.length - 1)
 				{
-					FlxTimer.wait(0.05, () ->
+					FlxTimer.wait(0.03, () ->
 					{
 						if (!sticker.visible)
 							clear();
