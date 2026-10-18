@@ -44,9 +44,7 @@ class Constants
 	public static final CAMERA_BOP_RATE:Float = 4;
 	public static final CAMERA_BOP_INTENSITY:Float = 1.025;
 
-	public static final CONDUCTOR_DRIFT_THRESHOLD:Float = 65;
 	public static final RESYNC_THRESHOLD:Float = 30;
-	public static final MUSIC_EASE_RATIO:Float = 42;
 
 	public static final HIT_WINDOW_MS:Float = 160;
 	public static final SICK_WINDOW_MS:Float = 45;
