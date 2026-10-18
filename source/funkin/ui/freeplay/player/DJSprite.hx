@@ -1,4 +1,4 @@
-package funkin.ui.freeplay.components;
+package funkin.ui.freeplay.player;
 
 import funkin.graphics.FunkinSprite;
 
