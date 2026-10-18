@@ -109,9 +109,7 @@ class Project extends HXProject
 
         setHaxedef("HAS_DISCORD_RPC");
         setHaxedef("HAS_MODDING");
-
-        if (isDebug())
-            setHaxedef("HAS_SCREENSHOTS");
+        setHaxedef("HAS_SCREENSHOTS");
 
         //
         // FLIXEL
