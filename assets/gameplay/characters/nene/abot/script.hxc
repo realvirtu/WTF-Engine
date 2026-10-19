@@ -43,10 +43,10 @@ class ABotSprite extends FlxTypedSpriteGroup
 
     public function start()
     {
-        if (FunkinSound.music._channel == null)
+        if (FunkinSound.music._source == null)
             return;
 
-        analyzer = new SpectralAnalyzer(FunkinSound.music._channel.__audioSource, 6, 0.1, 40);
+        analyzer = new SpectralAnalyzer(FunkinSound.music._source, 6, 0.1, 40);
         analyzer.minDb = -65;
         analyzer.maxDb = -25;
 		analyzer.maxFreq = 22000;

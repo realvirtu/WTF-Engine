@@ -78,14 +78,14 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "ee62d52acd19f65816de1dd4945e4e475f36c0e4",
+      "ref": "90d1058ffb4aff12c3932eca3f98525180691907",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {
       "name": "openfl",
       "type": "git",
       "dir": null,
-      "ref": "7473e10fa8550986b44170ffcee9c9cff76c8b32",
+      "ref": "bf64df8b24a19c9bfbcedfaaf8b138b4c96c9655",
       "url": "https://github.com/FunkinCrew/openfl"
     },
     {
