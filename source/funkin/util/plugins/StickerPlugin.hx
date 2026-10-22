@@ -82,8 +82,8 @@ class StickerPlugin extends FlxBasic
 
 		active = true;
 
-		var x:Float = -200;
-		var y:Float = -200;
+		var x:Float = -150;
+		var y:Float = -150;
 
 		while (x < FlxG.width)
 		{
@@ -94,11 +94,11 @@ class StickerPlugin extends FlxBasic
 
 			sprite.addChild(sticker);
 
-			x += sticker.width / 2 * 0.85;
+			x += sticker.width / 2 * 0.925;
 
 			if (x >= FlxG.width && y < FlxG.height)
 			{
-				x = -200;
+				x = -150;
 				y += FlxG.random.int(50, 100);
 			}
 		}
@@ -124,7 +124,7 @@ class StickerPlugin extends FlxBasic
 						final width:Float = sticker.width;
 						final height:Float = sticker.height;
 
-						sticker.scaleX = sticker.scaleY *= 0.85;
+						sticker.scaleX = sticker.scaleY *= 0.925;
 
 						sticker.x += (width - sticker.width) / 2;
 						sticker.y += (height - sticker.height) / 2;
