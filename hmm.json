@@ -78,7 +78,7 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "6bb287b6a548fb9d10d00016b957da44fad7c28b",
+      "ref": "d2b27ec8623911809365c42cd6f4b8aa7fc95bdc",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {
@@ -92,7 +92,7 @@
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "e21ae948b57a3b64da8be196ff24ddd9e244cd16",
+      "ref": "391d9867ac0db7d4fb03e345eed0dfc38b2149bd",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {
