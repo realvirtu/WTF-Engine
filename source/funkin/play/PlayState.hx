@@ -268,12 +268,11 @@ class PlayState extends FunkinState
 					final time:Float = FunkinSound.music.time - conductor.offset;
 					final diff:Float = Math.round(Math.abs(conductor.time - time));
 
-					// Notes can appear choppy depending on the framerate
-					// Blehh
+					// Conductor lerping to make note scrolling smoother
 					if (diff <= Constants.CONDUCTOR_DRIFT_THRESHOLD)
 						conductor.update(FlxMath.lerp(conductor.time, time, 1 - Math.exp(-(Constants.MUSIC_EASE_RATIO * playbackRate) * elapsed)));
 					else
-						conductor.update();
+						conductor.update(time);
 				}
 				else
 				{
