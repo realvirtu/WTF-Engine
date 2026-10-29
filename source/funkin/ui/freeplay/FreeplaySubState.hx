@@ -271,8 +271,7 @@ class FreeplaySubState extends FunkinSubState
 
 		previewSong = song;
 
-		// FunkinSound.playMusic(song?.getInstrumentalPath() ?? 'ui/freeplay/music', 0);
-		FunkinSound.playMusic('ui/freeplay/music', 0);
+		FunkinSound.playMusic(song?.getInstrumentalPath() ?? 'ui/freeplay/music', 0);
 		FunkinSound.music.fadeIn(2);
 
 		final length:Float = FunkinSound.music.length / 10000;

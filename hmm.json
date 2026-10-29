@@ -4,7 +4,7 @@
       "name": "flixel",
       "type": "git",
       "dir": null,
-      "ref": "d634dd45aedde32564b514ad097368bca6040610",
+      "ref": "9784919e02435f2bc4790d615e4c211652975f29",
       "url": "https://github.com/FunkinCrew/flixel"
     },
     {
@@ -78,21 +78,21 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "d2b27ec8623911809365c42cd6f4b8aa7fc95bdc",
+      "ref": "ca0d5da2459e19a39805d3106d8c1a41d1be8477",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {
       "name": "openfl",
       "type": "git",
       "dir": null,
-      "ref": "461fe9f4bf5770f0e75f6c463d3e9a0c40b0d56d",
+      "ref": "6b04d6170b4e380b0a764fe315549eeac1ac2bea",
       "url": "https://github.com/FunkinCrew/openfl"
     },
     {
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "391d9867ac0db7d4fb03e345eed0dfc38b2149bd",
+      "ref": "76a9370fd4465f832586514b2b87a26f8c757339",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {

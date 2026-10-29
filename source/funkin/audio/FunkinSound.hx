@@ -2,6 +2,7 @@ package funkin.audio;
 
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.sound.FlxSound;
+import openfl.utils.Assets;
 
 /**
  * A helper class for handling the engine's audio.
@@ -20,7 +21,7 @@ class FunkinSound extends FlxSound
 	{
 		var sound:FunkinSound = pool.recycle(FunkinSound);
 
-		sound.loadEmbedded(Paths.sound(id), looped, autoDestroy);
+		sound.loadEmbedded(Assets.getMusic(Paths.sound(id)), looped, autoDestroy);
 		sound.volume = volume;
 
 		if (autoPlay)
