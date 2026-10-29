@@ -20,8 +20,9 @@ class FunkinSound extends FlxSound
 	public static inline function load(id:String, volume:Float = 1, looped:Bool = true, autoDestroy:Bool = true, autoPlay:Bool = true):FunkinSound
 	{
 		var sound:FunkinSound = pool.recycle(FunkinSound);
+		var path:String = Paths.sound(id);
 
-		sound.loadEmbedded(Assets.getMusic(Paths.sound(id)), looped, autoDestroy);
+		sound.loadEmbedded(Paths.exists(path) ? Assets.getMusic(path) : null, looped, autoDestroy);
 		sound.volume = volume;
 
 		if (autoPlay)
