@@ -2,7 +2,6 @@ package funkin.util.plugins;
 
 #if HAS_SCREENSHOTS
 import flixel.FlxBasic;
-import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
 import openfl.display.BitmapData;
 import openfl.display.PNGEncoderOptions;
@@ -15,7 +14,8 @@ import sys.io.File;
  */
 class ScreenshotPlugin extends FlxBasic
 {
-	var tookScreenshot:Bool = false;
+	var takingScreenshot:Bool = false;
+	var takingFrame:Int = 0;
 
 	public static function init()
 	{
@@ -26,30 +26,35 @@ class ScreenshotPlugin extends FlxBasic
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.F3 && !tookScreenshot)
+		if (takingScreenshot)
+			takingFrame++;
+
+		// Pressing F3 takes a screenshot of the game
+		if (FlxG.keys.justPressed.F3 && !takingScreenshot)
 		{
 			#if HAS_FPS_COUNTER
 			Main.fpsCounter.visible = false;
 			#end
 
-			tookScreenshot = true;
+			takingScreenshot = true;
+		}
 
-			// Fuck you
-			// Get hit with FlxTimer.wait()
-			FlxTimer.wait(0.1, () ->
-			{
-				var data:BitmapData = BitmapData.fromImage(FlxG.stage.window.readPixels());
-				var bytes:ByteArray = data.encode(data.rect, new PNGEncoderOptions());
+		// Takes the screenshot after a few frames
+		// Because of the stupid fps counter
+		if (takingFrame > 1)
+		{
+			final data:BitmapData = BitmapData.fromImage(FlxG.stage.window.readPixels());
+			final bytes:ByteArray = data.encode(data.rect, new PNGEncoderOptions());
 
-				File.saveBytes('screenshot.${Constants.IMAGE_EXT}', bytes);
-				FunkinSound.playOnce('general/sounds/cancel');
+			File.saveBytes('screenshot.${Constants.IMAGE_EXT}', bytes);
+			FunkinSound.playOnce('general/sounds/cancel');
 
-				#if HAS_FPS_COUNTER
-				Main.fpsCounter.visible = true;
-				#end
+			#if HAS_FPS_COUNTER
+			Main.fpsCounter.visible = Preferences.showFPS;
+			#end
 
-				tookScreenshot = false;
-			});
+			takingScreenshot = false;
+			takingFrame = 0;
 		}
 	}
 }
