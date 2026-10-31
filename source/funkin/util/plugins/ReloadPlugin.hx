@@ -2,6 +2,7 @@ package funkin.util.plugins;
 
 import flixel.FlxBasic;
 import funkin.modding.ModHandler;
+import funkin.ui.Transition;
 import funkin.ui.menu.MainMenuState;
 import funkin.util.plugins.StickerPlugin;
 
@@ -28,18 +29,16 @@ class ReloadPlugin extends FlxBasic
 	{
 		super.update(elapsed);
 
-		// Hot reloading
+		// Hot reloads after pressing F5
+		// You can also press F4 to eject into the main menu :D
 		if (FlxG.keys.justPressed.F5)
 		{
 			ModHandler.reload();
-			FlxG.resetState();
-			StickerPlugin.instance.clear();
+			Transition.resetState();
 		}
-
-		// Main menu eject
-		if (FlxG.keys.justPressed.F4)
+		else if (FlxG.keys.justPressed.F4)
 		{
-			FlxG.switchState(() -> new MainMenuState());
+			Transition.switchState(() -> new MainMenuState(), NONE);
 			StickerPlugin.instance.clear();
 		}
 	}

@@ -42,27 +42,7 @@ class StickerPlugin extends FlxBasic
 		onResize();
 	}
 
-	public function switchState(nextState:NextState, ?id:String)
-	{
-		start(id, () ->
-		{
-			if (nextState == null)
-				return popup();
-
-			FlxG.switchState(nextState);
-			FlxG.signals.preStateCreate.addOnce(_ -> popup());
-		});
-	}
-
-	public function clear()
-	{
-		sprite.removeChildren();
-		active = false;
-
-		FunkinCache.clearStickers();
-	}
-
-	function start(?id:String, ?callback:() -> Void)
+	public function start(?id:String, ?callback:() -> Void)
 	{
 		if (sprite.numChildren > 0)
 			return;
@@ -109,7 +89,7 @@ class StickerPlugin extends FlxBasic
 		popup(callback);
 	}
 
-	function popup(?callback:() -> Void)
+	public function popup(?callback:() -> Void)
 	{
 		for (i => sticker in sprite.__children)
 		{
@@ -145,6 +125,14 @@ class StickerPlugin extends FlxBasic
 				FunkinSound.playOnce(Paths.random('general/sticker/sounds/sticker', 1, 4));
 			});
 		}
+	}
+
+	public function clear()
+	{
+		sprite.removeChildren();
+		active = false;
+
+		FunkinCache.clearStickers();
 	}
 
 	function onResize()

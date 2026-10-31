@@ -98,9 +98,7 @@ class MainMenuState extends FunkinState
 		// Press 7 to access offset debug
 		// Press 8 to test sticker transition
 		if (FlxG.keys.justPressed.SEVEN && stateMachine.canInteract())
-			FlxG.switchState(() -> new OffsetDebugState());
-		if (FlxG.keys.justPressed.EIGHT && stateMachine.canInteract())
-			StickerPlugin.instance.switchState(null);
+			Transition.switchState(() -> new OffsetDebugState());
 
 		items.busy = !stateMachine.canInteract();
 	}
@@ -163,7 +161,7 @@ class MainMenuState extends FunkinState
 	{
 		if (!stateMachine.canInteract())
 			return;
-		FlxG.switchState(() -> new TitleState());
+		Transition.switchState(() -> new TitleState());
 	}
 
 	#if FEATURE_TRANS_SECRET

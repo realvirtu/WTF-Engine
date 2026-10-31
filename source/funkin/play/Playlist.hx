@@ -2,6 +2,7 @@ package funkin.play;
 
 import funkin.data.song.SongRegistry;
 import funkin.play.PlayState.PlayStateParams;
+import funkin.ui.Transition;
 import funkin.ui.story.Level;
 
 /**
@@ -38,7 +39,7 @@ class Playlist
 			difficulty: difficulty
 		}
 
-		FlxG.switchState(() -> new PlayState(params));
+		Transition.switchState(() -> new PlayState(params));
 	}
 
 	public static function next():Bool

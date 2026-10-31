@@ -324,16 +324,13 @@ class FreeplaySubState extends FunkinSubState
 
 		FlxTimer.wait(1, () ->
 		{
-			camera.fade(0xFF000000, 0.25, false, () ->
-			{
-				Playlist.reset();
+			Playlist.reset();
 
-				// Yes it has to be done like this
-				// Um fuck you Flixel
-				final params:PlayStateParams = {song: song, difficulty: difficulty, minimalMode: FlxG.keys.pressed.SHIFT};
+			// Yes it has to be done like this
+			// Um fuck you Flixel
+			final params:PlayStateParams = {song: song, difficulty: difficulty, minimalMode: FlxG.keys.pressed.SHIFT};
 
-				FlxG.switchState(() -> new PlayState(params));
-			});
+			Transition.switchState(() -> new PlayState(params));
 		});
 	}
 
@@ -406,7 +403,7 @@ class FreeplaySubState extends FunkinSubState
 	{
 		if (!stateMachine.canInteract())
 			return;
-		FlxG.switchState(() -> new CharacterSelectState());
+		Transition.switchState(() -> new CharacterSelectState());
 	}
 
 	function exit()

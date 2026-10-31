@@ -80,7 +80,7 @@ class TitleState extends FunkinState
 
 	function exitToMenu()
 	{
-		FlxG.switchState(() -> new MainMenuState());
+		Transition.switchState(() -> new MainMenuState());
 	}
 
 	override function update(elapsed:Float)

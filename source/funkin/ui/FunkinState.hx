@@ -1,7 +1,8 @@
 package funkin.ui;
 
 import flixel.FlxState;
-import funkin.assets.FunkinCache;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.Transition;
 import funkin.input.Controls;
 import funkin.modding.event.ScriptEvent;
 import funkin.modding.module.ModuleHandler;
@@ -10,7 +11,7 @@ import funkin.play.note.NoteDirection;
 /**
  * A class used as the base for all the game's states.
  */
-class FunkinState extends FlxState
+class FunkinState extends FlxTransitionableState
 {
 	var conductor(get, never):Conductor;
 	var controls(get, never):Controls;
@@ -35,6 +36,55 @@ class FunkinState extends FlxState
 		dispatch(UpdateScriptEvent.get(elapsed));
 	}
 
+	override function transitionIn()
+	{
+		if (transIn == null || transIn.type == NONE)
+			return;
+
+		if (FlxTransitionableState.skipNextTransIn)
+		{
+			FlxTransitionableState.skipNextTransIn = false;
+
+			if (finishTransIn != null)
+				finishTransIn();
+
+			return;
+		}
+
+		final state:FlxState = getTopmostState();
+		final trans:Transition = createTransition(transIn);
+
+		if (trans != null)
+		{
+			state.openSubState(trans);
+
+			trans.finishCallback = finishTransIn;
+
+			trans.setStatus(FULL);
+			trans.start(OUT);
+		}
+	}
+
+	override function transitionOut(?onExit:() -> Void)
+	{
+		_onExit = onExit;
+
+		if (hasTransOut)
+		{
+			final state:FlxState = getTopmostState();
+			final trans:Transition = createTransition(transOut);
+
+			state.openSubState(trans);
+
+			trans.finishCallback = finishTransOut;
+
+			trans.setStatus(EMPTY);
+			trans.start(IN);
+		}
+		else
+			_onExit();
+	}
+
 	public function dispatch(event:ScriptEvent)
 	{
 		// Don't run the create, update, or destroy events for modules
@@ -43,6 +93,24 @@ class FunkinState extends FlxState
 			ModuleHandler.dispatch(event);
 
 		event.put();
+	}
+
+	public function getTopmostState():FlxState
+	{
+		var result:FlxState = this;
+
+		while (true)
+		{
+			@:privateAccess
+			final state:FlxState = result._requestedSubState ?? result.subState;
+
+			if (state == null || state is Transition)
+				break;
+
+			result = state;
+		}
+
+		return result;
 	}
 
 	function stepHit(step:Int)
@@ -68,10 +136,6 @@ class FunkinState extends FlxState
 
 		controls.directionDown.remove(directionDown);
 		controls.directionUp.remove(directionUp);
-
-		// Clears the asset cache
-		// This is pretty good ngl
-		FunkinCache.clearCache();
 	}
 
 	@:noCompletion

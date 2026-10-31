@@ -185,7 +185,7 @@ class CharacterSelectState extends FunkinState
 
 	function exit()
 	{
-		FlxG.switchState(() -> FreeplaySubState.build());
+		Transition.switchState(() -> FreeplaySubState.build(), NONE);
 	}
 
 	override function destroy()

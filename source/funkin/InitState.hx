@@ -16,6 +16,7 @@ import funkin.input.Controls;
 import funkin.modding.ModHandler;
 import funkin.modding.module.ModuleHandler;
 import funkin.save.Save;
+import funkin.ui.Transition;
 import funkin.ui.title.TitleState;
 import funkin.util.plugins.ReloadPlugin;
 import funkin.util.plugins.StickerPlugin;
@@ -89,8 +90,10 @@ class InitState extends FlxState
 
 		loadRegistries();
 
-		// Starts the game
-		FlxG.switchState(() -> new TitleState());
+		// Initializes the transition
+		// Switches to the title state
+		Transition.init();
+		Transition.switchState(() -> new TitleState(), NONE);
 	}
 
 	#if FEATURE_FOCUS_LOST_VOLUME

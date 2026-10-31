@@ -35,6 +35,7 @@ import funkin.play.song.Voices;
 import funkin.play.stage.Stage;
 import funkin.save.Save;
 import funkin.ui.FunkinState;
+import funkin.ui.Transition;
 import funkin.ui.freeplay.FreeplaySubState;
 import funkin.ui.menu.MainMenuState;
 import funkin.ui.story.StoryMenuSubState;
@@ -159,7 +160,7 @@ class PlayState extends FunkinState
 		super.create();
 
 		if (criticalError)
-			return FlxG.switchState(() -> new MainMenuState());
+			return Transition.switchState(() -> new MainMenuState(), NONE);
 
 		instance = this;
 
@@ -883,13 +884,13 @@ class PlayState extends FunkinState
 
 	public function exit()
 	{
-		StickerPlugin.instance.switchState(() ->
+		Transition.switchState(() ->
 		{
 			if (Playlist.isStory)
 				StoryMenuSubState.build();
 			else
 				FreeplaySubState.build();
-		}, song.stickerpack);
+		}, STICKER(song.stickerpack));
 	}
 
 	override function dispatch(event:ScriptEvent)
