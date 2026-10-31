@@ -11,7 +11,7 @@
       "name": "flixel-addons",
       "type": "git",
       "dir": null,
-      "ref": "e038c227c0b48bd23a3ffa0f554e59b9c4c4bf2f",
+      "ref": "a4a4521d1d2d514ec929a9121cdceee02fd575e9",
       "url": "https://github.com/FunkinCrew/flixel-addons"
     },
     {
@@ -78,7 +78,7 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "ca0d5da2459e19a39805d3106d8c1a41d1be8477",
+      "ref": "1a850852071edc3ba4c6044e601495ee1f47057c",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {
@@ -92,7 +92,7 @@
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "76a9370fd4465f832586514b2b87a26f8c757339",
+      "ref": "39ff8831584d4ba610db592a8aa918240bde39f7",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {
