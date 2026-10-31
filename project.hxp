@@ -176,7 +176,6 @@ class Project extends HXProject
         addHaxelib("flixel-addons");
 
         addHaxelib("funkin.vis");
-        addHaxelib("grig.audio");
         
         addHaxelib("polymod");
         addHaxelib("json2object");

@@ -41,6 +41,28 @@ class ABotSprite extends FlxTypedSpriteGroup
         look(true);
     }
 
+    override function draw()
+    {
+        super.draw();
+
+        levels = analyzer?.getLevels(levels) ?? [];
+
+        for (i => bar in viz)
+        {
+            var frame:Int = Math.round(levels[i]?.value * 4);
+
+            bar.animation.frameIndex = Math.min(4, frame);
+            bar.visible = frame > 0;
+        }
+    }
+
+    override function destroy()
+    {
+        super.destroy();
+
+        dump();
+    }
+
     public function start()
     {
         if (FunkinSound.music._source == null)
@@ -62,22 +84,8 @@ class ABotSprite extends FlxTypedSpriteGroup
 
     public function dump()
     {
+        analyzer?.dispose();
         analyzer = null;
-    }
-
-    override function draw()
-    {
-        super.draw();
-
-        levels = analyzer?.getLevels(levels) ?? [];
-
-        for (i => bar in viz)
-        {
-            var frame:Int = Math.round(levels[i]?.value * 4.5);
-
-            bar.animation.frameIndex = Math.min(4, frame);
-            bar.visible = frame > 0;
-        }
     }
 
     function buildViz(index:Int)
