@@ -54,7 +54,7 @@ class ModHandler
 			useScriptedClasses: true
 		});
 
-		#if HAS_MODDING
+		#if FEATURE_MODDING
 		// TODO: Make this only load enabled mods
 		// Well uh after a mod menu gets added
 		for (meta in Polymod.scan())

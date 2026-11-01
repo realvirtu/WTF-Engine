@@ -4,7 +4,7 @@ import flixel.FlxGame;
 import flixel.util.typeLimit.NextState.InitialState;
 import funkin.InitState;
 import funkin.audio.FunkinSoundTray;
-#if HAS_FPS_COUNTER
+#if FEATURE_FPS_COUNTER
 import funkin.ui.debug.FPSCounter;
 #end
 
@@ -13,7 +13,7 @@ import funkin.ui.debug.FPSCounter;
  */
 class Main extends FlxGame
 {
-	#if HAS_FPS_COUNTER
+	#if FEATURE_FPS_COUNTER
 	public static var fpsCounter:FPSCounter;
 	#end
 
@@ -28,7 +28,7 @@ class Main extends FlxGame
 
 		// The FPS counter has to be initialized here
 		// Because the FPS counter is problematic media
-		#if HAS_FPS_COUNTER
+		#if FEATURE_FPS_COUNTER
 		fpsCounter = new FPSCounter(15, 15);
 		#end
 
@@ -43,7 +43,7 @@ class Main extends FlxGame
 
 		// Adds the FPS counter
 		// Only if it's enabled though
-		#if HAS_FPS_COUNTER
+		#if FEATURE_FPS_COUNTER
 		addChild(fpsCounter.bg);
 		addChild(fpsCounter);
 		#end

@@ -6,7 +6,7 @@ import funkin.play.song.Song;
 import funkin.ui.story.Level;
 import funkin.util.WindowUtil;
 import haxe.ds.StringMap;
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
 
@@ -42,12 +42,12 @@ class Save
 
 		WindowUtil.setVSync(Preferences.vsync);
 
-		#if HAS_FPS_COUNTER
+		#if FEATURE_FPS_COUNTER
 		Main.fpsCounter.visible = Preferences.showFPS;
 		Main.fpsCounter.bg.alpha = Preferences.fpsBGOpacity / 100;
 		#end
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		if (Preferences.discordRPC)
 			DiscordRPC.start();
 		#end

@@ -10,7 +10,7 @@ import funkin.play.song.Song;
 import funkin.ui.FunkinSubState;
 import funkin.ui.TextMenuList;
 import funkin.ui.options.OptionsSubState;
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
 
@@ -60,7 +60,7 @@ class PauseSubState extends FunkinSubState
 
 		FlxTween.tween(bg, {alpha: 0.8}, 0.15);
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		DiscordRPC.updatePresence(null, 'Paused');
 		#end
 	}
@@ -189,7 +189,7 @@ class PauseSubState extends FunkinSubState
 	{
 		super.close();
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		DiscordRPC.updatePresence();
 		#end
 	}

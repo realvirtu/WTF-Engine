@@ -101,15 +101,15 @@ class Project extends HXProject
 
         setHaxedef("funkin", VERSION);
 
-        setHaxedef("HAS_ANTI_MASH");
-        setHaxedef("HAS_FOCUS_LOST_VOLUME");
-        setHaxedef("HAS_FPS_COUNTER");
-        setHaxedef("HAS_TRANS_SECRET");
-        setHaxedef("HAS_OLD_ICON_SECRET");
+        setHaxedef("FEATURE_ANTI_MASH");
+        setHaxedef("FEATURE_FOCUS_LOST_VOLUME");
+        setHaxedef("FEATURE_FPS_COUNTER");
+        setHaxedef("FEATURE_TRANS_SECRET");
+        setHaxedef("FEATURE_OLD_ICON_SECRET");
 
-        setHaxedef("HAS_DISCORD_RPC");
-        setHaxedef("HAS_MODDING");
-        setHaxedef("HAS_SCREENSHOTS");
+        setHaxedef("FEATURE_DISCORD_RPC");
+        setHaxedef("FEATURE_SCREENSHOTS");
+        setHaxedef("FEATURE_MODDING");
 
         //
         // FLIXEL

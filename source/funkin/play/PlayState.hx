@@ -43,7 +43,7 @@ import funkin.util.RhythmUtil;
 import funkin.util.SortUtil;
 import funkin.util.WindowUtil;
 import funkin.util.plugins.StickerPlugin;
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
 
@@ -322,7 +322,7 @@ class PlayState extends FunkinState
 			else if (health < 0.2)
 				playerIcon.state = LOSING;
 
-			#if HAS_OLD_ICON_SECRET
+			#if FEATURE_OLD_ICON_SECRET
 			if (FlxG.keys.justPressed.NINE)
 				playerIcon.toggleOldIcon();
 			#end
@@ -449,7 +449,7 @@ class PlayState extends FunkinState
 
 		FunkinSound.stopAllSounds(true);
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		DiscordRPC.updatePresence('${song.name} - ${difficulty.toUpperCase()}');
 		#end
 
@@ -683,7 +683,7 @@ class PlayState extends FunkinState
 
 		if (note == null)
 		{
-			#if HAS_ANTI_MASH
+			#if FEATURE_ANTI_MASH
 			if (playerStrumline.getCurrentNotes().length > 0)
 				playerGhostMiss(direction);
 			#end

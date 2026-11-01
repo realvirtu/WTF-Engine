@@ -1,6 +1,6 @@
 package funkin.ui.menu;
 
-#if HAS_TRANS_SECRET
+#if FEATURE_TRANS_SECRET
 import openfl.display.Bitmap;
 import openfl.geom.Rectangle;
 

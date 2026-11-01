@@ -1,6 +1,6 @@
 package funkin.ui.debug;
 
-#if HAS_FPS_COUNTER
+#if FEATURE_FPS_COUNTER
 import flixel.math.FlxMath;
 import haxe.Timer;
 import openfl.display.Shape;

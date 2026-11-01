@@ -19,10 +19,10 @@ import funkin.save.Save;
 import funkin.ui.title.TitleState;
 import funkin.util.plugins.ReloadPlugin;
 import funkin.util.plugins.StickerPlugin;
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
-#if HAS_SCREENSHOTS
+#if FEATURE_SCREENSHOTS
 import funkin.util.plugins.ScreenshotPlugin;
 #end
 
@@ -32,7 +32,7 @@ import funkin.util.plugins.ScreenshotPlugin;
  */
 class InitState extends FlxState
 {
-	#if HAS_FOCUS_LOST_VOLUME
+	#if FEATURE_FOCUS_LOST_VOLUME
 	var lastFocusVolume:Null<Float>;
 	#end
 
@@ -50,12 +50,12 @@ class InitState extends FlxState
 		@:privateAccess
 		FlxG.mouse._visibleWhenFocusLost = false;
 
-		#if HAS_FOCUS_LOST_VOLUME
+		#if FEATURE_FOCUS_LOST_VOLUME
 		FlxG.signals.focusLost.add(onLoseFocus);
 		FlxG.signals.focusGained.add(onGainFocus);
 		#end
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		DiscordRPC.init();
 		#end
 
@@ -67,7 +67,7 @@ class InitState extends FlxState
 		// Plugins
 		StickerPlugin.init();
 		ReloadPlugin.init();
-		#if HAS_SCREENSHOTS
+		#if FEATURE_SCREENSHOTS
 		ScreenshotPlugin.init();
 		#end
 
@@ -93,7 +93,7 @@ class InitState extends FlxState
 		FlxG.switchState(() -> new TitleState());
 	}
 
-	#if HAS_FOCUS_LOST_VOLUME
+	#if FEATURE_FOCUS_LOST_VOLUME
 	function onLoseFocus()
 	{
 		if (Preferences.autoPause)

@@ -1,6 +1,6 @@
 package funkin.api;
 
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import cpp.ConstCharStar;
 import cpp.Function;
 import cpp.RawConstPointer;

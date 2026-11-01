@@ -12,7 +12,7 @@ import funkin.ui.options.OptionsSubState;
 import funkin.ui.story.StoryMenuSubState;
 import funkin.ui.title.TitleState;
 import funkin.util.plugins.StickerPlugin;
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
 
@@ -22,7 +22,7 @@ import funkin.api.DiscordRPC;
  */
 class MainMenuState extends FunkinState
 {
-	#if HAS_TRANS_SECRET
+	#if FEATURE_TRANS_SECRET
 	static var transOverlay:TransOverlay;
 	#end
 
@@ -39,7 +39,7 @@ class MainMenuState extends FunkinState
 
 		playMusic();
 
-		#if HAS_TRANS_SECRET
+		#if FEATURE_TRANS_SECRET
 		// 1/1000 chance of the game becoming trans
 		if (FlxG.random.bool(0.1))
 			buildTransOverlay();
@@ -78,7 +78,7 @@ class MainMenuState extends FunkinState
 
 		camera.snapToTarget();
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		DiscordRPC.updatePresenceMenu();
 		#end
 	}
@@ -166,7 +166,7 @@ class MainMenuState extends FunkinState
 		FlxG.switchState(() -> new TitleState());
 	}
 
-	#if HAS_TRANS_SECRET
+	#if FEATURE_TRANS_SECRET
 	function buildTransOverlay()
 	{
 		if (transOverlay != null)

@@ -3,7 +3,7 @@ package funkin;
 import funkin.play.PlayState;
 import funkin.save.Save;
 import funkin.util.WindowUtil;
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
 
@@ -19,7 +19,7 @@ class Preferences
 	public static var strumBGOpacity(get, set):Int;
 	public static var showTimer(get, set):Bool;
 
-	#if HAS_FPS_COUNTER
+	#if FEATURE_FPS_COUNTER
 	public static var showFPS(get, set):Bool;
 	public static var fpsBGOpacity(get, set):Int;
 	#end
@@ -29,7 +29,7 @@ class Preferences
 	public static var unlockedFPS(get, set):Bool;
 	public static var autoPause(get, set):Bool;
 
-	#if HAS_DISCORD_RPC
+	#if FEATURE_DISCORD_RPC
 	public static var discordRPC(get, set):Bool;
 	#end
 
@@ -99,7 +99,7 @@ class Preferences
 		return Save.instance.options.get('showTimer') ?? true;
 	}
 
-	#if HAS_FPS_COUNTER
+	#if FEATURE_FPS_COUNTER
 	@:noCompletion
 	static inline function set_showFPS(value:Bool):Bool
 	{
@@ -203,7 +203,7 @@ class Preferences
 		return Save.instance.options.get('autoPause') ?? true;
 	}
 
-	#if HAS_DISCORD_RPC
+	#if FEATURE_DISCORD_RPC
 	@:noCompletion
 	static inline function set_discordRPC(value:Bool):Bool
 	{

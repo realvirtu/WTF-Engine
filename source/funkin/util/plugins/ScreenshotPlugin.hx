@@ -1,6 +1,6 @@
 package funkin.util.plugins;
 
-#if HAS_SCREENSHOTS
+#if FEATURE_SCREENSHOTS
 import flixel.FlxBasic;
 import funkin.audio.FunkinSound;
 import openfl.display.BitmapData;
@@ -32,7 +32,7 @@ class ScreenshotPlugin extends FlxBasic
 		// Pressing F3 takes a screenshot of the game
 		if (FlxG.keys.justPressed.F3 && !takingScreenshot)
 		{
-			#if HAS_FPS_COUNTER
+			#if FEATURE_FPS_COUNTER
 			Main.fpsCounter.visible = false;
 			#end
 
@@ -49,7 +49,7 @@ class ScreenshotPlugin extends FlxBasic
 			File.saveBytes('screenshot.${Constants.IMAGE_EXT}', bytes);
 			FunkinSound.playOnce('general/sounds/cancel');
 
-			#if HAS_FPS_COUNTER
+			#if FEATURE_FPS_COUNTER
 			Main.fpsCounter.visible = Preferences.showFPS;
 			#end
 

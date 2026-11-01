@@ -10,7 +10,7 @@ import funkin.graphics.FunkinText;
 import funkin.ui.menu.MainMenuState;
 import funkin.util.MathUtil;
 import funkin.util.WindowUtil;
-#if HAS_DISCORD_RPC
+#if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
 
@@ -62,7 +62,7 @@ class TitleState extends FunkinState
 
 		MainMenuState.playMusic();
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		DiscordRPC.updatePresenceMenu();
 		#end
 	}

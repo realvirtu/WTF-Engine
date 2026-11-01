@@ -67,7 +67,7 @@ class OptionsSubState extends FunkinSubState
 		options.addOption('strumBGOpacity', 'strum background', 10, 0, 100);
 		options.addOption('showTimer', 'show timer');
 
-		#if HAS_FPS_COUNTER
+		#if FEATURE_FPS_COUNTER
 		options.addOption('showFPS', 'show fps');
 		options.addOption('fpsBGOpacity', 'fps background', 10, 0, 100);
 		#end
@@ -77,7 +77,7 @@ class OptionsSubState extends FunkinSubState
 		options.addOption('unlockedFPS', 'unlocked fps');
 		options.addOption('autoPause', 'pause on unfocus');
 
-		#if HAS_DISCORD_RPC
+		#if FEATURE_DISCORD_RPC
 		options.addOption('discordRPC', 'discord rpc');
 		#end
 
