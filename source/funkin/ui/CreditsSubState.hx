@@ -182,12 +182,7 @@ class CreditsSubState extends FunkinSubState
 		super.close();
 
 		_parentState.persistentUpdate = true;
-	}
 
-	override function destroy()
-	{
-		super.destroy();
-
-		FunkinSound.music.stop();
+		MainMenuState.playMusic(true);
 	}
 }

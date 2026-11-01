@@ -101,13 +101,6 @@ class MainMenuState extends FunkinState
 		items.busy = !stateMachine.canInteract();
 	}
 
-	override function closeSubState()
-	{
-		super.closeSubState();
-
-		playMusic(true);
-	}
-
 	function change(selected:Int)
 	{
 		selectedItem = selected;
@@ -188,7 +181,7 @@ class MainMenuState extends FunkinState
 
 	public static function playMusic(fadeIn:Bool = false)
 	{
-		FunkinSound.playMusic('ui/music', fadeIn ? 0 : 1, true, true, false);
+		FunkinSound.playMusic('ui/music', fadeIn ? 0 : 1, true, true, true, false);
 		FunkinSound.music.fadeIn(0.75, FunkinSound.music.volume);
 	}
 }

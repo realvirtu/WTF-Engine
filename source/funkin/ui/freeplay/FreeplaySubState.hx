@@ -452,6 +452,8 @@ class FreeplaySubState extends FunkinSubState
 		super.close();
 
 		_parentState.persistentUpdate = true;
+
+		MainMenuState.playMusic(true);
 	}
 
 	override function destroy()
@@ -462,8 +464,6 @@ class FreeplaySubState extends FunkinSubState
 
 		for (timer in previewTimers)
 			timer.cancel();
-
-		FunkinSound.music.stop();
 	}
 
 	@:noCompletion

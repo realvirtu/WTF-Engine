@@ -11,6 +11,8 @@ class FunkinSound extends FlxSound
 {
 	public static var music(get, set):FunkinSound;
 
+	public var id:String;
+
 	static var pool(default, null) = new FlxTypedGroup<FunkinSound>();
 
 	//
@@ -23,6 +25,7 @@ class FunkinSound extends FlxSound
 		var path:String = Paths.sound(id);
 
 		sound.loadEmbedded(Paths.exists(path) ? Assets.getMusic(path) : null, looped, autoDestroy);
+		sound.id = id;
 		sound.volume = volume;
 
 		if (autoPlay)
@@ -39,9 +42,10 @@ class FunkinSound extends FlxSound
 		return load(id, volume, false);
 	}
 
-	public static function playMusic(id:String, volume:Float = 1, looped:Bool = true, autoPlay:Bool = true, overrideMusic:Bool = true):FunkinSound
+	public static function playMusic(id:String, volume:Float = 1, looped:Bool = true, autoPlay:Bool = true, overrideMusic:Bool = true,
+			restartTrack:Bool = true):FunkinSound
 	{
-		if (music?.playing && !overrideMusic)
+		if ((music?.playing && !overrideMusic) || (music?.id == id && !restartTrack))
 			return music;
 
 		music?.destroy();
