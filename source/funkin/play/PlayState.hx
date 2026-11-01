@@ -43,7 +43,6 @@ import funkin.util.MathUtil;
 import funkin.util.RhythmUtil;
 import funkin.util.SortUtil;
 import funkin.util.WindowUtil;
-import funkin.util.plugins.StickerPlugin;
 #if FEATURE_DISCORD_RPC
 import funkin.api.DiscordRPC;
 #end
