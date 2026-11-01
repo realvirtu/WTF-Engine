@@ -281,8 +281,6 @@ class PlayState extends FunkinState
 					if (conductor.time >= -conductor.offset)
 						startSong();
 				}
-
-				voices.checkResync(FunkinSound.music.time);
 			}
 
 			opponentStrumline.process();

@@ -46,25 +46,6 @@ class Voices
 		player?.stop();
 	}
 
-	public function checkResync(time:Float)
-	{
-		// Opponent vocals resync
-		if (opponent != null && Math.abs(time - opponent.time) > Constants.RESYNC_THRESHOLD)
-		{
-			opponent.pause();
-			opponent.time = time;
-			opponent.resume();
-		}
-
-		// Player vocals resync
-		if (player != null && Math.abs(time - player.time) > Constants.RESYNC_THRESHOLD)
-		{
-			player.pause();
-			player.time = time;
-			player.resume();
-		}
-	}
-
 	@:noCompletion
 	function set_opponentVolume(value:Float):Float
 	{
