@@ -24,7 +24,9 @@ class PostBuild
 
 		FileSystem.deleteFile(BUILD_TIME_FILE);
 
+		Sys.println('');
 		Sys.println('Build took: ${formatBuildTime(timestamp)}'.info());
+		Sys.println('');
 	}
 
 	static function formatBuildTime(timestamp:Float):String
