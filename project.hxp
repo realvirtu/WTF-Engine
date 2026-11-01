@@ -1,8 +1,6 @@
 import hxp.*;
 import lime.tools.*;
 import haxe.io.Bytes;
-import sys.io.File;
-import sys.FileSystem;
 
 using tools.AnsiTools;
 
@@ -36,10 +34,6 @@ class Project extends HXProject
         app.file = FILE_NAME;
         app.preloader = PRELOADER;
 
-        //
-        // WINDOW
-        //
-
         window.width = WIDTH;
         window.height = HEIGHT;
         window.fps = 60;
@@ -51,33 +45,23 @@ class Project extends HXProject
         window.fullscreen = false;
         window.resizable = true;
 
-        //
-        // ASSETS
-        //
-
         sources.push("source");
         icons.push(new Icon("art/icon.png"));
+
+        preBuildCallbacks.push(CommandHelper.interpretHaxe('source/PreBuild.hx'));
+        postBuildCallbacks.push(CommandHelper.interpretHaxe('source/PostBuild.hx'));
         
         includeAssets("assets");
-
-        //
-        // SETUP
-        //
 
         setupBuildPath();
         setupDefines();
         setupMacros();
         setupHaxelibs();
 
-        if (isBuild())
-        {
-            // Web error for funny
-            // Otherwise do some good info
-            if (isWeb())
-                error("Web isn't supported you stupid bitch.");
-            else
-                printCompileMessage();
-        }
+        // Web error for funny
+        // Otherwise do some good info
+        if (isBuild() && isWeb())
+            error("Web isn't supported you stupid bitch.");
     }
 
     function setupBuildPath()
@@ -207,30 +191,10 @@ class Project extends HXProject
     // LOGGING
     //
 
-    function info(message:String)
-    {
-        Sys.println(message.info());
-    }
-
     function error(message:String)
     {
         Sys.stderr().write(Bytes.ofString(message.error()));
         Sys.exit(1);
-    }
-
-    function printCompileMessage()
-    {
-        if (!FileSystem.exists('messages.txt')) return;
-
-        var messages:Array<String> = File.getContent('messages.txt').split('\n');
-        var message:String = messages[Std.random(messages.length)];
-
-        Sys.println('');
-
-        info("Today's message:");
-        info(message);
-        
-        Sys.println('');
     }
 
     //
