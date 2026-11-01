@@ -39,6 +39,8 @@ class PauseSubState extends FunkinSubState
 
 		instance = this;
 
+		_parentState.persistentUpdate = false;
+
 		music = FunkinSound.load(getMusicPath(), 0);
 		music.fadeIn(2);
 
@@ -192,6 +194,8 @@ class PauseSubState extends FunkinSubState
 		#if FEATURE_DISCORD_RPC
 		DiscordRPC.updatePresence();
 		#end
+
+		_parentState.persistentUpdate = true;
 	}
 
 	override function destroy()

@@ -94,13 +94,18 @@ class MainMenuState extends FunkinState
 		if (controls.ACCEPT_P)
 			confirm();
 
-		// Debugg controls
 		// Press 7 to access offset debug
-		// Press 8 to test sticker transition
 		if (FlxG.keys.justPressed.SEVEN && stateMachine.canInteract())
 			Transition.switchState(() -> new OffsetDebugState());
 
 		items.busy = !stateMachine.canInteract();
+	}
+
+	override function closeSubState()
+	{
+		super.closeSubState();
+
+		playMusic(true);
 	}
 
 	function change(selected:Int)
@@ -161,7 +166,11 @@ class MainMenuState extends FunkinState
 	{
 		if (!stateMachine.canInteract())
 			return;
+
+		stateMachine.transition(TRANSITIONING);
+
 		Transition.switchState(() -> new TitleState());
+		FunkinSound.playOnce('general/sounds/cancel');
 	}
 
 	#if FEATURE_TRANS_SECRET

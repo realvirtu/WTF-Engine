@@ -20,6 +20,8 @@ class FunkinState extends FlxTransitionableState
 	{
 		super.create();
 
+		persistentUpdate = true;
+
 		conductor.stepHit.add(stepHit);
 		conductor.beatHit.add(beatHit);
 

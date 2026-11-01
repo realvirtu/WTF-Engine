@@ -25,6 +25,8 @@ class OptionsSubState extends FunkinSubState
 	{
 		super.create();
 
+		_parentState.persistentUpdate = false;
+
 		stateMachine = new StateMachine();
 		exitMovers = new ExitMovers();
 
@@ -109,5 +111,12 @@ class OptionsSubState extends FunkinSubState
 
 		FlxTween.tween(bg.scale, {x: 0, y: 0}, 0.75, {ease: FlxEase.quintOut});
 		FunkinSound.playOnce('general/sounds/cancel');
+	}
+
+	override function close()
+	{
+		super.close();
+
+		_parentState.persistentUpdate = true;
 	}
 }

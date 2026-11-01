@@ -77,6 +77,8 @@ class FreeplaySubState extends FunkinSubState
 
 		instance = this;
 
+		_parentState.persistentUpdate = false;
+
 		if (player == null)
 			player = PlayerRegistry.instance.fetch('bf');
 
@@ -445,19 +447,23 @@ class FreeplaySubState extends FunkinSubState
 		FunkinSound.music.stop();
 	}
 
+	override function close()
+	{
+		super.close();
+
+		_parentState.persistentUpdate = true;
+	}
+
 	override function destroy()
 	{
-		FunkinSound.music.stop();
-		@:privateAccess
-		if (FlxG.game._nextState == null)
-			MainMenuState.playMusic(true);
+		super.destroy();
+
+		instance = null;
 
 		for (timer in previewTimers)
 			timer.cancel();
 
-		super.destroy();
-
-		instance = null;
+		FunkinSound.music.stop();
 	}
 
 	@:noCompletion

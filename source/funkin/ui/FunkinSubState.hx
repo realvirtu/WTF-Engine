@@ -17,6 +17,8 @@ class FunkinSubState extends FlxSubState
 	{
 		super.create();
 
+		persistentUpdate = true;
+
 		camera = new FlxCamera();
 		camera.bgColor = 0x0;
 		FlxG.cameras.add(camera, false);

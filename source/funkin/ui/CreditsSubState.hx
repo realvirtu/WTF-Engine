@@ -40,6 +40,8 @@ class CreditsSubState extends FunkinSubState
 		FunkinSound.playMusic('ui/freeplay/music', 0);
 		FunkinSound.music.fadeIn(0.75);
 
+		_parentState.persistentUpdate = false;
+
 		exitMovers = new ExitMovers();
 		stateMachine = new StateMachine();
 
@@ -175,13 +177,17 @@ class CreditsSubState extends FunkinSubState
 		FunkinSound.music.stop();
 	}
 
+	override function close()
+	{
+		super.close();
+
+		_parentState.persistentUpdate = true;
+	}
+
 	override function destroy()
 	{
-		FunkinSound.music.stop();
-		@:privateAccess
-		if (FlxG.game._nextState == null)
-			MainMenuState.playMusic(true);
-
 		super.destroy();
+
+		FunkinSound.music.stop();
 	}
 }

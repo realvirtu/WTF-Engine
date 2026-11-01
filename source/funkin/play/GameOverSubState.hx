@@ -44,6 +44,7 @@ class GameOverSubState extends FunkinSubState
 		instance = this;
 
 		_parentState.persistentDraw = false;
+		_parentState.persistentUpdate = false;
 
 		// This doesn't need a unique camera
 		// This should use the game's camera actually
@@ -178,6 +179,7 @@ class GameOverSubState extends FunkinSubState
 		super.close();
 
 		_parentState.persistentDraw = true;
+		_parentState.persistentUpdate = true;
 
 		camera.fade(0xFF000000, 1, true);
 

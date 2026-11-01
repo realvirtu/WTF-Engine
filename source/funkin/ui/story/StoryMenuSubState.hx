@@ -62,7 +62,7 @@ class StoryMenuSubState extends FunkinSubState
 
 		instance = this;
 
-		_parentState.persistentDraw = false;
+		_parentState.persistentUpdate = false;
 
 		exitMovers = new ExitMovers();
 		stateMachine = new StateMachine();
@@ -292,6 +292,13 @@ class StoryMenuSubState extends FunkinSubState
 		exitMovers.onOutroDone = close;
 
 		FunkinSound.playOnce('general/sounds/cancel');
+	}
+
+	override function close()
+	{
+		super.close();
+
+		_parentState.persistentUpdate = true;
 	}
 
 	override function destroy()
