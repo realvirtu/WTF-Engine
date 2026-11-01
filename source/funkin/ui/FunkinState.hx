@@ -64,6 +64,11 @@ class FunkinState extends FlxTransitionableState
 
 			trans.setStatus(FULL);
 			trans.start(OUT);
+
+			// Ensures the transition is on top
+			// I'm glad this is possible now :D
+			@:privateAccess
+			trans._effect.camera.zIndex = 1000;
 		}
 	}
 

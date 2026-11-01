@@ -34,8 +34,8 @@ class Transition
 		tile.persist = true;
 		tile.destroyOnNoUse = false;
 
-		FlxTransitionableState.defaultTransIn = new TransitionData(FADE, 0xFF000000, 0.35, FlxPoint.get(0, -1), tileData, region);
-		FlxTransitionableState.defaultTransOut = new TransitionData(FADE, 0xFF000000, 0.35, FlxPoint.get(0, 1), tileData, region);
+		FlxTransitionableState.defaultTransIn = new TransitionData(FADE, 0xFF000000, 0.35, FlxPoint.get(0, -1), tileData, region, NEW);
+		FlxTransitionableState.defaultTransOut = new TransitionData(FADE, 0xFF000000, 0.35, FlxPoint.get(0, 1), tileData, region, NEW);
 	}
 
 	public static function switchState(nextState:NextState, type:TransitionType = FADE)
