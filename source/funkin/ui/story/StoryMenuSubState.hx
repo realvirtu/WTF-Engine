@@ -264,13 +264,11 @@ class StoryMenuSubState extends FunkinSubState
 		player.playAnimation('confirm');
 
 		FunkinSound.playOnce('general/sounds/confirm');
+
 		FlxTimer.wait(1, () ->
 		{
-			camera.fade(0xFF000000, 0.25, false, () ->
-			{
-				Playlist.reset(level, difficulty);
-				Playlist.load();
-			});
+			Playlist.reset(level, difficulty);
+			Playlist.load();
 		});
 	}
 
@@ -286,6 +284,7 @@ class StoryMenuSubState extends FunkinSubState
 	{
 		if (!stateMachine.canInteract())
 			return;
+
 		stateMachine.transition(TRANSITIONING);
 
 		exitMovers.outro();
