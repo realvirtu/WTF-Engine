@@ -2,6 +2,7 @@ package funkin.ui.debug;
 
 #if FEATURE_FPS_COUNTER
 import flixel.math.FlxMath;
+import funkin.util.StringUtil;
 import haxe.Timer;
 import openfl.display.Shape;
 import openfl.system.System;
@@ -14,16 +15,16 @@ import openfl.text.TextFormat;
  */
 class FPSCounter extends TextField
 {
-	final BG_MARGIN:Int = 4;
-	final BG_BORDER:Int = 2;
+	static final BG_MARGIN:Int = 4;
+	static final BG_BORDER:Int = 2;
 
 	public var bg:Shape;
 
-	var currentFPS(default, null):Int;
-	var systemMemory(default, null):Float = 0;
-	var maxMemory:Float = 0;
-
+	var fps:Int;
 	var times:Array<Float> = [];
+
+	var memory:Float;
+	var maxMemory:Float;
 
 	public function new(x:Float, y:Float)
 	{
@@ -44,20 +45,18 @@ class FPSCounter extends TextField
 
 	override function __enterFrame(deltaTime:Float)
 	{
-		// FPS
 		final now:Float = Timer.stamp() * 1000;
 
 		times.push(now);
 
 		while (times[0] < now - 1000)
 			times.shift();
-		currentFPS = times.length;
 
-		// Memory
-		systemMemory = Math.abs(FlxMath.roundDecimal(System.totalMemory / 1000000, 2));
+		fps = times.length;
+		memory = System.totalMemoryNumber;
 
-		if (systemMemory > maxMemory)
-			maxMemory = systemMemory;
+		if (memory > maxMemory)
+			maxMemory = memory;
 
 		updateDisplay();
 		redrawBackground();
@@ -73,12 +72,10 @@ class FPSCounter extends TextField
 		final width:Float = width + BG_MARGIN + 6;
 		final height:Float = height + BG_MARGIN + 3;
 
-		// Border
 		bg.graphics.beginFill(0xFFFFFF);
 		bg.graphics.drawRect(-BG_BORDER, -BG_BORDER, width + BG_BORDER * 2, height + BG_BORDER * 2);
 		bg.graphics.endFill();
 
-		// Background
 		bg.graphics.beginFill(0x202020);
 		bg.graphics.drawRect(0, 0, width, height);
 		bg.graphics.endFill();
@@ -86,28 +83,10 @@ class FPSCounter extends TextField
 
 	function updateDisplay()
 	{
-		text = 'FPS: $currentFPS';
-		text += '\nMEM: ${formatMemory(systemMemory)} / ${formatMemory(maxMemory)}';
+		text = 'FPS: $fps';
+		text += '\nMEM: ${StringUtil.formatBytes(memory)} / ${StringUtil.formatBytes(maxMemory)}';
 
 		textColor = 0xFFFFFFFF;
-
-		if (maxMemory > 3000)
-			textColor = 0xFFFF0000;
-	}
-
-	function formatMemory(memory:Float):String
-	{
-		var unit:String = 'mb';
-
-		// Properly format gigabytes
-		// Knowing how the game is, I doubt this would ever occur
-		if (memory >= 1000)
-		{
-			memory /= 1000;
-			unit = 'gb';
-		}
-
-		return '${FlxMath.roundDecimal(memory, 2)}$unit';
 	}
 }
 #end
