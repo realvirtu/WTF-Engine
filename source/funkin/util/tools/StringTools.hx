@@ -9,9 +9,4 @@ class StringTools
 	{
 		return s == null || s.trim() == '';
 	}
-
-	public static inline function leadingZeros(s:String, zeros:Int):String
-	{
-		return s.lpad('0', zeros);
-	}
 }

@@ -23,6 +23,7 @@ import funkin.ui.freeplay.player.DJSprite;
 import funkin.ui.freeplay.player.Player;
 import funkin.ui.menu.MainMenuState;
 import funkin.util.MathUtil;
+import funkin.util.StringUtil;
 import funkin.util.plugins.StickerPlugin;
 
 /**
@@ -203,7 +204,7 @@ class FreeplaySubState extends FunkinSubState
 
 		lerpScore = MathUtil.lerp(lerpScore, songScore, 0.45);
 
-		scoreText.text = Std.string(Math.round(lerpScore)).leadingZeros(10);
+		scoreText.text = StringUtil.formatZeros(Math.round(lerpScore), 10);
 		scoreText.x = FlxG.width - scoreText.width - 50;
 	}
 

@@ -26,4 +26,9 @@ class StringUtil
 
 		return '$memory$unit';
 	}
+
+	public static inline function formatZeros(x:Int, zeros:Int):String
+	{
+		return Std.string(x).lpad('0', zeros);
+	}
 }

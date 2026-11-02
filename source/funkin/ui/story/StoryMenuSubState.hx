@@ -14,6 +14,7 @@ import funkin.ui.freeplay.components.DifficultySelector;
 import funkin.ui.menu.MainMenuState;
 import funkin.ui.story.Level;
 import funkin.util.MathUtil;
+import funkin.util.StringUtil;
 import funkin.util.plugins.StickerPlugin;
 
 /**
@@ -174,7 +175,7 @@ class StoryMenuSubState extends FunkinSubState
 
 		lerpScore = MathUtil.lerp(lerpScore, levelScore, 0.45);
 
-		scoreText.text = Std.string(Math.round(lerpScore)).leadingZeros(10);
+		scoreText.text = StringUtil.formatZeros(Math.round(lerpScore), 10);
 	}
 
 	override function beatHit(beat:Int)
