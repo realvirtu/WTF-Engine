@@ -210,15 +210,6 @@ class FreeplaySubState extends FunkinSubState
 		scoreText.x = FlxG.width - scoreText.width - 50;
 	}
 
-	override function beatHit(beat:Int)
-	{
-		super.beatHit(beat);
-
-		// Make the DJ bop
-		// Without this line, freeplay would be shit
-		dj.bop();
-	}
-
 	function changeSong(selected:Int)
 	{
 		selectedSong = selected;

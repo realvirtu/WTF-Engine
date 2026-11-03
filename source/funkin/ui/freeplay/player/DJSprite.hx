@@ -1,5 +1,6 @@
 package funkin.ui.freeplay.player;
 
+import flixel.util.FlxTimer;
 import funkin.graphics.FunkinSprite;
 
 /**
@@ -7,7 +8,7 @@ import funkin.graphics.FunkinSprite;
  */
 class DJSprite extends FunkinSprite
 {
-	var busy:Bool = false;
+	var bopTimer:FlxTimer;
 
 	public function new(x:Float = 0, y:Float = 0)
 	{
@@ -19,18 +20,26 @@ class DJSprite extends FunkinSprite
 		addAnimation('confirm', [3, 4, 5], 10, false);
 
 		bop();
+
+		bopTimer = FlxTimer.loop(Conductor.instance.beatLength / Constants.MS_PER_SEC, _ -> bop(), 0);
 	}
 
 	public function bop()
 	{
-		if (busy)
-			return;
 		playAnimation('idle', true);
 	}
 
 	public function confirm()
 	{
-		busy = true;
 		playAnimation('confirm');
+
+		bopTimer.cancel();
+	}
+
+	override function destroy()
+	{
+		super.destroy();
+
+		bopTimer.cancel();
 	}
 }
