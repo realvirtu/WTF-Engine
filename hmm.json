@@ -18,7 +18,7 @@
       "name": "funkin.vis",
       "type": "git",
       "dir": null,
-      "ref": "858ca07f613abf7ccd7dcee1ebd14826edc3eb91",
+      "ref": "ec99f06f8679c48a78443791ecbde2aa3be59c2c",
       "url": "https://github.com/FunkinCrew/funkVis"
     },
     {
@@ -82,7 +82,7 @@
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "78d306bcf301141b8591a24b5eb188d33a0417ae",
+      "ref": "422b435eb4710fa76292291310feaaab141ca836",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {
