@@ -18,7 +18,7 @@
       "name": "funkin.vis",
       "type": "git",
       "dir": null,
-      "ref": "733258b9c1b53c81b27373565b09f1a03aabce83",
+      "ref": "858ca07f613abf7ccd7dcee1ebd14826edc3eb91",
       "url": "https://github.com/FunkinCrew/funkVis"
     },
     {
@@ -68,7 +68,7 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "23ecc523ef88216b0f8c3d4b6e9caa31ad0d5eb8",
+      "ref": "04f980f2cced49f91a94bc3e68ffd146196adb83",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {
@@ -82,7 +82,7 @@
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "39ff8831584d4ba610db592a8aa918240bde39f7",
+      "ref": "78d306bcf301141b8591a24b5eb188d33a0417ae",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {
