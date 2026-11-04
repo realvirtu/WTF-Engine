@@ -96,7 +96,8 @@ class FreeplaySubState extends FunkinSubState
 		backingImage.x = FlxG.width - backingImage.width;
 		add(backingImage);
 
-		dj = new DJSprite(30);
+		dj = new DJSprite();
+		dj.x = 30;
 		dj.y = FlxG.height - dj.height + 30;
 		add(dj);
 

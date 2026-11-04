@@ -10,9 +10,9 @@ class DJSprite extends FunkinSprite
 {
 	var bopTimer:FlxTimer;
 
-	public function new(x:Float = 0, y:Float = 0)
+	public function new()
 	{
-		super(x, y);
+		super();
 
 		loadSprite('ui/freeplay/dj', 1.25, 224, 258);
 
