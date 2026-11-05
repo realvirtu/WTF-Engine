@@ -28,11 +28,11 @@ class FunkinSound extends FlxSound
 		sound.id = id;
 		sound.volume = volume;
 
-		if (autoPlay)
-			sound.play();
-
 		FlxG.sound.defaultSoundGroup.add(sound);
 		FlxG.sound.list.add(sound);
+
+		if (autoPlay)
+			sound.play();
 
 		return sound;
 	}
