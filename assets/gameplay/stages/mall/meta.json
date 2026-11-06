@@ -18,6 +18,19 @@
             "scale": 0.9
         },
         {
+            "image": "boppers",
+            "position": [-310, -110],
+            "scroll": [0.3, 0.3],
+            "width": 1139,
+            "height": 134,
+            "animations": [
+                {
+                    "name": "idle",
+                    "frames": [0, 1, 2]
+                }
+            ]
+        },
+        {
             "image": "front",
             "position": [-420, -50],
             "scroll": [0.3, 0.3]
