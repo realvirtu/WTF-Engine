@@ -13,8 +13,8 @@
     "props": [
         {
             "image": "back",
-            "position": [-415, -460],
-            "scroll": [0.3, 0.475]
+            "position": [-415, -450],
+            "scroll": [0.3, 0.45]
         },
         {
             "image": "boppers-top",

@@ -1,6 +1,6 @@
 {
     "name": "Mall (Evil)",
-    "zoom": 1.05,
+    "zoom": 1.15,
     "opponent": {
         "position": [-300, 50]
     },
@@ -13,8 +13,8 @@
     "props": [
         {
             "image": "back",
-            "position": [-415, -460],
-            "scroll": [0.3, 0.475]
+            "position": [-415, -450],
+            "scroll": [0.3, 0.45]
         },
         {
             "image": "front",
