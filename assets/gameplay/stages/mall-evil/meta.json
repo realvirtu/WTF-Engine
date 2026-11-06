@@ -1,6 +1,6 @@
 {
     "name": "Mall (Evil)",
-    "zoom": 1.15,
+    "zoom": 1.05,
     "opponent": {
         "position": [-300, 50]
     },
@@ -12,47 +12,24 @@
     },
     "props": [
         {
-            "image": "back-top",
-            "position": [-300, -510],
-            "scroll": [0.3, 0.45],
-            "scale": 0.75
-        },
-        {
-            "image": "back-bottom",
-            "position": [-300, -30],
-            "scroll": [0.3, 0.45],
-            "scale": 0.75
-        },
-        {
-            "image": "back-bottom",
-            "position": [460, -30],
-            "scroll": [0.3, 0.45],
-            "flipX": true,
-            "scale": 0.75
+            "image": "back",
+            "position": [-415, -460],
+            "scroll": [0.3, 0.475]
         },
         {
             "image": "front",
-            "position": [-520, -120],
-            "scroll": [0.5, 0.5],
-            "scale": 0.8
+            "position": [-600, -150],
+            "scroll": [0.5, 0.5]
         },
         {
-            "image": "front",
-            "position": [280, -120],
-            "scroll": [0.5, 0.5],
-            "flipX": true,
-            "scale": 0.8
-        },
-        {
-            "id": "tree",
             "image": "tree",
-            "position": [-85, -560],
-            "scroll": [0.7, 0.7],
-            "scale": 0.85
+            "position": [-40, -550],
+            "scroll": [0.75, 0.75]
         },
         {
             "image": "snow",
-            "position": [-1000, -50]
+            "position": [-1000, -50],
+            "scale": 1.25
         }
     ]
 }

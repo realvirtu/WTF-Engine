@@ -13,14 +13,13 @@
     "props": [
         {
             "image": "back",
-            "position": [-250, -260],
-            "scroll": [0.2, 0.2],
-            "scale": 0.9
+            "position": [-415, -460],
+            "scroll": [0.3, 0.475]
         },
         {
             "image": "boppers-top",
-            "position": [-350, -125],
-            "scroll": [0.3, 0.3],
+            "position": [-460, -225],
+            "scroll": [0.5, 0.5],
             "width": 1139,
             "height": 134,
             "scale": 1.05,
@@ -33,13 +32,13 @@
         },
         {
             "image": "front",
-            "position": [-420, -50],
-            "scroll": [0.3, 0.3]
+            "position": [-600, -150],
+            "scroll": [0.5, 0.5]
         },
         {
             "image": "tree",
-            "position": [110, -400],
-            "scroll": [0.5, 0.5]
+            "position": [-45, -550],
+            "scroll": [0.75, 0.75]
         },
         {
             "image": "boppers-bottom",

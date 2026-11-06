@@ -27,7 +27,7 @@ class WinterHorrorlandSong extends Song
         PlayState.instance.setCameraTarget(PlayState.instance.stage.gf);
         PlayState.instance.setCameraZoom(2, true);
 
-        PlayState.instance.camFollow.y -= 600;
+        PlayState.instance.camFollow.y -= 400;
         PlayState.instance.camHUD.visible = false;
         
         FlxG.camera.snapToTarget();
