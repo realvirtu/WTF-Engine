@@ -13,7 +13,7 @@
     "props": [
         {
             "image": "back",
-            "position": [-415, -450],
+            "position": [-415, -435],
             "scroll": [0.3, 0.45]
         },
         {

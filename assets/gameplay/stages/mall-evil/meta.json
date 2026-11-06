@@ -13,17 +13,17 @@
     "props": [
         {
             "image": "back",
-            "position": [-415, -450],
+            "position": [-415, -435],
             "scroll": [0.3, 0.45]
         },
         {
             "image": "front",
-            "position": [-590, -150],
+            "position": [-580, -150],
             "scroll": [0.5, 0.5]
         },
         {
             "image": "tree",
-            "position": [-40, -545],
+            "position": [-40, -560],
             "scroll": [0.75, 0.75]
         },
         {
