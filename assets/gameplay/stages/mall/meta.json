@@ -18,7 +18,7 @@
             "scale": 0.9
         },
         {
-            "image": "boppers",
+            "image": "boppers-top",
             "position": [-350, -125],
             "scroll": [0.3, 0.3],
             "width": 1139,
@@ -40,6 +40,20 @@
             "image": "tree",
             "position": [110, -400],
             "scroll": [0.5, 0.5]
+        },
+        {
+            "image": "boppers-bottom",
+            "position": [230, -285],
+            "scroll": [0.9, 0.9],
+            "width": 372,
+            "height": 216,
+            "scale": 1.15,
+            "animations": [
+                {
+                    "name": "idle",
+                    "frames": [0, 1, 2]
+                }
+            ]
         },
         {
             "image": "snow",
