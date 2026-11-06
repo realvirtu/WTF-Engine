@@ -24,7 +24,6 @@ import funkin.play.character.Character;
 import funkin.play.character.HealthIcon;
 import funkin.play.components.Countdown;
 import funkin.play.components.Popups;
-import funkin.play.cutscene.BaseCutscene;
 import funkin.play.note.NoteDirection;
 import funkin.play.note.NoteSprite;
 import funkin.play.note.NoteStyle;
@@ -105,8 +104,6 @@ class PlayState extends FunkinState
 
 	public var camFollow:FlxObject;
 	public var camHUD:FlxCamera;
-
-	public var cutscene:BaseCutscene;
 
 	public var opponentStrumline:Strumline;
 	public var playerStrumline:Strumline;
@@ -464,19 +461,6 @@ class PlayState extends FunkinState
 
 		songActive = true;
 		countdown.start(playbackRate);
-	}
-
-	public function startCutscene(cutscene:BaseCutscene)
-	{
-		if (cutscene == null)
-			return;
-
-		this.cutscene?.destroy();
-		this.cutscene = cutscene;
-
-		cutscene.start();
-
-		add(cutscene);
 	}
 
 	public function setCameraTarget(target:Character, instant:Bool = false)

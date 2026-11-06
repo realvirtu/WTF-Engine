@@ -1,5 +1,4 @@
 import funkin.audio.FunkinSound;
-import funkin.play.cutscene.dialogue.DialogueCutscene;
 import funkin.play.song.Song;
 import funkin.play.Playlist;
 import funkin.play.PlayState;
@@ -11,24 +10,6 @@ class RosesSong extends Song
     public function new()
     {
         super('roses');
-    }
-
-    override function onCountdownStart(event:CountdownScriptEvent)
-    {
-        super.onCountdownStart(event);
-
-        if (seenCutscene || !Playlist.isStory)
-            return;
-        seenCutscene = true;
-
-        event.cancel();
-
-        FunkinSound.playOnce(getPath('sounds/angry'));
-
-        PlayState.instance.startCutscene(new DialogueCutscene(id, () ->
-        {
-            PlayState.instance.startCountdown();
-        }));
     }
 
     override function onDestroy(event:ScriptEvent)
