@@ -18,11 +18,11 @@
         },
         {
             "image": "boppers-top",
-            "position": [-460, -225],
+            "position": [-415, -195],
             "scroll": [0.5, 0.5],
-            "width": 1139,
-            "height": 134,
-            "scale": 1.05,
+            "width": 1148,
+            "height": 128,
+            "scale": 0.95,
             "animations": [
                 {
                     "name": "idle",
@@ -37,7 +37,7 @@
         },
         {
             "image": "tree",
-            "position": [-45, -550],
+            "position": [-45, -545],
             "scroll": [0.75, 0.75]
         },
         {
