@@ -2,7 +2,7 @@
     "name": "Mall",
     "zoom": 1.05,
     "opponent": {
-        "position": [-380, 50]
+        "position": [-420, 50]
     },
     "player": {
         "position": [300, 50]
@@ -32,7 +32,7 @@
         },
         {
             "image": "front",
-            "position": [-650, -150],
+            "position": [-580, -150],
             "scroll": [0.5, 0.5]
         },
         {
@@ -42,7 +42,7 @@
         },
         {
             "image": "parappa",
-            "position": [-615, -225],
+            "position": [-200, -220],
             "scroll": [0.9, 0.9],
             "width": 116,
             "height": 162,
@@ -75,7 +75,7 @@
         },
         {
             "image": "santa",
-            "position": [-920, -270],
+            "position": [-900, -270],
             "width": 205,
             "height": 242,
             "scale": 1.2,
