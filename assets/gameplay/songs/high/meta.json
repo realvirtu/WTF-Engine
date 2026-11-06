@@ -20,8 +20,8 @@
 	},
 	"artist": "Kawai Sprite",
 	"rating": {
-		"normal": 2,
-		"hard": 3,
-		"easy": 1
+		"normal": 3,
+		"hard": 4,
+		"easy": 2
 	}
 }

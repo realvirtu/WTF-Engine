@@ -9,7 +9,7 @@
 		"hard"
 	],
 	"opponent": "monster",
-	"charter": "ChaoticGamerCG + MtH + Spazkid",
+	"charter": "Kade",
 	"instrumentals": [],
 	"player": "bf",
 	"stage": "spooky",
@@ -21,7 +21,7 @@
 	"artist": "Bassetfilms",
 	"rating": {
 		"normal": 2,
-		"hard": 2,
+		"hard": 3,
 		"easy": 1
 	}
 }
