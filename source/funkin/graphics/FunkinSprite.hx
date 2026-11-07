@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxTileFrames;
 import flixel.math.FlxPoint;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 
 /**
@@ -138,6 +139,13 @@ class FunkinSprite extends FlxSprite
 		sprite.zIndex = zIndex;
 
 		return sprite;
+	}
+
+	override function destroy()
+	{
+		super.destroy();
+
+		FlxTween.cancelTweensOf(this);
 	}
 
 	public static function create(x:Float, y:Float, id:String, scale:Float = 1, width:Int = 0, height:Int = 0):FunkinSprite

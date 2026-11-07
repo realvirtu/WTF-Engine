@@ -7,8 +7,6 @@ typedef ConversationData =
 {
 	var name:String;
 	var box:String;
-	@:optional
-	var music:String;
 	@:default([])
 	var lines:Array<ConversationLineData>;
 }

@@ -1,6 +1,8 @@
 package funkin.play.dialogue;
 
 import flixel.group.FlxSpriteGroup;
+import flixel.util.FlxTimer;
+import funkin.audio.FunkinSound;
 import funkin.data.dialogue.DialogueBoxData;
 import funkin.data.dialogue.DialogueBoxRegistry;
 import funkin.graphics.FunkinSprite;
@@ -17,6 +19,8 @@ class DialogueBox extends FlxSpriteGroup
 	public var box:FunkinSprite;
 	public var hand:FunkinSprite;
 
+	var boxTimer:FlxTimer;
+
 	var boxPath(get, never):String;
 
 	public function new(id:String)
@@ -32,26 +36,31 @@ class DialogueBox extends FlxSpriteGroup
 			return;
 
 		box = FunkinSprite.create(0, 0, '$boxPath/image', meta.scale);
+		box.active = false;
 		add(box);
 
-		buildHandSprite();
-	}
-
-	function buildHandSprite()
-	{
 		final path:String = '$boxPath/hand';
 
-		if (meta?.hand == null || !Paths.exists(path))
-			return;
+		if (meta.hand != null && Paths.exists(Paths.image(path)))
+		{
+			hand = FunkinSprite.create(0, 0, path, meta.hand.scale, meta.hand.width, meta.hand.height);
+			hand.addAnimation('anim', [1, 2, 0], 10, false);
+			hand.x = box.width - hand.width + getHandOffset()[0];
+			hand.y = box.height - hand.height + getHandOffset()[1];
+			add(hand);
+		}
+	}
 
-		hand = FunkinSprite.create(0, 0, path, meta.hand.scale, meta.hand.width, meta.hand.height);
+	public function confirm()
+	{
+		box.y = y - 10;
 
-		hand.addAnimation('anim', [1, 2, 0], 10, false);
+		boxTimer?.cancel();
+		boxTimer = FlxTimer.wait(0.05, () -> box.y = y);
 
-		hand.x = box.width - hand.width + getHandOffset()[0];
-		hand.y = box.height - hand.height + getHandOffset()[1];
+		hand?.playAnimation('anim', true);
 
-		add(hand);
+		FunkinSound.playOnce('gameplay/dialogue/sounds/next');
 	}
 
 	public function getBoxOffset():Array<Float>
