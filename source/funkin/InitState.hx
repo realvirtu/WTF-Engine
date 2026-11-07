@@ -3,6 +3,7 @@ package funkin;
 import flixel.FlxObject;
 import flixel.FlxState;
 import funkin.data.character.CharacterRegistry;
+import funkin.data.dialogue.ConversationRegistry;
 import funkin.data.event.EventRegistry;
 import funkin.data.freeplay.album.AlbumRegistry;
 import funkin.data.freeplay.player.PlayerRegistry;
@@ -85,6 +86,7 @@ class InitState extends FlxState
 		EventRegistry.instance = new EventRegistry();
 		NoteKindRegistry.instance = new NoteKindRegistry();
 		NoteStyleRegistry.instance = new NoteStyleRegistry();
+		ConversationRegistry.instance = new ConversationRegistry();
 		StickerRegistry.instance = new StickerRegistry();
 		AlbumRegistry.instance = new AlbumRegistry();
 
@@ -127,6 +129,7 @@ class InitState extends FlxState
 		EventRegistry.instance.load();
 		NoteKindRegistry.instance.load();
 		NoteStyleRegistry.instance.load();
+		ConversationRegistry.instance.load();
 		StickerRegistry.instance.load();
 		AlbumRegistry.instance.load();
 

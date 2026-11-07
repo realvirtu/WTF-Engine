@@ -1,6 +1,9 @@
 {
     "name": "Roses",
     "scale": 3.5,
-    "speakerOffset": [30, 30],
-    "textOffset": [80, 80]
+    "hand": {
+        "width": 22,
+        "height": 9,
+        "scale": 3.5
+    }
 }

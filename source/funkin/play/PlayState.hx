@@ -9,6 +9,7 @@ import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
+import funkin.data.dialogue.ConversationRegistry;
 import funkin.data.event.EventData;
 import funkin.data.event.EventRegistry;
 import funkin.data.note.kind.NoteKindRegistry;
@@ -24,6 +25,7 @@ import funkin.play.character.Character;
 import funkin.play.character.HealthIcon;
 import funkin.play.components.Countdown;
 import funkin.play.components.Popups;
+import funkin.play.dialogue.Conversation;
 import funkin.play.note.NoteDirection;
 import funkin.play.note.NoteSprite;
 import funkin.play.note.NoteStyle;
@@ -116,6 +118,8 @@ class PlayState extends FunkinState
 
 	public var scoreText:FunkinText;
 	public var timeText:FunkinText;
+
+	public var conversation:Conversation;
 
 	public var countdown:Countdown;
 	public var popups:Popups;
@@ -460,7 +464,16 @@ class PlayState extends FunkinState
 			return;
 
 		songActive = true;
+
 		countdown.start(playbackRate);
+	}
+
+	public function startConversation(id:String)
+	{
+		conversation?.destroy();
+
+		conversation = ConversationRegistry.instance.fetchConversation(id);
+		conversation.start();
 	}
 
 	public function setCameraTarget(target:Character, instant:Bool = false)

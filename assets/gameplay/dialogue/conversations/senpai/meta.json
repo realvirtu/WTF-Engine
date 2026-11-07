@@ -1,0 +1,14 @@
+{
+    "name": "Senpai",
+    "music": "lunchbox",
+    "lines": [
+        {
+            "text": "hello world",
+            "speaker": "senpai"
+        },
+        {
+            "text": "beep bop bap",
+            "speaker": "bf-pixel"
+        }
+    ]
+}
