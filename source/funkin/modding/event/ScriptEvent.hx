@@ -4,6 +4,7 @@ import flixel.FlxState;
 import flixel.FlxSubState;
 import funkin.data.event.EventData;
 import funkin.data.song.SongData.SongNoteData;
+import funkin.play.dialogue.Conversation;
 import funkin.play.note.NoteDirection;
 import funkin.play.note.NoteSprite;
 import funkin.play.note.hold.HoldNoteSprite;
@@ -230,6 +231,21 @@ class CountdownScriptEvent extends ScriptEvent
 		super(type);
 
 		this.step = step;
+	}
+}
+
+/**
+ * A script event that runs for dialogue cutscenes.
+ */
+class DialogueScriptEvent extends ScriptEvent
+{
+	public var conversation(default, null):Conversation;
+
+	public function new(type:ScriptEventType, conversation:Conversation)
+	{
+		super(type);
+
+		this.conversation = conversation;
 	}
 }
 

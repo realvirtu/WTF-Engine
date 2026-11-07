@@ -12,6 +12,21 @@ class RosesSong extends Song
         super('roses');
     }
 
+    override function onCountdownStart(event:CountdownScriptEvent)
+    {
+        super.onCountdownStart(event);
+
+        if (seenCutscene)
+            return;
+        seenCutscene = true;
+
+        event.cancel();
+
+        PlayState.instance.startConversation('roses', PlayState.instance.startCountdown);
+
+        FunkinSound.playOnce(getPath('sounds/angry'));
+    }
+
     override function onDestroy(event:ScriptEvent)
     {
         super.onDestroy(event);

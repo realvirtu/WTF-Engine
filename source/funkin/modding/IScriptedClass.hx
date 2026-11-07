@@ -65,6 +65,17 @@ interface IPlayStateScriptedClass extends IConductorScriptedClass extends INoteS
 }
 
 /**
+ * An interface for scripted classes that require dialogue events.
+ */
+interface IDialogueScriptedClass extends IScriptedClass
+{
+	public function onDialogueStart(event:DialogueScriptEvent):Void;
+	public function onDialogueLine(event:DialogueScriptEvent):Void;
+	public function onDialogueCompleteLine(event:DialogueScriptEvent):Void;
+	public function onDialogueEnd(event:DialogueScriptEvent):Void;
+}
+
+/**
  * An interface for scripted classes that require FreeplaySubState events.
  */
 interface IFreeplayScriptedClass extends IConductorScriptedClass

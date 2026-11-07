@@ -3,12 +3,16 @@
     "box": "roses",
     "lines": [
         {
-            "text": "hello world",
-            "speaker": "senpai"
+            "speaker": "senpai",
+            "text": "Ah, a new fair maiden has come in search of true love!"
         },
         {
-            "text": "beep bop bap",
-            "speaker": "bf-pixel"
+            "speaker": "senpai",
+            "text": "A serenade between gentlemen shall decide where her beautiful heart shall reside."
+        },
+        {
+            "speaker": "bf-pixel",
+            "text": "Beep bo bop"
         }
     ]
 }

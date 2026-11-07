@@ -137,6 +137,29 @@ class ScriptEventDispatcher
 		}
 
 		//
+		// DIALOGUE
+		//
+
+		if (target is IDialogueScriptedClass)
+		{
+			var target:IDialogueScriptedClass = cast target;
+
+			switch (event.type)
+			{
+				case DIALOGUE_START:
+					target.onDialogueStart(cast event);
+				case DIALOGUE_LINE:
+					target.onDialogueLine(cast event);
+				case DIALOGUE_COMPLETE_LINE:
+					target.onDialogueCompleteLine(cast event);
+				case DIALOGUE_END:
+					target.onDialogueEnd(cast event);
+				default:
+					// Does literally nothing
+			}
+		}
+
+		//
 		// FREEPLAY
 		//
 

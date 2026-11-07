@@ -7,7 +7,7 @@ import funkin.graphics.FunkinSprite;
 /**
  * Dialogue speaker sprite used for conversations.
  */
-class DialogueSpeaker extends FunkinSprite
+class Speaker extends FunkinSprite
 {
 	public final id:String;
 
@@ -25,6 +25,8 @@ class DialogueSpeaker extends FunkinSprite
 	public function buildSprite()
 	{
 		loadSprite('$speakerPath/image', meta.scale);
+
+		active = false;
 
 		offset.subtract(meta.offset[0], meta.offset[1]);
 	}

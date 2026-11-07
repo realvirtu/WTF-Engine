@@ -468,11 +468,12 @@ class PlayState extends FunkinState
 		countdown.start(playbackRate);
 	}
 
-	public function startConversation(id:String)
+	public function startConversation(id:String, onComplete:() -> Void)
 	{
 		conversation?.destroy();
 
 		conversation = ConversationRegistry.instance.fetchConversation(id);
+		conversation.onComplete = onComplete;
 		conversation.camera = camHUD;
 		conversation.zIndex = 100;
 		conversation.start();
@@ -902,6 +903,7 @@ class PlayState extends FunkinState
 		NoteKindRegistry.instance.dispatch(event);
 
 		ScriptEventDispatcher.dispatch(stage, event);
+		ScriptEventDispatcher.dispatch(conversation, event);
 
 		super.dispatch(event);
 	}

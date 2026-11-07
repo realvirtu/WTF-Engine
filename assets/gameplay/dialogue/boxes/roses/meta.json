@@ -7,6 +7,13 @@
         "scale": 4.5,
         "offset": [-40, -60]
     },
+    "text": {
+        "textColor": "#FFFFFF",
+        "borderColor": "#000000",
+        "textSize": 25,
+        "borderSize": 4,
+        "offset": [120, 90]
+    },
     "globalOffset": [0, -60],
     "speakerOffset": [0, 40]
 }

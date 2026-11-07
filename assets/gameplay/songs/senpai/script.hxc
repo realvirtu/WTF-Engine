@@ -1,6 +1,5 @@
 import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
-import funkin.play.character.Character;
 import funkin.play.song.Song;
 import funkin.play.Playlist;
 import funkin.play.PlayState;
@@ -38,9 +37,13 @@ class SenpaiSong extends Song
     {
         super.onCountdownStart(event);
 
+        if (seenCutscene)
+            return;
+        seenCutscene = true;
+
         event.cancel();
 
-        PlayState.instance.startConversation('senpai');
+        PlayState.instance.startConversation('senpai', PlayState.instance.startCountdown);
     }
 
     override function onNoteHit(event:NoteScriptEvent)
