@@ -6,6 +6,7 @@ package funkin.data.dialogue;
 typedef ConversationData =
 {
 	var name:String;
+	var box:String;
 	@:optional
 	var music:String;
 	@:default([])

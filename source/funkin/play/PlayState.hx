@@ -473,7 +473,11 @@ class PlayState extends FunkinState
 		conversation?.destroy();
 
 		conversation = ConversationRegistry.instance.fetchConversation(id);
+		conversation.camera = camHUD;
+		conversation.zIndex = 100;
 		conversation.start();
+
+		add(conversation);
 	}
 
 	public function setCameraTarget(target:Character, instant:Bool = false)
