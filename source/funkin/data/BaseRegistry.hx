@@ -5,6 +5,8 @@ import haxe.ds.StringMap;
 
 /**
  * The base class for the game's registries.
+ * 
+ * TODO: There's a lot of repetitive code, so find a way to clean it up a ton.
  */
 class BaseRegistry<T>
 {
