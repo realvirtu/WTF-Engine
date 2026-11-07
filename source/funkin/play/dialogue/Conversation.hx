@@ -108,6 +108,9 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	{
 		super.update(elapsed);
 
+		if (state == OUTRO)
+			return;
+
 		if (Controls.instance.ACCEPT_P)
 			advance();
 	}
