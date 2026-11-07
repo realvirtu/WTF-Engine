@@ -11,8 +11,6 @@ class FunkinSoundTray extends FlxSoundTray
 {
 	static final SCALE:Float = 1.25;
 
-	var isSilent:Bool;
-
 	var lerpScaleX:Float;
 	var lerpScaleY:Float;
 	var lerpPos:Float;
@@ -39,11 +37,14 @@ class FunkinSoundTray extends FlxSoundTray
 
 		for (i in 1...11)
 			_bars.push(buildBar(i));
+
+		if (FlxG.sound.muted || FlxG.sound.volume == 0)
+			popup();
 	}
 
 	override function update(elapsed:Float)
 	{
-		if (!isSilent)
+		if (!FlxG.sound.muted && FlxG.sound.volume > 0)
 		{
 			_timer = Math.min(1, _timer + elapsed / Constants.MS_PER_SEC);
 
@@ -80,7 +81,7 @@ class FunkinSoundTray extends FlxSoundTray
 	{
 		FunkinSound.playOnce(getPath('sounds/${FlxG.sound.volume == 1 ? 'max' : 'up'}'));
 
-		popup(true);
+		popup();
 		save();
 	}
 
@@ -88,17 +89,13 @@ class FunkinSoundTray extends FlxSoundTray
 	{
 		FunkinSound.playOnce(getPath('sounds/down'));
 
-		popup(false);
+		popup();
 		save();
 	}
 
-	function popup(up:Bool)
+	function popup()
 	{
-		final volume:Int = FlxG.sound.muted ? 0 : Math.round(FlxG.sound.logToLinear(FlxG.sound.volume) * 10);
-
 		_timer = 0;
-
-		isSilent = volume == 0;
 
 		lerpScaleX = SCALE * 1.25;
 		lerpScaleY = SCALE * 0.75;
@@ -107,6 +104,8 @@ class FunkinSoundTray extends FlxSoundTray
 		targetAlpha = 1;
 
 		visible = active = true;
+
+		final volume:Float = FlxG.sound.muted ? 0 : Math.round(FlxG.sound.logToLinear(FlxG.sound.volume) * 10);
 
 		for (i => bar in _bars)
 			bar.visible = i < volume;
