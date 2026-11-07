@@ -7,6 +7,6 @@
         "scale": 4.5,
         "offset": [-40, -60]
     },
-    "globalOffset": [0, -50],
-    "speakerOffset": [0, 50]
+    "globalOffset": [0, -60],
+    "speakerOffset": [0, 40]
 }
