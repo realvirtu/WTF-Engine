@@ -6,6 +6,7 @@ import funkin.audio.FunkinSound;
 import funkin.data.dialogue.ConversationData;
 import funkin.data.dialogue.ConversationRegistry;
 import funkin.data.dialogue.DialogueBoxRegistry;
+import funkin.data.dialogue.SpeakerRegistry;
 import funkin.graphics.FunkinSprite;
 import funkin.input.Controls;
 
@@ -22,6 +23,7 @@ class Conversation extends FlxGroup
 
 	public var bg:FunkinSprite;
 	public var box:DialogueBox;
+	public var speaker:DialogueSpeaker;
 
 	var path(get, never):String;
 
@@ -44,9 +46,17 @@ class Conversation extends FlxGroup
 
 		box = DialogueBoxRegistry.instance.fetchDialogueBox(meta.box);
 		box.screenCenter(X);
-		box.x += box.getBoxOffset()[0];
-		box.y = FlxG.height - box.height + box.getBoxOffset()[1];
+		box.x += box.globalOffset[0];
+		box.y = FlxG.height - box.height + box.globalOffset[1];
+		box.zIndex = 1;
 		add(box);
+
+		speaker = SpeakerRegistry.instance.fetchSpeaker('senpai');
+		speaker.x = box.x + box.speakerOffset[0];
+		speaker.y = box.y - speaker.height + box.speakerOffset[1];
+		add(speaker);
+
+		refresh();
 
 		FlxTween.tween(bg, {alpha: 0.5}, 2, {ease: x -> return Math.floor(x * 8) / 8});
 	}

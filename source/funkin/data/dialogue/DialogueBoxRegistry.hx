@@ -6,7 +6,7 @@ import haxe.ds.StringMap;
 import json2object.JsonParser;
 
 /**
- * A registry class for loading dialogue conversations.
+ * A registry class for loading dialogue boxes.
  */
 class DialogueBoxRegistry extends BaseRegistry<DialogueBoxData>
 {

@@ -16,6 +16,9 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var meta:DialogueBoxData;
 
+	public var globalOffset(get, never):Array<Float>;
+	public var speakerOffset(get, never):Array<Float>;
+
 	public var box:FunkinSprite;
 	public var hand:FunkinSprite;
 
@@ -39,14 +42,17 @@ class DialogueBox extends FlxSpriteGroup
 		box.active = false;
 		add(box);
 
-		final path:String = '$boxPath/hand';
+		// Creates the hand sprite
+		// Though only do so if there's data for the hand
+		final handPath:String = '$boxPath/hand';
+		final handData:DialogueBoxHandData = meta.hand;
 
-		if (meta.hand != null && Paths.exists(Paths.image(path)))
+		if (meta.hand != null && Paths.exists(Paths.image(handPath)))
 		{
-			hand = FunkinSprite.create(0, 0, path, meta.hand.scale, meta.hand.width, meta.hand.height);
+			hand = FunkinSprite.create(0, 0, handPath, handData.scale, handData.width, handData.height);
 			hand.addAnimation('anim', [1, 2, 0], 10, false);
-			hand.x = box.width - hand.width + getHandOffset()[0];
-			hand.y = box.height - hand.height + getHandOffset()[1];
+			hand.x = box.width - hand.width + handData.offset[0];
+			hand.y = box.height - hand.height + handData.offset[1];
 			add(hand);
 		}
 	}
@@ -63,14 +69,16 @@ class DialogueBox extends FlxSpriteGroup
 		FunkinSound.playOnce('gameplay/dialogue/sounds/next');
 	}
 
-	public function getBoxOffset():Array<Float>
+	@:noCompletion
+	inline function get_globalOffset():Array<Float>
 	{
-		return meta?.offset?.copy() ?? [];
+		return meta?.globalOffset ?? [];
 	}
 
-	public function getHandOffset():Array<Float>
+	@:noCompletion
+	inline function get_speakerOffset():Array<Float>
 	{
-		return meta?.hand?.offset?.copy() ?? [];
+		return meta?.speakerOffset ?? [];
 	}
 
 	@:noCompletion

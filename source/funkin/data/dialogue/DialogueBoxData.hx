@@ -9,8 +9,8 @@ typedef DialogueBoxData =
 	@:default(1)
 	var scale:Float;
 	var hand:DialogueBoxHandData;
-	@:default([])
-	var offset:Array<Float>;
+	var globalOffset:Array<Float>;
+	var speakerOffset:Array<Float>;
 }
 
 /**
