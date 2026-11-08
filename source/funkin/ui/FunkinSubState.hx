@@ -4,6 +4,7 @@ import flixel.FlxCamera;
 import flixel.FlxSubState;
 import funkin.input.Controls;
 import funkin.modding.event.ScriptEvent;
+import funkin.modding.event.ScriptEventDispatcher;
 
 /**
  * A class used as the base for all the game's sub states.
@@ -50,17 +51,7 @@ class FunkinSubState extends FlxSubState
 
 	public function dispatch(event:ScriptEvent)
 	{
-		// Script events only work if the parent state is a FunkinState
-		// Why wouldn't you use FunkinState anyways?
-		if (!(_parentState is FunkinState))
-		{
-			event.put();
-			return;
-		}
-
-		var state:FunkinState = cast _parentState;
-
-		state.dispatch(event);
+		ScriptEventDispatcher.dispatchToState(event);
 	}
 
 	function stepHit(step:Int) {}

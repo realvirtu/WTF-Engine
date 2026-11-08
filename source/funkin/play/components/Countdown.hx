@@ -6,8 +6,8 @@ import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
 import funkin.graphics.FunkinSprite;
 import funkin.modding.event.ScriptEvent;
+import funkin.modding.event.ScriptEventDispatcher;
 import funkin.play.note.NoteStyle;
-import funkin.ui.FunkinState;
 
 /**
  * A `FunkinSprite` used for the game's countdown before the song starts.
@@ -41,7 +41,7 @@ class Countdown extends FunkinSprite
 	public function step(step:Int)
 	{
 		var event:CountdownScriptEvent = CountdownScriptEvent.get(COUNTDOWN_STEP, step);
-		dispatch(event);
+		ScriptEventDispatcher.dispatchToState(event);
 
 		if (event.cancelled)
 			return;
@@ -81,15 +81,5 @@ class Countdown extends FunkinSprite
 			ease: FlxEase.elasticOut,
 			onComplete: _ -> FlxTween.tween(this, {alpha: 0}, 0.35, {ease: FlxEase.quadOut, onComplete: _ -> visible = false})
 		});
-	}
-
-	function dispatch(event:ScriptEvent)
-	{
-		if (!(FlxG.state is FunkinState))
-			return;
-
-		final state:FunkinState = cast FlxG.state;
-
-		state.dispatch(event);
 	}
 }

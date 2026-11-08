@@ -61,12 +61,12 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function start()
 	{
-		dispatch(new DialogueScriptEvent(DIALOGUE_START, this));
+		ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_START, this));
 	}
 
 	public function end()
 	{
-		dispatch(new DialogueScriptEvent(DIALOGUE_END, this));
+		ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_END, this));
 	}
 
 	public function advance()
@@ -74,9 +74,9 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		switch (state)
 		{
 			case START | IDLE:
-				dispatch(new DialogueScriptEvent(DIALOGUE_LINE, this));
+				ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_LINE, this));
 			case SPEAKING:
-				dispatch(new DialogueScriptEvent(DIALOGUE_COMPLETE_LINE, this));
+				ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_COMPLETE_LINE, this));
 			default:
 				// Does literally nothing
 		}
@@ -110,16 +110,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		super.destroy();
 
 		music?.destroy();
-	}
-
-	function dispatch(event:ScriptEvent)
-	{
-		if (!(FlxG.state is FunkinState))
-			return;
-
-		final state:FunkinState = cast FlxG.state;
-
-		state.dispatch(event);
 	}
 
 	public function onCreate(event:ScriptEvent) {}

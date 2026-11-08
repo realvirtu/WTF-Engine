@@ -1,6 +1,7 @@
 package funkin.modding.event;
 
 import funkin.modding.IScriptedClass;
+import funkin.ui.FunkinState;
 
 /**
  * A class for dispatching script events.
@@ -193,5 +194,21 @@ class ScriptEventDispatcher
 		// Runs the onScriptEvent() script event
 		// This isn't actually a real event type
 		target.onScriptEvent(event);
+	}
+
+	public static function dispatchToState(event:ScriptEvent)
+	{
+		if (!(FlxG.state is FunkinState))
+		{
+			// Might be a good idea to put the event to prevent any leaks
+			// There's a chance the current state cannot dispatch the event
+			event.put();
+
+			return;
+		}
+
+		final state:FunkinState = cast FlxG.state;
+
+		state.dispatch(event);
 	}
 }
