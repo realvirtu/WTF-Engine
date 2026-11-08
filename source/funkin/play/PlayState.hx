@@ -291,6 +291,13 @@ class PlayState extends FunkinState
 			processInput();
 		}
 
+		// Advance the conversation if it exists
+		if (conversation != null)
+		{
+			if (controls.ACCEPT_P)
+				conversation.advance();
+		}
+
 		//
 		// HUD
 		//

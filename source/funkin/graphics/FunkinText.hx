@@ -37,7 +37,7 @@ class FunkinText extends FlxBitmapText
 		typeTimer?.cancel();
 		typeTimer = FlxTimer.loop(speed, loop ->
 		{
-			this.text = text.substr(0, loop);
+			this.text = text.substr(0, loop + 1);
 
 			if (onType != null)
 				onType();

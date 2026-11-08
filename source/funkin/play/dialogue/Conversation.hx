@@ -12,7 +12,6 @@ import funkin.input.Controls;
 import funkin.modding.IScriptedClass.IDialogueScriptedClass;
 import funkin.modding.event.ScriptEvent;
 import funkin.modding.event.ScriptEventDispatcher;
-import funkin.ui.FunkinState;
 import funkin.util.EaseUtil;
 
 /**
@@ -42,7 +41,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	public var lineCount(get, never):Int;
 
 	public var line(get, never):ConversationLineData;
-	public var lineText(get, never):String;
 
 	public var onComplete:() -> Void;
 
@@ -95,14 +93,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 		add(speaker);
 		refresh();
-	}
-
-	override function update(elapsed:Float)
-	{
-		super.update(elapsed);
-
-		if (Controls.instance.ACCEPT_P)
-			advance();
 	}
 
 	override function destroy()
@@ -160,18 +150,20 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 			end();
 		else
 		{
-			box.text.type(lineText, 0.06, () ->
-			{
-				@:privateAccess
-				var click:String = '${speaker?.speakerPath}/click';
-
-				if (!Paths.exists(Paths.sound(click)))
-					click = 'gameplay/dialogue/sounds/click';
-
-				FunkinSound.playOnce(click);
-			}, () -> state = IDLE);
-
 			showSpeaker();
+
+			var click:String = speaker?.getClickSound();
+
+			if (!Paths.exists(Paths.sound(click)))
+				click = 'gameplay/dialogue/sounds/click';
+
+			box.text.type(line?.text, line?.speed, () -> FunkinSound.playOnce(click), () ->
+			{
+				state = IDLE;
+
+				if (line?.autoAdvance)
+					advance();
+			});
 		}
 	}
 
@@ -213,12 +205,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	inline function get_line():ConversationLineData
 	{
 		return meta.lines[lineNumber];
-	}
-
-	@:noCompletion
-	inline function get_lineText():String
-	{
-		return line?.text ?? '';
 	}
 
 	@:noCompletion

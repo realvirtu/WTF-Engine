@@ -33,6 +33,11 @@ class Speaker extends FunkinSprite implements IDialogueScriptedClass
 		offset.subtract(meta.offset[0], meta.offset[1]);
 	}
 
+	public function getClickSound():String
+	{
+		return '$speakerPath/click';
+	}
+
 	public function onCreate(event:ScriptEvent) {}
 
 	public function onUpdate(event:UpdateScriptEvent) {}
