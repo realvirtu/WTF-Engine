@@ -7,7 +7,7 @@ import funkin.modding.event.ScriptEvent;
  * A class that serves as an advanced script class for mods.
  * Unlike any scripted class, this runs globally.
  */
-class Module implements IStateScriptedClass implements IPlayStateScriptedClass implements IFreeplayScriptedClass
+class Module implements IStateScriptedClass implements IPlayStateScriptedClass implements IDialogueScriptedClass implements IFreeplayScriptedClass
 {
 	public final id:String;
 
@@ -77,6 +77,14 @@ class Module implements IStateScriptedClass implements IPlayStateScriptedClass i
 	public function onGameOverLoop(event:ScriptEvent) {}
 
 	public function onGameOverRetry(event:ScriptEvent) {}
+
+	public function onDialogueStart(event:DialogueScriptEvent) {}
+
+	public function onDialogueLine(event:DialogueScriptEvent) {}
+
+	public function onDialogueCompleteLine(event:DialogueScriptEvent) {}
+
+	public function onDialogueEnd(event:DialogueScriptEvent) {}
 
 	public function onFreeplayEnter(event:ScriptEvent) {}
 

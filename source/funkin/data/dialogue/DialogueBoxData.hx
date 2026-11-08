@@ -1,16 +1,23 @@
 package funkin.data.dialogue;
 
+import funkin.data.stage.StageData.PropAnimData;
+
 /**
  * Structure object used for the data of dialogue boxes.
  */
 typedef DialogueBoxData =
 {
 	var name:String;
+	var width:Int;
+	var height:Int;
+	@:default(1)
 	var scale:Float;
-	var hand:DialogueBoxHandData;
-	var text:DialogueBoxTextData;
 	var globalOffset:Array<Float>;
 	var speakerOffset:Array<Float>;
+	var hand:DialogueBoxHandData;
+	var text:DialogueBoxTextData;
+	@:default([])
+	var animations:Array<PropAnimData>;
 }
 
 /**

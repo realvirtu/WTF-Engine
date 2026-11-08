@@ -48,8 +48,9 @@ typedef CharacterIconData =
 /**
  * A structure object used for the animation data of characters.
  */
-typedef CharacterAnimData = PropAnimData &
+typedef CharacterAnimData =
 {
+	> PropAnimData,
 	@:optional
 	var image:String;
 	var offset:Array<Float>;

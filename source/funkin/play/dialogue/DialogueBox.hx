@@ -1,17 +1,21 @@
 package funkin.play.dialogue;
 
 import flixel.group.FlxSpriteGroup;
+import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
 import funkin.data.dialogue.DialogueBoxData;
 import funkin.data.dialogue.DialogueBoxRegistry;
 import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
+import funkin.modding.IScriptedClass.IDialogueScriptedClass;
+import funkin.modding.event.ScriptEvent;
+import funkin.util.EaseUtil;
+import funkin.util.SortUtil;
 
 /**
  * Dialogue box object used for conversations.
  */
-class DialogueBox extends FlxSpriteGroup
+class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 {
 	public final id:String;
 
@@ -24,8 +28,6 @@ class DialogueBox extends FlxSpriteGroup
 	public var hand:FunkinSprite;
 	public var text:FunkinText;
 
-	var boxTimer:FlxTimer;
-
 	var boxPath(get, never):String;
 
 	public function new(id:String)
@@ -37,53 +39,108 @@ class DialogueBox extends FlxSpriteGroup
 
 	public function buildSprite()
 	{
-		final handData:DialogueBoxHandData = meta?.hand;
-		final textData:DialogueBoxTextData = meta?.text;
+		text = new FunkinText();
+		text.autoSize = false;
+		text.zIndex = 1;
+		add(text);
 
-		box = FunkinSprite.create(0, 0, '$boxPath/image', meta?.scale ?? 1);
-		box.active = false;
+		if (meta == null)
+			return;
+
+		box = FunkinSprite.create(0, 0, '$boxPath/image', meta.scale, meta.width, meta.height);
 		add(box);
 
-		if (handData != null)
+		for (anim in meta.animations)
 		{
-			hand = FunkinSprite.create(0, 0, '$boxPath/hand', handData.scale, handData.width, handData.height);
-			hand.addAnimation('anim', [1, 2, 0], 10, false);
-			hand.x = box.width - hand.width + handData.offset[0];
-			hand.y = box.height - hand.height + handData.offset[1];
+			if (anim == null)
+				continue;
+			box.addAnimation(anim.name, anim.frames, anim.framerate, anim.looped);
+		}
+
+		box.playAnimation('idle');
+
+		box.animation.onFinish.add(name ->
+		{
+			if (name == 'open')
+				box.playAnimation('idle');
+		});
+
+		if (meta.text != null)
+		{
+			final offset:Array<Float> = meta.text.offset;
+
+			text.x += offset[0];
+			text.y += offset[1];
+
+			text.fieldWidth = Std.int(box.width - offset[0]);
+
+			text.color = FlxColor.fromString(meta.text.textColor);
+			text.borderColor = FlxColor.fromString(meta.text.borderColor);
+			text.borderStyle = SHADOW;
+			text.size = meta.text.textSize;
+			text.borderSize = meta.text.borderSize;
+		}
+
+		if (meta.hand != null)
+		{
+			final offset:Array<Float> = meta.hand.offset;
+
+			hand = FunkinSprite.create(0, 0, '$boxPath/hand', meta.hand.scale, meta.hand.width, meta.hand.height);
+			hand.x = box.width - hand.width + offset[0];
+			hand.y = box.height - hand.height + offset[1];
+
+			hand.addAnimation('press', [1, 2, 0], 10, false);
+
 			add(hand);
 		}
 
-		text = new FunkinText();
-		text.autoSize = false;
-		text.fieldWidth = Std.int(box.width);
-		add(text);
-
-		if (textData != null)
-		{
-			text.x += textData.offset[0];
-			text.y += textData.offset[1];
-
-			text.fieldWidth -= Std.int(textData.offset[0]);
-
-			text.color = FlxColor.fromString(textData.textColor);
-			text.borderColor = FlxColor.fromString(textData.borderColor);
-			text.borderStyle = SHADOW;
-			text.size = textData.textSize;
-			text.borderSize = textData.borderSize;
-		}
+		sort(SortUtil.byZIndex.bind());
 	}
 
-	public function confirm()
+	public function onCreate(event:ScriptEvent) {}
+
+	public function onUpdate(event:UpdateScriptEvent) {}
+
+	public function onDestroy(event:ScriptEvent) {}
+
+	public function onScriptEvent(event:ScriptEvent) {}
+
+	public function onDialogueStart(event:DialogueScriptEvent)
 	{
-		if (box != null)
-		{
-			boxTimer?.cancel();
-			boxTimer = FlxTimer.wait(0.05, () -> box.y = y);
+		if (box == null)
+			return;
 
-			box.y = y - 10;
-		}
+		box.playAnimation('open');
+		box.alpha = 0;
 
-		hand?.playAnimation('anim', true);
+		FlxTween.tween(box, {alpha: 1}, 0.5, {ease: EaseUtil.stepped(8)});
+	}
+
+	public function onDialogueLine(event:DialogueScriptEvent)
+	{
+		box?.playAnimation('idle');
+		hand?.playAnimation('press', true);
+	}
+
+	public function onDialogueCompleteLine(event:DialogueScriptEvent)
+	{
+		hand?.playAnimation('press', true);
+	}
+
+	public function onDialogueEnd(event:DialogueScriptEvent)
+	{
+		if (box == null)
+			return;
+
+		text?.destroy();
+		text = null;
+
+		hand?.destroy();
+		hand = null;
+
+		box.playAnimation('close');
+
+		FlxTween.tween(box, {alpha: 0}, 0.5, {ease: EaseUtil.stepped(8)});
 	}
 
 	@:noCompletion
@@ -102,5 +159,10 @@ class DialogueBox extends FlxSpriteGroup
 	inline function get_boxPath():String
 	{
 		return '${DialogueBoxRegistry.instance.path}/$id';
+	}
+
+	override function toString():String
+	{
+		return id;
 	}
 }

@@ -2,7 +2,6 @@ package funkin.play.dialogue;
 
 import flixel.group.FlxGroup;
 import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
 import funkin.audio.FunkinSound;
 import funkin.data.dialogue.ConversationData;
 import funkin.data.dialogue.ConversationRegistry;
@@ -12,6 +11,7 @@ import funkin.graphics.FunkinSprite;
 import funkin.input.Controls;
 import funkin.modding.IScriptedClass.IDialogueScriptedClass;
 import funkin.modding.event.ScriptEvent;
+import funkin.modding.event.ScriptEventDispatcher;
 import funkin.ui.FunkinState;
 import funkin.util.EaseUtil;
 
@@ -23,7 +23,7 @@ enum ConversationState
 	START;
 	SPEAKING;
 	IDLE;
-	OUTRO;
+	ENDING;
 }
 
 /**
@@ -49,8 +49,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	public var bg:FunkinSprite;
 	public var box:DialogueBox;
 	public var speaker:Speaker;
-
-	var speakerTimer:FlxTimer;
 
 	var path(get, never):String;
 
@@ -79,8 +77,8 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 				dispatch(new DialogueScriptEvent(DIALOGUE_LINE, this));
 			case SPEAKING:
 				dispatch(new DialogueScriptEvent(DIALOGUE_COMPLETE_LINE, this));
-			case OUTRO:
-				end();
+			default:
+				// Does literally nothing
 		}
 	}
 
@@ -95,11 +93,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		speaker.x = box.x + box.speakerOffset[0];
 		speaker.y = box.y - speaker.height + box.speakerOffset[1];
 
-		speaker.y += 10;
-
-		speakerTimer?.cancel();
-		speakerTimer = FlxTimer.wait(0.05, () -> speaker.y -= 10);
-
 		add(speaker);
 		refresh();
 	}
@@ -107,9 +100,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
-		if (state == OUTRO)
-			return;
 
 		if (Controls.instance.ACCEPT_P)
 			advance();
@@ -120,8 +110,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		super.destroy();
 
 		music?.destroy();
-
-		speakerTimer?.cancel();
 	}
 
 	function dispatch(event:ScriptEvent)
@@ -140,7 +128,11 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function onDestroy(event:ScriptEvent) {}
 
-	public function onScriptEvent(event:ScriptEvent) {}
+	public function onScriptEvent(event:ScriptEvent)
+	{
+		ScriptEventDispatcher.dispatch(box, event);
+		ScriptEventDispatcher.dispatch(speaker, event);
+	}
 
 	public function onDialogueStart(event:DialogueScriptEvent)
 	{
@@ -167,46 +159,36 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function onDialogueLine(event:DialogueScriptEvent)
 	{
-		if (state == IDLE)
-		{
-			box.confirm();
-
-			FunkinSound.playOnce('gameplay/dialogue/sounds/advance');
-		}
-
 		state = SPEAKING;
 
 		lineNumber++;
 
+		if (lineNumber > 0)
+			FunkinSound.playOnce('gameplay/dialogue/sounds/advance');
+
 		if (lineNumber >= lineCount)
+			end();
+		else
 		{
-			state = OUTRO;
-			advance();
-			return;
+			box.text.type(lineText, 0.06, () ->
+			{
+				@:privateAccess
+				var click:String = '${speaker?.speakerPath}/click';
+
+				if (!Paths.exists(Paths.sound(click)))
+					click = 'gameplay/dialogue/sounds/click';
+
+				FunkinSound.playOnce(click);
+			}, () -> state = IDLE);
+
+			showSpeaker();
 		}
-
-		box.text.type(lineText, 0.06, index ->
-		{
-			if (index >= lineText.length)
-				state = IDLE;
-
-			@:privateAccess
-			var click:String = '${speaker?.speakerPath}/click';
-
-			if (!Paths.exists(Paths.sound(click)))
-				click = 'gameplay/dialogue/sounds/click';
-
-			FunkinSound.playOnce(click);
-		});
-
-		showSpeaker();
 	}
 
 	public function onDialogueCompleteLine(event:DialogueScriptEvent)
 	{
 		state = IDLE;
 
-		box.confirm();
 		box.text.finishType();
 
 		FunkinSound.playOnce('gameplay/dialogue/sounds/advance');
@@ -214,12 +196,10 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function onDialogueEnd(event:DialogueScriptEvent)
 	{
+		state = ENDING;
+
 		music.fadeOut(1);
-
-		box.destroy();
 		speaker?.destroy();
-
-		speakerTimer?.cancel();
 
 		FlxTween.cancelTweensOf(bg);
 		FlxTween.tween(bg, {alpha: 0}, 1, {
@@ -231,13 +211,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 				destroy();
 			}
 		});
-
-		FunkinSound.playOnce('gameplay/dialogue/sounds/advance');
-	}
-
-	override function toString():String
-	{
-		return id;
 	}
 
 	@:noCompletion
@@ -262,5 +235,10 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	inline function get_path():String
 	{
 		return '${ConversationRegistry.instance.path}/$id';
+	}
+
+	override function toString():String
+	{
+		return id;
 	}
 }

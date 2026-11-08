@@ -28,7 +28,7 @@ class FunkinText extends FlxBitmapText
 		active = false;
 	}
 
-	public function type(text:String, speed:Float = 0.1, onType:Int->Void)
+	public function type(text:String, speed:Float = 0.1, ?onType:() -> Void, ?onComplete:() -> Void)
 	{
 		this.text = '';
 
@@ -40,7 +40,9 @@ class FunkinText extends FlxBitmapText
 			this.text = text.substr(0, loop);
 
 			if (onType != null)
-				onType(loop);
+				onType();
+			if (loop >= text.length && onComplete != null)
+				onComplete();
 		}, text.length);
 	}
 

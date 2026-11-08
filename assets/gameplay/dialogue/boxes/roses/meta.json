@@ -1,6 +1,10 @@
 {
     "name": "Roses",
+    "width": 164,
+    "height": 51,
     "scale": 4.5,
+    "globalOffset": [0, -60],
+    "speakerOffset": [0, 50],
     "hand": {
         "width": 22,
         "height": 9,
@@ -14,6 +18,20 @@
         "borderSize": 4,
         "offset": [120, 90]
     },
-    "globalOffset": [0, -60],
-    "speakerOffset": [0, 40]
+    "animations": [
+        {
+            "name": "idle",
+            "frames": [3]
+        },
+        {
+            "name": "open",
+            "frames": [0, 1, 2],
+            "framerate": 5
+        },
+        {
+            "name": "close",
+            "frames": [2, 1, 0],
+            "framerate": 5
+        }
+    ]
 }
