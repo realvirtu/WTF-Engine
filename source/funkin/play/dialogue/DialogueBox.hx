@@ -72,7 +72,7 @@ class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 			text.x += offset[0];
 			text.y += offset[1];
 
-			text.fieldWidth = Std.int(box.width - offset[0]);
+			text.fieldWidth = Std.int(box.width);
 
 			text.color = FlxColor.fromString(meta.text.textColor);
 			text.borderColor = FlxColor.fromString(meta.text.borderColor);
