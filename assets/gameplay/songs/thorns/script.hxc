@@ -11,6 +11,19 @@ class ThornsSong extends Song
         super('thorns');
     }
 
+    override function onCountdownStart(event:CountdownScriptEvent)
+    {
+        super.onCountdownStart(event);
+
+        if (seenCutscene)
+            return;
+        seenCutscene = true;
+
+        event.cancel();
+
+        PlayState.instance.startConversation('thorns', PlayState.instance.startCountdown);
+    }
+
     override function onDestroy(event:ScriptEvent)
     {
         super.onDestroy(event);

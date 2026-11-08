@@ -1,0 +1,35 @@
+{
+    "name": "Thorns",
+    "width": 149,
+    "height": 39,
+    "scale": 4.5,
+    "globalOffset": [0, -60],
+    "speakerOffset": [0, 10],
+    "hand": {
+        "width": 17,
+        "height": 8,
+        "scale": 4,
+        "offset": [-10, -30]
+    },
+    "text": {
+        "textColor": "#FFFFFF",
+        "textSize": 25,
+        "offset": [85, 55]
+    },
+    "animations": [
+        {
+            "name": "idle",
+            "frames": [3]
+        },
+        {
+            "name": "open",
+            "frames": [0, 1, 2],
+            "framerate": 5
+        },
+        {
+            "name": "close",
+            "frames": [2, 1, 0],
+            "framerate": 5
+        }
+    ]
+}
