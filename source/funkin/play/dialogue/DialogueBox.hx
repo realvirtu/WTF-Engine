@@ -118,18 +118,24 @@ class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 
 	public function onDialogueLine(event:DialogueScriptEvent)
 	{
+		if (event.cancelled)
+			return;
+
 		box?.playAnimation('idle');
 		hand?.playAnimation('press', true);
 	}
 
 	public function onDialogueCompleteLine(event:DialogueScriptEvent)
 	{
+		if (event.cancelled)
+			return;
+
 		hand?.playAnimation('press', true);
 	}
 
 	public function onDialogueEnd(event:DialogueScriptEvent)
 	{
-		if (box == null)
+		if (event.cancelled || box == null)
 			return;
 
 		text?.destroy();

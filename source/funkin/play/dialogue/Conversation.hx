@@ -151,6 +151,9 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function onDialogueLine(event:DialogueScriptEvent)
 	{
+		if (event.cancelled)
+			return;
+
 		state = SPEAKING;
 
 		lineNumber++;
@@ -181,15 +184,24 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function onDialogueCompleteLine(event:DialogueScriptEvent)
 	{
+		if (event.cancelled)
+			return;
+
 		state = IDLE;
 
 		box.text.finishType();
+
+		if (line?.autoAdvance)
+			advance();
 
 		FunkinSound.playOnce('gameplay/dialogue/sounds/advance');
 	}
 
 	public function onDialogueEnd(event:DialogueScriptEvent)
 	{
+		if (event.cancelled)
+			return;
+
 		state = ENDING;
 
 		music.fadeOut(1);
