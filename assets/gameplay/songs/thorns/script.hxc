@@ -21,7 +21,7 @@ class ThornsSong extends Song
 
         event.cancel();
 
-        PlayState.instance.startConversation('thorns', PlayState.instance.startCountdown);
+        PlayState.instance.startConversation('thorns');
     }
 
     override function onDestroy(event:ScriptEvent)

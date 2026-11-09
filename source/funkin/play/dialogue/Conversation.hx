@@ -37,7 +37,7 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public var music:FunkinSound;
 
-	public var lineNumber:Int = -1;
+	public var lineNumber:Int;
 	public var lineCount(get, never):Int;
 
 	public var line(get, never):ConversationLineData;
@@ -57,13 +57,32 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		this.id = id;
 	}
 
+	public function build()
+	{
+		music = FunkinSound.load('$path/music', 1, true, false, false);
+
+		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFFFFFFFF);
+		bg.active = false;
+		add(bg);
+
+		box = DialogueBoxRegistry.instance.fetchDialogueBox(meta.box);
+		box.x = (FlxG.width - box.box.width) / 2 + box.globalOffset[0];
+		box.y = FlxG.height - box.height + box.globalOffset[1];
+		box.zIndex = 1;
+		add(box);
+	}
+
 	public function start()
 	{
+		if (state == ENDING)
+			return;
 		ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_START, this));
 	}
 
 	public function end()
 	{
+		if (state == ENDING)
+			return;
 		ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_END, this));
 	}
 
@@ -118,22 +137,16 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	{
 		state = START;
 
-		music = FunkinSound.load('$path/music', 1, true, false);
+		lineNumber = -1;
+
+		music.play(true);
 		music.fadeIn(1);
 
-		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFFFFFFFF);
 		bg.alpha = 0;
-		bg.active = false;
-		add(bg);
-
-		box = DialogueBoxRegistry.instance.fetchDialogueBox(meta.box);
-		box.x = (FlxG.width - box.box.width) / 2 + box.globalOffset[0];
-		box.y = FlxG.height - box.height + box.globalOffset[1];
-		box.zIndex = 1;
-		add(box);
 
 		advance();
 
+		FlxTween.cancelTweensOf(bg);
 		FlxTween.tween(bg, {alpha: 0.5}, 2, {ease: EaseUtil.stepped(8)});
 	}
 

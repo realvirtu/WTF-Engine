@@ -43,7 +43,7 @@ class SenpaiSong extends Song
 
         event.cancel();
 
-        PlayState.instance.startConversation('senpai', PlayState.instance.startCountdown);
+        PlayState.instance.startConversation('senpai');
     }
 
     override function onNoteHit(event:NoteScriptEvent)

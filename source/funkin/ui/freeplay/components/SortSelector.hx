@@ -66,8 +66,8 @@ class SortSelector extends FlxSpriteGroup
 		if (busy)
 			return;
 
-		final left:Bool = Controls.instance.SORT_LEFT;
-		final right:Bool = Controls.instance.SORT_RIGHT;
+		final left:Bool = Controls.instance.FREEPLAY_SORT_LEFT;
+		final right:Bool = Controls.instance.FREEPLAY_SORT_RIGHT;
 
 		if (left || right)
 			change(left ? -1 : 1);

@@ -173,11 +173,11 @@ class FreeplaySubState extends FunkinSubState
 		// Don't wanna mess things up
 		stateMachine.active = !StickerPlugin.instance.active;
 
-		if (controls.FAVORITE)
+		if (controls.FREEPLAY_FAVORITE)
 			favorite(capsules.capsule);
 		if (controls.ACCEPT_P)
 			confirm(capsules.capsule);
-		if (controls.CHAR_SELECT)
+		if (controls.FREEPLAY_CHAR_SELECT)
 			enterCharSelect();
 		if (controls.BACK)
 			exit();

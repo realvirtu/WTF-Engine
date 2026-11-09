@@ -27,10 +27,11 @@ class Controls
 		new FunkinAction(Control.BACK, [X, ESCAPE, BACKSPACE], [B]),
 		new FunkinAction(Control.PAUSE, [P, RETURN, ESCAPE], [START]),
 		new FunkinAction(Control.RESET, [R], []),
-		new FunkinAction(Control.FAVORITE, [F], [Y]),
-		new FunkinAction(Control.SORT_LEFT, [Q], [LEFT_SHOULDER]),
-		new FunkinAction(Control.SORT_RIGHT, [E], [RIGHT_SHOULDER]),
-		new FunkinAction(Control.CHAR_SELECT, [TAB], [X])
+		new FunkinAction(Control.CUTSCENE_ADVANCE, [Z, SPACE, RETURN], [START, A]),
+		new FunkinAction(Control.FREEPLAY_FAVORITE, [F], [Y]),
+		new FunkinAction(Control.FREEPLAY_SORT_LEFT, [Q], [LEFT_SHOULDER]),
+		new FunkinAction(Control.FREEPLAY_SORT_RIGHT, [E], [RIGHT_SHOULDER]),
+		new FunkinAction(Control.FREEPLAY_CHAR_SELECT, [TAB], [X])
 	];
 
 	public var directionDown(default, null) = new FlxTypedSignal<NoteDirection->Void>();
@@ -61,10 +62,11 @@ class Controls
 	public var BACK(get, never):Bool;
 	public var PAUSE(get, never):Bool;
 	public var RESET(get, never):Bool;
-	public var FAVORITE(get, never):Bool;
-	public var SORT_LEFT(get, never):Bool;
-	public var SORT_RIGHT(get, never):Bool;
-	public var CHAR_SELECT(get, never):Bool;
+	public var CUTSCENE_ADVANCE(get, never):Bool;
+	public var FREEPLAY_FAVORITE(get, never):Bool;
+	public var FREEPLAY_SORT_LEFT(get, never):Bool;
+	public var FREEPLAY_SORT_RIGHT(get, never):Bool;
+	public var FREEPLAY_CHAR_SELECT(get, never):Bool;
 
 	@:noCompletion
 	inline function get_NOTE_LEFT():Bool
@@ -217,27 +219,33 @@ class Controls
 	}
 
 	@:noCompletion
-	inline function get_FAVORITE():Bool
+	inline function get_CUTSCENE_ADVANCE():Bool
 	{
-		return getAction(Control.FAVORITE).justPressed;
+		return getAction(Control.CUTSCENE_ADVANCE).justPressed;
 	}
 
 	@:noCompletion
-	inline function get_SORT_LEFT():Bool
+	inline function get_FREEPLAY_FAVORITE():Bool
 	{
-		return getAction(Control.SORT_LEFT).justPressed;
+		return getAction(Control.FREEPLAY_FAVORITE).justPressed;
 	}
 
 	@:noCompletion
-	inline function get_SORT_RIGHT():Bool
+	inline function get_FREEPLAY_SORT_LEFT():Bool
 	{
-		return getAction(Control.SORT_RIGHT).justPressed;
+		return getAction(Control.FREEPLAY_SORT_LEFT).justPressed;
 	}
 
 	@:noCompletion
-	inline function get_CHAR_SELECT():Bool
+	inline function get_FREEPLAY_SORT_RIGHT():Bool
 	{
-		return getAction(Control.CHAR_SELECT).justPressed;
+		return getAction(Control.FREEPLAY_SORT_RIGHT).justPressed;
+	}
+
+	@:noCompletion
+	inline function get_FREEPLAY_CHAR_SELECT():Bool
+	{
+		return getAction(Control.FREEPLAY_CHAR_SELECT).justPressed;
 	}
 
 	var gamepadConnected:Bool = false;

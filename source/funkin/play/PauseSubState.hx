@@ -15,6 +15,17 @@ import funkin.api.DiscordRPC;
 #end
 
 /**
+ * An enum used for determining the entries displayed in the pause menu.
+ */
+enum PauseMode
+{
+	DEFAULT;
+	DIFFICULTY;
+	INSTRUMENTAL;
+	CUTSCENE;
+}
+
+/**
  * The game's pause menu sub state.
  */
 class PauseSubState extends FunkinSubState
@@ -24,6 +35,8 @@ class PauseSubState extends FunkinSubState
 
 	public var music:FunkinSound;
 
+	public var mode:PauseMode;
+
 	public var bg:FunkinSprite;
 	public var songText:FunkinText;
 	public var menuList:TextMenuList;
@@ -32,6 +45,13 @@ class PauseSubState extends FunkinSubState
 	var difficulty(get, never):String;
 	var instrumental(get, never):String;
 	var deaths(get, never):Int;
+
+	public function new(mode:PauseMode = DEFAULT)
+	{
+		super();
+
+		this.mode = mode;
+	}
 
 	override function create()
 	{
@@ -58,7 +78,8 @@ class PauseSubState extends FunkinSubState
 		add(menuList);
 
 		updateSongText();
-		load();
+
+		load(mode);
 
 		FlxTween.tween(bg, {alpha: 0.8}, 0.15);
 
@@ -80,6 +101,7 @@ class PauseSubState extends FunkinSubState
 						continue;
 					menuList.addItem(diff, changeDifficulty.bind(diff));
 				}
+
 				menuList.addItem('back', () -> load());
 
 			case INSTRUMENTAL:
@@ -95,6 +117,26 @@ class PauseSubState extends FunkinSubState
 				}
 
 				menuList.addItem('back', () -> load());
+
+			case CUTSCENE:
+				menuList.addItem('resume', resumeSong);
+
+				menuList.addItem('restart cutscene', () ->
+				{
+					PlayState.instance.conversation?.start();
+
+					resumeSong();
+				});
+
+				menuList.addItem('skip cutscene', () ->
+				{
+					PlayState.instance.conversation?.end();
+
+					resumeSong();
+				});
+
+				menuList.addItem('options', openOptions);
+				menuList.addItem('exit to menu', exitSong);
 
 			default:
 				menuList.addItem('resume', resumeSong);
@@ -235,14 +277,4 @@ class PauseSubState extends FunkinSubState
 	{
 		musicId = PlayState.instance.stage.player?.id;
 	}
-}
-
-/**
- * An enum used for determining the entries displayed in the pause menu.
- */
-enum PauseMode
-{
-	DEFAULT;
-	DIFFICULTY;
-	INSTRUMENTAL;
 }

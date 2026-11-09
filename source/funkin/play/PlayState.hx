@@ -84,6 +84,7 @@ class PlayState extends FunkinState
 	public var songActive:Bool;
 
 	public var isPaused(get, never):Bool;
+	public var inCutscene:Bool = false;
 
 	public var events:Array<EventData>;
 	public var nextEventIndex:Int = -1;
@@ -245,6 +246,7 @@ class PlayState extends FunkinState
 		refresh();
 		updatePreferences();
 
+		// TODO: Make this run individually for songs or whatever
 		// Runs the create script event
 		dispatch(ScriptEvent.get(CREATE));
 	}
@@ -288,15 +290,9 @@ class PlayState extends FunkinState
 			playerStrumline.process();
 
 			processEvents();
-			processInput();
 		}
 
-		// Advance the conversation if it exists
-		if (conversation != null)
-		{
-			if (controls.ACCEPT_P)
-				conversation.advance();
-		}
+		processInput();
 
 		//
 		// HUD
@@ -475,17 +471,28 @@ class PlayState extends FunkinState
 		countdown.start(playbackRate);
 	}
 
-	public function startConversation(id:String, onComplete:() -> Void)
+	public function startConversation(id:String)
 	{
+		inCutscene = true;
+
 		conversation?.destroy();
 
 		conversation = ConversationRegistry.instance.fetchConversation(id);
-		conversation.onComplete = onComplete;
 		conversation.camera = camHUD;
 		conversation.zIndex = 100;
-		conversation.start();
-
 		add(conversation);
+
+		conversation.onComplete = () ->
+		{
+			inCutscene = false;
+			conversation = null;
+
+			if (!songStarted && !songActive)
+				startCountdown();
+		};
+
+		conversation.build();
+		conversation.start();
 	}
 
 	public function setCameraTarget(target:Character, instant:Bool = false)
@@ -515,7 +522,7 @@ class PlayState extends FunkinState
 
 	public function pause()
 	{
-		if (isPaused || !songActive)
+		if (isPaused || (!songActive && !inCutscene))
 			return;
 
 		var event:ScriptEvent = ScriptEvent.get(PAUSE);
@@ -524,7 +531,7 @@ class PlayState extends FunkinState
 		if (event.cancelled)
 			return;
 
-		openSubState(new PauseSubState());
+		openSubState(new PauseSubState(inCutscene ? CUTSCENE : DEFAULT));
 	}
 
 	public function updatePreferences()
@@ -702,14 +709,33 @@ class PlayState extends FunkinState
 
 	function processInput()
 	{
-		//
-		// PLAYER
-		//
+		// Cutscene input
+		if (inCutscene)
+		{
+			if (controls.CUTSCENE_ADVANCE && conversation != null)
+				conversation.advance();
+			else if (controls.PAUSE)
+				pause();
+			return;
+		}
 
+		// Player input
 		if (Preferences.botplay)
 		{
 			for (note in playerStrumline.getMayHitNotes())
 				playerNoteHit(note);
+		}
+		else
+		{
+			playerStrumline.strums.forEach(strum ->
+			{
+				if (strum.confirmTime > 0)
+					return;
+				if (strum.direction.pressed)
+					strum.playPress();
+				else
+					strum.playStatic();
+			});
 		}
 
 		for (holdNote in playerStrumline.getHeldHoldNotes())
@@ -723,34 +749,17 @@ class PlayState extends FunkinState
 		for (note in playerStrumline.getMissedNotes())
 			playerNoteMiss(note);
 
-		if (!Preferences.botplay)
-		{
-			playerStrumline.strums.forEach(strum ->
-			{
-				if (strum.confirmTime > 0)
-					return;
-				if (strum.direction.pressed)
-					strum.playPress();
-				else
-					strum.playStatic();
-			});
-		}
-
-		//
-		// OPPONENT
-		//
-
+		// Opponent input
 		for (note in opponentStrumline.getMayHitNotes())
 			opponentNoteHit(note);
 		for (holdNote in opponentStrumline.getHeldHoldNotes())
 			opponentHoldNoteHeld(holdNote);
 
-		// The misc stuff
-		// Pausing, resetting, etc.
+		// Pausing and resetting
 		if (controls.PAUSE)
 			pause();
 
-		if (controls.RESET)
+		if (controls.RESET && !inCutscene)
 		{
 			health = healthBar.min;
 			healthLerp = health;

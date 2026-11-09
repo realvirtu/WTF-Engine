@@ -22,7 +22,7 @@ class RosesSong extends Song
 
         event.cancel();
 
-        PlayState.instance.startConversation('roses', PlayState.instance.startCountdown);
+        PlayState.instance.startConversation('roses');
 
         FunkinSound.playOnce(getPath('sounds/angry'));
     }
