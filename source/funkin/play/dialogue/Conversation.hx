@@ -8,7 +8,6 @@ import funkin.data.dialogue.ConversationRegistry;
 import funkin.data.dialogue.DialogueBoxRegistry;
 import funkin.data.dialogue.SpeakerRegistry;
 import funkin.graphics.FunkinSprite;
-import funkin.input.Controls;
 import funkin.modding.IScriptedClass.IDialogueScriptedClass;
 import funkin.modding.event.ScriptEvent;
 import funkin.modding.event.ScriptEventDispatcher;
