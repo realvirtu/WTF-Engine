@@ -25,7 +25,7 @@
       "name": "hxcpp",
       "type": "git",
       "dir": null,
-      "ref": "d5bda40ac13f2823fe1bdcb5476e0eb027f1e7e9",
+      "ref": "61aaa1664e40f6f4fa9ca2b6ea59cca257bdd9cc",
       "url": "https://github.com/FunkinCrew/hxcpp"
     },
     {
@@ -68,7 +68,7 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "4488e623ea6f80fd0278d2a345487eb2f6c4ed74",
+      "ref": "218f7048963c783eab476c037d4088add13712e6",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {
@@ -82,7 +82,7 @@
       "name": "polymod",
       "type": "git",
       "dir": null,
-      "ref": "05575dfd4886d5e67d6cd01f9ea9e61c090cefc9",
+      "ref": "45090790d3487b9a1c5bf0f31dc6804c8b7d5127",
       "url": "https://github.com/FunkinCrew/polymod"
     },
     {
