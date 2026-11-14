@@ -37,7 +37,7 @@ class SenpaiSong extends Song
     {
         super.onCountdownStart(event);
 
-        if (seenCutscene)
+        if (seenCutscene || !Playlist.isStory)
             return;
         seenCutscene = true;
 
