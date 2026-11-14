@@ -15,8 +15,6 @@ class Speaker extends FunkinSprite implements IDialogueScriptedClass
 
 	public var meta:SpeakerData;
 
-	var speakerPath(get, never):String;
-
 	public function new(id:String)
 	{
 		super();
@@ -26,16 +24,16 @@ class Speaker extends FunkinSprite implements IDialogueScriptedClass
 
 	public function buildSprite()
 	{
-		loadSprite('$speakerPath/image', meta.scale);
+		loadSprite(getPath('image'), meta.scale);
 
 		active = false;
 
 		offset.subtract(meta.offset[0], meta.offset[1]);
 	}
 
-	public function getClickSound():String
+	public function getPath(id:String):String
 	{
-		return '$speakerPath/click';
+		return '${SpeakerRegistry.instance.path}/${this.id}/$id';
 	}
 
 	public function onCreate(event:ScriptEvent) {}
@@ -53,12 +51,6 @@ class Speaker extends FunkinSprite implements IDialogueScriptedClass
 	public function onDialogueCompleteLine(event:DialogueScriptEvent) {}
 
 	public function onDialogueEnd(event:DialogueScriptEvent) {}
-
-	@:noCompletion
-	inline function get_speakerPath():String
-	{
-		return '${SpeakerRegistry.instance.path}/$id';
-	}
 
 	override function toString():String
 	{

@@ -47,8 +47,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	public var box:DialogueBox;
 	public var speaker:Speaker;
 
-	var path(get, never):String;
-
 	public function new(id:String)
 	{
 		super();
@@ -58,7 +56,7 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function build()
 	{
-		music = FunkinSound.load('$path/music', 1, true, false, false);
+		music = FunkinSound.load(getPath(meta?.music ?? id, 'music'), 1, true, false, false);
 
 		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFFFFFFFF);
 		bg.active = false;
@@ -172,7 +170,7 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		{
 			showSpeaker();
 
-			var click:String = speaker?.getClickSound();
+			var click:String = speaker?.getPath('click');
 
 			if (!Paths.exists(Paths.sound(click)))
 				click = 'gameplay/dialogue/sounds/click';
@@ -224,6 +222,11 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		});
 	}
 
+	function getPath(id:String, path:String):String
+	{
+		return '${ConversationRegistry.instance.path}/$id/$path';
+	}
+
 	@:noCompletion
 	inline function get_lineCount():Int
 	{
@@ -234,12 +237,6 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	inline function get_line():ConversationLineData
 	{
 		return meta.lines[lineNumber];
-	}
-
-	@:noCompletion
-	inline function get_path():String
-	{
-		return '${ConversationRegistry.instance.path}/$id';
 	}
 
 	override function toString():String
