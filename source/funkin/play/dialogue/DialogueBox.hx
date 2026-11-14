@@ -107,7 +107,7 @@ class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 
 	public function onDialogueStart(event:DialogueScriptEvent)
 	{
-		if (box == null)
+		if (event.cancelled || box == null)
 			return;
 
 		box.playAnimation('open');

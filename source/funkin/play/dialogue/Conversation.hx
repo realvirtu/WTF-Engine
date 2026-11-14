@@ -75,14 +75,14 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 	{
 		if (state == ENDING)
 			return;
-		ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_START, this));
+		ScriptEventDispatcher.dispatchToState(DialogueScriptEvent.get(DIALOGUE_START, this));
 	}
 
 	public function end()
 	{
 		if (state == ENDING)
 			return;
-		ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_END, this));
+		ScriptEventDispatcher.dispatchToState(DialogueScriptEvent.get(DIALOGUE_END, this));
 	}
 
 	public function advance()
@@ -90,9 +90,9 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		switch (state)
 		{
 			case START | IDLE:
-				ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_LINE, this));
+				ScriptEventDispatcher.dispatchToState(DialogueScriptEvent.get(DIALOGUE_LINE, this));
 			case SPEAKING:
-				ScriptEventDispatcher.dispatchToState(new DialogueScriptEvent(DIALOGUE_COMPLETE_LINE, this));
+				ScriptEventDispatcher.dispatchToState(DialogueScriptEvent.get(DIALOGUE_COMPLETE_LINE, this));
 			default:
 				// Does literally nothing
 		}
@@ -138,10 +138,15 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 		lineNumber = -1;
 
-		music.play(true);
-		music.fadeIn(1);
+		music.stop();
 
 		bg.alpha = 0;
+
+		if (event.cancelled)
+			return;
+
+		music.play(true);
+		music.fadeIn(1);
 
 		advance();
 
