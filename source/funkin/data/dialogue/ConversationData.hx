@@ -19,7 +19,7 @@ typedef ConversationLineData =
 	var text:String;
 	@:optional
 	var speaker:String;
-	@:default(0.06)
+	@:default(1)
 	var speed:Float;
 	var autoAdvance:Bool;
 }

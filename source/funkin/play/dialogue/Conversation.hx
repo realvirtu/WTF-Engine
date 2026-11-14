@@ -172,7 +172,7 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 			if (!Paths.exists(Paths.sound(click)))
 				click = 'gameplay/dialogue/sounds/click';
 
-			box.text.type(line?.text, line?.speed, () -> FunkinSound.playOnce(click), () ->
+			box.text.type(line?.text, Constants.CONVERSATION_TYPE_RATE / line?.speed, () -> FunkinSound.playOnce(click), () ->
 			{
 				state = IDLE;
 
