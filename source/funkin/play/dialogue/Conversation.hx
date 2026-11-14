@@ -143,7 +143,7 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 		if (event.cancelled)
 			return;
 
-		music.play(true);
+		music.play();
 		music.fadeIn(1);
 
 		advance();
