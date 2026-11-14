@@ -118,7 +118,7 @@ class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 
 	public function onDialogueLine(event:DialogueScriptEvent)
 	{
-		if (event.cancelled)
+		if (event.cancelled || event.conversation.state == ENDING)
 			return;
 
 		box?.playAnimation('idle');
@@ -127,7 +127,7 @@ class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 
 	public function onDialogueCompleteLine(event:DialogueScriptEvent)
 	{
-		if (event.cancelled)
+		if (event.cancelled || event.conversation.state == ENDING)
 			return;
 
 		hand?.playAnimation('press', true);
@@ -139,9 +139,9 @@ class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 			return;
 
 		text?.destroy();
-		text = null;
-
 		hand?.destroy();
+
+		text = null;
 		hand = null;
 
 		box.playAnimation('close');
