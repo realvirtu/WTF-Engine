@@ -11,18 +11,19 @@ import funkin.ui.freeplay.components.ScrollingText;
  */
 class BackcardSprite extends FlxSpriteGroup
 {
-	var cardColor:FlxColor = 0xFFFFCB2F;
+	static final cardColor:FlxColor = 0xFFFFCB2F;
+
+	public var card:FunkinSprite;
+	public var cardFlash:FunkinSprite;
+
+	public var text1:ScrollingText;
+	public var text2:ScrollingText;
+	public var text3:ScrollingText;
+	public var text4:ScrollingText;
+	public var text5:ScrollingText;
+	public var text6:ScrollingText;
+
 	var flashTween:FlxTween;
-
-	var card:FunkinSprite;
-	var cardFlash:FunkinSprite;
-
-	var text1:ScrollingText;
-	var text2:ScrollingText;
-	var text3:ScrollingText;
-	var text4:ScrollingText;
-	var text5:ScrollingText;
-	var text6:ScrollingText;
 
 	public function new()
 	{
@@ -33,30 +34,38 @@ class BackcardSprite extends FlxSpriteGroup
 		card.active = false;
 		add(card);
 
-		text1 = new ScrollingText(0, 150, 'warm blooded in more ways than one', 8);
+		text1 = new ScrollingText(0, 170, 'warm blooded in more ways than one', 7);
 		text1.scrollWidth = card.width;
+		text1.size = 30;
+		text1.color = 0xFFFFE8B5;
 		add(text1);
 
-		text2 = new ScrollingText(0, text1.y + text1.height + 30, 'boyfriend', -5);
+		text2 = new ScrollingText(0, text1.y + text1.height + 20, 'boyfriend', -4);
 		text2.scrollWidth = card.width;
+		text2.color = 0xFFFFAC2F;
 		text2.size = 40;
 		add(text2);
 
-		text3 = new ScrollingText(0, text2.y + text2.height + 30, 'protect yo nuts', 3);
+		text3 = new ScrollingText(0, text2.y + text2.height + 20, 'protect yo nuts', 4);
 		text3.scrollWidth = card.width;
+		text3.size = text1.size;
 		add(text3);
 
-		text4 = new ScrollingText(0, text3.y + text3.height + 30, text2.text, text2.speed);
+		text4 = new ScrollingText(0, text3.y + text3.height + 20, text2.text, text2.speed);
 		text4.scrollWidth = card.width;
+		text4.color = text2.color;
 		text4.size = text2.size;
 		add(text4);
 
-		text5 = new ScrollingText(0, text4.y + text4.height + 30, text1.text, text1.speed);
+		text5 = new ScrollingText(0, text4.y + text4.height + 20, text1.text, text1.speed);
 		text5.scrollWidth = card.width;
+		text5.color = text1.color;
+		text5.size = text1.size;
 		add(text5);
 
 		text6 = new ScrollingText(0, text5.y + text5.height + 30, text2.text, text2.speed);
 		text6.scrollWidth = card.width;
+		text6.color = text2.color;
 		text6.size = text2.size;
 		add(text6);
 

@@ -141,7 +141,7 @@ class FreeplaySubState extends FunkinSubState
 		sortText.onChanged.add(changeSort);
 		add(sortText);
 
-		exitMovers.add(backcard, -backcard.width);
+		exitMovers.add(backcard, -backcard.card.width);
 		exitMovers.add(backingImage, FlxG.width);
 		exitMovers.add(dj, -dj.width);
 		exitMovers.add(blackbar, null, -blackbar.height);
