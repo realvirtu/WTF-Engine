@@ -211,8 +211,6 @@ class Preferences
 		Save.instance.options.set('globalOffset', value);
 		Save.instance.flush();
 
-		PlayState.instance?.updatePreferences();
-
 		return value;
 	}
 
