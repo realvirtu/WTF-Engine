@@ -4,7 +4,7 @@
       "name": "flixel",
       "type": "git",
       "dir": null,
-      "ref": "fd2a112cd12a86b9f8e4b704571b9d0330aa51fc",
+      "ref": "3e22b557a43ae1cb572a06a071bfe317b965a20e",
       "url": "https://github.com/FunkinCrew/flixel"
     },
     {
@@ -68,7 +68,7 @@
       "name": "lime",
       "type": "git",
       "dir": null,
-      "ref": "bccd18c99c6e43b75b35bfce01d1582e8f41821c",
+      "ref": "56915a5d6482c8756cd78527db580fc162c44756",
       "url": "https://github.com/FunkinCrew/lime"
     },
     {

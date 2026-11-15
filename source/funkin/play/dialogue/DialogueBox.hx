@@ -10,7 +10,6 @@ import funkin.graphics.FunkinText;
 import funkin.modding.IScriptedClass.IDialogueScriptedClass;
 import funkin.modding.event.ScriptEvent;
 import funkin.util.EaseUtil;
-import funkin.util.SortUtil;
 
 /**
  * Dialogue box object used for conversations.
@@ -94,7 +93,7 @@ class DialogueBox extends FlxSpriteGroup implements IDialogueScriptedClass
 			add(hand);
 		}
 
-		sort(SortUtil.byZIndex.bind());
+		refresh();
 	}
 
 	public function onCreate(event:ScriptEvent) {}

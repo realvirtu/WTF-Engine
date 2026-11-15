@@ -20,17 +20,6 @@ class SortUtil
 		return FlxSort.byValues(order, a.t, b.t);
 	}
 
-	public static inline function byZIndex(order:Int, a:FlxBasic, b:FlxBasic):Int
-	{
-		if (a == null && b == null)
-			return 0;
-		if (a == null)
-			return order;
-		if (b == null)
-			return -order;
-		return FlxSort.byValues(order, a.zIndex, b.zIndex);
-	}
-
 	public static function alphabetically(a:String, b:String):Int
 	{
 		if (a == b)
