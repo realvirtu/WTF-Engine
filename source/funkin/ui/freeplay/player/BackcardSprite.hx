@@ -1,9 +1,10 @@
-package funkin.ui.freeplay.components;
+package funkin.ui.freeplay.player;
 
 import flixel.group.FlxSpriteGroup;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import funkin.graphics.FunkinSprite;
+import funkin.ui.freeplay.components.ScrollingText;
 
 /**
  * The backing card sprite used for the freeplay menu.
@@ -19,6 +20,9 @@ class BackcardSprite extends FlxSpriteGroup
 	var text1:ScrollingText;
 	var text2:ScrollingText;
 	var text3:ScrollingText;
+	var text4:ScrollingText;
+	var text5:ScrollingText;
+	var text6:ScrollingText;
 
 	public function new()
 	{
@@ -29,17 +33,32 @@ class BackcardSprite extends FlxSpriteGroup
 		card.active = false;
 		add(card);
 
-		text1 = new ScrollingText(0, 180, 'coolswag', -5);
+		text1 = new ScrollingText(0, 150, 'warm blooded in more ways than one', 8);
 		text1.scrollWidth = card.width;
 		add(text1);
 
-		text2 = new ScrollingText(0, 330, 'warmer than blood', 3);
+		text2 = new ScrollingText(0, text1.y + text1.height + 30, 'boyfriend', -5);
 		text2.scrollWidth = card.width;
+		text2.size = 40;
 		add(text2);
 
-		text3 = new ScrollingText(0, 480, 'coolswag', -5);
+		text3 = new ScrollingText(0, text2.y + text2.height + 30, 'protect yo nuts', 3);
 		text3.scrollWidth = card.width;
 		add(text3);
+
+		text4 = new ScrollingText(0, text3.y + text3.height + 30, text2.text, text2.speed);
+		text4.scrollWidth = card.width;
+		text4.size = text2.size;
+		add(text4);
+
+		text5 = new ScrollingText(0, text4.y + text4.height + 30, text1.text, text1.speed);
+		text5.scrollWidth = card.width;
+		add(text5);
+
+		text6 = new ScrollingText(0, text5.y + text5.height + 30, text2.text, text2.speed);
+		text6.scrollWidth = card.width;
+		text6.size = text2.size;
+		add(text6);
 
 		cardFlash = card.clone();
 		cardFlash.visible = false;
@@ -55,6 +74,9 @@ class BackcardSprite extends FlxSpriteGroup
 		text1.visible = false;
 		text2.visible = false;
 		text3.visible = false;
+		text4.visible = false;
+		text5.visible = false;
+		text6.visible = false;
 
 		cardFlash.visible = false;
 
@@ -66,6 +88,9 @@ class BackcardSprite extends FlxSpriteGroup
 		text1.visible = true;
 		text2.visible = true;
 		text3.visible = true;
+		text4.visible = true;
+		text5.visible = true;
+		text6.visible = true;
 
 		cardFlash.visible = true;
 		card.color = cardColor;
