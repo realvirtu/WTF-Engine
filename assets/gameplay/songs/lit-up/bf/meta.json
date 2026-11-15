@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Lit Up (BF Mix)",
 	"gf": "gf",
-	"album": "expansion2",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "expansion2",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 5,
+			"hard": 8,
+			"easy": 3
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 176
 	},
-	"artist": "Saruky",
-	"rating": {
-		"normal": 5,
-		"hard": 8,
-		"easy": 3
-	}
+	"artist": "Saruky"
 }

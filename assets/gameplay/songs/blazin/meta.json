@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Blazin'",
 	"gf": "nene",
-	"album": "volume3",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume3",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 4,
+			"hard": 7,
+			"easy": 4
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 180
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"normal": 4,
-		"hard": 7,
-		"easy": 4
-	}
+	"artist": "Kawai Sprite"
 }

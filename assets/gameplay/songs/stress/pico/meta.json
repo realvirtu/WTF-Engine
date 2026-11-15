@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Stress (Pico Mix)",
 	"gf": "otis-speaker",
-	"album": "expansion2",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "expansion2",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 6,
+			"hard": 8,
+			"easy": 4
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 178
 	},
-	"artist": "Saruky",
-	"rating": {
-		"normal": 6,
-		"hard": 8,
-		"easy": 4
-	}
+	"artist": "Saruky"
 }

@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "Darnell Erect",
 	"gf": "nene",
-	"album": "expansion2",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "expansion2",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 9,
+			"erect": 7
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 155
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"nightmare": 9,
-		"erect": 7
-	}
+	"artist": "Kawai Sprite"
 }

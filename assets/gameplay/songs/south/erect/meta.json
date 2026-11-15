@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "South Erect",
 	"gf": "gf",
-	"album": "volume3",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume3",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 10,
+			"erect": 10
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 177
 	},
-	"artist": "Kawai Sprite (feat. Saruky)",
-	"rating": {
-		"nightmare": 10,
-		"erect": 10
-	}
+	"artist": "Kawai Sprite (feat. Saruky)"
 }

@@ -267,9 +267,18 @@ class FreeplaySubState extends FunkinSubState
 		previewSong = song;
 
 		FunkinSound.playMusic(song?.getInstrumentalPath() ?? 'ui/freeplay/music', 0);
+
+		FunkinSound.music.time = FunkinSound.music.length * song?.previewStart;
 		FunkinSound.music.fadeIn(2);
 
-		final length:Float = FunkinSound.music.length / 10000;
+		// Gets the length of the song preview
+		// If the length is 0, play the default preview length instead
+		var length:Float = FunkinSound.music.length * song?.previewEnd - FunkinSound.music.time;
+
+		if (length <= 0)
+			length = FunkinSound.music.length * Constants.DEFAULT_SONG_PREVIEW_LENGTH;
+
+		length /= Constants.MS_PER_SEC;
 
 		for (timer in previewTimers)
 			timer.cancel();

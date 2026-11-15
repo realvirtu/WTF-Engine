@@ -29,6 +29,10 @@ class Song implements IPlayStateScriptedClass
 	public var charter(get, never):String;
 
 	public var album(get, never):String;
+
+	public var previewStart(get, never):Float;
+	public var previewEnd(get, never):Float;
+
 	public var style(get, never):String;
 	public var stickerpack(get, never):String;
 
@@ -45,11 +49,6 @@ class Song implements IPlayStateScriptedClass
 		variations = new StringMap<Song>();
 	}
 
-	public function getRating(diff:String):Int
-	{
-		return meta.rating?.get(diff) ?? 0;
-	}
-
 	public function getNotes(diff:String):Array<SongNoteData>
 	{
 		return chart.notes?.get(diff)?.copy() ?? [];
@@ -58,6 +57,11 @@ class Song implements IPlayStateScriptedClass
 	public function getSpeed(diff:String):Float
 	{
 		return chart.speed?.get(diff) ?? Constants.DEFAULT_SPEED;
+	}
+
+	public function getRating(diff:String):Int
+	{
+		return meta.freeplay?.rating?.get(diff);
 	}
 
 	public function getDifficulties(all:Bool = true):Array<String>
@@ -170,7 +174,19 @@ class Song implements IPlayStateScriptedClass
 	@:noCompletion
 	function get_album():String
 	{
-		return meta.album;
+		return meta.freeplay?.album;
+	}
+
+	@:noCompletion
+	function get_previewStart():Float
+	{
+		return meta.freeplay?.previewStart;
+	}
+
+	@:noCompletion
+	function get_previewEnd():Float
+	{
+		return meta.freeplay?.previewEnd;
 	}
 
 	@:noCompletion

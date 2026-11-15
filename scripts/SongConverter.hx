@@ -91,8 +91,12 @@ class SongConverter
 			charter: meta.charter,
 			difficulties: meta.playData.difficulties,
 			instrumentals: meta.playData.characters.altInstrumentals ?? [],
-			rating: meta.playData.ratings,
-			album: meta.playData.album,
+			freeplay: {
+				rating: meta.playData.ratings,
+				album: meta.playData.album,
+				previewStart: meta.playData.previewStart ?? 0,
+				previewEnd: meta.playData.previewEnd ?? 0
+			},
 			style: meta.playData.noteStyle,
 			stage: convertStage(stage),
 			player: convertCharacter(meta.playData.characters.player),

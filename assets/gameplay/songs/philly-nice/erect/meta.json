@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "Philly Nice Erect",
 	"gf": "gf",
-	"album": "volume3",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume3",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 7,
+			"erect": 7
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 175
 	},
-	"artist": "Kawai Sprite (feat. Saruky)",
-	"rating": {
-		"nightmare": 7,
-		"erect": 7
-	}
+	"artist": "Kawai Sprite (feat. Saruky)"
 }

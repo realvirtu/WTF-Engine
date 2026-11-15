@@ -2,7 +2,15 @@
 	"style": "pixel",
 	"name": "Senpai Erect",
 	"gf": "gf-pixel",
-	"album": "volume3",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume3",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 7,
+			"erect": 5
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 158
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"nightmare": 7,
-		"erect": 5
-	}
+	"artist": "Kawai Sprite"
 }

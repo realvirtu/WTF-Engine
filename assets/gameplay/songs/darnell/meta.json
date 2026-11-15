@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Darnell",
 	"gf": "nene",
-	"album": "volume3",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume3",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 3,
+			"hard": 6,
+			"easy": 2
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -20,10 +29,5 @@
 		"d": 4,
 		"b": 155
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"normal": 3,
-		"hard": 6,
-		"easy": 2
-	}
+	"artist": "Kawai Sprite"
 }

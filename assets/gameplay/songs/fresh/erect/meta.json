@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "Fresh Erect",
 	"gf": "gf",
-	"album": "volume3",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume3",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 6,
+			"erect": 5
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 125
 	},
-	"artist": "Kohta Takahashi (feat. Saruky)",
-	"rating": {
-		"nightmare": 6,
-		"erect": 5
-	}
+	"artist": "Kohta Takahashi (feat. Saruky)"
 }

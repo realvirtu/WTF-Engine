@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "Ugh Erect",
 	"gf": "gf-tankman",
-	"album": "volume4",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume4",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 8,
+			"erect": 7
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 170
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"nightmare": 8,
-		"erect": 7
-	}
+	"artist": "Kawai Sprite"
 }

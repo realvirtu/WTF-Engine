@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "M.I.L.F",
 	"gf": "gf",
-	"album": "volume1",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume1",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 3,
+			"hard": 5,
+			"easy": 1
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 180
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"normal": 3,
-		"hard": 5,
-		"easy": 1
-	}
+	"artist": "Kawai Sprite"
 }

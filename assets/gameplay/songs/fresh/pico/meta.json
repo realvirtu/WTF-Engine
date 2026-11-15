@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Fresh (Pico Mix)",
 	"gf": "nene",
-	"album": "volume4",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume4",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 3,
+			"hard": 3,
+			"easy": 2
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 120
 	},
-	"artist": "Xploshi (ft. Saster)",
-	"rating": {
-		"normal": 3,
-		"hard": 3,
-		"easy": 2
-	}
+	"artist": "Xploshi (ft. Saster)"
 }

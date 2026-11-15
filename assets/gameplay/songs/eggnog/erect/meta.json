@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "Eggnog Erect",
 	"gf": "gf-christmas",
-	"album": "expansion1",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "expansion1",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 7,
+			"erect": 6
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 140
 	},
-	"artist": "Saruky",
-	"rating": {
-		"nightmare": 7,
-		"erect": 6
-	}
+	"artist": "Saruky"
 }

@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "South (Pico Mix)",
 	"gf": "nene",
-	"album": "volume4",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume4",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 3,
+			"hard": 5,
+			"easy": 2
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 165
 	},
-	"artist": "six impala (feat. Saster)",
-	"rating": {
-		"normal": 3,
-		"hard": 5,
-		"easy": 2
-	}
+	"artist": "six impala (feat. Saster)"
 }

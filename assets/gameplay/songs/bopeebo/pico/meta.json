@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Bopeebo (Pico Mix)",
 	"gf": "nene",
-	"album": "volume4",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume4",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 2,
+			"hard": 4,
+			"easy": 1
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 100
 	},
-	"artist": "That Andy Guy (feat. Saruky)",
-	"rating": {
-		"normal": 2,
-		"hard": 4,
-		"easy": 1
-	}
+	"artist": "That Andy Guy (feat. Saruky)"
 }

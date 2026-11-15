@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Eggnog (Pico Mix)",
 	"gf": "nene-christmas",
-	"album": "volume4",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume4",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 5,
+			"hard": 7,
+			"easy": 2
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 150
 	},
-	"artist": "Teravex (ft. Saruky)",
-	"rating": {
-		"normal": 5,
-		"hard": 7,
-		"easy": 2
-	}
+	"artist": "Teravex (ft. Saruky)"
 }

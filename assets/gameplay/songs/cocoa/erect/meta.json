@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "Cocoa Erect",
 	"gf": "gf-christmas",
-	"album": "volume4",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume4",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 7,
+			"erect": 6
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 174
 	},
-	"artist": "Saster",
-	"rating": {
-		"nightmare": 7,
-		"erect": 6
-	}
+	"artist": "Saster"
 }

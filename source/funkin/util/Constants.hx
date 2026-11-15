@@ -39,6 +39,7 @@ class Constants
 	public static final DEFAULT_CAMERA_ZOOM:Float = 1;
 	public static final DEFAULT_SIGNATURE_NUM:Int = 4;
 	public static final DEFAULT_SIGNATURE_DEN:Int = 4;
+	public static final DEFAULT_SONG_PREVIEW_LENGTH:Float = 0.2;
 
 	public static final CAMERA_FOLLOW_RATE:Float = 0.04;
 	public static final CAMERA_BOP_RATE:Float = 4;

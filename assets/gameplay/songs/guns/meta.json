@@ -2,7 +2,16 @@
 	"style": "funkin",
 	"name": "Guns",
 	"gf": "gf-tankman",
-	"album": "volume2",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume2",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 4,
+			"hard": 6,
+			"easy": 2
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -20,10 +29,5 @@
 		"d": 4,
 		"b": 185
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"normal": 4,
-		"hard": 6,
-		"easy": 2
-	}
+	"artist": "Kawai Sprite"
 }

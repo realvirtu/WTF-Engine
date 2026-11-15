@@ -2,7 +2,16 @@
 	"style": "pixel",
 	"name": "Roses (Pico Mix)",
 	"gf": "nene-pixel",
-	"album": "expansion2",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "expansion2",
+		"previewEnd": 0,
+		"rating": {
+			"normal": 4,
+			"hard": 5,
+			"easy": 2
+		}
+	},
 	"difficulties": [
 		"easy",
 		"normal",
@@ -18,10 +27,5 @@
 		"d": 4,
 		"b": 120
 	},
-	"artist": "Xploshi (ft. Saruky)",
-	"rating": {
-		"normal": 4,
-		"hard": 5,
-		"easy": 2
-	}
+	"artist": "Xploshi (ft. Saruky)"
 }

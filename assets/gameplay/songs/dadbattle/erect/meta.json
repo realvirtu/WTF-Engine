@@ -2,7 +2,15 @@
 	"style": "funkin",
 	"name": "DadBattle Erect",
 	"gf": "gf",
-	"album": "volume3",
+	"freeplay": {
+		"previewStart": 0,
+		"album": "volume3",
+		"previewEnd": 0,
+		"rating": {
+			"nightmare": 8,
+			"erect": 8
+		}
+	},
 	"difficulties": [
 		"erect",
 		"nightmare"
@@ -17,9 +25,5 @@
 		"d": 4,
 		"b": 190
 	},
-	"artist": "Kawai Sprite",
-	"rating": {
-		"nightmare": 8,
-		"erect": 8
-	}
+	"artist": "Kawai Sprite"
 }

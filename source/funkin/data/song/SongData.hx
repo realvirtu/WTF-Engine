@@ -16,8 +16,7 @@ typedef SongMetadata =
 	var difficulties:Array<String>;
 	@:default([])
 	var instrumentals:Array<String>;
-	var rating:Map<String, Int>;
-	var album:String;
+	var freeplay:SongFreeplayData;
 	@:default('funkin')
 	var style:String;
 	@:optional
@@ -26,6 +25,17 @@ typedef SongMetadata =
 	var opponent:String;
 	var player:String;
 	var gf:String;
+}
+
+/**
+ * A structure object used for song freeplay data.
+ */
+typedef SongFreeplayData =
+{
+	var rating:Map<String, Int>;
+	var album:String;
+	var previewStart:Float;
+	var previewEnd:Float;
 }
 
 /**
