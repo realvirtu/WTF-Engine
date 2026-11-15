@@ -268,7 +268,7 @@ class PlayState extends FunkinState
 			{
 				if (songStarted)
 				{
-					final time:Float = FunkinSound.music.time - conductor.offset;
+					final time:Float = FunkinSound.music.time + conductor.combinedOffset;
 					final diff:Float = Math.round(Math.abs(conductor.time - time));
 
 					// Conductor lerping to make note scrolling smoother
@@ -281,7 +281,7 @@ class PlayState extends FunkinState
 				{
 					conductor.update(conductor.time + elapsed * Constants.MS_PER_SEC * playbackRate);
 
-					if (conductor.time >= -conductor.offset)
+					if (conductor.time >= conductor.combinedOffset)
 						startSong();
 				}
 			}

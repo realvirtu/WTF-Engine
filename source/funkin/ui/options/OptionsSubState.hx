@@ -79,6 +79,8 @@ class OptionsSubState extends FunkinSubState
 		options.addOption('unlockedFPS', 'unlocked fps');
 		options.addOption('autoPause', 'pause on unfocus');
 
+		options.addOption('globalOffset', 'global offset', 10, -1500, 1500);
+
 		#if FEATURE_DISCORD_RPC
 		options.addOption('discordRPC', 'discord rpc');
 		#end

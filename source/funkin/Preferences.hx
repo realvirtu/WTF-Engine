@@ -29,6 +29,8 @@ class Preferences
 	public static var unlockedFPS(get, set):Bool;
 	public static var autoPause(get, set):Bool;
 
+	public static var globalOffset(get, set):Int;
+
 	#if FEATURE_DISCORD_RPC
 	public static var discordRPC(get, set):Bool;
 	#end
@@ -201,6 +203,23 @@ class Preferences
 	static inline function get_autoPause():Bool
 	{
 		return Save.instance.options.get('autoPause') ?? true;
+	}
+
+	@:noCompletion
+	static inline function set_globalOffset(value:Int):Int
+	{
+		Save.instance.options.set('globalOffset', value);
+		Save.instance.flush();
+
+		PlayState.instance?.updatePreferences();
+
+		return value;
+	}
+
+	@:noCompletion
+	static inline function get_globalOffset():Int
+	{
+		return Save.instance.options.get('globalOffset') ?? 0;
 	}
 
 	#if FEATURE_DISCORD_RPC

@@ -2,6 +2,7 @@ package funkin;
 
 import flixel.util.FlxSignal.FlxTypedSignal;
 import funkin.audio.FunkinSound;
+import lime.media.AudioManager;
 
 /**
  * A structure object used for setting the BPM of a `Conductor`.
@@ -32,10 +33,7 @@ class Conductor
 	public var stepLength(get, never):Float;
 	public var beatLength(get, never):Float;
 
-	/**
-	 * TODO: Make this changeable ingame.
-	 */
-	public var offset:Float = 0;
+	public var combinedOffset(get, never):Float;
 
 	public var stepHit(default, null) = new FlxTypedSignal<Int->Void>();
 	public var beatHit(default, null) = new FlxTypedSignal<Int->Void>();
@@ -113,5 +111,11 @@ class Conductor
 	inline function get_beatLength():Float
 	{
 		return stepLength * Constants.STEPS_PER_BEAT;
+	}
+
+	@:noCompletion
+	inline function get_combinedOffset():Float
+	{
+		return -Preferences.globalOffset - AudioManager.engine?.get_latency();
 	}
 }

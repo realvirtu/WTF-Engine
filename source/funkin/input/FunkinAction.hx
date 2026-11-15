@@ -69,7 +69,7 @@ class FunkinAction
 		wasPressed = true;
 
 		if (spamTimer == 1)
-			spamTimer = 0.925;
+			spamTimer = 0.935;
 
 		spamTimer = Math.min(1, spamTimer + elapsed / Constants.MS_PER_SEC);
 	}
