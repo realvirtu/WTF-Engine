@@ -46,27 +46,27 @@ class CapsuleSprite extends FlxSpriteGroup
 		capsule.active = false;
 		add(capsule);
 
-		songText = new FunkinText(33, 36.5, 'what the song');
+		songText = new FunkinText(45, 33.5, 'what the song');
 		songText.autoBounds = false;
 		songText.size = 20;
 		songText.clipRect = FlxRect.get(0, 0, 0, songText.frameHeight);
 		add(songText);
 
-		bpmText = new CapsuleText(35, 0, '100');
+		bpmText = new CapsuleText(30, 0, 'bpm 100');
 		bpmText.y = capsule.height - bpmText.height - 15;
 		add(bpmText);
 
-		diffText = new CapsuleText(0, bpmText.y, 'diff');
+		diffText = new CapsuleText(0, bpmText.y, 'difficulty');
 		diffText.x = capsule.width - diffText.width - 20;
 		add(diffText);
 
 		ratingText = new CapsuleText(0, songText.y - 6, '00');
 		ratingText.size = 30;
-		ratingText.x = capsule.width - ratingText.width - 17;
+		ratingText.x = capsule.width - ratingText.width - 16;
 		add(ratingText);
 
 		heart = FunkinSprite.create(0, songText.y - 2, 'ui/freeplay/capsule/heart');
-		heart.x = capsule.width - heart.width - 85;
+		heart.x = capsule.width - heart.width - 83;
 		heart.active = false;
 		heart.visible = false;
 		add(heart);
@@ -143,14 +143,14 @@ class CapsuleSprite extends FlxSpriteGroup
 	{
 		justLoaded = true;
 
-		this.song = value;
-		this.difficulty = difficulty;
-		this.favorited = Save.instance.isSongFavorited(value?.id, value?.variation);
+		song = value;
+		difficulty = difficulty;
+		favorited = Save.instance.isSongFavorited(value?.id, value?.variation);
 
 		songText.text = value?.name ?? 'Random';
 		songText.updateHitbox();
 
-		bpmText.text = StringUtil.formatZeros(Std.int(value?.bpm?.b), 3);
+		bpmText.text = 'bpm ${StringUtil.formatZeros(Std.int(value?.bpm?.b), 3)}';
 		bpmText.visible = diffText.visible;
 
 		justLoaded = false;
@@ -212,9 +212,11 @@ class CapsuleSprite extends FlxSpriteGroup
 	@:noCompletion
 	inline function get_clipWidth():Float
 	{
-		var clip:Float = 305;
+		var clip:Float = 300;
+
 		if (favorited)
 			clip -= heart.width + 10;
+
 		return clip;
 	}
 
