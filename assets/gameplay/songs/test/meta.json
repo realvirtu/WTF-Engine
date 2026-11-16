@@ -1,6 +1,13 @@
 {
 	"name": "Test",
 	"gf": "gf",
+	"freeplay": {
+		"previewStart": 0,
+		"previewEnd": 0,
+		"rating": {
+			"normal": 4
+		}
+	},
 	"difficulties": [
 		"normal"
 	],
@@ -14,8 +21,5 @@
 		"d": 4,
 		"b": 150
 	},
-	"artist": "KawaiSprite",
-	"rating": {
-		"normal": 4
-	}
+	"artist": "KawaiSprite"
 }
