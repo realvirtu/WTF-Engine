@@ -15,7 +15,7 @@ class CapsuleText extends FunkinText
 		super(x, y, text);
 
 		color = 0xFF2E2E2E;
-		size = 17;
+		size = 16;
 		letterSpacing = 0;
 	}
 }

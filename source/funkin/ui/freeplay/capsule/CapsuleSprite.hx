@@ -57,8 +57,8 @@ class CapsuleSprite extends FlxSpriteGroup
 		songText.clipRect = FlxRect.get(0, 0, 0, songText.frameHeight);
 		add(songText);
 
-		bpmText = new CapsuleText(30, 0, 'bpm 100');
-		bpmText.y = capsule.height - bpmText.height - 15;
+		bpmText = new CapsuleText(35, 0, 'bpm 100');
+		bpmText.y = capsule.height - bpmText.height - 15.5;
 		add(bpmText);
 
 		diffText = new CapsuleText(0, bpmText.y, 'difficulty');
@@ -67,7 +67,7 @@ class CapsuleSprite extends FlxSpriteGroup
 
 		ratingText = new CapsuleText(0, songText.y - 6, '00');
 		ratingText.size = 30;
-		ratingText.x = capsule.width - ratingText.width - 16;
+		ratingText.x = capsule.width - ratingText.width - 16.5;
 		add(ratingText);
 
 		heart = FunkinSprite.create(0, songText.y - 2, 'ui/freeplay/capsule/heart');

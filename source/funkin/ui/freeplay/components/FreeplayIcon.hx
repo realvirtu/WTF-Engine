@@ -28,7 +28,7 @@ class FreeplayIcon extends FunkinSprite
 			path = '$PATH/$id';
 		}
 
-		loadSprite(path, 0.8);
+		loadSprite(path, 0.7);
 
 		// Only show the icon if it's visible
 		visible = graphic != null;
