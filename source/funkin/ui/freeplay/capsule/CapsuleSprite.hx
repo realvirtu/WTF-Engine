@@ -10,6 +10,7 @@ import funkin.graphics.FunkinSprite;
 import funkin.graphics.FunkinText;
 import funkin.play.song.Song;
 import funkin.save.Save;
+import funkin.ui.freeplay.components.FreeplayIcon;
 import funkin.util.StringUtil;
 
 /**
@@ -23,18 +24,19 @@ class CapsuleSprite extends FlxSpriteGroup
 	public var selected(default, set):Bool = true;
 	public var favorited(default, set):Bool = false;
 
+	public var capsule:FunkinSprite;
+	public var icon:FreeplayIcon;
+	public var songText:FunkinText;
+	public var bpmText:CapsuleText;
+	public var diffText:CapsuleText;
+	public var ratingText:CapsuleText;
+	public var heart:FunkinSprite;
+
 	var clipWidth(get, never):Float;
 	var canMoveText(get, never):Bool;
 
 	var justLoaded:Bool;
 	var moveTween:FlxTween;
-
-	var capsule:FunkinSprite;
-	var songText:FunkinText;
-	var bpmText:CapsuleText;
-	var diffText:CapsuleText;
-	var ratingText:CapsuleText;
-	var heart:FunkinSprite;
 
 	override function new()
 	{
@@ -45,6 +47,9 @@ class CapsuleSprite extends FlxSpriteGroup
 		capsule = FunkinSprite.create(0, 0, 'ui/freeplay/capsule/image');
 		capsule.active = false;
 		add(capsule);
+
+		icon = new FreeplayIcon();
+		add(icon);
 
 		songText = new FunkinText(45, 33.5, 'what the song');
 		songText.autoBounds = false;
@@ -145,19 +150,23 @@ class CapsuleSprite extends FlxSpriteGroup
 
 		song = value;
 		difficulty = difficulty;
-		favorited = Save.instance.isSongFavorited(value?.id, value?.variation);
+		favorited = Save.instance.isSongFavorited(song?.id, value?.variation);
+
+		icon.load(song?.opponent);
+		icon.x = x - icon.width + 30;
+		icon.y = y + (capsule.height - icon.height) / 2 - 10;
 
 		songText.text = value?.name ?? 'Random';
 		songText.updateHitbox();
 
-		bpmText.text = 'bpm ${StringUtil.formatZeros(Std.int(value?.bpm?.b), 3)}';
+		bpmText.text = 'bpm ${StringUtil.formatZeros(Std.int(song?.bpm?.b), 3)}';
 		bpmText.visible = diffText.visible;
 
 		justLoaded = false;
 
 		resetMovement();
 
-		return value;
+		return song;
 	}
 
 	@:noCompletion

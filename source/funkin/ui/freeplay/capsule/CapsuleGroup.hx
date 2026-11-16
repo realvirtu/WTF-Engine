@@ -131,12 +131,12 @@ class CapsuleGroup extends FlxTypedGroup<CapsuleSprite>
 
 	function getCapsuleX(capsule:CapsuleSprite):Float
 	{
-		return FlxG.width / 2 - 220 + Math.sin(capsule.ID - selected) * 50;
+		return (FlxG.width - capsule.capsule.width) / 2 + Math.sin(capsule.ID - selected) * 50;
 	}
 
 	function getCapsuleY(capsule:CapsuleSprite):Float
 	{
-		return 200 + (capsule.height + 10) * (capsule.ID - selected);
+		return 200 + (capsule.capsule.height + 10) * (capsule.ID - selected);
 	}
 
 	@:noCompletion
