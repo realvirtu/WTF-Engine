@@ -3,10 +3,8 @@ package funkin.ui.freeplay.capsule;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxSignal.FlxTypedSignal;
 import funkin.audio.FunkinSound;
-import funkin.data.song.SongRegistry;
 import funkin.input.Controls;
 import funkin.play.song.Song;
-import funkin.ui.freeplay.player.Player;
 import funkin.util.MathUtil;
 
 /**
@@ -136,7 +134,7 @@ class CapsuleGroup extends FlxTypedGroup<CapsuleSprite>
 
 	function getCapsuleY(capsule:CapsuleSprite):Float
 	{
-		return 200 + (capsule.capsule.height + 10) * (capsule.ID - selected);
+		return 200 + (capsule.capsule.height + 20) * (capsule.ID - selected);
 	}
 
 	@:noCompletion
