@@ -5,6 +5,8 @@ package funkin.util;
  */
 class FileUtil
 {
+	static var assets:Array<String>;
+
 	public static function getText(id:String):String
 	{
 		return try
@@ -19,8 +21,10 @@ class FileUtil
 	{
 		id = Paths.path(id);
 
+		assets ??= FlxG.assets.list();
+
 		var list:Array<String> = [];
-		var items:Array<String> = FlxG.assets.list().filter(item -> return item.startsWith(id));
+		var items:Array<String> = assets.filter(item -> return item.startsWith(id));
 
 		for (item in items)
 		{

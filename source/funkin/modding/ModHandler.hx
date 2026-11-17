@@ -4,6 +4,7 @@ import funkin.data.song.SongRegistry;
 import funkin.data.story.LevelRegistry;
 import funkin.play.PlayState;
 import funkin.play.Playlist;
+import funkin.util.FileUtil;
 import funkin.util.WindowUtil;
 import polymod.Polymod;
 import sys.FileSystem;
@@ -45,6 +46,9 @@ class ModHandler
 
 	static function loadMods()
 	{
+		@:privateAccess
+		FileUtil.assets = null;
+
 		Polymod.init({
 			modRoot: MOD_FOLDER,
 			framework: OPENFL,
