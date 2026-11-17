@@ -9,7 +9,7 @@ import openfl.utils.Assets;
  */
 class FunkinSound extends FlxSound
 {
-	public static var music(get, set):FunkinSound;
+	public static var music(default, null):FunkinSound;
 
 	public var id:String;
 
@@ -55,8 +55,6 @@ class FunkinSound extends FlxSound
 		music.volume = volume;
 		music.persist = true;
 
-		FlxG.sound.list.remove(music);
-
 		FlxG.sound.defaultMusicGroup.add(music);
 		FlxG.sound.defaultSoundGroup.remove(music);
 
@@ -77,20 +75,11 @@ class FunkinSound extends FlxSound
 
 	public static function stopAllSounds(stopMusic:Bool = false)
 	{
-		if (stopMusic)
-			music?.stop();
-		FlxG.sound.list.forEachAlive(sound -> sound.stop());
-	}
-
-	@:noCompletion
-	inline static function get_music():FunkinSound
-	{
-		return cast FlxG.sound.music;
-	}
-
-	@:noCompletion
-	inline static function set_music(value:FunkinSound):FunkinSound
-	{
-		return cast FlxG.sound.music = value;
+		FlxG.sound.list.forEachAlive(sound ->
+		{
+			if (sound == music && !stopMusic)
+				return;
+			sound.stop();
+		});
 	}
 }
