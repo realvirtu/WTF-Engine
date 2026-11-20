@@ -31,7 +31,7 @@ class TankStage extends Stage
 
         if (PlayState.instance.song.id == 'stress')
         {
-            tankmen = new TankmenGroup(this.superClass);
+            tankmen = new TankmenGroup(super);
             tankmen.zIndex = gf?.zIndex - 1;
 
             add(tankmen);
