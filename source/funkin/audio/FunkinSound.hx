@@ -1,6 +1,5 @@
 package funkin.audio;
 
-import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.sound.FlxSound;
 import openfl.utils.Assets;
 
@@ -13,15 +12,13 @@ class FunkinSound extends FlxSound
 
 	public var id:String;
 
-	static var pool(default, null) = new FlxTypedGroup<FunkinSound>();
-
 	//
 	// FunkinSound
 	//
 
 	public static inline function load(id:String, volume:Float = 1, looped:Bool = true, autoDestroy:Bool = true, autoPlay:Bool = true):FunkinSound
 	{
-		var sound:FunkinSound = pool.recycle(FunkinSound);
+		var sound:FunkinSound = new FunkinSound();
 		var path:String = Paths.sound(id);
 
 		sound.loadEmbedded(Paths.exists(path) ? Assets.getMusic(path) : null, looped, autoDestroy);
