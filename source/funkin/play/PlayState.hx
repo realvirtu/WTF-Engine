@@ -393,7 +393,7 @@ class PlayState extends FunkinState
 				return;
 		}
 
-		FunkinSound.playMusic(song.getInstrumentalPath(instrumental), 1, false, false);
+		FunkinSound.playMusic(song.getInstrumentalPath(instrumental), {looped: false, autoPlay: false});
 		FunkinSound.music.pitch = playbackRate;
 		FunkinSound.music.onComplete = endSong;
 

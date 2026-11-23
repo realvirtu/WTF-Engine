@@ -17,14 +17,16 @@ class Voices
 
 	public function new(song:Song)
 	{
+		var params:SoundParams = {looped: false, autoPlay: false, autoDestroy: false};
+
 		if (song.hasLegacyVoices())
-			player = FunkinSound.load(song.getLegacyVoicePath(), 1, false, false, false);
+			player = FunkinSound.load(song.getLegacyVoicePath(), params);
 		else
 		{
 			if (song.hasVoice(false))
-				opponent = FunkinSound.load(song.getVoicePath(false), 1, false, false, false);
+				opponent = FunkinSound.load(song.getVoicePath(false), params);
 			if (song.hasVoice(true))
-				player = FunkinSound.load(song.getVoicePath(true), 1, false, false, false);
+				player = FunkinSound.load(song.getVoicePath(true), params);
 		}
 	}
 

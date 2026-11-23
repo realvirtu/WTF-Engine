@@ -4,6 +4,34 @@ import flixel.sound.FlxSound;
 import openfl.utils.Assets;
 
 /**
+ * Parameters used for playing sounds.
+ */
+typedef SoundParams =
+{
+	@:optional
+	var volume:Float;
+	@:optional
+	var looped:Bool;
+	@:optional
+	var autoPlay:Bool;
+	@:optional
+	var autoDestroy:Bool;
+}
+
+/**
+ * Parameters used for playing music.
+ */
+typedef MusicParams =
+{
+	> SoundParams,
+
+	@:optional
+	var overrideMusic:Bool;
+	@:optional
+	var restartTrack:Bool;
+}
+
+/**
  * A helper class for handling the engine's audio.
  */
 class FunkinSound extends FlxSound
@@ -16,19 +44,26 @@ class FunkinSound extends FlxSound
 	// FunkinSound
 	//
 
-	public static inline function load(id:String, volume:Float = 1, looped:Bool = true, autoDestroy:Bool = true, autoPlay:Bool = true):FunkinSound
+	public static inline function load(id:String, ?params:SoundParams):FunkinSound
 	{
+		params ??= {};
+		params.volume ??= 1;
+		params.looped ??= true;
+		params.autoPlay ??= true;
+		params.autoDestroy ??= true;
+
 		var sound:FunkinSound = new FunkinSound();
 		var path:String = Paths.sound(id);
 
-		sound.loadEmbedded(Paths.exists(path) ? Assets.getMusic(path) : null, looped, autoDestroy);
+		sound.loadEmbedded(Paths.exists(path) ? Assets.getMusic(path) : null, params.looped, params.autoDestroy);
+
 		sound.id = id;
-		sound.volume = volume;
+		sound.volume = params.volume;
 
 		FlxG.sound.defaultSoundGroup.add(sound);
 		FlxG.sound.list.add(sound);
 
-		if (autoPlay)
+		if (params.autoPlay)
 			sound.play();
 
 		return sound;
@@ -36,20 +71,22 @@ class FunkinSound extends FlxSound
 
 	public static inline function playOnce(id:String, volume:Float = 1):FunkinSound
 	{
-		return load(id, volume, false);
+		return load(id, {volume: volume, looped: false});
 	}
 
-	public static function playMusic(id:String, volume:Float = 1, looped:Bool = true, autoPlay:Bool = true, overrideMusic:Bool = true,
-			restartTrack:Bool = true):FunkinSound
+	public static function playMusic(id:String, ?params:MusicParams):FunkinSound
 	{
-		if ((music?.playing && !overrideMusic) || (music?.id == id && !restartTrack))
+		params ??= {};
+		params.autoDestroy ??= false;
+		params.overrideMusic ??= true;
+		params.restartTrack ??= true;
+
+		if ((music?.playing && !params.overrideMusic) || (music?.id == id && !params.restartTrack))
 			return music;
 
 		music?.destroy();
 
-		music = load(id, volume, looped, false, autoPlay);
-
-		music.volume = volume;
+		music = load(id, params);
 		music.persist = true;
 
 		FlxG.sound.defaultMusicGroup.add(music);

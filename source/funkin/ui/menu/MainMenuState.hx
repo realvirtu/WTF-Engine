@@ -181,7 +181,7 @@ class MainMenuState extends FunkinState
 
 	public static function playMusic(fadeIn:Bool = false)
 	{
-		FunkinSound.playMusic('ui/music', fadeIn ? 0 : 1, true, true, true, false);
+		FunkinSound.playMusic('ui/music', {volume: fadeIn ? 0 : 1, restartTrack: false});
 		FunkinSound.music.fadeIn(0.75, FunkinSound.music.volume);
 	}
 }

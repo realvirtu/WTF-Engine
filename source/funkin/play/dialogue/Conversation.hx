@@ -56,7 +56,7 @@ class Conversation extends FlxGroup implements IDialogueScriptedClass
 
 	public function build()
 	{
-		music = FunkinSound.load(getPath(meta?.music ?? id, 'music'), 1, true, false, false);
+		music = FunkinSound.load(getPath(meta?.music ?? id, 'music'), {autoDestroy: false, autoPlay: false});
 
 		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFFFFFFFF);
 		bg.active = false;

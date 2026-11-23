@@ -61,7 +61,7 @@ class PauseSubState extends FunkinSubState
 
 		_parentState.persistentUpdate = false;
 
-		music = FunkinSound.load(getMusicPath(), 0);
+		music = FunkinSound.load(getMusicPath(), {volume: 0});
 		music.fadeIn(2);
 
 		bg = FunkinSprite.createSolidColor(0, 0, FlxG.width, FlxG.height, 0xFF000000);

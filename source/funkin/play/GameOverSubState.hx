@@ -57,9 +57,9 @@ class GameOverSubState extends FunkinSubState
 		_conductor.beatHit.add(beatHit);
 		_conductor.reset({b: 100});
 
-		music = FunkinSound.load(getPath('music', deathMusic), 1, true, true, false);
+		music = FunkinSound.load(getPath('music', deathMusic), {autoPlay: false});
 
-		FunkinSound.load(getPath('sounds/start', deathSFX), 1, false).onComplete = startLoop;
+		FunkinSound.load(getPath('sounds/start', deathSFX), {looped: false}).onComplete = startLoop;
 
 		buildCharacter();
 

@@ -37,7 +37,7 @@ class CreditsSubState extends FunkinSubState
 	{
 		super.create();
 
-		FunkinSound.playMusic('ui/freeplay/music', 0);
+		FunkinSound.playMusic('ui/freeplay/music', {volume: 0});
 		FunkinSound.music.fadeIn(0.75);
 
 		_parentState.persistentUpdate = false;
