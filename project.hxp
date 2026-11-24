@@ -29,14 +29,15 @@ class Project extends HXProject
     //
 
     static final FEATURE_ANTI_MASH:FeatureFlag = "FEATURE_ANTI_MASH";
-    static final FEATURE_DEBUG:FeatureFlag = "FEATURE_DEBUG";
     static final FEATURE_DISCORD_RPC:FeatureFlag = "FEATURE_DISCORD_RPC";
     static final FEATURE_FOCUS_LOST_VOLUME:FeatureFlag = "FEATURE_FOCUS_LOST_VOLUME";
     static final FEATURE_FPS_COUNTER:FeatureFlag = "FEATURE_FPS_COUNTER";
     static final FEATURE_MODDING:FeatureFlag = "FEATURE_MODDING";
     static final FEATURE_OLD_ICON_SECRET:FeatureFlag = "FEATURE_OLD_ICON_SECRET";
-    static final FEATURE_SCREENSHOTS:FeatureFlag = "FEATURE_SCREENSHOTS";
     static final FEATURE_TRANS_SECRET:FeatureFlag = "FEATURE_TRANS_SECRET";
+
+    static final FEATURE_DEBUG:FeatureFlag = "FEATURE_DEBUG";
+    static final FEATURE_SCREENSHOTS:FeatureFlag = "FEATURE_SCREENSHOTS";
 
     public function new()
     {
@@ -100,15 +101,18 @@ class Project extends HXProject
     public function setupFlags()
     {
         FEATURE_ANTI_MASH.apply(this, true);
-        FEATURE_DEBUG.apply(this, false);
         FEATURE_DISCORD_RPC.apply(this, true);
         FEATURE_FOCUS_LOST_VOLUME.apply(this, true);
         FEATURE_FPS_COUNTER.apply(this, true);
         FEATURE_MODDING.apply(this, true);
         FEATURE_OLD_ICON_SECRET.apply(this, true);
-        FEATURE_SCREENSHOTS.apply(this, true);
         FEATURE_TRANS_SECRET.apply(this, true);
 
+        FEATURE_DEBUG.apply(this, false);
+        FEATURE_SCREENSHOTS.apply(this, false);
+
+        // Prints flags here as we don't want all the other defines
+        // Just the feature flags we want
         printFlags();
     }
 
