@@ -241,8 +241,6 @@ class Project extends HXProject
         if (!isBuild())
             return;
 
-        info("");
-
         var enabled:Array<String> = [];
         var disabled:Array<String> = [];
         
@@ -259,6 +257,7 @@ class Project extends HXProject
 
         if (enabled.length > 0)
         {
+            info("");
             info("Enabled Flags:");
             info("");
 
@@ -266,10 +265,9 @@ class Project extends HXProject
                 info('- $flag'.white());
         }
 
-        info("");
-
         if (disabled.length > 0)
         {
+            info("");
             info("Disabled Flags:");
             info("");
 
