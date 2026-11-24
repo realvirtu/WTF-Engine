@@ -46,12 +46,6 @@ class Project extends HXProject
         if (isWeb())
             error("Web isn't supported you stupid bitch.");
 
-        setupBuildPath();
-        setupFlags();
-
-        if (!isBuild())
-            return;
-
         meta.title = TITLE;
         meta.version = VERSION;
         meta.company = COMPANY;
@@ -60,6 +54,8 @@ class Project extends HXProject
         app.main = MAIN_CLASS;
         app.file = EXE_NAME;
         app.preloader = PRELOADER;
+        
+        app.path = 'export/${isDebug() ? "debug" : "release"}';
 
         window.width = 1280;
         window.height = 720;
@@ -80,22 +76,10 @@ class Project extends HXProject
         
         includeAssets("assets");
 
+        setupFlags();
         setupDefines();
         setupMacros();
         setupHaxelibs();
-    }
-
-    public function setupBuildPath()
-    {
-        var path:String = "release";
-
-        if (isDebug())
-            path = "debug";
-
-        // Sets the export path
-        // On debug, it"s "export/debug"
-        // On release, it"s "export/release"
-        app.path = 'export/$path';
     }
 
     public function setupFlags()
