@@ -67,7 +67,7 @@ class Conductor
 
 		// Debug watching (for debugging purposes)
 		FlxG.watch.addQuick('time', time);
-		FlxG.watch.addQuick('bpm', bpm);
+		FlxG.watch.addQuick('bpm', bpm.b);
 		FlxG.watch.addQuick('step', step);
 		FlxG.watch.addQuick('beat', beat);
 		FlxG.watch.addQuick('measure', measure);

@@ -2,6 +2,7 @@ import hxp.*;
 import lime.tools.*;
 import haxe.io.Bytes;
 
+using StringTools;
 using tools.AnsiTools;
 
 /**
@@ -9,21 +10,46 @@ using tools.AnsiTools;
  */
 class Project extends HXProject
 {
-    final TITLE:String = "Friday Night Funkin' WTF Engine";
-    final VERSION:String = "0.1.0";
-    final COMPANY:String = "Virtu";
-    final PACKAGE:String = "com.virtu.wtfengine";
+    //
+    // PROJECT
+    //
 
-    final MAIN_CLASS:String = "Main";
-    final FILE_NAME:String = "WTFEngine";
-    final PRELOADER:String = "flixel.system.FlxPreloader";
+    static final TITLE:String = "Friday Night Funkin' WTF Engine";
+    static final VERSION:String = "0.1.0";
+    static final COMPANY:String = "Virtu";
+    static final PACKAGE:String = "com.virtu.wtfengine";
 
-    final WIDTH:Int = 1280;
-    final HEIGHT:Int = 720;
+    static final EXE_NAME:String = "WTFEngine";
+
+    static final MAIN_CLASS:String = "Main";
+    static final PRELOADER:String = "flixel.system.FlxPreloader";
+
+    //
+    // FLAGS
+    //
+
+    static final FEATURE_ANTI_MASH:FeatureFlag = "FEATURE_ANTI_MASH";
+    static final FEATURE_DEBUG:FeatureFlag = "FEATURE_DEBUG";
+    static final FEATURE_DISCORD_RPC:FeatureFlag = "FEATURE_DISCORD_RPC";
+    static final FEATURE_FOCUS_LOST_VOLUME:FeatureFlag = "FEATURE_FOCUS_LOST_VOLUME";
+    static final FEATURE_FPS_COUNTER:FeatureFlag = "FEATURE_FPS_COUNTER";
+    static final FEATURE_MODDING:FeatureFlag = "FEATURE_MODDING";
+    static final FEATURE_OLD_ICON_SECRET:FeatureFlag = "FEATURE_OLD_ICON_SECRET";
+    static final FEATURE_SCREENSHOTS:FeatureFlag = "FEATURE_SCREENSHOTS";
+    static final FEATURE_TRANS_SECRET:FeatureFlag = "FEATURE_TRANS_SECRET";
 
     public function new()
     {
         super();
+
+        if (isWeb())
+            error("Web isn't supported you stupid bitch.");
+
+        setupBuildPath();
+        setupFlags();
+
+        if (!isBuild())
+            return;
 
         meta.title = TITLE;
         meta.version = VERSION;
@@ -31,11 +57,11 @@ class Project extends HXProject
         meta.packageName = PACKAGE;
 
         app.main = MAIN_CLASS;
-        app.file = FILE_NAME;
+        app.file = EXE_NAME;
         app.preloader = PRELOADER;
 
-        window.width = WIDTH;
-        window.height = HEIGHT;
+        window.width = 1280;
+        window.height = 720;
         window.fps = 60;
         window.background = 0x000000;
         window.hardware = true;
@@ -53,18 +79,12 @@ class Project extends HXProject
         
         includeAssets("assets");
 
-        setupBuildPath();
         setupDefines();
         setupMacros();
         setupHaxelibs();
-
-        // Web error for funny
-        // Otherwise do some good info
-        if (isBuild() && isWeb())
-            error("Web isn't supported you stupid bitch.");
     }
 
-    function setupBuildPath()
+    public function setupBuildPath()
     {
         var path:String = "release";
 
@@ -77,23 +97,28 @@ class Project extends HXProject
         app.path = 'export/$path';
     }
 
-    function setupDefines()
+    public function setupFlags()
+    {
+        FEATURE_ANTI_MASH.apply(this, true);
+        FEATURE_DEBUG.apply(this, false);
+        FEATURE_DISCORD_RPC.apply(this, true);
+        FEATURE_FOCUS_LOST_VOLUME.apply(this, true);
+        FEATURE_FPS_COUNTER.apply(this, true);
+        FEATURE_MODDING.apply(this, true);
+        FEATURE_OLD_ICON_SECRET.apply(this, true);
+        FEATURE_SCREENSHOTS.apply(this, true);
+        FEATURE_TRANS_SECRET.apply(this, true);
+
+        printFlags();
+    }
+
+    public function setupDefines()
     {
         //
         // WTF ENGINE
         //
 
         setHaxedef("funkin", VERSION);
-
-        setHaxedef("FEATURE_ANTI_MASH");
-        setHaxedef("FEATURE_FOCUS_LOST_VOLUME");
-        setHaxedef("FEATURE_FPS_COUNTER");
-        setHaxedef("FEATURE_TRANS_SECRET");
-        setHaxedef("FEATURE_OLD_ICON_SECRET");
-
-        setHaxedef("FEATURE_DISCORD_RPC");
-        setHaxedef("FEATURE_SCREENSHOTS");
-        setHaxedef("FEATURE_MODDING");
 
         //
         // FLIXEL
@@ -104,8 +129,11 @@ class Project extends HXProject
 
         setHaxedef("NAPE_RELEASE_BUILD");
 
-        if (!isDebug())
+        if (FEATURE_DEBUG.isDisabled(this))
+        {
             setHaxedef("FLX_NO_DEBUG");
+            setHaxedef("analyzer-optimize");
+        }
 
         //
         // POLYMOD
@@ -116,7 +144,7 @@ class Project extends HXProject
 
         setHaxedef("hscriptPos");
 
-        if (isDebug())
+        if (FEATURE_DEBUG.isEnabled(this))
             setHaxedef("POLYMOD_DEBUG");
 
         //
@@ -129,18 +157,16 @@ class Project extends HXProject
         setHaxedef("lime_disable_assets_version");
 
         setHaxedef("HXCPP_CHECK_POINTER");
+        setHaxedef("HXCPP_GC_GENERATIONAL");
         setHaxedef("HXCPP_STACK_LINE");
         setHaxedef("HXCPP_STACK_TRACE");
-
-        if (!isDebug())
-            setHaxedef("analyzer-optimize");
         
         // Makes message reporting nice and pretty
         // Remove this line if you're lame
         setHaxedef("message.reporting", "pretty");
     }
 
-    function setupMacros()
+    public function setupMacros()
     {
         // Fixes some stupid dumb problems with Polymod
         // :whatthemad:
@@ -152,7 +178,7 @@ class Project extends HXProject
         addHaxeMacro("include('flixel', true, ['flixel.addons.editors.spine.*', 'flixel.addons.nape.*', 'flixel.system.macros.*', 'flixel.addons.tile.FlxRayCastTilemap'])");
     }
 
-    function setupHaxelibs()
+    public function setupHaxelibs()
     {
         addHaxelib("flixel");
         addHaxelib("flixel-addons");
@@ -165,22 +191,27 @@ class Project extends HXProject
         addHaxelib("hxdiscord_rpc");
     }
 
-    function setHaxedef(name:String, ?value:String)
+    public function setHaxedef(name:String, ?value:String)
     {
         haxedefs.set(name, value ?? "");
     }
 
-    function addHaxelib(name:String)
+    public function removeHaxedef(name:String)
+    {
+        haxedefs.remove(name);
+    }
+
+    public function addHaxelib(name:String)
     {
         haxelibs.push(new Haxelib(name));
     }
 
-    function addHaxeFlag(name:String)
+    public function addHaxeFlag(name:String)
     {
         haxeflags.push(name);
     }
 
-    function addHaxeMacro(name:String)
+    public function addHaxeMacro(name:String)
     {
         addHaxeFlag('--macro $name');
     }
@@ -189,28 +220,141 @@ class Project extends HXProject
     // LOGGING
     //
 
-    function error(message:String)
+    public function info(message:String)
     {
+        if (!isBuild())
+            return;
+        Sys.println(message.info());
+    }
+
+    public function error(message:String)
+    {
+        if (!isBuild())
+            return;
         Sys.stderr().write(Bytes.ofString(message.error()));
         Sys.exit(1);
+    }
+
+    public function printFlags()
+    {
+        if (!isBuild())
+            return;
+
+        info("");
+
+        var enabled:Array<String> = [];
+        var disabled:Array<String> = [];
+        
+        for (flag in haxedefs.keys())
+        {
+            if (!flag.startsWith(FeatureFlag.INVERSE_PREFIX))
+                enabled.push(flag);
+            else
+                disabled.push(flag.substr(FeatureFlag.INVERSE_PREFIX.length));
+        }
+
+        enabled.sort((a, b) -> return a > b ? 1 : -1);
+        disabled.sort((a, b) -> return a > b ? 1 : -1);
+
+        if (enabled.length > 0)
+        {
+            info("Enabled Flags:");
+            info("");
+
+            for (flag in enabled)
+                info('- $flag'.white());
+        }
+
+        info("");
+
+        if (disabled.length > 0)
+        {
+            info("Disabled Flags:");
+            info("");
+
+            for (flag in disabled)
+                info('- $flag'.white());
+        }
     }
 
     //
     // CONDITIONALS
     //
 
-    function isWeb():Bool
+    public function isWeb():Bool
     {
         return platformType == PlatformType.WEB;
     }
 
-    function isBuild():Bool
+    public function isBuild():Bool
     {
         return command == "test" || command == "build";
     }
 
-    function isDebug():Bool
+    public function isDebug():Bool
     {
         return debug;
+    }
+}
+
+/**
+ * Feature flag class to make flag stuff easier.
+ * Kinda stolen from Funkin' lmao.
+ */
+abstract FeatureFlag(String) to String from String
+{
+    public static final INVERSE_PREFIX:String = 'NO_';
+
+    public function new(name:String)
+    {
+        this = name;
+    }
+
+    public function apply(project:Project, enabled:Bool)
+    {
+        if (isEnabled(project))
+            getInverse().disable(project, false);
+        else if (getInverse().isEnabled(project))
+            disable(project, false);
+        else
+        {
+            if (enabled)
+                enable(project);
+            else
+                disable(project);
+        }
+    }
+
+    public function enable(project:Project, checkInverse:Bool = true)
+    {
+        project.setHaxedef(this, '');
+
+        if (checkInverse)
+            getInverse().disable(project, false);
+    }
+
+    public function disable(project:Project, checkInverse:Bool = true)
+    {
+        project.removeHaxedef(this);
+
+        if (checkInverse)
+            getInverse().enable(project, false);
+    }
+
+    public function isEnabled(project:Project):Bool
+    {
+        return project.haxedefs.exists(this) || project.defines.exists(this);
+    }
+
+    public function isDisabled(project:Project):Bool
+    {
+        return getInverse().isEnabled(project);
+    }
+
+    public function getInverse():FeatureFlag
+    {
+        if (this.startsWith(INVERSE_PREFIX))
+            return this.substr(INVERSE_PREFIX.length);
+        return INVERSE_PREFIX + this;
     }
 }

@@ -28,9 +28,15 @@ class FreeplayIcon extends FunkinSprite
 			path = '$PATH/$id';
 		}
 
+		// Hide the icon if it doesn't exist
+		if (!Paths.exists(Paths.image(path)))
+		{
+			visible = false;
+			return;
+		}
+
 		loadSprite(path, 0.7);
 
-		// Only show the icon if it's visible
-		visible = graphic != null;
+		visible = true;
 	}
 }

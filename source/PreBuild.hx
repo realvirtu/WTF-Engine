@@ -74,7 +74,6 @@ class PreBuild
 		// Print a happy lil compile message :3
 		// Idea stolen from Moon Engine teehee
 		// Seriously check out Moon Engine
-		Sys.println('');
 		Sys.println("Today's message:".info());
 		Sys.println(MESSAGES[Std.random(MESSAGES.length)].info());
 		Sys.println('');

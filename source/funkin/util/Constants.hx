@@ -75,7 +75,11 @@ class Constants
 	inline static function get_VERSION():String
 	{
 		var version:String = 'v${Application.current.meta.get('version')}';
+
+		#if FEATURE_DEBUG
 		version += ' ($GIT_BRANCH : $GIT_HASH)';
+		#end
+
 		return version;
 	}
 }
