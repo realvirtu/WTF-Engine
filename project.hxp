@@ -142,10 +142,11 @@ class Project extends HXProject
         setHaxedef("POLYMOD_MOD_METADATA_FILE", "meta.json");
         setHaxedef("POLYMOD_MOD_ICON_FILE", "icon.png");
 
-        setHaxedef("hscriptPos");
-
         if (FEATURE_DEBUG.isEnabled(this))
+        {
             setHaxedef("POLYMOD_DEBUG");
+            setHaxedef("hscriptPos");
+        }
 
         //
         // MISC
@@ -313,9 +314,9 @@ abstract FeatureFlag(String) to String from String
     public function apply(project:Project, enabled:Bool)
     {
         if (isEnabled(project))
-            getInverse().disable(project, false);
+            enable(project);
         else if (getInverse().isEnabled(project))
-            disable(project, false);
+            disable(project);
         else
         {
             if (enabled)
