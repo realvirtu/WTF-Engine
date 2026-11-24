@@ -764,6 +764,37 @@ class PlayState extends FunkinState
 			health = healthBar.min;
 			healthLerp = health;
 		}
+
+		#if FEATURE_DEBUG
+		// Debug controls
+		// Pressing 1 ends the song
+		if (FlxG.keys.justPressed.ONE)
+			endSong();
+
+		// Pressing [ or ] time travels
+		if (FlxG.keys.justPressed.LBRACKET || FlxG.keys.justPressed.RBRACKET)
+		{
+			final add:Float = Constants.MS_PER_SEC * 5 * (FlxG.keys.justPressed.LBRACKET ? -1 : 1);
+
+			FunkinSound.music.time = (FunkinSound.music.time + add).clamp(0, FunkinSound.music.length);
+
+			if (voices.opponent != null)
+				voices.opponent.time = FunkinSound.music.time;
+			if (voices.player != null)
+				voices.player.time = FunkinSound.music.time;
+
+			opponentStrumline.notes.killMembers();
+			opponentStrumline.holdNotes.killMembers();
+
+			playerStrumline.notes.killMembers();
+			playerStrumline.holdNotes.killMembers();
+
+			opponentStrumline.nextNoteIndex = 0;
+			playerStrumline.nextNoteIndex = 0;
+
+			nextEventIndex = 0;
+		}
+		#end
 	}
 
 	function playerNoteHit(note:NoteSprite)

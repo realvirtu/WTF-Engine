@@ -33,7 +33,7 @@ class Strumline extends FlxGroup
 
 	public var noteIncoming(default, null) = new FlxTypedSignal<NoteSprite->Void>();
 
-	var nextNoteIndex:Int;
+	public var nextNoteIndex:Int;
 
 	public function new(style:NoteStyle, isPlayer:Bool)
 	{
