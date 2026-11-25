@@ -1,7 +1,6 @@
 package funkin.audio;
 
 import flixel.sound.FlxSound;
-import openfl.utils.Assets;
 
 /**
  * Parameters used for playing sounds.
@@ -53,9 +52,8 @@ class FunkinSound extends FlxSound
 		params.autoDestroy ??= true;
 
 		var sound:FunkinSound = new FunkinSound();
-		var path:String = Paths.sound(id);
 
-		sound.loadEmbedded(Paths.exists(path) ? Assets.getMusic(path) : null, params.looped, params.autoDestroy);
+		sound.loadAudio(Paths.sound(id), true, params.looped, params.autoDestroy);
 
 		sound.id = id;
 		sound.volume = params.volume;
